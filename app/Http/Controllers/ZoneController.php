@@ -8,7 +8,6 @@ use App\Zone;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
 class ZoneController extends Controller
 {
 

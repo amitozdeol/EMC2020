@@ -6,7 +6,6 @@ use App\DeviceType;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
 class DeviceTypesController extends Controller
 {
 

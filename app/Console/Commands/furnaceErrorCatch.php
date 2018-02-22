@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-
 class furnaceErrorCatch
 {
 

@@ -6,8 +6,6 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-
-
 class AdminController extends Controller
 {
 

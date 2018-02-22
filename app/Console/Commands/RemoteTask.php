@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\SSH;
 
-
 /**/
 class RemoteTask
 {

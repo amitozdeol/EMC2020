@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-
 class SetpointMappingController extends Controller
 {
 

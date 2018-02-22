@@ -11,7 +11,6 @@ use App\System;
 use App\WebMappingDefault;
 use App\WebMappingSystem;
 
-
     // $system = System::find($sid);
     // $id = $system->building_id;
 class TouchScreenController extends Controller

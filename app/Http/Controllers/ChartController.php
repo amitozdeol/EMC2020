@@ -11,7 +11,6 @@ use App\MappingOutput;
 use App\System;
 use Illuminate\Support\Facades\Input;
 
-
 class ChartController extends Controller
 {
 

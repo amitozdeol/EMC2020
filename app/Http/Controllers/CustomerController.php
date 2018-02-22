@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 
-
 class CustomerController extends Controller
 {
 

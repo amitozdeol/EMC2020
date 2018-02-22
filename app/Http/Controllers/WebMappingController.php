@@ -9,7 +9,6 @@ use App\System;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-
 class WebMappingController extends Controller
 {
 
