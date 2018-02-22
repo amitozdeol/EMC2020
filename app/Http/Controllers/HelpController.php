@@ -1,6 +1,6 @@
 <?php
 
-class HelpController extends \BaseController
+class HelpController extends Controller
 {
 
   /**

@@ -1,6 +1,6 @@
 <?php
 
-class AlgorithmController extends \BaseController
+class AlgorithmController extends Controller
 {
     /**
      * Display a listing of the resource.

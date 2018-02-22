@@ -1,6 +1,6 @@
 <?php
 
-class DeviceTypesController extends \BaseController
+class DeviceTypesController extends Controller
 {
 
   /**

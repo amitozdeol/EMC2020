@@ -1,6 +1,8 @@
 <?php
 
-class AdminUserController extends BaseController
+use App\Http\Controllers\Controller;
+
+class AdminUserController extends Controller
 {
 
     public $mobile_carriers = [

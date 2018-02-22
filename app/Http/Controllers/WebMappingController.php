@@ -1,6 +1,6 @@
 <?php
 
-class WebMappingController extends \BaseController
+class WebMappingController extends Controller
 {
 
   /**

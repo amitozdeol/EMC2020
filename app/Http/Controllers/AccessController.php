@@ -1,6 +1,6 @@
 <?php
 
-class AccessController extends \BaseController
+class AccessController extends Controller
 {
 
   /**

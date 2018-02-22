@@ -1,6 +1,6 @@
 <?php
 
-class ProductTypeController extends \BaseController
+class ProductTypeController extends Controller
 {
 
   /**

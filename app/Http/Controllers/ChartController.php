@@ -1,6 +1,6 @@
 <?php
 
-class ChartController extends \BaseController
+class ChartController extends Controller
 {
 
   /**

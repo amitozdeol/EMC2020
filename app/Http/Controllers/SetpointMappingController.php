@@ -1,6 +1,6 @@
 <?php
 
-class SetpointMappingController extends \BaseController
+class SetpointMappingController extends Controller
 {
 
   /**

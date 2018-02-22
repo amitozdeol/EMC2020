@@ -4,7 +4,7 @@
 *
 *	Used for: setting season_mode across mutliple systems
 */
-class SettingsController extends BaseController
+class SettingsController extends Controller
 {
     /*
 	* @fcn 		customerbuildings()

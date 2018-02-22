@@ -1,6 +1,6 @@
 <?php
 
-class BuildingController extends BaseController
+class BuildingController extends Controller
 {
 
   /**

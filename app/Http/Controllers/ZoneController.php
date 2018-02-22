@@ -1,6 +1,6 @@
 <?php
 
-class ZoneController extends \BaseController
+class ZoneController extends Controller
 {
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
-class AdminBuildingController extends \BaseController
+use App\Http\Controllers\Controller;
+
+class AdminBuildingController extends Controller
 {
 
   /**

@@ -1,6 +1,6 @@
 <?php
 
-class EmailController extends BaseController
+class EmailController extends Controller
 {
 
 

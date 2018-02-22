@@ -1,5 +1,5 @@
 <?php
-class ReportsController extends BaseController
+class ReportsController extends Controller
 {
   /**
    * Displays an empty reports chart with all available devices listed

@@ -1,6 +1,8 @@
 <?php
 
-class AdminCustomerController extends BaseController
+use App\Http\Controllers\Controller;
+
+class AdminCustomerController extends Controller
 {
 
   /**

@@ -2,7 +2,7 @@
 
     // $system = System::find($sid);
     // $id = $system->building_id;
-class TouchScreenController extends \BaseController
+class TouchScreenController extends Controller
 {
 
   /**
