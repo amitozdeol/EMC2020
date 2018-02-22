@@ -11,14 +11,14 @@
 |
 */
 
-ClassLoader::addDirectories(array(
+ClassLoader::addDirectories([
 
   app_path().'/commands',
   app_path().'/controllers',
   app_path().'/models',
   app_path().'/database/seeds',
 
-));
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -46,25 +46,23 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
-  SystemLog::error(0, substr($exception,0,254), 12);
-  if(Config::get('app.debug') === false) {
-    switch ($code)
-    {
-      case 403:
-        return Response::view('errors.soon', array('exception'=>$exception), 403);
+App::error(function (Exception $exception, $code) {
+    SystemLog::error(0, substr($exception, 0, 254), 12);
+    if (Config::get('app.debug') === false) {
+        switch ($code) {
+            case 403:
+                return Response::view('errors.soon', ['exception'=>$exception], 403);
 
-      case 404:
-        return Response::view('errors.soon', array('exception'=>$exception), 404);
+            case 404:
+                return Response::view('errors.soon', ['exception'=>$exception], 404);
 
-      case 500:
-        return Response::view('errors.soon', array('exception'=>$exception), 500);
+            case 500:
+                return Response::view('errors.soon', ['exception'=>$exception], 500);
 
-      default:
-        return Response::view('errors.soon',  array('exception'=>$exception), $code);
+            default:
+                return Response::view('errors.soon', ['exception'=>$exception], $code);
+        }
     }
-  }
 });
 
 /*
@@ -78,9 +76,8 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
-{
-  return Response::make("Be right back!", 503);
+App::down(function () {
+    return Response::make("Be right back!", 503);
 });
 
 /*
