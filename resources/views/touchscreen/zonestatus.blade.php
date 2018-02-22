@@ -6,10 +6,10 @@
 
 @section('content')
 
-<div class="page-title"><h3>{{ $thisBldg->name }} - System Zone Status</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - System Zone Status</h3></div>
 
 <div class="page-nav">
-    <a href="{{ URL::to('EMC', array($thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+    <a href="{!! URL::to('EMC', array($thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <?php
@@ -180,7 +180,7 @@ $ZColor = 1; ?>
             ?>
         <div class="row" style="color: white; background-color: <?php print_r($zbkcolor); ?>">
             <div class="col-xs-3 row-padding">
-                {{"ZONE - ".$device->zone}}
+                {!!"ZONE - ".$device->zone!!}
             </div>
 
         </div>
@@ -194,7 +194,7 @@ $ZColor = 1; ?>
 
 
                 <div class="col-xs-2 row-padding">
-                            {{$device->physical_location }}
+                            {!!$device->physical_location !!}
 
                 </div>
 
@@ -307,7 +307,7 @@ $ZColor = 1; ?>
             ?>
         <div class="row" style="color: white; background-color: <?php print_r($zbkcolor); ?>">
             <div class="col-xs-3 row-padding">
-                {{"ZONE - ".$device->zone}}
+                {!!"ZONE - ".$device->zone!!}
             </div>
 
         </div>
@@ -319,8 +319,8 @@ $ZColor = 1; ?>
     <div class="row" style="color: white; background-color: #01082A;">
         <div class="col-xs-2 row-padding">
 
-            {{$device->name."<BR>"}}
-            {{$device->physical_location }}
+            {!!$device->name."<BR>"!!}
+            {!!$device->physical_location !!}
 
         </div>
 

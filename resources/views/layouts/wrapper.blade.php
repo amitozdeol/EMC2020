@@ -3,7 +3,7 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-			<title>{{isset($title) ? $title : 'EMC20/20'}}</title>
+			<title>{!!isset($title) ? $title : 'EMC20/20'!!}</title>
 		<meta name="description" content="The latest in building automation technology. Sense and control your building remotely." />
 		<meta name="ROBOTS" content="INDEX, FOLLOW" />
 		<meta name="GOOGLEBOT" content="INDEX, FOLLOW" />
@@ -16,7 +16,7 @@
 		@else
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		@endif
-		<link rel="apple-touch-icon" href="{{{ asset('images/apple-touch-icon.png') }}}">
+		<link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
 		<?
 			//Cache control
 			//Add last modified date of a file to the URL, as get parameter.
@@ -30,7 +30,7 @@
 			}
 		?>
 		<!-- Speed up fontawesome loading by 200ms by loading from cloudfare global cache. -->
-		{{HTML::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')}}
+		{!!HTML::style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')!!}
 		@if(isset($admincss))
 			@if($admincss=="admin")
 				<?
@@ -186,7 +186,7 @@
 		@else
 			<!-- Don't show footer on IOS devices -->
 			@if(strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/ios")) <= 0 )
-				{{View::make('home.footer')}}
+				{!!View::make('home.footer')!!}
 			@endif
 		@endif
 	</body>

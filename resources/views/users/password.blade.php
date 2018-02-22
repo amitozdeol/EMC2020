@@ -32,27 +32,27 @@
 <div class="title">
   <h2>Reset Your Password</h2>
 </div>
-  {{Form::open(['route' => 'account.password.update'])}}
+  {!!Form::open(['route' => 'account.password.update'])!!}
 
     <div class="row">
       <br>
       <br>
       <br>
       @if(Session::has('message'))
-        <div class="alert {{ Session::get('alert-class') }}" role="alert">
+        <div class="alert {!! Session::get('alert-class') !!}" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ Session::get('message') }}
+            {!! Session::get('message') !!}
         </div>
       @endif
       <div class="col-sm-6 col-sm-offset-3">
 
-        {{Form::label('password', 'New Password')}}
-        {{Form::password('password', ['class'=>'form-control input-lg', 'placeholder'=>'Password', 'id'=>'password'])}}
+        {!!Form::label('password', 'New Password')!!}
+        {!!Form::password('password', ['class'=>'form-control input-lg', 'placeholder'=>'Password', 'id'=>'password'])!!}
 
         <br>
 
-        {{Form::label('re-password', 'Retype Password')}}
-        {{Form::password('re-password', ['class'=>'form-control input-lg', 'placeholder'=>'Retype Password', 'id'=>'re-password'])}}
+        {!!Form::label('re-password', 'Retype Password')!!}
+        {!!Form::password('re-password', ['class'=>'form-control input-lg', 'placeholder'=>'Retype Password', 'id'=>'re-password'])!!}
 
       </div>
 
@@ -64,17 +64,17 @@
       <div class="col-sm-10 col-sm-offset-1">
 
         <div class="col-xs-12 col-sm-4 col-md-3 pull-right">
-          {{Form::submit('Submit', ['class'=>'btn btn-primary btn-sm col-xs-12'])}}
+          {!!Form::submit('Submit', ['class'=>'btn btn-primary btn-sm col-xs-12'])!!}
           <div class="col-xs-12"><br>{{-- Spacing for mobile --}}</div>
         </div>
         <div class="col-xs-12 col-sm-4 col-md-3 pull-left">
-          {{HTML::link (URL::route('account.index'), 'Cancel', ['class'=>'btn btn-default btn-sm col-xs-12'])}}
+          {!!HTML::link (URL::route('account.index'), 'Cancel', ['class'=>'btn btn-default btn-sm col-xs-12'])!!}
           <div class="col-xs-12"><br>{{-- Spacing for mobile --}}</div>
         </div>
 
       </div>
 
     </div>
-  {{Form::close()}}
+  {!!Form::close()!!}
 
 @stop

@@ -4,17 +4,17 @@
 
 @section('content')
 
-<div class="page-title"><h3>{{ $thisBldg->name }} - Analytics Detail</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - Analytics Detail</h3></div>
 
 <div class="page-nav">
-	<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+	<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <br>
 
 <div style="margin-left: auto; margin-right: auto; width: 90%;">
 	<div id="accordion">
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Alarm Totals</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Alarm Totals</h4>
 		<div>
 			<div id="monthtotals" style="width: 85%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 				<pre id="csv" style="display:none">Time and Place,Alarm Numbers
@@ -51,7 +51,7 @@
 			<div id="currentmonth" style="width: 85%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Alarm Durations - Current Month</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Alarm Durations - Current Month</h4>
 				<div>
 					<div id="tabs">
   						<ul>

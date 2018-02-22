@@ -7,7 +7,7 @@
 
 <div class="col-xs-12 shortest-height" style="background-color: #419CB0;"></div>
 
-{{ Form::open(array('url' => 'reset')) }}
+{!! Form::open(array('url' => 'reset')) !!}
 	<form>
 	<div class="block_emc" style="min-height: 400px; background-color: #419CB0;">
        <div class="col-sm-12 col-md-6 col-md-offset-3 form-group block-emc">
@@ -16,8 +16,8 @@
     	    We'll send you an email with instructions for resetting your password.
     	    <br>
     	    <br>
-    	    {{ Form::label('recover-email', 'Email', ['class' => 'forget_password_tour']) }}
-    	    {{ Form::email('recover-email', Input::old('email'), ['class' => 'form-control forget_password_tour', 'autocomplete' => 'on', 'required']) }}
+    	    {!! Form::label('recover-email', 'Email', ['class' => 'forget_password_tour']) !!}
+    	    {!! Form::email('recover-email', Input::old('email'), ['class' => 'form-control forget_password_tour', 'autocomplete' => 'on', 'required']) !!}
     	    <br>
     	    <div class="row">
 				<button type="submit" class="col-xs-4 col-xs-offset-7 col-sm-2 col-sm-offset-9 col-md-3 col-md-offset-8 btn btn-primary">Submit</button>
@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	</form>
-{{ Form::close() }}
+{!! Form::close() !!}
 
 
 <script>

@@ -15,7 +15,7 @@
       }
     }
   ?>
-  {{HTML::style('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')}}
+  {!!HTML::style('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css')!!}
   <style>
       /*--------------ON/OFF Toggle------------------*/
       .tgl-skewed + .tgl-btn {
@@ -131,8 +131,8 @@
           <?php $set_setpoint_tab_tour = true; ?>
           @foreach($functionsArray as $key => $deviceFunction)
             <li class="<?php if($key == 0)echo "active";?>">
-              <a class="@if($set_setpoint_tab_tour) setpoint_tab_tour @endif" href="#{{str_replace(' ','',$deviceFunction)}}group" id="{{str_replace(' ','',$deviceFunction)}}title" name="{{str_replace(' ','',$deviceFunction)}}title" data-toggle="tab">
-                {{$deviceFunction}} Sensors
+              <a class="@if($set_setpoint_tab_tour) setpoint_tab_tour @endif" href="#{!!str_replace(' ','',$deviceFunction)!!}group" id="{!!str_replace(' ','',$deviceFunction)!!}title" name="{!!str_replace(' ','',$deviceFunction)!!}title" data-toggle="tab">
+                {!!$deviceFunction!!} Sensors
               </a>
             </li>
             <?php $set_setpoint_tab_tour = false; ?>
@@ -146,21 +146,21 @@
         ?>
         @foreach($functionsArray as $deviceFunction)
           @if($i == 0)
-          <div class="transparent_blue_white tab-pane fade in active" id="{{str_replace(' ','',$deviceFunction)}}group" name="{{str_replace(' ','',$deviceFunction)}}group" style="text-shadow: none;">
+          <div class="transparent_blue_white tab-pane fade in active" id="{!!str_replace(' ','',$deviceFunction)!!}group" name="{!!str_replace(' ','',$deviceFunction)!!}group" style="text-shadow: none;">
           @else
-          <div class="transparent_blue_white tab-pane fade" id="{{str_replace(' ','',$deviceFunction)}}group" name="{{str_replace(' ','',$deviceFunction)}}group" style="text-shadow: none;">
+          <div class="transparent_blue_white tab-pane fade" id="{!!str_replace(' ','',$deviceFunction)!!}group" name="{!!str_replace(' ','',$deviceFunction)!!}group" style="text-shadow: none;">
           @endif
           <!-- top row = global edit button and select a zone -->
           <?php $set_single_setpoint_tour = true; ?>
           <div class="col-xs-12  row-padding" style="background: #3a506d; padding-left: 5px; padding-right: 5px; border-radius: 10px;">
             <div class="col-xs-6 col-sm-4 zoneSelector " style="padding-top:9px; padding-bottom: 9px; min-height: 1px; border-radius: 10px;"> <!-- select a zone -->
-              <select onchange="SensorZoneOptions(this)" id="Sensorzoneoptions{{str_replace(' ','',$deviceFunction)}}" class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif form-control" style="height:34px; font-size:14px;">
+              <select onchange="SensorZoneOptions(this)" id="Sensorzoneoptions{!!str_replace(' ','',$deviceFunction)!!}" class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif form-control" style="height:34px; font-size:14px;">
                 <!--Spawn more tabs according to number of zones-->
                 @foreach($zonesArray as $zone)
                   @if(isset($functionZone[$deviceFunction][$zone]))
                     @if($zone != 0)
-                      <option value="{{$zone}}" data-functionname="{{$deviceFunction}}" data-command={{$commandFunctions[$deviceFunction]}} data-toggle="collapse" data-parent="#system-device-in" ><!--ZONE TABS-->
-                        {{ isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone) }}
+                      <option value="{!!$zone!!}" data-functionname="{!!$deviceFunction!!}" data-command={!!$commandFunctions[$deviceFunction]!!} data-toggle="collapse" data-parent="#system-device-in" ><!--ZONE TABS-->
+                        {!! isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone) !!}
                       </option>
                     @endif
                   @endif
@@ -170,21 +170,21 @@
             <div> <!-- global/zonal edit button -->
               <ul class="toolbar cf col-xs-6 col-sm-4 col-sm-offset-4 ">
                 <li class="globalbutton">
-                  <a style="display: block;" class="zonal-setpoint @if($set_global_setpoint_tour) global_setpoint_change_tour @endif GZButton" title="Edit Global Setpoints" id="globalModalButton-{{$commandFunctions[$deviceFunction]}}" 
-                  data-toggle="modal" data-target="#global{{$commandFunctions[$deviceFunction]}}Modal" data-backdrop="static">
+                  <a style="display: block;" class="zonal-setpoint @if($set_global_setpoint_tour) global_setpoint_change_tour @endif GZButton" title="Edit Global Setpoints" id="globalModalButton-{!!$commandFunctions[$deviceFunction]!!}" 
+                  data-toggle="modal" data-target="#global{!!$commandFunctions[$deviceFunction]!!}Modal" data-backdrop="static">
                     <i class="fa fa-globe"  aria-hidden="true"></i>
                   </a>
                 </li>
                 <li class="zonalbutton">
-                  <a style="display: block;" class="zonal-setpoint @if($set_zonal_setpoint_tour) zonal_setpoint_change_tour @endif GZButton" title="Edit {{isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ('Zone'.$zone)}} {{$deviceFunction}} Setpoints" 
-                  id="zonalModalButton{{str_replace(' ','',$deviceFunction)}}" data-toggle="modal" data-target="#zonal{{$commandFunctions[$deviceFunction]}}{{$zone}}Modal" data-backdrop="static">
+                  <a style="display: block;" class="zonal-setpoint @if($set_zonal_setpoint_tour) zonal_setpoint_change_tour @endif GZButton" title="Edit {!!isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ('Zone'.$zone)!!} {!!$deviceFunction!!} Setpoints" 
+                  id="zonalModalButton{!!str_replace(' ','',$deviceFunction)!!}" data-toggle="modal" data-target="#zonal{!!$commandFunctions[$deviceFunction]!!}{{$zone}}Modal" data-backdrop="static">
                     <i class="fa fa-pencil-square"  aria-hidden="true"></i>
                   </a>
                 </li>
               </ul>
-                {{Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])}}
+                {!!Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])!!}
                 <!-- Modal - GLOBAL FUNCTION-->
-                <div class="modal fade modal-setback" option="false" id="global{{$commandFunctions[$deviceFunction]}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{str_replace(' ','',$deviceFunction)}}ModalLabel" aria-hidden="true" style="color: black">
+                <div class="modal fade modal-setback" option="false" id="global{!!$commandFunctions[$deviceFunction]!!}Modal" tabindex="-1" role="dialog" aria-labelledby="{!!str_replace(' ','',$deviceFunction)!!}ModalLabel" aria-hidden="true" style="color: black">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content" style="font-weight:bold">
                       <div class="modal-header">
@@ -193,57 +193,57 @@
                             &times;
                           </span>
                         </button>
-                        <h3 class="emc-modal-title" id="{{str_replace(' ','',$deviceFunction)}}ModalLabel" style="text-align:center; margin: 0px;">
-                            Global {{$deviceFunction}}
+                        <h3 class="emc-modal-title" id="{!!str_replace(' ','',$deviceFunction)!!}ModalLabel" style="text-align:center; margin: 0px;">
+                            Global {!!$deviceFunction!!}
                         </h3>
                       </div>
-                      <div class="modal-body row" id="{{str_replace(' ','',$deviceFunction)}}ModalBody" name="{{str_replace(' ','',$deviceFunction)}}ModalBody" style="font-weight:normal">
+                      <div class="modal-body row" id="{!!str_replace(' ','',$deviceFunction)!!}ModalBody" name="{!!str_replace(' ','',$deviceFunction)!!}ModalBody" style="font-weight:normal">
                         <div class="form-inline" style="text-align:center">
                           <div class="col-sm-12 form-group">
-                            <label for="global_{{$deviceFunction}}">
+                            <label for="global_{!!$deviceFunction!!}">
                               <h4 class="emc-modal-title">
-                                Global {{$deviceFunction}} Setpoint:
+                                Global {!!$deviceFunction!!} Setpoint:
                               </h4>
                             </label>
                           </div>
                           <div class="col-sm-12 col-md-6 col-md-offset-3 form-group">
-                            {{$functionWithoutSpaces = str_replace(' ','',$deviceFunction);}}
+                            {!!$functionWithoutSpaces = str_replace(' ','',$deviceFunction);!!}
                             <?php $thisclass = ($set_global_setpoint_tour)? "global_setpoint_change_tour form-control":"form-control"; ?>
-                            {{Form::text("global_$functionWithoutSpaces",Null,["class" => ($set_global_setpoint_tour)? "global_setpoint_change_tour form-control":"form-control", "style" => "width:100%", "placeholder" => "Global Setpoint", "id" => "global_$functionWithoutSpaces", "title" => "Global setpoint for all $deviceFunction sensors."])}}
+                            {!!Form::text("global_$functionWithoutSpaces",Null,["class" => ($set_global_setpoint_tour)? "global_setpoint_change_tour form-control":"form-control", "style" => "width:100%", "placeholder" => "Global Setpoint", "id" => "global_$functionWithoutSpaces", "title" => "Global setpoint for all $deviceFunction sensors."])!!}
                           </div>
                         </div>
                         <div class="row" style="margin:10px;">
                         </div>
-                        <div class="setback-group col-xs-12 hidden" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="globalGroup-{{$commandFunctions[$deviceFunction]}}-0-0" id="globalGroup-{{$commandFunctions[$deviceFunction]}}-0-0">
+                        <div class="setback-group col-xs-12 hidden" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="globalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-0" id="globalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-0">
                           <div class="setback-label col-xs-12 " id="globalNumber0" name="globalNumber0" style="text-align:center;">
                             Setback 0
                           </div>
                           <div class="setback-starttime col-xs-12 col-lg-6 mb-5" id="globalStartTime0" name="globalStartTime0" data-toggle="tooltip" data-placement="top" title="Global Start Time">
-                            {{Form::text("globalStartTimeForm-$commandFunctions[$deviceFunction]-0-0",null,["class" => "setback-starttime-form form-control input-sm","placeholder" => "Start Time"])}}
+                            {!!Form::text("globalStartTimeForm-$commandFunctions[$deviceFunction]-0-0",null,["class" => "setback-starttime-form form-control input-sm","placeholder" => "Start Time"])!!}
                           </div>
                           <div class="setback-stoptime col-xs-12 col-lg-6 mb-5" id="globalStopTime0" name="globalStopTime0" data-toggle="tooltip" data-placement="top" title="Global Stop Time">
-                            {{Form::text("globalStopTimeForm-$commandFunctions[$deviceFunction]-0-0",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])}}
+                            {!!Form::text("globalStopTimeForm-$commandFunctions[$deviceFunction]-0-0",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])!!}
                           </div>
                           <div class="setback-values col-xs-12 col-lg-5 col-lg-offset-1" id="globalValue0" name="globalValue0" data-toggle="tooltip" data-placement="top" title="Global Setback Setpoint">
-                            {{Form::text("globalValueForm-$commandFunctions[$deviceFunction]-0-0",null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Global Setback Setpoint"])}}
+                            {!!Form::text("globalValueForm-$commandFunctions[$deviceFunction]-0-0",null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Global Setback Setpoint"])!!}
                           </div>
                           <div class="setback-weekdays col-xs-10 col-sm-11 col-lg-5" id="globalWeekday0" name="globalWeekday0">
-                            {{Form::select("globalWeekdayForm-$commandFunctions[$deviceFunction]-0-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])}}
+                            {!!Form::select("globalWeekdayForm-$commandFunctions[$deviceFunction]-0-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])!!}
                           </div>
                           <div class="setback-delete col-xs-2 col-sm-1" id="globalDelete0" name="globalDelete0" style="line-height: 30px;">
-                            <button type="button" class="btn btn-xs btn-danger" id="globalDeleteButton-{{$commandFunctions[$deviceFunction]}}-0-0" name="globalDeleteButton-{{$commandFunctions[$deviceFunction]}}-0-0"  onclick="globalDeleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
+                            <button type="button" class="btn btn-xs btn-danger" id="globalDeleteButton-{!!$commandFunctions[$deviceFunction]!!}-0-0" name="globalDeleteButton-{!!$commandFunctions[$deviceFunction]!!}-0-0"  onclick="globalDeleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
                               &nbsp;&minus;&nbsp;
                             </button>
                           </div>
                         </div>
-                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="globalAddButton" name="globalAddButton" data-setbackgroup="globalGroup-{{$commandFunctions[$deviceFunction]}}-0-0"  style="margin-top:10px">
-                            <button type="button" id="largeAddButton{{str_replace(' ','',$deviceFunction)}}" name="largeAddButton{{str_replace(' ','',$deviceFunction)}}" class="btn btn-md btn-primary setpoint-button setback-plus" onclick="globalAddButton(this)" style="display:block; width: 100%;">
+                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="globalAddButton" name="globalAddButton" data-setbackgroup="globalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-0"  style="margin-top:10px">
+                            <button type="button" id="largeAddButton{!!str_replace(' ','',$deviceFunction)!!}" name="largeAddButton{!!str_replace(' ','',$deviceFunction)!!}" class="btn btn-md btn-primary setpoint-button setback-plus" onclick="globalAddButton(this)" style="display:block; width: 100%;">
                               Add Setback
                             </button>
                         </div>
                         <div class="col-xs-12" style="margin:10px">
                           <div class="col-xs-6">
-                            {{Form::submit('Save', ["class"=>($set_global_setpoint_tour)?"global_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "data-confirm" => "Are you sure you want to save your changes? Changes will effect all $deviceFunction sensors.", "name" => "saveGlobal$functionWithoutSpaces", "id" => "saveGlobal$functionWithoutSpaces"])}}
+                            {!!Form::submit('Save', ["class"=>($set_global_setpoint_tour)?"global_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "data-confirm" => "Are you sure you want to save your changes? Changes will effect all $deviceFunction sensors.", "name" => "saveGlobal$functionWithoutSpaces", "id" => "saveGlobal$functionWithoutSpaces"])!!}
                           </div>
                           <div class="col-xs-6">
                             <button type="button" class="@if($set_global_setpoint_tour) global_setpoint_change_tour @endif btn btn-lg btn-primary confirm setpoint-button"  data-confirm='Are you sure you want to cancel? All unsaved changes will be lost.' data-dismiss="modal" aria-label="Close">
@@ -255,15 +255,15 @@
                     </div>
                   </div>
                 </div>
-                {{Form::close()}}
+                {!!Form::close()!!}
                 <!-- END Modal - GLOBAL FUNCTION-->
                 <!-- Modal - BY ZONE -->
                 @foreach($zonesArray as $zone)
                   @if(isset($functionZone[$deviceFunction][$zone]))
                     @if($zone != 0)
-                    {{Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])}}
-                      {{ Form::hidden('zone_id', $zone) }}
-                      <div class="modal fade modal-setback" id="zonal{{$commandFunctions[$deviceFunction]}}{{$zone}}Modal" tabindex="-1" role="dialog" aria-labelledby="{{str_replace(' ','',$deviceFunction)}}ModalLabel" aria-hidden="true" style="color: black">
+                    {!!Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])!!}
+                      {!! Form::hidden('zone_id', $zone) !!}
+                      <div class="modal fade modal-setback" id="zonal{!!$commandFunctions[$deviceFunction]!!}{{$zone}}Modal" tabindex="-1" role="dialog" aria-labelledby="{!!str_replace(' ','',$deviceFunction)!!}ModalLabel" aria-hidden="true" style="color: black">
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content" style="font-weight:bold">
                             <div class="modal-header">
@@ -272,55 +272,55 @@
                                   &times;
                                 </span>
                               </button>
-                              <h3 class="emc-modal-title" id="{{$zone}}{{str_replace(' ','',$deviceFunction)}}ModalLabel" style="text-align:center; margin: 0px;">
-                                {{isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone)}} {{$deviceFunction}}
+                              <h3 class="emc-modal-title" id="{!!$zone!!}{{str_replace(' ','',$deviceFunction)}}ModalLabel" style="text-align:center; margin: 0px;">
+                                {!!isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone)!!} {!!$deviceFunction!!}
                               </h3>
                             </div>
-                            <div class="modal-body row" id="{{'Zone'.$zone}}{{str_replace(' ','',$deviceFunction)}}ModalBody" name="{{$zone}}{{str_replace(' ','',$deviceFunction)}}ModalBody" style="font-weight:normal">
+                            <div class="modal-body row" id="{!!'Zone'.$zone!!}{{str_replace(' ','',$deviceFunction)}}ModalBody" name="{!!$zone!!}{{str_replace(' ','',$deviceFunction)}}ModalBody" style="font-weight:normal">
                               <div class="form-inline" style="text-align:center">
                                 <div class="form-group">
                                   <label for="zone_id">
                                     <h4 class="emc-modal-title">
-                                      {{isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone)}} {{$deviceFunction}} Setpoint:
+                                      {!!isset($zoneNameArray[$zone]) ? ($zoneNameArray[$zone]) : ("Zone".$zone)!!} {!!$deviceFunction!!} Setpoint:
                                     </h4>
                                   </label>
                                 </div>
                                 <div class ="col-sm-12 col-md-6 col-md-offset-3 form-group">
-                                  {{$functionWithoutSpaces = str_replace(' ','',$deviceFunction);}}
-                                  {{Form::text("zonal_$functionWithoutSpaces$zone",Null,["class" => ($set_zonal_setpoint_tour)?"zonal_setpoint_change_tour form-control":"form-control", "style" => "width:100%", "placeholder" => "Zonal Setpoint", "id" => "zonal_$functionWithoutSpaces$zone", "title" => "Zonal setpoint for all $deviceFunction sensors in the chosen zone."])}}
+                                  {!!$functionWithoutSpaces = str_replace(' ','',$deviceFunction);!!}
+                                  {!!Form::text("zonal_$functionWithoutSpaces$zone",Null,["class" => ($set_zonal_setpoint_tour)?"zonal_setpoint_change_tour form-control":"form-control", "style" => "width:100%", "placeholder" => "Zonal Setpoint", "id" => "zonal_$functionWithoutSpaces$zone", "title" => "Zonal setpoint for all $deviceFunction sensors in the chosen zone."])!!}
                                 </div>
                               </div>
                               <div class="row" style="margin:10px;"></div>
-                              <div class="setback-group col-xs-12 hidden" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="zonalGroup-{{$commandFunctions[$deviceFunction]}}-0-{{$zone}}" id="zonalGroup-{{$commandFunctions[$deviceFunction]}}-0-{{$zone}}">
-                                <div class="setback-label col-xs-12" id="zonalNumber0{{$zone}}" name="zonalNumber0" style="text-align:center;">
+                              <div class="setback-group col-xs-12 hidden" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="zonalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-{!!$zone!!}" id="zonalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-{!!$zone!!}">
+                                <div class="setback-label col-xs-12" id="zonalNumber0{!!$zone!!}" name="zonalNumber0" style="text-align:center;">
                                   Setback 0
                                 </div>
-                                <div class="setback-starttime col-xs-12 col-lg-6 mb-5" id="zonalStartTime0{{$zone}}" name="zonalStartTime0" data-toggle="tooltip" data-placement="top" title="Global Start Time">
-                                  {{Form::text("zonalStartTimeForm-$commandFunctions[$deviceFunction]-0-$zone",null,["class" => "setback-starttime-form form-control input-sm","placeholder" => "Start Time"])}}
+                                <div class="setback-starttime col-xs-12 col-lg-6 mb-5" id="zonalStartTime0{!!$zone!!}" name="zonalStartTime0" data-toggle="tooltip" data-placement="top" title="Global Start Time">
+                                  {!!Form::text("zonalStartTimeForm-$commandFunctions[$deviceFunction]-0-$zone",null,["class" => "setback-starttime-form form-control input-sm","placeholder" => "Start Time"])!!}
                                 </div>
-                                <div class="setback-stoptime col-xs-12 col-lg-6 mb-5" id="zonalStopTime0{{$zone}}" name="zonalStopTime0" data-toggle="tooltip" data-placement="top" title="Global Stop Time">
-                                  {{Form::text("zonalStopTimeForm-$commandFunctions[$deviceFunction]-0-$zone",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])}}
+                                <div class="setback-stoptime col-xs-12 col-lg-6 mb-5" id="zonalStopTime0{!!$zone!!}" name="zonalStopTime0" data-toggle="tooltip" data-placement="top" title="Global Stop Time">
+                                  {!!Form::text("zonalStopTimeForm-$commandFunctions[$deviceFunction]-0-$zone",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])!!}
                                 </div>
-                                <div class="setback-values col-xs-12 col-lg-5 col-lg-offset-1" id="zonalValue0{{$zone}}" name="zonalValue0" data-toggle="tooltip" data-placement="top" title="Zonal Setback Setpoint">
-                                  {{Form::text("zonalValueForm-$commandFunctions[$deviceFunction]-0-$zone",null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Zonal Setback Setpoint"])}}
+                                <div class="setback-values col-xs-12 col-lg-5 col-lg-offset-1" id="zonalValue0{!!$zone!!}" name="zonalValue0" data-toggle="tooltip" data-placement="top" title="Zonal Setback Setpoint">
+                                  {!!Form::text("zonalValueForm-$commandFunctions[$deviceFunction]-0-$zone",null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Zonal Setback Setpoint"])!!}
                                 </div>
-                                <div class="setback-weekdays col-xs-10 col-sm-11 col-lg-5" id="zonalWeekday0{{$zone}}" name="zonalWeekday0">
-                                  {{Form::select("zonalWeekdayForm-$commandFunctions[$deviceFunction]-0-$zone",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])}}
+                                <div class="setback-weekdays col-xs-10 col-sm-11 col-lg-5" id="zonalWeekday0{!!$zone!!}" name="zonalWeekday0">
+                                  {!!Form::select("zonalWeekdayForm-$commandFunctions[$deviceFunction]-0-$zone",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])!!}
                                 </div>
-                                <div class="setback-delete col-xs-2 col-sm-1" id="zonalDelete0{{$zone}}" name="zonalDelete0" style="line-height: 30px;">
-                                  <button type="button" class="btn btn-xs btn-danger" id="zonalDeleteButton-{{$commandFunctions[$deviceFunction]}}-0-{{$zone}}" name="zonalDeleteButton-{{$commandFunctions[$deviceFunction]}}-0-{{$zone}}"  onclick="globalDeleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
+                                <div class="setback-delete col-xs-2 col-sm-1" id="zonalDelete0{!!$zone!!}" name="zonalDelete0" style="line-height: 30px;">
+                                  <button type="button" class="btn btn-xs btn-danger" id="zonalDeleteButton-{!!$commandFunctions[$deviceFunction]!!}-0-{!!$zone!!}" name="zonalDeleteButton-{!!$commandFunctions[$deviceFunction]!!}-0-{!!$zone!!}"  onclick="globalDeleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
                                     &nbsp;&minus;&nbsp;
                                   </button>
                                 </div>
                               </div>
-                              <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="zonalAddButton{{$zone}}" name="zonalAddButton" data-setbackgroup="zonalGroup-{{$commandFunctions[$deviceFunction]}}-0-{{$zone}}" style="margin-top:10px">
-                                  <button type="button" id="largeAddButton{{str_replace(' ','',$deviceFunction)}}{{$zone}}" name="largeAddButton{{str_replace(' ','',$deviceFunction)}}" class="col-xs-12 btn btn-md btn-primary setpoint-button setback-plus" onclick="globalAddButton(this)" style="display:block; width: 100%;">
+                              <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="zonalAddButton{!!$zone!!}" name="zonalAddButton" data-setbackgroup="zonalGroup-{!!$commandFunctions[$deviceFunction]!!}-0-{!!$zone!!}" style="margin-top:10px">
+                                  <button type="button" id="largeAddButton{!!str_replace(' ','',$deviceFunction)!!}{{$zone}}" name="largeAddButton{!!str_replace(' ','',$deviceFunction)!!}" class="col-xs-12 btn btn-md btn-primary setpoint-button setback-plus" onclick="globalAddButton(this)" style="display:block; width: 100%;">
                                     Add Setback
                                   </button>
                               </div>
                               <div class="col-xs-12" style="margin:10px">
                                 <div class="col-xs-6">
-                                  {{Form::submit('Save', ["class"=>($set_zonal_setpoint_tour)?"zonal_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "name" => "saveZonal$functionWithoutSpaces$zone", "data-confirm" => "Are you sure you want to save your changes? Changes will effect all $deviceFunction sensors within this zone.", "id" => "saveZonal$functionWithoutSpaces$zone"])}}
+                                  {!!Form::submit('Save', ["class"=>($set_zonal_setpoint_tour)?"zonal_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "name" => "saveZonal$functionWithoutSpaces$zone", "data-confirm" => "Are you sure you want to save your changes? Changes will effect all $deviceFunction sensors within this zone.", "id" => "saveZonal$functionWithoutSpaces$zone"])!!}
                                 </div>
                                 <div class="col-xs-6">
                                   <button type="button" class="@if($set_zonal_setpoint_tour) zonal_setpoint_change_tour @endif btn btn-lg btn-primary confirm setpoint-button" data-confirm='Are you sure you want to cancel? All unsaved changes will be lost.' data-dismiss="modal" aria-label="Close">
@@ -332,7 +332,7 @@
                           </div>
                         </div>
                       </div>
-                      {{Form::close()}}
+                      {!!Form::close()!!}
                     @endif
                   @endif
                 @endforeach
@@ -347,28 +347,28 @@
           @foreach($zonesArray as $zone)
             @if(isset($functionZone[$deviceFunction][$zone]))
               @if($zone != 0)
-                  {{Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])}}
-                  <input name="zone_id" value="{{$zone}}" type="hidden">
-                  <div class="container-fluid collapse" id="{{str_replace(' ','',$deviceFunction)}}{{str_replace(' ','',$zonesArray[$zone])}}" style="padding:0px;">
+                  {!!Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, -1*$commandFunctions[$deviceFunction]], "method" => "put"])!!}
+                  <input name="zone_id" value="{!!$zone!!}" type="hidden">
+                  <div class="container-fluid collapse" id="{!!str_replace(' ','',$deviceFunction)!!}{{str_replace(' ','',$zonesArray[$zone])}}" style="padding:0px;">
                     <?php $zone_count++; ?> <!-- show first zone when page loads -->
                     <div class="row"></div>
-                    {{Form::close()}}
+                    {!!Form::close()!!}
                     <!-- Grid Data -->
                     @foreach($devIdList as $deviceID)
                       @foreach($systemCommands as $sCommand)
                         @if(isset($megarray[$deviceFunction][$zone][$deviceID][$sCommand]))
                           @if($deviceFunction == 'Temperature')
-                            <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif col-sm-6 col-md-4" id="{{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']}}" style="font-family: helvetica">
+                            <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif col-sm-6 col-md-4" id="{!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']!!}" style="font-family: helvetica">
                               <div class="block_emc block_emc_setpoints" style="overflow: hidden;">
-                                {{Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']], "method" => "put"])}}
+                                {!!Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']], "method" => "put"])!!}
                                 <div class="col-xs-12" style="text-align: center;">
                                   <big><big>
-                                    {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']}}
+                                    {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']!!}
                                   </big></big>
                                   <br>
                                 </div>
                                 <div style="position: absolute; top: 0; right: 20px; z-index: 2;"><!--Settings Button-->
-                                  <div class="setpoint-setting @if($set_single_setpoint_tour) single_setpoint_change_tour @endif " title="Settings" style="width: 100%;" id="sensor{{$i}}ModalButton" data-toggle="modal" data-target="#sensor{{$i}}Modal" data-backdrop="static">
+                                  <div class="setpoint-setting @if($set_single_setpoint_tour) single_setpoint_change_tour @endif " title="Settings" style="width: 100%;" id="sensor{!!$i!!}ModalButton" data-toggle="modal" data-target="#sensor{!!$i!!}Modal" data-backdrop="static">
                                     <i class="fa fa-cog" aria-hidden="true"></i>
                                   </div>
                                 </div>
@@ -382,13 +382,13 @@
                                       @endif
                                     </div>
                                   </div>
-                                  <div class="row" style="font-weight: normal" id="list{{$i}}" name="list{{$i}}"><!--current settings-->
-                                    <div class="col-xs-12" id="setpoint_list{{$i}}" name="setpoint_list{{$i}}" style="padding-bottom:2px; padding-top:2px">
+                                  <div class="row" style="font-weight: normal" id="list{!!$i!!}" name="list{!!$i!!}"><!--current settings-->
+                                    <div class="col-xs-12" id="setpoint_list{!!$i!!}" name="setpoint_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px">
                                       <div class="col-xs-6 block_emc_heading" style="text-align:right; padding-right: 0px;">
                                         Setpoint:
                                       </div>
                                       <div class="col-xs-6">
-                                        {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint']}} &deg;{{$tempFormat}}
+                                        {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint']!!} &deg;{!!$tempFormat!!}
                                       </div>
                                     </div>
                                     <div><!--alarm limits-->
@@ -400,22 +400,22 @@
                                         </div>
                                       </p>
                                       <p>
-                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_low_list{{$i}}" name="alarm_low_list{{$i}}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
+                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_low_list{!!$i!!}" name="alarm_low_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
                                           <div class="col-xs-6 block_emc_heading" style="text-align:right; color: #428BCA;">
                                             Lower:
                                           </div>
                                           <div class="col-xs-6">
-                                            {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low']}} {{$commandUnits[$deviceFunction]}}
+                                            {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low']!!} {!!$commandUnits[$deviceFunction]!!}
                                           </div>
                                         </div>
                                       </p>
                                       <p>
-                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_high_list{{$i}}" name="alarm_high_list{{$i}}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
+                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_high_list{!!$i!!}" name="alarm_high_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
                                           <div class="col-xs-6 block_emc_heading" style="text-align:right; color: red;">
                                             Upper:
                                           </div>
                                           <div class="col-xs-6">
-                                            {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high']}} {{$commandUnits[$deviceFunction]}}
+                                            {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high']!!} {!!$commandUnits[$deviceFunction]!!}
                                           </div>
                                         </div>
                                       </p>
@@ -423,7 +423,7 @@
                                   </div>
                                 </div>
                                 <!-- Modal - TEMPERATURE-->
-                                <div class="modal fade modal-setback" id="sensor{{$i}}Modal" tabindex="-1" role="dialog" aria-labelledby="sensor{{$i++}}ModalLabel" aria-hidden="true" style="color: black">
+                                <div class="modal fade modal-setback" id="sensor{!!$i!!}Modal" tabindex="-1" role="dialog" aria-labelledby="sensor{!!$i++!!}ModalLabel" aria-hidden="true" style="color: black">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -433,17 +433,17 @@
                                           </span>
                                         </button>
                                         <h3 class="emc-modal-title" id="myModalLabel" style="text-align:center; margin: 0px;">
-                                          {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']}} Setpoints
+                                          {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']!!} Setpoints
                                         </h3>
                                       </div>
-                                      <div class="modal-body row" id="{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])}}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{{str_replace(' ','',$deviceFunction)}}ModalBody" name="{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])}}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{{str_replace(' ','',$deviceFunction)}}ModalBody">
-                                        <div class="row" style="font-weight: normal;" id="form{{$i}}" name="form{{$i}}">
+                                      <div class="modal-body row" id="{!!str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])!!}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{!!str_replace(' ','',$deviceFunction)!!}ModalBody" name="{!!str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])!!}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{!!str_replace(' ','',$deviceFunction)!!}ModalBody">
+                                        <div class="row" style="font-weight: normal;" id="form{!!$i!!}" name="form{!!$i!!}">
                                           <div class="row">
                                             <div class="col-xs-6">
-                                              <div class="form-group" id="setpoint_form{{$i}}" name="setpoint_form{{$i}}">
+                                              <div class="form-group" id="setpoint_form{!!$i!!}" name="setpoint_form{!!$i!!}">
                                                 <label for="field1A">Setpoint:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('setpoint',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%;color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "setpoint", "title" => "setpoint"])}}
+                                                  {!!Form::text('setpoint',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%;color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "setpoint", "title" => "setpoint"])!!}
                                                 </div>
                                               </div>
                                             </div>
@@ -451,26 +451,26 @@
                                               <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif form-group">
                                                 <label for="field1B">Priority Alarm:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::checkbox('priority_alarms',1,$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['priority_alarm'],["class" => "tgl tgl-skewed", "id" => "priority_alarms$i", "title" => "Choose to show this device in the main alarm reports."])}}
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="priority_alarms{{$i}}"></label>
+                                                  {!!Form::checkbox('priority_alarms',1,$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['priority_alarm'],["class" => "tgl tgl-skewed", "id" => "priority_alarms$i", "title" => "Choose to show this device in the main alarm reports."])!!}
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="priority_alarms{!!$i!!}"></label>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
                                           <div class="row">
-                                            <div class="col-xs-6" id="alarm_low_form{{$i}}" name="alarm_low_form{{$i}}">
+                                            <div class="col-xs-6" id="alarm_low_form{!!$i!!}" name="alarm_low_form{!!$i!!}">
                                               <div class="form-group">
                                                 <label for="field2A">Lower Alarm Limit:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('alarm_low',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_low", "title" => "alarm_low"])}}
+                                                  {!!Form::text('alarm_low',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_low", "title" => "alarm_low"])!!}
                                                 </div>
                                               </div>
                                             </div>
-                                            <div class="col-xs-6" id="alarm_high_form{{$i}}" name="alarm_high_form{{$i}}">
+                                            <div class="col-xs-6" id="alarm_high_form{!!$i!!}" name="alarm_high_form{!!$i!!}">
                                               <div class="form-group">
                                                 <label for="field2B">Upper Alarm Limit:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('alarm_high',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_high", "title" => "alarm_high"])}}
+                                                  {!!Form::text('alarm_high',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_high", "title" => "alarm_high"])!!}
                                                 </div>
                                               </div>
                                             </div>
@@ -478,21 +478,21 @@
                                         </div>
                                         <div class="row" style="margin:10px;">
                                         </div>
-                                        <div class="setback-group hidden col-xs-12" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="setbackGroup-{{$deviceID}}-{{$sCommand}}-0" id="setbackGroup-{{$deviceID}}-{{$sCommand}}-0">
+                                        <div class="setback-group hidden col-xs-12" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0" id="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0">
                                           <div class="setback-label col-xs-12" id="sbNumber0" name="sbNumber0" style="text-align:center;">
                                             Setback 0
                                           </div>
                                           <div class="setback-starttime col-xs-12 col-lg-6 mb-5" id="sbStartTime0" name="sbStartTime0" data-toggle="tooltip" data-placement="top" title="Start Time">
-                                            {{Form::text("sbStartTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-starttime-form form-control input-sm", "placeholder" => "Start Time"])}}
+                                            {!!Form::text("sbStartTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-starttime-form form-control input-sm", "placeholder" => "Start Time"])!!}
                                           </div>
                                           <div class="setback-stoptime col-xs-12 col-lg-6 mb-5" id="sbStopTime0" name="sbStopTime0" data-toggle="tooltip" data-placement="top" title="Stop Time">
-                                            {{Form::text("sbStopTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])}}
+                                            {!!Form::text("sbStopTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-stoptime-form form-control input-sm", "placeholder" => "Stop Time"])!!}
                                           </div>
                                           <div class="setback-values col-xs-12 col-lg-5 col-lg-offset-1" id="sbValue0" name="sbValue0" data-toggle="tooltip" data-placement="top" title="Setback Setpoint">
-                                            {{Form::text("sbValueForm-$deviceID-$sCommand-0", null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Setback Setpoint"])}}
+                                            {!!Form::text("sbValueForm-$deviceID-$sCommand-0", null, ["class" => "form-control input-sm", "type" => "number", "placeholder" => "Setback Setpoint"])!!}
                                           </div>
                                           <div class="setback-weekdays col-xs-10 col-sm-11 col-lg-5" id="sbWeekday0" name="sbWeekday0">
-                                            {{Form::select("sbWeekdayForm-$deviceID-$sCommand-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])}}
+                                            {!!Form::select("sbWeekdayForm-$deviceID-$sCommand-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])!!}
                                           </div>
                                           <div class="setback-delete col-xs-2 col-sm-1" id="sbDelete0" name="sbDelete0" style="line-height: 30px;">
                                             <button type="button" class="btn btn-xs btn-danger" id="sbDeleteButton" name="sbDeleteButton"  onclick="deleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
@@ -500,14 +500,14 @@
                                             </button>
                                           </div>
                                         </div>
-                                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="addButton" name="addButton" data-setbackgroup="setbackGroup-{{$deviceID}}-{{$sCommand}}-0" style="margin-top:10px">
+                                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="addButton" name="addButton" data-setbackgroup="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0" style="margin-top:10px">
                                           <button type="button" class="btn btn-md btn-primary setpoint-button setback-plus" onclick="addButton(this)" style="display:block;">
                                             Add Setback
                                           </button>
                                         </div>
                                         <div class="col-xs-12" style="margin-top: 10px; margin-bottom: 10px; margin-left: -10px;">
                                           <div class="col-xs-6">
-                                            {{Form::submit('Save', ["class"=>($set_single_setpoint_tour)?"single_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "style"=>"font-size: 15px; padding: 5px; width: 100%;", "data-confirm" => "Are you sure you want to save your changes?", "name" => "saveButton$i", "id" => "saveButton$i"])}}
+                                            {!!Form::submit('Save', ["class"=>($set_single_setpoint_tour)?"single_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "style"=>"font-size: 15px; padding: 5px; width: 100%;", "data-confirm" => "Are you sure you want to save your changes?", "name" => "saveButton$i", "id" => "saveButton$i"])!!}
                                           </div>
                                           <div class="col-xs-6">
                                             <button type="button" class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif btn btn-lg btn-primary confirm setpoint-button" data-confirm='Are you sure you want to cancel? All unsaved changes will be lost.' data-dismiss="modal" aria-label="Close">
@@ -520,22 +520,22 @@
                                   </div>
                                 </div>
                                 <!-- END Modal - TEMPERATURE -->
-                                {{Form::close()}}
+                                {!!Form::close()!!}
                               </div>
                             </div>
                             <?php $set_single_setpoint_tour = false; ?>
                           @else
-                            <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif col-sm-6 col-md-4" id="{{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']}}" style="font-family: helvetica">
+                            <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif col-sm-6 col-md-4" id="{!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']!!}" style="font-family: helvetica">
                               <div class="block_emc block_emc_setpoints" style="overflow: hidden;">
-                                {{Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']], "method" => "put"])}}
+                                {!!Form::open(['route'=>['setpointmapping.update', $thisBldg->id, $sid, $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint_id']], "method" => "put"])!!}
                                 <div class="col-xs-12" style="text-align: center;margin-bottom:3pt;">
                                   <big><big>
-                                  {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']}}
+                                  {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']!!}
                                   </big></big>
                                   <br>
                                 </div>
                                 <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif " style="position: absolute; top: 0; right: 20px; z-index:2;"><!--Settings Button-->
-                                  <div class="setpoint-setting" title="Settings" style="width: 100%;" id="sensor{{$i}}ModalButton" data-toggle="modal" data-target="#sensor{{$i}}Modal" >
+                                  <div class="setpoint-setting" title="Settings" style="width: 100%;" id="sensor{!!$i!!}ModalButton" data-toggle="modal" data-target="#sensor{!!$i!!}Modal" >
                                     <i class="fa fa-cog" aria-hidden="true"></i>
                                   </div>
                                 </div>
@@ -549,13 +549,13 @@
                                       @endif
                                     </div>
                                   </div>
-                                  <div class="row" style="font-weight: normal" id="list{{$i}}" name="list{{$i}}"><!--current settings-->
-                                    <div class="col-xs-12" id="setpoint_list{{$i}}" name="setpoint_list{{$i}}" style="padding-bottom:2px; padding-top:2px">
+                                  <div class="row" style="font-weight: normal" id="list{!!$i!!}" name="list{!!$i!!}"><!--current settings-->
+                                    <div class="col-xs-12" id="setpoint_list{!!$i!!}" name="setpoint_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px">
                                       <div class="col-xs-6 block_emc_heading" style="text-align:right; padding-right: 0px;">
                                         Setpoint:
                                       </div>
                                       <div class="col-xs-6">
-                                        {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint']}} {{$commandUnits[$deviceFunction]}}
+                                        {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint']!!} {!!$commandUnits[$deviceFunction]!!}
                                       </div>
                                     </div>
                                     <div><!--alarm limits-->
@@ -567,22 +567,22 @@
                                         </div>
                                       </p>
                                       <p>
-                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_low_list{{$i}}" name="alarm_low_list{{$i}}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
+                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_low_list{!!$i!!}" name="alarm_low_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
                                           <div class="col-xs-6 block_emc_heading" style="text-align:right; color: #428BCA;">
                                             Lower:
                                           </div>
                                           <div class="col-xs-6">
-                                            {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low']}} {{$commandUnits[$deviceFunction]}}
+                                            {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low']!!} {!!$commandUnits[$deviceFunction]!!}
                                           </div>
                                         </div>
                                       </p>
                                       <p>
-                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_high_list{{$i}}" name="alarm_high_list{{$i}}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
+                                        <div class="col-xs-10 col-xs-offset-1" id="alarm_high_list{!!$i!!}" name="alarm_high_list{!!$i!!}" style="padding-bottom:2px; padding-top:2px; background-color: #2B3C51; ">
                                           <div class="col-xs-6 block_emc_heading" style="text-align:right; color: red;">
                                             Upper:
                                           </div>
                                           <div class="col-xs-6">
-                                            {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high']}} {{$commandUnits[$deviceFunction]}}
+                                            {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high']!!} {!!$commandUnits[$deviceFunction]!!}
                                           </div>
                                         </div>
                                       </p>
@@ -590,7 +590,7 @@
                                   </div>
                                 </div>
                                 <!-- Modal - NON-TEMPERATURE -->
-                                <div class="modal fade modal-setback" id="sensor{{$i}}Modal" tabindex="-1" role="dialog" aria-labelledby="sensor{{$i++}}ModalLabel" aria-hidden="true" style="color: black">
+                                <div class="modal fade modal-setback" id="sensor{!!$i!!}Modal" tabindex="-1" role="dialog" aria-labelledby="sensor{!!$i++!!}ModalLabel" aria-hidden="true" style="color: black">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -600,17 +600,17 @@
                                           </span>
                                         </button>
                                         <h3 class="emc-modal-title" id="myModalLabel" style="text-align:center; margin: 0px;">
-                                          {{$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']}} Setpoints
+                                          {!!$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name']!!} Setpoints
                                         </h3>
                                       </div>
-                                      <div class="modal-body row" id="{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])}}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{{str_replace(' ','',$deviceFunction)}}ModalBody" name="{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])}}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{{str_replace(' ','',$deviceFunction)}}ModalBody">
-                                        <div class="setpoint-group row" style="font-weight: normal;" id="form{{$i}}" name="form{{$i}}">
+                                      <div class="modal-body row" id="{!!str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])!!}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{!!str_replace(' ','',$deviceFunction)!!}ModalBody" name="{!!str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['device_name'])!!}{{str_replace(' ','',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['command'])}}{!!str_replace(' ','',$deviceFunction)!!}ModalBody">
+                                        <div class="setpoint-group row" style="font-weight: normal;" id="form{!!$i!!}" name="form{!!$i!!}">
                                           <div class="row">
                                             <div class="col-xs-6">
-                                              <div class="form-group" id="setpoint_form{{$i}}" name="setpoint_form{{$i}}">
+                                              <div class="form-group" id="setpoint_form{!!$i!!}" name="setpoint_form{!!$i!!}">
                                                 <label for="field1A">Setpoint:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('setpoint',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%;color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "setpoint", "title" => "setpoint"])}}
+                                                  {!!Form::text('setpoint',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%;color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "setpoint", "title" => "setpoint"])!!}
                                                 </div>
                                               </div>
                                             </div>
@@ -618,47 +618,47 @@
                                               <div class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif form-group">
                                                 <label for="field1B">Priority Alarm:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::checkbox('priority_alarms',1,$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['priority_alarm'],["class" => "tgl tgl-skewed", "id" => "priority_alarms$i", "title" => "Choose to show this device in the main alarm reports."])}}
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="priority_alarms{{$i}}"></label>
+                                                  {!!Form::checkbox('priority_alarms',1,$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['priority_alarm'],["class" => "tgl tgl-skewed", "id" => "priority_alarms$i", "title" => "Choose to show this device in the main alarm reports."])!!}
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="priority_alarms{!!$i!!}"></label>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
                                           <div class="row">
-                                            <div class="col-xs-6" id="alarm_low_form{{$i}}" name="alarm_low_form{{$i}}">
+                                            <div class="col-xs-6" id="alarm_low_form{!!$i!!}" name="alarm_low_form{!!$i!!}">
                                               <div class="form-group">
                                                 <label for="field2A">Lower Alarm Limit:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('alarm_low',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_low", "title" => "alarm_low"])}}
+                                                  {!!Form::text('alarm_low',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_low'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_low", "title" => "alarm_low"])!!}
                                                 </div>
                                               </div>
                                             </div>
-                                            <div class="col-xs-6" id="alarm_high_form{{$i}}" name="alarm_high_form{{$i}}">
+                                            <div class="col-xs-6" id="alarm_high_form{!!$i!!}" name="alarm_high_form{!!$i!!}">
                                               <div class="form-group">
                                                 <label for="field2B">Upper Alarm Limit:</label>
                                                 <div class="form-control-wrapper">
-                                                  {{Form::text('alarm_high',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_high", "title" => "alarm_high"])}}
+                                                  {!!Form::text('alarm_high',$megarray[$deviceFunction][$zone][$deviceID][$sCommand]['alarm_high'],["class" => ($set_single_setpoint_tour)?"single_setpoint_change_tour form-control":"form-control","style" => "width: 90%; color:black; border-radius: 2px; padding: 0; height: 24px", "placeholder" => "0", "id" => "alarm_high", "title" => "alarm_high"])!!}
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
                                         <div class="row" style="margin:10px;"></div>
-                                        <div class="setback-group hidden col-xs-12" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="setbackGroup-{{$deviceID}}-{{$sCommand}}-0" id="setbackGroup-{{$deviceID}}-{{$sCommand}}-0">
+                                        <div class="setback-group hidden col-xs-12" style="margin-bottom: 5px; padding: 10px; background-color: #DBDBDB;" name="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0" id="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0">
                                           <div class="setback-label col-xs-12" id="sbNumber0" name="sbNumber0" style="text-align:center;">
                                             Setback 0
                                           </div>
                                           <div class="setback-starttime col-xs-12 col-lg-6 mb-5" id="sbStartTime0" name="sbStartTime0" data-toggle="tooltip" data-placement="top" title="Start Time">
-                                            {{Form::text("sbStartTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-starttime-form form-control input-sm ", "placeholder" => "Start Time"])}}
+                                            {!!Form::text("sbStartTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-starttime-form form-control input-sm ", "placeholder" => "Start Time"])!!}
                                           </div>
                                           <div class="setback-stoptime col-xs-12 col-lg-6 mb-5" id="sbStopTime0" name="sbStopTime0" data-toggle="tooltip" data-placement="top" title="Stop Time">
-                                            {{Form::text("sbStopTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-stoptime-form form-control input-sm ", "placeholder" => "Stop Time"])}}
+                                            {!!Form::text("sbStopTimeForm-$deviceID-$sCommand-0",null,["class" => "setback-stoptime-form form-control input-sm ", "placeholder" => "Stop Time"])!!}
                                           </div>
                                           <div class="setback-values col-xs-12 col-lg-5 col-lg-offset-1" id="sbValue0" name="sbValue0" data-toggle="tooltip" data-placement="top" title="Setback Setpoint">
-                                            {{Form::text("sbValueForm-$deviceID-$sCommand-0", $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'], ["class" => "form-control input-sm", "type" => "number"])}}
+                                            {!!Form::text("sbValueForm-$deviceID-$sCommand-0", $megarray[$deviceFunction][$zone][$deviceID][$sCommand]['setpoint'], ["class" => "form-control input-sm", "type" => "number"])!!}
                                           </div>
                                           <div class="setback-weekdays col-xs-10 col-sm-11 col-lg-5" id="sbWeekday0" name="sbWeekday0">
-                                            {{Form::select("sbWeekdayForm-$deviceID-$sCommand-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])}}
+                                            {!!Form::select("sbWeekdayForm-$deviceID-$sCommand-0",["9" => "EVERYDAY", "7" => "WEEKDAYS", "8" => "WEEKENDS", "0" => "SUNDAYS", "1" => "MONDAYS", "2" => "TUESDAYS", "3" => "WEDNESDAYS", "4" => "THURSDAYS", "5" => "FRIDAYS", "6" => "SATURDAYS"], 9, ["class" => "form-control input-sm setpoint-dropdown", "type" => "number"])!!}
                                           </div>
                                           <div class="setback-delete col-xs-2 col-sm-1" id="sbDelete0" name="sbDelete0" style="line-height: 30px;">
                                             <button type="button" class="btn btn-xs btn-danger" id="sbDeleteButton" name="sbDeleteButton"  onclick="deleteButton(this)" data-toggle="tooltip" data-placement="left" title="Delete">
@@ -666,14 +666,14 @@
                                             </button>
                                           </div>
                                         </div>
-                                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="addButton" name="addButton" data-setbackgroup="setbackGroup-{{$deviceID}}-{{$sCommand}}-0" style="margin-top:10px">
+                                        <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4" id="addButton" name="addButton" data-setbackgroup="setbackGroup-{!!$deviceID!!}-{!!$sCommand!!}-0" style="margin-top:10px">
                                           <button type="button" class="btn btn-md btn-primary setpoint-button setback-plus" onclick="addButton(this)" style="display:block;width: 100%;">
                                             Add Setback
                                           </button>
                                         </div>
                                         <div class="col-xs-12" style="margin:10px">
                                           <div class="col-xs-6">
-                                            {{Form::submit('Save', ["class"=>($set_single_setpoint_tour)?"single_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "data-confirm" => "Are you sure you want to save your changes?", "name" => "saveButton$i", "id" => "saveButton$i"])}}
+                                            {!!Form::submit('Save', ["class"=>($set_single_setpoint_tour)?"single_setpoint_change_tour btn btn-lg btn-primary confirm setpoint-button":"btn btn-lg btn-primary confirm setpoint-button", "data-confirm" => "Are you sure you want to save your changes?", "name" => "saveButton$i", "id" => "saveButton$i"])!!}
                                           </div>
                                           <div class="col-xs-6">
                                             <button type="button" class="@if($set_single_setpoint_tour) single_setpoint_change_tour @endif btn btn-lg btn-primary confirm setpoint-button" data-confirm='Are you sure you want to cancel? All unsaved changes will be lost.' data-dismiss="modal" aria-label="Close">
@@ -686,7 +686,7 @@
                                   </div>
                                 </div>
                                 <!--END Modal - NON-TEMPERATURE-->
-                                {{Form::close()}}
+                                {!!Form::close()!!}
                               </div>
                             </div>
                             <?php $set_single_setpoint_tour = false; ?>
@@ -707,9 +707,9 @@
         <Br>
         @if(in_array(Auth::user()->auth_role,[7,8]))
           <div class="col-xs-12" style="text-align: center;">
-            {{ Form::open(['route' => ['setpointmapping.remap', $thisBldg->id, $sid], 'method' => 'post']) }}
-            {{ Form::submit('Remap Devices',["class" => "btn btn-primary btn-md js-confirm", "style"=>"margin-bottom: 10px;", "title" => "Remap devices to update setpoints list.", "data-confirm" => "Are you sure you want to remap setpoints? This may take a while to complete."]) }}
-            {{ Form::close() }}
+            {!! Form::open(['route' => ['setpointmapping.remap', $thisBldg->id, $sid], 'method' => 'post']) !!}
+            {!! Form::submit('Remap Devices',["class" => "btn btn-primary btn-md js-confirm", "style"=>"margin-bottom: 10px;", "title" => "Remap devices to update setpoints list.", "data-confirm" => "Are you sure you want to remap setpoints? This may take a while to complete."]) !!}
+            {!! Form::close() !!}
           </div>
           <?php
       /*
@@ -749,7 +749,7 @@
   		}
   	}
   ?>
-  {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.4/flatpickr.js') }}
+  {!! HTML::script('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.4/flatpickr.js') !!}
   <script>
     $(document).ready(function() {
       $('.pmd-floating-action').prepend('\
@@ -765,8 +765,8 @@
       );
       $('#myTab').tabCollapse();
       $('#pageload').show();
-      var back_set_devs = {{json_encode($back_set_devs)}};
-      var setbacks      = {{json_encode($setbacks)}};
+      var back_set_devs = {!!json_encode($back_set_devs)!!};
+      var setbacks      = {!!json_encode($setbacks)!!};
       var twelveHourSeconds = 43200;
       /******************************************
        *  Add Setback to the every single device
@@ -850,7 +850,7 @@
             deletebuttonForm = deletebutton.firstElementChild;
             deletebuttonForm.id = "sbDeleteButton-"+ds.device_id+"-"+ds.command+"-"+ds.setback_index;
             deletebuttonForm.name = "sbDeleteButton-"+ds.device_id+"-"+ds.command+"-"+ds.setback_index
-            if("{{$tempFormat}}" == "F" && function_name == 'Temperature'){
+            if("{!!$tempFormat!!}" == "F" && function_name == 'Temperature'){
               setpoint = parseFloat(setback.setback*(9/5)+32).toFixed(2);
               ds.units = "&deg;F";
             }else{
@@ -867,7 +867,7 @@
         
       //On page load show hide the specific data per zone select
       @foreach($functionsArray as $deviceFunction)
-          SensorZoneOptions(document.getElementById("Sensorzoneoptions{{str_replace(' ','',$deviceFunction)}}"));
+          SensorZoneOptions(document.getElementById("Sensorzoneoptions{!!str_replace(' ','',$deviceFunction)!!}"));
       @endforeach
     });
     
@@ -877,11 +877,11 @@
       var command = s[s.selectedIndex].dataset.command;
       functionname = functionname.replace(/ +/g, "");
       @foreach($zonesArray as $zone)
-        if ({{$zone}}==s[s.selectedIndex].value) {
+        if ({!!$zone!!}==s[s.selectedIndex].value) {
           $("#"+functionname+s[s.selectedIndex].value).collapse('toggle');
           $('#zonalModalButton'+functionname).attr('data-target', '#zonal'+command+s[s.selectedIndex].value+'Modal');   // change which modal to show
         }else{
-          $("#"+functionname+{{$zone}}+":visible").collapse('hide');
+          $("#"+functionname+{!!$zone!!}+":visible").collapse('hide');
         }
       @endforeach
     }

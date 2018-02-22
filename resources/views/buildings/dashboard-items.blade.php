@@ -47,8 +47,8 @@
                             <label id = "water-loadingmessage"></label><br>
                             <div id="water-info">
                               @if(isset($InitData['Water']['data']))
-                                <label><b>Date: </b><span id="waterDate" class="text-muted">{{date("F jS, Y", strtotime($InitData['Water']['data']['datetime']))}}</span></label>
-                                <label><b>Alarm: </b><span id="waterAlarm" class="text-muted">{{$InitData['Water']['data']['description']}}</span></label>
+                                <label><b>Date: </b><span id="waterDate" class="text-muted">{!!date("F jS, Y", strtotime($InitData['Water']['data']['datetime']))!!}</span></label>
+                                <label><b>Alarm: </b><span id="waterAlarm" class="text-muted">{!!$InitData['Water']['data']['description']!!}</span></label>
                               @else
                                 <label><span class="text-muted">No data found</span></label>
                               @endif
@@ -63,7 +63,7 @@
             </div>
           @endif
             <!-- WEATHER -->
-            <div class="widgets col-xs-12 col-sm-6 {{ isset($InitData['Water']) ? 'col-lg-4' : 'col-lg-6' }}">
+            <div class="widgets col-xs-12 col-sm-6 {!! isset($InitData['Water']) ? 'col-lg-4' : 'col-lg-6' !!}">
                 <div class="panel weathercard-depth">
                     <div class="panel-body weather-card" style="position: relative; padding: 0;">
                       <div class="front-weather">
@@ -149,7 +149,7 @@
                 </div>
             </div>
             <!-- ACTIVE ALARMS -->
-            <div class="widgets col-xs-12 col-sm-6  {{ isset($InitData['Water']) ? 'col-lg-4' : 'col-lg-6' }}">
+            <div class="widgets col-xs-12 col-sm-6  {!! isset($InitData['Water']) ? 'col-lg-4' : 'col-lg-6' !!}">
                 <div class="panel panel-success">
                     <div class="panel-body" style="padding: 0; text-align: center; min-height: 150px;">
                       <h4>Active Alarm</h4>
@@ -169,10 +169,10 @@
                           @else
                             <tbody class="alarm-table-body alarm-scrollable">
                               @foreach($alarms as $alarm)
-                                <tr class="{{$alarm->alarm_state == 1 ? 'list-group-item-warning' : ($alarm->alarm_state == 2 ? 'list-group-item-danger' : '')}}" style="overflow: hidden;">
-                                  <td><b>{{$alarm->name}}</b></td>
-                                  <td>{{$alarm->description}}</td>
-                                  <td>{{$alarm->created_at}}</td>
+                                <tr class="{!!$alarm->alarm_state == 1 ? 'list-group-item-warning' : ($alarm->alarm_state == 2 ? 'list-group-item-danger' : '')!!}" style="overflow: hidden;">
+                                  <td><b>{!!$alarm->name!!}</b></td>
+                                  <td>{!!$alarm->description!!}</td>
+                                  <td>{!!$alarm->created_at!!}</td>
                                 </tr>
                               @endforeach
                           @endif
@@ -217,22 +217,22 @@
                       </div>
                     </div>
                   @endif
-                <div id="{{$dbchart}}" class="ChartContainers panel panel-primary" style="width: 100%">
+                <div id="{!!$dbchart!!}" class="ChartContainers panel panel-primary" style="width: 100%">
                   <div class="panel-heading clearfix" style="color: black;">
                     <!--=================  Time filter for each chart ================--><!-- dropdown for time-range -->
                     <div class="input-group" style="width: 100%">
                       <div class="tabtodropdown" style="display: inline-block;">
-                        <select class="d3-form-control {{$dbchart}}-toolbar-tour" onchange="TimeSelect(this, '{{$dbchart}}')">
-                            <option value="{{$dbchart == 'SynchronousChart' ? 'Today' : 'Last Week' }}">{{$dbchart == 'SynchronousChart' ? 'Today' : 'Last Week' }}</option>
-                            <option value="{{$dbchart == 'SynchronousChart' ? 'Last Week' : 'Last two Weeks' }}">{{$dbchart == 'SynchronousChart' ? 'Last Week' : 'Last 2 Weeks' }}</option>
+                        <select class="d3-form-control {!!$dbchart!!}-toolbar-tour" onchange="TimeSelect(this, '{!!$dbchart!!}')">
+                            <option value="{!!$dbchart == 'SynchronousChart' ? 'Today' : 'Last Week' !!}">{!!$dbchart == 'SynchronousChart' ? 'Today' : 'Last Week' !!}</option>
+                            <option value="{!!$dbchart == 'SynchronousChart' ? 'Last Week' : 'Last two Weeks' !!}">{!!$dbchart == 'SynchronousChart' ? 'Last Week' : 'Last 2 Weeks' !!}</option>
                             <option value="Last Month" >Last Month</option>
                             <option value="Last Year">Last Year</option>
-                            <option value="Custom"  data-target="#CustomDateModal{{$dbchart}}">Custom</option>
+                            <option value="Custom"  data-target="#CustomDateModal{!!$dbchart!!}">Custom</option>
                             <option value="Custom1" disabled style="display:none;">Custom</option>
                         </select>
                       </div>
                       <!-- Custom date Modal -->
-                      <div id="CustomDateModal{{$dbchart}}" class="modal fade" role="dialog">
+                      <div id="CustomDateModal{!!$dbchart!!}" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <!-- Modal content-->
                           <div class="modal-content">
@@ -240,19 +240,19 @@
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                               <h4 class="modal-title">Select Custom Date for Runtime</h4>
                             </div>
-                            <div class="modal-body" id="modal-body-{{$dbchart}}">
+                            <div class="modal-body" id="modal-body-{!!$dbchart!!}">
                               <label>
                                 Start Date
-                                {{Form::input('date', 'start-date-modal'.$dbchart , date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                                {!!Form::input('date', 'start-date-modal'.$dbchart , date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])!!}
                               </label>
                               <label>
                                 End Date
-                                {{Form::input('date', 'end-date-modal'.$dbchart , date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                                {!!Form::input('date', 'end-date-modal'.$dbchart , date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])!!}
                               </label>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" id="close{{$dbchart}}" class="pull-left btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                              <button type="button" id="submit{{$dbchart}}" class="btn btn-primary btn-sm" onclick="PerChartFilter('Custom', '{{$dbchart}}')">Submit</button>
+                              <button type="button" id="close{!!$dbchart!!}" class="pull-left btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                              <button type="button" id="submit{!!$dbchart!!}" class="btn btn-primary btn-sm" onclick="PerChartFilter('Custom', '{!!$dbchart!!}')">Submit</button>
                             </div>
                           </div>
                         </div>
@@ -261,10 +261,10 @@
                       <div class="input-group-btn pull-right" style="width: auto;">
                         <div class="btn-group">
                           @if($dbchart == 'SynchronousChart')
-                            <div type="button" class="btn btn-default disabled {{$dbchart}}-toolbar-tour" id="zoom-out-d3">
+                            <div type="button" class="btn btn-default disabled {!!$dbchart!!}-toolbar-tour" id="zoom-out-d3">
                               Zoom Out
                             </div>
-                            <div type="button" class="btn btn-primary d3-btn-select {{$dbchart}}-toolbar-tour">
+                            <div type="button" class="btn btn-primary d3-btn-select {!!$dbchart!!}-toolbar-tour">
                                 <input type="hidden" class="btn-select-input" id="" name="" value="" />
                                 <span class="btn-select-value" style="float: left;">Select a zone</span>
                                 <div class="btn-select-arrow" style="float: right;"><span class='glyphicon glyphicon-chevron-down'></span></div>
@@ -272,7 +272,7 @@
                                   <li value="-1">All zones</li>
                                   @foreach($InitData['Temperature']['zone_temp'] as $zone)
                                     @for ($i = 0; $i < count($zone['zonenames']); $i++)
-                                      <li value="{{$zone['zones'][$i]}}">{{$zone['zonenames'][$i]}}</li>
+                                      <li value="{!!$zone['zones'][$i]!!}">{!!$zone['zonenames'][$i]!!}</li>
                                     @endfor
                                   @endforeach
                                 </ul>
@@ -281,7 +281,7 @@
                           <!-- Hide expand button in android and IOS app -->
                           @if(strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/ios")) <= 0 && strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/1.0/Android")) <= 0)
                             <!-- top-right expand button -->
-                            <div type="button" class="btn btn-default expand-button {{$dbchart}}-toolbar-tour" data-chart="{{$dbchart}}" style="border-color: #2e6da4;">
+                            <div type="button" class="btn btn-default expand-button {!!$dbchart!!}-toolbar-tour" data-chart="{!!$dbchart!!}" style="border-color: #2e6da4;">
                               <i class="fa fa-expand" aria-hidden="true" style="line-height: inherit;"></i>
                             </div>
                           @endif
@@ -304,15 +304,15 @@
                             <!-- temperature chart -->
                             <div class="chart-wrapper">
                               <div class="d3-chart-setting">
-                                <i class="d3-legend-button fa fa-filter fa-lg btn btn-sm btn-primary @if($i == $len - 1)Synchronous-chart-tour @endif" data-cname="{{$zone['temp_range']}}" aria-hidden="true">&nbsp;Filter</i>
-                                <div class="top-loaders-container top-loader-{{$zone['temp_range']}}"> <!-- Loading circle - Stay visible until all the zones are loaded -->
+                                <i class="d3-legend-button fa fa-filter fa-lg btn btn-sm btn-primary @if($i == $len - 1)Synchronous-chart-tour @endif" data-cname="{!!$zone['temp_range']!!}" aria-hidden="true">&nbsp;Filter</i>
+                                <div class="top-loaders-container top-loader-{!!$zone['temp_range']!!}"> <!-- Loading circle - Stay visible until all the zones are loaded -->
                                   <div class="load-container">
                                     <div class="circle"></div>
                                   </div>
                                 </div>
                               </div>
-                              <div id="tempchart{{$zone['temp_range']}}"  class="tempchart" data-charttype="{{$dbchart}}">
-                                  <div class="loading loadingSynchronous{{$zone['temp_range']}}">
+                              <div id="tempchart{!!$zone['temp_range']!!}"  class="tempchart" data-charttype="{!!$dbchart!!}">
+                                  <div class="loading loadingSynchronous{!!$zone['temp_range']!!}">
                                     <div class="spinner">
                                       <div class="rect1"></div>
                                       <div class="rect2"></div>
@@ -322,11 +322,11 @@
                                     </div>
                                     <span class="loading-message"></span>
                                   </div>
-                                  <div class="d3-center nodata{{$zone['temp_range']}}" style="display: none;"><span class="nodata-message">No data to display.</span></div>
-                                  <svg version="1.1" class="svg-content @if($i == $len - 1){{$dbchart}}-chart-tour @endif"></svg>
-                                  <div class="legendContainer-d3" id="legend-container-{{$zone['temp_range']}}"></div>
+                                  <div class="d3-center nodata{!!$zone['temp_range']!!}" style="display: none;"><span class="nodata-message">No data to display.</span></div>
+                                  <svg version="1.1" class="svg-content @if($i == $len - 1){!!$dbchart!!}-chart-tour @endif"></svg>
+                                  <div class="legendContainer-d3" id="legend-container-{!!$zone['temp_range']!!}"></div>
                                   <!-- Missing Device Modal -->
-                                  <div id="myModal-{{$zone['temp_range']}}" class="modal fade" role="dialog">
+                                  <div id="myModal-{!!$zone['temp_range']!!}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                       <!-- Modal content-->
                                       <div class="modal-content">
@@ -355,7 +355,7 @@
                             <!-- Relay chart -->
                             <div class="chart-wrapper">
                               <!-- <i class="d3-legend-button fa fa-filter fa-lg btn btn-sm btn-primary"  data-cname="Relay" aria-hidden="true">&nbsp;Filter</i> -->
-                              <div id="chartRelay" data-charttype="{{$dbchart}}">
+                              <div id="chartRelay" data-charttype="{!!$dbchart!!}">
                                 <div class="loading loadingRelay">
                                   <div class="spinner">
                                     <div class="rect1"></div>
@@ -400,7 +400,7 @@
                         <div class="chart-wrapper panel panel-default " style="margin-bottom: 0;">
                           <label class="d3-chart-title">Runtime chart</label>
                           <i class="d3-legend-button fa fa-filter fa-lg btn btn-sm btn-primary"  data-cname="RuntimeRelay" aria-hidden="true">&nbsp;Filter</i>
-                          <div id="BarChartRelay" class="RuntimeBarChart" data-charttype="{{$dbchart}}">
+                          <div id="BarChartRelay" class="RuntimeBarChart" data-charttype="{!!$dbchart!!}">
                             <div class="loading loadingRelayBar">
                               <div class="spinner">
                                 <div class="rect1"></div>
@@ -458,17 +458,17 @@
                   <select id="systemlog_type" class="form-control">
                     <option value="0">All</option>
                     @foreach($log_types as $log)
-                      <option value="{{$log->id}}">{{$log->name}}</option>
+                      <option value="{!!$log->id!!}">{!!$log->name!!}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group col-xs-6">
                   <label for="systemlog_sd">Start Date:</label>
-                  {{Form::input('date', 'systemlog_sd', date_format($startDate, 'Y-m-d'), ['class' => 'form-control', 'id'=>'systemlog_sd'])}}
+                  {!!Form::input('date', 'systemlog_sd', date_format($startDate, 'Y-m-d'), ['class' => 'form-control', 'id'=>'systemlog_sd'])!!}
                 </div>
                 <div class="form-group col-xs-6">
                   <label for="systemlog_ed">End Date:</label>
-                  {{Form::input('date', 'systemlog_ed', date_format($endDate, 'Y-m-d'), ['class' => 'form-control', 'id'=>'systemlog_ed'])}}
+                  {!!Form::input('date', 'systemlog_ed', date_format($endDate, 'Y-m-d'), ['class' => 'form-control', 'id'=>'systemlog_ed'])!!}
                 </div>
                 <button type="submit" class="btn btn-default" onclick="systemlogAJAX(1)">Submit</button>
               </div>
@@ -505,11 +505,11 @@
     </main>
   <!-- =============================================== LOCAL CUSTOM SCRIPTS========================================================== -->
   <script type="text/javascript">
-    var InitData = {{json_encode($InitData)}};
-    var system_id = {{$thisSystem->id}};
-    var InitstartDate = '{{date_format($startDate, 'Y-m-d')}}';
-    var InitendDate = '{{date_format($endDate, 'Y-m-d')}}';
-    var alarmData = {{json_encode($alarms)}};
+    var InitData = {!!json_encode($InitData)!!};
+    var system_id = {!!$thisSystem->id!!};
+    var InitstartDate = '{!!date_format($startDate, 'Y-m-d')!!}';
+    var InitendDate = '{!!date_format($endDate, 'Y-m-d')!!}';
+    var alarmData = {!!json_encode($alarms)!!};
     $(document).ready(function() {
       //Help tour
       $('.pmd-floating-action').prepend('\

@@ -84,45 +84,45 @@
             @if ($zonearray[2] == 1 )
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="width:100%; margin-top: 5px; color: white; background-color:<?php echo($zbkcolor);?>">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding block_emc_heading">
-                    {{$zonearray[1]}}
+                    {!!$zonearray[1]!!}
                 </div>
               </div>
-              <div id="controlzone{{$zonearray[0]}}" class="gridlayout" data-columns style="background:#969696; float: left; width: 100%;">
+              <div id="controlzone{!!$zonearray[0]!!}" class="gridlayout" data-columns style="background:#969696; float: left; width: 100%;">
               @foreach ($devicesout as $device)
                 <?php $togglestate=1; ?>
                 @if ($device->zone == $zone || $zonearray[0] == $device->zone)
-                  <div class="@if($set_control_tour) control_zones_tour @endif control_item{{$zone.$zonearray[0]}} item">
+                  <div class="@if($set_control_tour) control_zones_tour @endif control_item{!!$zone.$zonearray[0]!!} item">
                     <div class="row block_emc" style=" text-align:center; width: 100%; padding: 0px;">
                       <div class="col-xs-8 col-xs-offset-4 col-sm-8 col-sm-offset-4 " style="display: flex; align-items: center; justify-content: flex-end; margin-top: 10px;">
                         <div class="zoneSelector bypasstitle">
                           Set Bypass:&nbsp;&nbsp;&nbsp;
                         </div>
-                        <div class="@if($set_control_tour) control_zones_tour @endif arrow-menu-icon arrow-menu-icon-path" data-toggle= "collapse" data-target=".{{$device->id}}"><!--TOGGLE ANIMATED BUTTON-->
+                        <div class="@if($set_control_tour) control_zones_tour @endif arrow-menu-icon arrow-menu-icon-path" data-toggle= "collapse" data-target=".{!!$device->id!!}"><!--TOGGLE ANIMATED BUTTON-->
                         <span></span>
                         <svg  viewbox="0 0 54 54">
                           <path d="M16.500,27.000 C16.500,27.000 24.939,27.000 38.500,27.000 C52.061,27.000 49.945,15.648 46.510,11.367 C41.928,5.656 34.891,2.000 27.000,2.000 C13.193,2.000 2.000,13.193 2.000,27.000 C2.000,40.807 13.193,52.000 27.000,52.000 C40.807,52.000 52.000,40.807 52.000,27.000 C52.000,13.000 40.837,2.000 27.000,2.000 "></path>
                         </svg>
                       </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding in {{$device->id}}" style="padding: 0px; background-color: rgb(62, 98, 123);"> <!--NAME / STATUS ITEMS-->
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding in {!!$device->id!!}" style="padding: 0px; background-color: rgb(62, 98, 123);"> <!--NAME / STATUS ITEMS-->
                       <div class="col-xs-8  row-padding" style="text-shadow: 0px 0px 2px #000020"><!--NAME-->
                         @if($device->name != "")
-                          {{$device->name}}
+                          {!!$device->name!!}
                         @else
                           <small>
                             Device&nbsp;ID:
                           </small>
-                          [{{$device->id}}]
+                          [{!!$device->id!!}]
                         @endif
                         <br>
                         <small>
-                          <span title="Unique MAC Address">[{{$device->mac_address}}]</span>
+                          <span title="Unique MAC Address">[{!!$device->mac_address!!}]</span>
                         </small>
                         <?php /*initialize*/ $disabled = ""; ?>
                         <br>
                         <small>
                           @if($device->physical_location != "")
-                            {{$device->physical_location }}
+                            {!!$device->physical_location !!}
                           @else
                             <span style="color: inherit;">
                               Location not found
@@ -238,7 +238,7 @@
                                 }
                                 ?>
                                 <b>
-                                  {{$Reporttimedsp}}
+                                  {!!$Reporttimedsp!!}
                                 </b>
                                 <?php
                                 // echo($Reporttimedsp);
@@ -252,9 +252,9 @@
                         </ul>
                       </div>
                     </div>
-                    <div class="@if($set_control_tour) control_zones_tour @endif col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding collapse {{$device->id}}" style="background-color: #3E627B;text-shadow: 0px 0px 2px #000020;" ><!--BYPASS ITEMS-->
+                    <div class="@if($set_control_tour) control_zones_tour @endif col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding collapse {!!$device->id!!}" style="background-color: #3E627B;text-shadow: 0px 0px 2px #000020;" ><!--BYPASS ITEMS-->
                       @if(!Request::is('EMC/*'))
-                        {{ Form::open(array("role" => "form", "name"=>"instruction")) }}
+                        {!! Form::open(array("role" => "form", "name"=>"instruction")) !!}
                         <div class="col-md-12 col-lg-12 row-padding"><!--BYPASS MODE-->
                           <div class="col-xs-5 col-sm-6 col-md-6 col-lg-8" style="text-align: right;">
                             <small>
@@ -265,9 +265,9 @@
                               <input class="tgl tgl-skewed"
                                 type="checkbox"
                                 name="Override"
-                                id="bypass_mode{{$device->id}}"
-                                @if($togglestate) checked @endif {{$disabled}}>
-                              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="bypass_mode{{$device->id}}"></label>
+                                id="bypass_mode{!!$device->id!!}"
+                                @if($togglestate) checked @endif {!!$disabled!!}>
+                              <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="bypass_mode{!!$device->id!!}"></label>
                           </div>
                         </div>
                         <div class="@if($set_control_tour) control_zones_tour @endif col-md-12 col-lg-12"><!--TITLE / DROPDOWN -->
@@ -281,14 +281,14 @@
                                 }
                               ?>
                               <div>
-                                {{ Form::select('Overridetime', array( '-1' => 'Reset', '5' => '5 Minutes', '15' => '15 Minutes','30' => '30 Minutes', '60' => '60 Minutes','90' => '90 Minutes', '120' => '120 Minutes'), $mpotime, array('class' => 'form-control', 'style' => 'color:black; height:34px; font-size:14px;', $disabled)) }}
+                                {!! Form::select('Overridetime', array( '-1' => 'Reset', '5' => '5 Minutes', '15' => '15 Minutes','30' => '30 Minutes', '60' => '60 Minutes','90' => '90 Minutes', '120' => '120 Minutes'), $mpotime, array('class' => 'form-control', 'style' => 'color:black; height:34px; font-size:14px;', $disabled)) !!}
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="row row-padding"> <!--BUTTONS-->
                           <div class="@if($set_control_tour) control_zones_tour @endif col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding-top: 10px; text-align: center;">
-                            <button class="btn btn-primary" {{$disabled}} type="submit" name="Bypass" style="width: 100%; min-width: 90px;">
+                            <button class="btn btn-primary" {!!$disabled!!} type="submit" name="Bypass" style="width: 100%; min-width: 90px;">
                               @if($disabled == "disabled")
                                 No Bypass
                               @else
@@ -298,22 +298,22 @@
                           </div>
                           <div class="@if($set_control_tour) control_zones_tour @endif col-xs-12 col-sm-6 col-md-6 col-lg-6" style="padding-top: 10px;">
                           @if($disabled == "disabled")
-                            <button class='btn btn-primary' {{$disabled}} type='submit' name='Toggle' style="width: 100%; min-width: 90px;">
+                            <button class='btn btn-primary' {!!$disabled!!} type='submit' name='Toggle' style="width: 100%; min-width: 90px;">
                               No Toggle
                             </button>
                           @else
-                            <button class='btn btn-primary' {{$disabled}} type='submit' name='Toggle' style="width: 100%; min-width: 90px;">
-                              Toggle {{$tstatedsp}}
+                            <button class='btn btn-primary' {!!$disabled!!} type='submit' name='Toggle' style="width: 100%; min-width: 90px;">
+                              Toggle {!!$tstatedsp!!}
                             </button>
-                            <input name="Togglestate" type="hidden" value="{{$togglestate}}">
+                            <input name="Togglestate" type="hidden" value="{!!$togglestate!!}">
                           @endif
                           </div>
-                          <input name="device" type="hidden" value="{{$device->id}}">
+                          <input name="device" type="hidden" value="{!!$device->id!!}">
                           <!-- If the product type of a device is not defined this will throw an error.
                           Add the product type on the product types page. -->
-                          <input name="command" type="hidden" value="{{$device->product_commands}}">
+                          <input name="command" type="hidden" value="{!!$device->product_commands!!}">
                         </div>
-                        {{Form::close()}}
+                        {!!Form::close()!!}
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding"><!--INSTRUCTION TIME-->
                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <small>
@@ -331,11 +331,11 @@
                                 <?php
                                   $difference = strtotime($mappingOutputs[$device->id]->updated_at) + $mappingOutputs[$device->id]->overridetime*60 - $currentTime;
                                 ?>
-                                <span class="days" value="{{$difference}}"></span>
-                                <span class="hours" value="{{$difference}}"></span>
-                                <span class="minutes" value="{{$difference}}"></span>
-                                <span class="seconds" value="{{$difference}}"></span>
-                                <span class="timedout" value="{{$difference}}"></span>
+                                <span class="days" value="{!!$difference!!}"></span>
+                                <span class="hours" value="{!!$difference!!}"></span>
+                                <span class="minutes" value="{!!$difference!!}"></span>
+                                <span class="seconds" value="{!!$difference!!}"></span>
+                                <span class="timedout" value="{!!$difference!!}"></span>
                                 @endif
                               @endif
                             @else
@@ -354,9 +354,9 @@
             @endif
             <!-- for grid resizing -->
             <script type="text/javascript">
-                if (document.querySelector('.control_item{{$zone.$zonearray[0]}}') !== null) {
-                  var TotControlItem = document.querySelectorAll('.control_item{{$zone.$zonearray[0]}}').length;
-                  var grid = document.getElementById("controlzone{{$zonearray[0]}}");
+                if (document.querySelector('.control_item{!!$zone.$zonearray[0]!!}') !== null) {
+                  var TotControlItem = document.querySelectorAll('.control_item{!!$zone.$zonearray[0]!!}').length;
+                  var grid = document.getElementById("controlzone{!!$zonearray[0]!!}");
                   switch(TotControlItem) {
                     case 1:
                     case 2:
@@ -421,13 +421,13 @@
                     <div class="col-xs-12 col-sm-8" style="color: white;">Select&nbsp;a&nbsp;zone&nbsp;:</div>
                     <div class="col-xs-12 col-sm-4">
                       <select onchange="ControlZoneOptions(this)" class="control_zones_tour form-control" style="height:34px; font-size:14px;">
-                        <option value="0" data-toggle="collapse" data-parent="#system-device-out" title="{{$TabTitle}}"><!--CONTROL-TAB-0-->
+                        <option value="0" data-toggle="collapse" data-parent="#system-device-out" title="{!!$TabTitle!!}"><!--CONTROL-TAB-0-->
                           &nbsp;All&nbsp;Zones
                         </option>
                         <!--Spawn more tabs according to number of zones-->
                         @for ($i = 0; $i < sizeof($ZoneNames); $i++)
-                          <option value="{{$ZoneNames[$i][0]}}" data-toggle="collapse" data-parent="#system-device-out" title="{{$TabTitle}}"><!--CONTROL-TAB-->
-                            &nbsp;{{$ZoneNames[$i][1]}}
+                          <option value="{!!$ZoneNames[$i][0]!!}" data-toggle="collapse" data-parent="#system-device-out" title="{!!$TabTitle!!}"><!--CONTROL-TAB-->
+                            &nbsp;{!!$ZoneNames[$i][1]!!}
                           </option>
                         @endfor
                       </select>
@@ -439,14 +439,14 @@
                   <!-- for "All Zones" -->
                   <div id="tabsout-0" class="container-fluid collapse in" style="padding:0px;"><!--TABSOUT-->
                     <div id="out-0" class="block_emc_see_through"><!--OUT-->
-                      {{zoneloopout($ZoneNames, $devicesout,$SysTemperatureFormat,0,$ZStatus,$ActiveAlarms,$AuthFlag,$timestampsArray, $currentTime, $devicesOutCurrent, $mappingOutputs,$AlarmCodes,$CurrentDeviceData)}}
+                      {!!zoneloopout($ZoneNames, $devicesout,$SysTemperatureFormat,0,$ZStatus,$ActiveAlarms,$AuthFlag,$timestampsArray, $currentTime, $devicesOutCurrent, $mappingOutputs,$AlarmCodes,$CurrentDeviceData)!!}
                     </div>
                   </div>
                   <!-- for "other Zones" -->
                   @for ($k = 0; $k < sizeof($ZoneNames); $k++)
-                    <div id="tabsout-{{$ZoneNames[$k][0]}}" class="container-fluid collapse" style="padding:0px;"><!--TABSOUT-->
-                      <div id="out-{{$ZoneNames[$k][0]}}" class="block_emc_see_through"><!--OUT-->
-                        {{zoneloopout($ZoneNames, $devicesout,$SysTemperatureFormat,$ZoneNames[$k][0],$ZStatus,$ActiveAlarms,$AuthFlag,$timestampsArray, $currentTime, $devicesOutCurrent, $mappingOutputs,$AlarmCodes,$CurrentDeviceData)}}
+                    <div id="tabsout-{!!$ZoneNames[$k][0]!!}" class="container-fluid collapse" style="padding:0px;"><!--TABSOUT-->
+                      <div id="out-{!!$ZoneNames[$k][0]!!}" class="block_emc_see_through"><!--OUT-->
+                        {!!zoneloopout($ZoneNames, $devicesout,$SysTemperatureFormat,$ZoneNames[$k][0],$ZStatus,$ActiveAlarms,$AuthFlag,$timestampsArray, $currentTime, $devicesOutCurrent, $mappingOutputs,$AlarmCodes,$CurrentDeviceData)!!}
                       </div>
                     </div>
                   @endfor
@@ -456,9 +456,9 @@
                         $("#tabsout-0:visible").collapse('hide');
                       }
                       @for($zo=0; $zo < count($ZoneNames); $zo++)
-                        if({{$ZoneNames[$zo][0]}} != s[s.selectedIndex].value){
+                        if({!!$ZoneNames[$zo][0]!!} != s[s.selectedIndex].value){
                             /*hide all zones, except the one selected*/
-                            $("#tabsout-{{$ZoneNames[$zo][0]}}:visible").collapse('hide');
+                            $("#tabsout-{!!$ZoneNames[$zo][0]!!}:visible").collapse('hide');
                         }
                       @endfor
                       /*toggle the selected zone*/
@@ -498,7 +498,7 @@
             <script type="text/javascript">
               function setReportFunction(functionName){
                 if(confirm("Load Past Reports in New Window?")){
-                  window.open("{{URL::route('reports.index', [$buildingID, $systemID])}}");
+                  window.open("{!!URL::route('reports.index', [$buildingID, $systemID])!!}");
                 }
               }
             </script>
@@ -506,32 +506,32 @@
               @if ($zonearray[0] == $zone || $zone == 0)
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="width:100%; margin-top: 5px; color: white; background-color:#2B3C51;">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding block_emc_heading">
-                      {{$zonearray[1]}}
+                      {!!$zonearray[1]!!}
                   </div>
                 </div>
-                <div id="sensorzone{{$zonearray[0]}}" class="gridlayout" data-columns style="background:#969696; float: left; width: 100%;">
+                <div id="sensorzone{!!$zonearray[0]!!}" class="gridlayout" data-columns style="background:#969696; float: left; width: 100%;">
                 @foreach ($InputDevices as $device)
                   @if ($device['zone'] == $zone || ($zone == 0 && $zonearray[0] == $device['zone']))
-                    <div class="@if($set_sensor_tour) sensor_zones_tour @endif sensor_item{{$zone.$zonearray[0]}} item">
+                    <div class="@if($set_sensor_tour) sensor_zones_tour @endif sensor_item{!!$zone.$zonearray[0]!!} item">
                       <div class="row block_emc" style="width: 100%;">
                       <div class="col-xs-12"><!--NAME / ALARM-->
                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 row-padding" style="text-shadow: 0px 0px 2px #000020"><!--NAME / LOCATION / STATUS / OFFSET-->
                           @if($device['name'] != "")
-                            <span title="ID: {{$device['id']}}"> {{$device['name']}}</span>
+                            <span title="ID: {!!$device['id']!!}"> {!!$device['name']!!}</span>
                             <br>
                           @else
                             <small>
                               Device&nbsp;ID:
                             </small>
-                            [{{$device['id']}}]
+                            [{!!$device['id']!!}]
                             <br>
                           @endif
                           <small>
-                            <span title="Unique MAC Address">[{{$device['mac_address']}}]</span>
+                            <span title="Unique MAC Address">[{!!$device['mac_address']!!}]</span>
                           </small><br>
                           <small>
                             @if($device['physical_location'] != "")
-                              {{$device['physical_location'] }}
+                              {!!$device['physical_location'] !!}
                             @else
                               Location not found
                             @endif
@@ -594,17 +594,17 @@
                             
                           ?>
                         @if($code_found == True)<!--ALARM-->
-                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 row-padding" style="padding-top: 10px; " data-toggle="tooltip" data-placement="left" title="{{$alarm_code_description}}">
+                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 row-padding" style="padding-top: 10px; " data-toggle="tooltip" data-placement="left" title="{!!$alarm_code_description!!}">
                             @if(Auth::check())
-                            <a href="{{$destination}}" class="img-responsive">
+                            <a href="{!!$destination!!}" class="img-responsive">
                             @endif
-                              <i class="fa {{$alarm_image}} fa-3x" style="color: <?php echo $Alarmcolor;?>"></i>
+                              <i class="fa {!!$alarm_image!!} fa-3x" style="color: <?php echo $Alarmcolor;?>"></i>
                             @if(Auth::check())
                             </a>
                             @endif
                         @else
-                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 row-padding" style="padding-top: 10px;" data-toggle="tooltip" data-placement="left" title="{{$alarm_code_description}}">
-                            <i class="fa {{$alarm_image}} fa-3x" style="color: <?php echo $Alarmcolor;?>"></i>
+                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 row-padding" style="padding-top: 10px;" data-toggle="tooltip" data-placement="left" title="{!!$alarm_code_description!!}">
+                            <i class="fa {!!$alarm_image!!} fa-3x" style="color: <?php echo $Alarmcolor;?>"></i>
                         @endif
                         </div>
                       </div>
@@ -700,24 +700,24 @@
                               *-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*-.-*/
                             ?>
                               <div class='col-xs-6 row-padding text-capitalize border_blue_white'>
-                                <a class="path-link" style="text-decoration:none; color:white; text-shadow: 0px 0px 2px #000020;" title="Go to {{$functionws[$j]}} Reports" onclick="setReportFunction('{{$functionws[$j]}}')">
+                                <a class="path-link" style="text-decoration:none; color:white; text-shadow: 0px 0px 2px #000020;" title="Go to {!!$functionws[$j]!!} Reports" onclick="setReportFunction('{!!$functionws[$j]!!}')">
                                   @if($functionws[$j]=="Digital")
-                                    {{$functionws[$j]}}
+                                    {!!$functionws[$j]!!}
                                     <BR>
-                                    <span color='{{$statecolor}}'>
-                                      <b>{{$currentvaluews[$j]}}</b><br>
-                                      {{$PState[$j]}}
+                                    <span color='{!!$statecolor!!}'>
+                                      <b>{!!$currentvaluews[$j]!!}</b><br>
+                                      {!!$PState[$j]!!}
                                     </span>
                                     <BR>
                                   @else
-                                    {{$functionws[$j]}}
+                                    {!!$functionws[$j]!!}
                                     <BR>
-                                    <span color='{{$statecolor}}'>
-                                      <b>{{$currentvaluews[$j]}}</b>
+                                    <span color='{!!$statecolor!!}'>
+                                      <b>{!!$currentvaluews[$j]!!}</b>
                                     </span>
-                                    {{$unitsws[$j]}}
+                                    {!!$unitsws[$j]!!}
                                     <BR>
-                                    {{$PState[$j]}}
+                                    {!!$PState[$j]!!}
                                   @endif
                                 </a>
                               </div>
@@ -756,9 +756,9 @@
               @endif
               <!-- for grid resizing -->
               <script type="text/javascript">
-                if (document.querySelector('.sensor_item{{$zone.$zonearray[0]}}') !== null) {
-                  var TotSensorItem = document.querySelectorAll('.sensor_item{{$zone.$zonearray[0]}}').length;
-                  var grid = document.getElementById("sensorzone{{$zonearray[0]}}");
+                if (document.querySelector('.sensor_item{!!$zone.$zonearray[0]!!}') !== null) {
+                  var TotSensorItem = document.querySelectorAll('.sensor_item{!!$zone.$zonearray[0]!!}').length;
+                  var grid = document.getElementById("sensorzone{!!$zonearray[0]!!}");
                   switch(TotSensorItem) {
                     case 1:
                     case 2:
@@ -808,13 +808,13 @@
                     <div class="col-xs-12 col-sm-8" style="color: white;">Select&nbsp;a&nbsp;zone&nbsp;:</div>
                     <div class="col-xs-12 col-sm-4">
                       <select onchange="SensorZoneOptions(this)" class="sensor_zones_tour form-control" style="height:34px; font-size:14px;">
-                        <option value="0" data-toggle="collapse" data-parent="#system-device-in" title="{{$TabTitle}}"><!--SENSOR-TABS-0-->
+                        <option value="0" data-toggle="collapse" data-parent="#system-device-in" title="{!!$TabTitle!!}"><!--SENSOR-TABS-0-->
                           &nbsp;All&nbsp;Zones
                         </option>
                         <!--Spawn more tabs according to number of zones-->
                         @for ($i = 0; $i < sizeof($ZoneNames); $i++)
-                          <option value="{{$ZoneNames[$i][0]}}" data-toggle="collapse" data-parent="#system-device-in" title="{{$TabTitle}}"><!--SENSOR-TABS-->
-                            &nbsp;{{$ZoneNames[$i][1]}}
+                          <option value="{!!$ZoneNames[$i][0]!!}" data-toggle="collapse" data-parent="#system-device-in" title="{!!$TabTitle!!}"><!--SENSOR-TABS-->
+                            &nbsp;{!!$ZoneNames[$i][1]!!}
                           </option>
                         @endfor
                       </select>
@@ -825,13 +825,13 @@
                   <!-- for "All Zones" -->
                   <div id="tabsin-0" class="container-fluid collapse in" style="padding:0px;"><!--TABSIN-->
                     <div id="in-0" class="block_emc_see_through"><!--IN-->
-                      {{zoneloopin($ZoneNames,$SysTemperatureFormat,0,$ZStatus,$ActiveAlarms, $Building,$System,$AlarmCodes,$CurrentDeviceData,$InputDevices)}}
+                      {!!zoneloopin($ZoneNames,$SysTemperatureFormat,0,$ZStatus,$ActiveAlarms, $Building,$System,$AlarmCodes,$CurrentDeviceData,$InputDevices)!!}
                     </div>
                   </div>
                 @for ($k = 0; $k < sizeof($ZoneNames); $k++)
-                  <div id="tabsin-{{$ZoneNames[$k][0]}}" class="container-fluid collapse" style="padding:0px;"><!--TABSIN-->
-                    <div id="in-{{$ZoneNames[$k][0]}}" class="block_emc_see_through"><!--IN-->
-                      {{zoneloopin($ZoneNames,$SysTemperatureFormat,$ZoneNames[$k][0],$ZStatus,$ActiveAlarms, $Building,$System,$AlarmCodes,$CurrentDeviceData,$InputDevices)}}
+                  <div id="tabsin-{!!$ZoneNames[$k][0]!!}" class="container-fluid collapse" style="padding:0px;"><!--TABSIN-->
+                    <div id="in-{!!$ZoneNames[$k][0]!!}" class="block_emc_see_through"><!--IN-->
+                      {!!zoneloopin($ZoneNames,$SysTemperatureFormat,$ZoneNames[$k][0],$ZStatus,$ActiveAlarms, $Building,$System,$AlarmCodes,$CurrentDeviceData,$InputDevices)!!}
                     </div>
                   </div>
                 @endfor
@@ -842,9 +842,9 @@
                         $("#tabsin-0:visible").collapse('hide');
                       }
                       @for($zo=0; $zo < count($ZoneNames); $zo++)
-                        if({{$ZoneNames[$zo][0]}} != s[s.selectedIndex].value){
+                        if({!!$ZoneNames[$zo][0]!!} != s[s.selectedIndex].value){
                           /*hide all zones, except the one selected*/
-                          $("#tabsin-{{$ZoneNames[$zo][0]}}:visible").collapse('hide');
+                          $("#tabsin-{!!$ZoneNames[$zo][0]!!}:visible").collapse('hide');
                         }
                       @endfor
                       /*toggle the selected zone*/

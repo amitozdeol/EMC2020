@@ -8,7 +8,7 @@
 <style type="text/css">
   /* to display the boiler background picture*/
   @foreach($backgroundImagePaths as $key=>$backgroundImagePath)
-    #content-{{$key}} .view_parent_furnace_boiler {
+    #content-{!!$key!!} .view_parent_furnace_boiler {
       background-repeat: no-repeat;
       margin: auto;
       position: relative;
@@ -146,7 +146,7 @@
   <main id="page-content-wrapper" role="main" style="display: table; width: 100%; padding: 30px 10px; position: relative;">
     <div class="auto-refresh hidden"></div>
       @if( Route::currentRouteName() !== 'touchscreen.system' )
-        {{-- <div class="col-xs-12 col-sm-10 col-md-4 page-nav" style="cursor: pointer;" onclick="window.location='{{$back_url}}';" data-toggle="tooltip" data-placement="right" title="{{$back_message}}">
+        {{-- <div class="col-xs-12 col-sm-10 col-md-4 page-nav" style="cursor: pointer;" onclick="window.location='{!!$back_url!!}';" data-toggle="tooltip" data-placement="right" title="{!!$back_message!!}">
           &#10140;
         </div> --}}
       @endif
@@ -177,7 +177,7 @@
       ?>
       @if(Auth::check())
         @if(in_array(Auth::user()->auth_role,[7,8]))
-          <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 btn btn-primary" style="cursor: pointer;margin-bottom:20px;" onclick="window.location='{{URL::route('dashboardmaps.edit', [$thisBldg->id, $thisSystem->id])}}';">
+          <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 btn btn-primary" style="cursor: pointer;margin-bottom:20px;" onclick="window.location='{!!URL::route('dashboardmaps.edit', [$thisBldg->id, $thisSystem->id])!!}';">
             Go To Edit Page
           </div>
         @endif
@@ -213,8 +213,8 @@
       <ul id="myTab" class="myTab nav nav-tabs">
         @foreach($dashboard_maps as $key=>$dashboard_map)
           <li class="<?php if($key==0) echo"active";?>">
-            <a id="tab-{{$dashboard_map['id']}}" class="@if($set_sensor_tour)furnace_sensor_tour @endif" role="button" href="#content-{{$key}}" data-toggle="tab">
-              {{$dashboard_map['tab_names']}}
+            <a id="tab-{!!$dashboard_map['id']!!}" class="@if($set_sensor_tour)furnace_sensor_tour @endif" role="button" href="#content-{!!$key!!}" data-toggle="tab">
+              {!!$dashboard_map['tab_names']!!}
             </a>
           </li>
           <?php $i++; $set_sensor_tour=FALSE;?>
@@ -229,13 +229,13 @@
         <?php $inc = 0; $set_sensor_tour=TRUE;?>
             @foreach($dashboard_maps as $key=>$map)
               @if ($key == 0)
-                <div class="col-xs-12 tab-pane fade in active" id="content-{{$key}}">
+                <div class="col-xs-12 tab-pane fade in active" id="content-{!!$key!!}">
               @else
-                <div role="tabpanel" class="col-xs-12 tab-pane fade" id="content-{{$key}}">
+                <div role="tabpanel" class="col-xs-12 tab-pane fade" id="content-{!!$key!!}">
               @endif
                   <div style="text-align:center" class="col-xs-12 col-sm-8">
                     <div class='view_parent_furnace_boiler' id="picture_container" style="border: 1px solid #AAAACC; box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.7); margin-top:15px;">
-                      <img src="{{ asset('images/backgroundImage/'.$map->background_image)}}" >
+                      <img src="{!! asset('images/backgroundImage/'.$map->background_image)!!}" >
 
                         <!-- the inputs of the devices table -->
                         @foreach($apartments as $apartment)
@@ -313,7 +313,7 @@
                                 }
                               }
                             ?>
-                            <div class="@if($set_sensor_tour) furnace_sensor_tour @endif device-container" id="{{$apartment['device_id']}},{{$apartment['command']}},{{$apartment['map_id']}}" name="dmi-{{$apartment['id']}}" onclick="dmi_info(this)" style="left: {{$apartment['x-pos']}}%; top: {{$apartment['y-pos']}}%; cursor:pointer;" data-toggle="tooltip" title="{{$apartment['name']}}<br>
+                            <div class="@if($set_sensor_tour) furnace_sensor_tour @endif device-container" id="{!!$apartment['device_id']!!},{!!$apartment['command']!!},{!!$apartment['map_id']!!}" name="dmi-{!!$apartment['id']!!}" onclick="dmi_info(this)" style="left: {!!$apartment['x-pos']!!}%; top: {!!$apartment['y-pos']!!}%; cursor:pointer;" data-toggle="tooltip" title="{!!$apartment['name']!!}<br>
                             @if($apartment['tag'] === 'Digital')
                               @if($apartment['currentVal'] == 0)
                                 OFF
@@ -321,52 +321,52 @@
                                 ON
                               @endif
                             @else
-                              {{round($apartment['currentVal'],3);}}&nbsp;{{$apartment['units']}}
+                              {!!round($apartment['currentVal'],3);!!}&nbsp;{!!$apartment['units']!!}
                             @endif
                             ">
                             <?php $set_sensor_tour=FALSE; ?>
                             @if($apartment['tag'] == 'Temperature')
-                              {{HTML::image($color)}}
+                              {!!HTML::image($color)!!}
                             @elseif($apartment['tag']== 'Voltage')
-                              {{HTML::image($voltage_img)}}
+                              {!!HTML::image($voltage_img)!!}
                             @elseif($apartment['tag']== 'Humidity')
-                              {{HTML::image($humidity_img)}}
+                              {!!HTML::image($humidity_img)!!}
                             @elseif(($apartment['tag']== 'Flow') || ($apartment['tag']== 'Pressure') || ($apartment['tag']== 'Pressure Differential'))
-                              {{HTML::image($FlowAndPressure)}}
+                              {!!HTML::image($FlowAndPressure)!!}
                             @elseif($apartment['tag']== 'Occupancy')
-                              {{HTML::image($occupancy_img)}}
+                              {!!HTML::image($occupancy_img)!!}
                             @elseif($apartment['tag']=='Digital')
-                              {{HTML::image($digital_img)}}
+                              {!!HTML::image($digital_img)!!}
                             @elseif($apartment['tag']=='Low Battery')
-                              {{HTML::image($voltage_img)}}
+                              {!!HTML::image($voltage_img)!!}
                             @elseif($apartment['tag']=='Light')
-                              {{HTML::image($light_img)}}
+                              {!!HTML::image($light_img)!!}
                             @else
-                              {{HTML::image('images/caution.png')}}
+                              {!!HTML::image('images/caution.png')!!}
                             @endif
 
                             @if(($apartment['name'] == 'Burner On') && ($apartment['currentVal'] == 0))
-                              {{HTML::image('images/graybutton-bk.png')}}
-                              {{ $apartment['currentVal'] = '';}}
+                              {!!HTML::image('images/graybutton-bk.png')!!}
+                              {!! $apartment['currentVal'] = '';!!}
                             @endif
                             @if(($apartment['name'] == 'Burner On') && ($apartment['currentVal'] == 1))
-                              {{HTML::image('images/greenbutton-bk.png')}}
-                              {{ $apartment['currentVal'] = '';}}
+                              {!!HTML::image('images/greenbutton-bk.png')!!}
+                              {!! $apartment['currentVal'] = '';!!}
                             @endif
                             @if(($apartment['name'] == 'Burner Fault') && ($apartment['currentVal'] == 0))
-                              {{HTML::image('images/graybutton-bk.png')}}
-                              {{ $apartment['currentVal'] = '';}}
+                              {!!HTML::image('images/graybutton-bk.png')!!}
+                              {!! $apartment['currentVal'] = '';!!}
                             @endif
                             @if(($apartment['name'] == 'Burner Fault') && ($apartment['currentVal'] == 1))
-                              {{HTML::image('images/redbutton-bk.png')}}
-                              {{ $apartment['currentVal'] = '';}}
+                              {!!HTML::image('images/redbutton-bk.png')!!}
+                              {!! $apartment['currentVal'] = '';!!}
                             @endif
                             @if($apartment['name']== 'Smoke')
-                              {{ $apartment['currentVal']= '';}}
+                              {!! $apartment['currentVal']= '';!!}
                             @endif
 
                             @if($apartment['overdue'] === 'YES')
-                              <span style="margin-left: -12px; ">{{HTML::image('images/stop.png')}}</span>
+                              <span style="margin-left: -12px; ">{!!HTML::image('images/stop.png')!!}</span>
                             @endif
                           </div>
                         @endif
@@ -377,11 +377,11 @@
                     @if($map->id == $DashboardMapItem['map_id'])
                       @if($DashboardMapItem['label'] == 'Tag')
                         <!-- tag and Season -->
-                        <div class="device-container" id="{{$DashboardMapItem['device_id']}},{{$DashboardMapItem['command']}},{{$DashboardMapItem['map_id']}}" name="dmi-{{$DashboardMapItem['id']}}" onclick="dmi_out(this)" style="left: {{$DashboardMapItem['x_position']}}%; top: {{$DashboardMapItem['y_position']}}%; cursor: pointer;">
+                        <div class="device-container" id="{!!$DashboardMapItem['device_id']!!},{!!$DashboardMapItem['command']!!},{!!$DashboardMapItem['map_id']!!}" name="dmi-{!!$DashboardMapItem['id']!!}" onclick="dmi_out(this)" style="left: {!!$DashboardMapItem['x_position']!!}%; top: {!!$DashboardMapItem['y_position']!!}%; cursor: pointer;">
                           <a class="btn btn-#fff" style="padding-bottom: 0px; padding-top: 0px; color:#428bca; border-radius: 100px; ">
                             <h3>
                               <b>
-                                {{strtoupper($DashboardMapItem->printLabel)}}
+                                {!!strtoupper($DashboardMapItem->printLabel)!!}
                               </b>
                             </h3>
                           </a>
@@ -402,13 +402,13 @@
                             $seasonPicture = 'images/summer.png';
                           }
                         ?>
-                        <div class="device-container" id="{{$DashboardMapItem['device_id']}},{{$DashboardMapItem['command']}},{{$DashboardMapItem['map_id']}}" name="dmi-{{$DashboardMapItem['id']}}" onclick="dmi_out(this)"     style="left: {{$DashboardMapItem['x_position']}}%; top: {{$DashboardMapItem['y_position']}}%; cursor: default;">
-                          <a class="btn" style="padding-bottom: 0px; padding-top: 0px; color:#428bca; border-radius: 100px; " data-toggle="tooltip" title="<b>Status</b>&nbsp{{'On'}}" data-placement="bottom">
-                            {{HTML::image($seasonPicture)}}
+                        <div class="device-container" id="{!!$DashboardMapItem['device_id']!!},{!!$DashboardMapItem['command']!!},{!!$DashboardMapItem['map_id']!!}" name="dmi-{!!$DashboardMapItem['id']!!}" onclick="dmi_out(this)"     style="left: {!!$DashboardMapItem['x_position']!!}%; top: {!!$DashboardMapItem['y_position']!!}%; cursor: default;">
+                          <a class="btn" style="padding-bottom: 0px; padding-top: 0px; color:#428bca; border-radius: 100px; " data-toggle="tooltip" title="<b>Status</b>&nbsp{!!'On'!!}" data-placement="bottom">
+                            {!!HTML::image($seasonPicture)!!}
                             <FONT FACE = "desdemona">
                               <h4>
                                 <b>
-                                  {{strtoupper($season)}}
+                                  {!!strtoupper($season)!!}
                                 </b>
                               </h4>
                             </FONT>
@@ -424,8 +424,8 @@
                         $out_dmi_font_color = ($dashboard_map_items_output->current_state == 1)?$on_color:$off_color;
                         $offstyle = ($dashboard_map_items_output->season != $thisSystem->season_mode && $dashboard_map_items_output->season != '2')?"off-season-control-device":"";
                       ?>
-                      <div class="@if($set_control_tour)furnace_control_tour @endif device-container control-device {{$offstyle}}" id="{{$dashboard_map_items_output['device_id']}},{{$dashboard_map_items_output['command']}},{{$dashboard_map_items_output['map_id']}}" name="  dmi-{{$dashboard_map_items_output['dashboardID']}}" onclick="dmi_out(this)" style="left:{{$dashboard_map_items_output['x-pos']}}%; top:{{$dashboard_map_items_output['y-pos']}}%; cursor: pointer; color:{{$out_dmi_font_color}}; ">
-                        {{$dashboard_map_items_output->device_label}}
+                      <div class="@if($set_control_tour)furnace_control_tour @endif device-container control-device {!!$offstyle!!}" id="{!!$dashboard_map_items_output['device_id']!!},{!!$dashboard_map_items_output['command']!!},{!!$dashboard_map_items_output['map_id']!!}" name="  dmi-{!!$dashboard_map_items_output['dashboardID']!!}" onclick="dmi_out(this)" style="left:{!!$dashboard_map_items_output['x-pos']!!}%; top:{!!$dashboard_map_items_output['y-pos']!!}%; cursor: pointer; color:{!!$out_dmi_font_color!!}; ">
+                        {!!$dashboard_map_items_output->device_label!!}
                       </div>
                       <?php $set_control_tour = FALSE; ?>
                     @endif
@@ -444,23 +444,23 @@
                   ?>
 
                   <?php $inorout = ($inc==0)?"in":""; ?>
-                  <div id="zonelist-{{$key}}" class="col-xs-12 container-fluid collapse {{$inorout}}" style="text-align: center;text-shadow:0px 0px 10px #ffffff;">
+                  <div id="zonelist-{!!$key!!}" class="col-xs-12 container-fluid collapse {!!$inorout!!}" style="text-align: center;text-shadow:0px 0px 10px #ffffff;">
                     <big><big>
-                      {{$map->label}}
+                      {!!$map->label!!}
                     </big></big>
                   </div>
                   <?php $set_control_tour = TRUE; ?>
                   @foreach ($dashboard_map_items_outputs as $dmio)
                     @if ($dmio->map_id == $key)
                       <?php $inorout = ($inc==0)?"in":""; ?>
-                      <div id="dmi-out-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}" class="container-fluid collapse {{$inorout}}" style=" text-align: center; " href="#{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}">
+                      <div id="dmi-out-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}" class="container-fluid collapse {!!$inorout!!}" style=" text-align: center; " href="#{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}">
                         <?php $inc++; ?>
-                        <span class="@if($set_control_tour)furnace_control_tour @endif col-xs-12" style="background-color:#29516D; color: white; text-shadow: none;" title="ID: {{$dmio->id}}">
+                        <span class="@if($set_control_tour)furnace_control_tour @endif col-xs-12" style="background-color:#29516D; color: white; text-shadow: none;" title="ID: {!!$dmio->id!!}">
                           <big>
-                            {{$dmio->device_label}}
+                            {!!$dmio->device_label!!}
                           </big>
                           <br>
-                          <small>{{$dmio->device_function}}</small>
+                          <small>{!!$dmio->device_function!!}</small>
                           <br>
                         </span>
                         <span class="col-xs-12 border_blue_white" style="margin-bottom:5px; padding-bottom:10px; text-shadow:none;">
@@ -472,42 +472,42 @@
                           ?>
                           @if($dmio->season != $thisSystem->season_mode && $dmio->season != '2')
                             <hr>
-                            <span style="color:{{$seasoncolor}}; text-shadow:0px 0px 3px #dddddd; ">
+                            <span style="color:{!!$seasoncolor!!}; text-shadow:0px 0px 3px #dddddd; ">
                                 OFF-SEASON
                             </span>
                             <hr>
-                            <span class="@if($set_control_tour)furnace_control_tour @endif " style="color:{{$outcolor}}; text-shadow:0px 0px 10px #222200;">
+                            <span class="@if($set_control_tour)furnace_control_tour @endif " style="color:{!!$outcolor!!}; text-shadow:0px 0px 10px #222200;">
                               <big>
 
-                                {{$outstate}}
+                                {!!$outstate!!}
                               </big>
                             </span>
                             
                               <br>
                               <span class="@if($set_control_tour)furnace_control_tour @endif ">
-                                Last Report:<br>{{$dmio->datetime}}
+                                Last Report:<br>{!!$dmio->datetime!!}
                               </span>
                             
                             <br>
                           @else
-                            <span class="@if($set_control_tour)furnace_control_tour @endif " style="color:{{$outcolor}}; text-shadow:0px 0px 10px #111100;">
+                            <span class="@if($set_control_tour)furnace_control_tour @endif " style="color:{!!$outcolor!!}; text-shadow:0px 0px 10px #111100;">
                               <big><big><big>
-                                {{$outstate}}
+                                {!!$outstate!!}
                               </big></big></big>
                             </span>
                             <br>
                             <span class="@if($set_control_tour)furnace_control_tour @endif ">
                               
-                                {{$dmio->datetime}}<br>
+                                {!!$dmio->datetime!!}<br>
                               
                             </span>
                           @endif
                           <div class="panel panel-primary" style="overflow: hidden;">
                           <!-- CHECK INPUTS -->
-                          <a id="oi-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}" role="button" class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 btn btn-info panel-title" title="Show the reason(s) for this output's state" style="text-shadow:none;" data-toggle="collapse" data-parent="#{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}" href="#inputs-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}" >
+                          <a id="oi-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}" role="button" class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 btn btn-info panel-title" title="Show the reason(s) for this output's state" style="text-shadow:none;" data-toggle="collapse" data-parent="#{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}" href="#inputs-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}" >
                             Algorithm Info
                           </a>
-                          <div id="inputs-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}" class="col-xs-12 container-fluid collapse panel-body" style="text-align:center;padding:0px;">
+                          <div id="inputs-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}" class="col-xs-12 container-fluid collapse panel-body" style="text-align:center;padding:0px;">
 
                             <?php
                               $ias; /*input above setpoint*/
@@ -541,7 +541,7 @@
                             <!-- Why is the current_state what it is... -->
                           @if(FALSE !== array_search($dmio->alarm_index,$control_alarm_codes) )
                             <div class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 border_blue_white" style="border-width:2px; background-color: #000022; color:white;" title="Overriding Voting">
-                              {{$Alarm_Codes[$dmio->alarm_index]['description']}}<br>
+                              {!!$Alarm_Codes[$dmio->alarm_index]['description']!!}<br>
                             </div>
                           @elseif($dmio->function != 'Virtual')
                             <div class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 border_blue_white" style="border-width:2px; background-color: #000022; color:white;" title="Overriding Voting">
@@ -550,14 +550,14 @@
                           @endif
                             <!-- Display active season -->
                             <div class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 border_blue_white" style="border-width:2px; background-color: #224466; color:white;" title="Active Season">
-                              Active Season: {{$activeseason}}<br>
+                              Active Season: {!!$activeseason!!}<br>
                             </div>
                             <!-- Display required votes -->
                             <div class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 border_blue_white" style="border-width:2px; background-color: #000022; color:white;" title="Showing input devices above setpoint versus required devices above setpoint for output state change">
-                              Votes: {{$alg_votes}}/{{$dmio->min_required_inputs}}
+                              Votes: {!!$alg_votes!!}/{!!$dmio->min_required_inputs!!}
                             </div>
                             <span class="@if($set_control_tour)furnace_control_tour @endif ">
-                              <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{{$active_below_setpoint_bk_color}}; color:{{$active_input_color}}; text-shadow:none;padding:3px;">
+                              <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{!!$active_below_setpoint_bk_color!!}; color:{!!$active_input_color!!}; text-shadow:none;padding:3px;">
                                 <small>
                                   Below Setpoint
                                 </small>
@@ -565,14 +565,14 @@
                                 @if(isset($ias))
                                   @foreach($ias as $output_key)
                                     <div class="col-xs-12 border_blue_white">
-                                      {{$output_causes[$output_key]['input']['name']}}<br>
+                                      {!!$output_causes[$output_key]['input']['name']!!}<br>
                                     </div>
                                   @endforeach
                                 @else
                                   <i>None</i><br>
                                 @endif
                               </div>
-                              <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{{$active_above_setpoint_bk_color}}; color:{{$active_input_color}}; text-shadow:none;padding:3px;">
+                              <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{!!$active_above_setpoint_bk_color!!}; color:{!!$active_input_color!!}; text-shadow:none;padding:3px;">
                                 <small>
                                   Above Setpoint
                                 </small>
@@ -580,7 +580,7 @@
                                 @if(isset($ibs))
                                   @foreach($ibs as $output_key)
                                     <div class="col-xs-12 border_blue_white">
-                                      {{$output_causes[$output_key]['input']['name']}}<br>
+                                      {!!$output_causes[$output_key]['input']['name']!!}<br>
                                     </div>
                                   @endforeach
                                 @else
@@ -588,14 +588,14 @@
                                 @endif
                               </div>
                               @if(isset($iid))
-                                <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{{$inactive_bk_color}}; text-shadow:none;padding:3px;">
+                                <div class="col-xs-12 border_blue_white" style="border-width:2px; background-color:{!!$inactive_bk_color!!}; text-shadow:none;padding:3px;">
                                   <small>
                                     Inactive Inputs
                                   </small>
                                   <br>
                                   @foreach($iid as $output_key)
                                     <div class="col-xs-12 border_blue_white">
-                                      {{$output_causes[$output_key]['input']['name']}}<br>
+                                      {!!$output_causes[$output_key]['input']['name']!!}<br>
                                     </div>
                                   @endforeach
                                 </div>
@@ -611,13 +611,13 @@
                           <br>
                         </span>
 
-                        {{ Form::open(array("role" => "form", "name"=>"instruction")) }}
+                        {!! Form::open(array("role" => "form", "name"=>"instruction")) !!}
                           @if(Auth::check())<!--OVERRIDE CONTROLS-->
                             @if(in_array(Auth::user()->auth_role,[3,4,5,6,7,8]))
                               <span class="@if($set_control_tour)furnace_control_tour @endif col-xs-12 border_blue_white" style="padding: 5px;">
-                                <input name="Togglestate" type="hidden" value="{{$dmio->current_value}}">
-                                <input name="device" type="hidden" value="{{$dmio->id}}">
-                                <input name="command" type="hidden" value="{{$dmio->device_types_id}}">
+                                <input name="Togglestate" type="hidden" value="{!!$dmio->current_value!!}">
+                                <input name="device" type="hidden" value="{!!$dmio->id!!}">
+                                <input name="command" type="hidden" value="{!!$dmio->device_types_id!!}">
                                 <div class="@if($set_control_tour)furnace_control_tour @endif btn-group" data-toggle="buttons" style="text-shadow:none; padding:10px;">
                                   <label class="btn btn-primary btn-lg">
                                     <input type="radio" name="Override" id="1" value="1" autocomplete="off"> ON
@@ -637,19 +637,19 @@
                                     }
                                   ?>
                                   <div>
-                                    {{ Form::select('Overridetime', array( '-1' => 'RESET', '5' => '5 Minutes', '15' => '15 Minutes','30' => '30 Minutes', '60' => '1 Hour','90' => '1.5 Hours', '120' => '2 Hours', '180' => '3 Hours', '240' => '4 Hours'), $mpotime, array('class' => 'form-control', 'style' => 'color:black;')) }}
+                                    {!! Form::select('Overridetime', array( '-1' => 'RESET', '5' => '5 Minutes', '15' => '15 Minutes','30' => '30 Minutes', '60' => '1 Hour','90' => '1.5 Hours', '120' => '2 Hours', '180' => '3 Hours', '240' => '4 Hours'), $mpotime, array('class' => 'form-control', 'style' => 'color:black;')) !!}
                                   </div>
                                 </div>
                                 <button class='@if($set_control_tour)furnace_control_tour @endif col-xs-12 emc-tabs' type='submit' name='Bypass' value="" data-confirm="Bypass normal algorithm operations?" style="padding:10px;">
                                   Bypass
                                 </button>
                                 <button class='@if($set_control_tour)furnace_control_tour @endif col-xs-12 emc-tabs' type='submit' name='Toggle' style="padding:10px;">
-                                  Toggle: {{$notoutstate}}
+                                  Toggle: {!!$notoutstate!!}
                                 </button>
                               </span>
                             @endif
                           @endif
-                        {{Form::close()}}
+                        {!!Form::close()!!}
                       </div>
                       <?php $set_control_tour = FALSE; ?>
                     @endif
@@ -661,29 +661,29 @@
                   @foreach ($apartments as $aps)
                     @if($aps['map_id'] == $key)
                       <?php $inorout = ($inc==0)?"in":""; ?>
-                      <div id="dmi-info-{{$aps['device_id']}}-{{$aps['command']}}-{{$aps['map_id']}}" class="container-fluid collapse {{$inorout}}" style="">
+                      <div id="dmi-info-{!!$aps['device_id']!!}-{!!$aps['command']!!}-{!!$aps['map_id']!!}" class="container-fluid collapse {!!$inorout!!}" style="">
                           <?php $inc++; ?>
                           <span class="@if($set_sensor_tour) furnace_sensor_tour @endif  col-xs-12" style="background-color:#29516D; color: white; text-shadow: none; text-align: center;">
                             <big>
-                              {{trim($aps['name']);}}
+                              {!!trim($aps['name']);!!}
                               <br>
-                              <small>{{$aps['tag']}}</small>
+                              <small>{!!$aps['tag']!!}</small>
                             </big>
                             <br>
                           </span>
                           @if($aps['inhibited'] == 1)
-                          <span class="col-xs-12 border_blue_white" style=" color: {{$inhibted_color}};">
+                          <span class="col-xs-12 border_blue_white" style=" color: {!!$inhibted_color!!};">
                             <span class="col-xs-12" style="padding:15px; text-align: center;">
                               INHIBITED<br>
                           @elseif($aps['overdue'] == 'YES')
                           <span class="col-xs-12 border_blue_white">
                             <span class="col-xs-12" style="padding:15px; text-align: center;">
-                              <span style="color: {{$overdue_red}}">
+                              <span style="color: {!!$overdue_red!!}">
                                 OVERDUE
                                 <br>
                                 Last Report:
                                 <br>
-                                {{$aps['last_report_time']}}
+                                {!!$aps['last_report_time']!!}
                                 <br>
                               </span>
                           @else
@@ -692,8 +692,8 @@
                           @endif
                             @if($aps['state'] != 0)
                               <?php $alarmcolor = ($aps['state'] == 1)?"orange":"red";  ?>
-                              <span style="color: {{$alarmcolor}}; text-shadow: none;">
-                                <b>{{$Alarm_Codes[$aps['alarm_index']]['description']}}</b><br>
+                              <span style="color: {!!$alarmcolor!!}; text-shadow: none;">
+                                <b>{!!$Alarm_Codes[$aps['alarm_index']]['description']!!}</b><br>
                               </span>
                             @endif
                             <!-- CURRENT VALUE -->
@@ -706,14 +706,14 @@
                                       ON
                                     @endif
                                   @else
-                                    {{round($aps['currentVal'],3);}}&nbsp;{{$aps['units']}}
+                                    {!!round($aps['currentVal'],3);!!}&nbsp;{!!$aps['units']!!}
                                   @endif
                                 </b></big></big>
                               </span>
                               <br>
                               @if($aps['overdue'] === 'NO')
                                 <small><span title="Last Report Time">
-                                  {{str_replace("-","&#8209;",str_replace(" ","&nbsp;",$aps['last_report_time']));}}
+                                  {!!str_replace("-","&#8209;",str_replace(" ","&nbsp;",$aps['last_report_time']));!!}
                                 </span></small>
                                 <br>
                               @endif
@@ -721,12 +721,12 @@
                             <!-- SETPOINT AND ALARM LEVELS -->
                             <?php $setpoint_text = ($aps['status']==='ON')?"Vote 'No'":"Vote 'Yes'"; ?>
                             @if(Auth::check())
-                              <span class="@if($set_sensor_tour) furnace_sensor_tour @endif col-xs-12 border_blue_white" style="cursor: pointer; padding:5px; background-color:#DDDDDD; text-align:center;" onclick="window.location='{{URL::route('setpointmapping.index', [$thisBldg->id, $thisSystem->id])}}';" title="Redirect to setpoints page to adjust setpoints and alarm levels">
+                              <span class="@if($set_sensor_tour) furnace_sensor_tour @endif col-xs-12 border_blue_white" style="cursor: pointer; padding:5px; background-color:#DDDDDD; text-align:center;" onclick="window.location='{!!URL::route('setpointmapping.index', [$thisBldg->id, $thisSystem->id])!!}';" title="Redirect to setpoints page to adjust setpoints and alarm levels">
                             @else
                               <span class="@if($set_sensor_tour) furnace_sensor_tour @endif col-xs-12 border_blue_white" style="padding:5px; background-color:#DDDDDD; text-align:center;" >
                             @endif
-                              <span class="col-xs-12" title="{{$setpoint_text}}">
-                                Setpoint: <b>{{round($aps['setpoints'],3);}}&nbsp;{{$aps['units']}}</b>
+                              <span class="col-xs-12" title="{!!$setpoint_text!!}">
+                                Setpoint: <b>{!!round($aps['setpoints'],3);!!}&nbsp;{!!$aps['units']!!}</b>
                               </span>
                               <br>
                               <span class="col-xs-12">
@@ -734,10 +734,10 @@
                               </span>
                               <br>
                               <span class="col-xs-6 col-sm-12">
-                                High:&nbsp;<b>{{str_replace("-","&#8209;",round($aps['high'],3));}}&nbsp;{{$aps['units']}}</b>
+                                High:&nbsp;<b>{!!str_replace("-","&#8209;",round($aps['high'],3));!!}&nbsp;{!!$aps['units']!!}</b>
                               </span>
                               <span class="col-xs-6 col-sm-12">
-                                Low:&nbsp;<b>{{str_replace("-","&#8209;",round($aps['low'],3));}}&nbsp;{{$aps['units']}}</b>
+                                Low:&nbsp;<b>{!!str_replace("-","&#8209;",round($aps['low'],3));!!}&nbsp;{!!$aps['units']!!}</b>
                               </span>
                             </span>
 
@@ -745,16 +745,16 @@
                             <span class="@if($set_sensor_tour) furnace_sensor_tour @endif col-xs-12" style="padding:5px 0px;">
                               Location:
                               @if((isset($aps['location']))&&($aps['location'] != ""))
-                                <b>{{$aps['location']}}</b>
+                                <b>{!!$aps['location']!!}</b>
                               @else
                                 <i>unknown</i>
                               @endif
                               <br>
                               @if((isset($aps['desc']))&&($aps['desc'] != ""))
-                                Descripton: <b>{{$apartment['desc']}}</b><br>
+                                Descripton: <b>{!!$apartment['desc']!!}</b><br>
                               @endif
                               @if((isset($aps['comments']))&&($aps['comments'] != ""))
-                                Comments: <b>{{$aps['comments']}}</b><br>
+                                Comments: <b>{!!$aps['comments']!!}</b><br>
                               @endif
                             </span>
                           </span>
@@ -889,24 +889,24 @@
     $('#myTab').tabCollapse();
     /*Show zonelist- info when new tab is selected*/
     @foreach($dashboard_maps as $key=>$dashboard_map)
-      $("#tab-{{$dashboard_map['id']}}").click(function(){
+      $("#tab-{!!$dashboard_map['id']!!}").click(function(){
         @foreach ($systemZones as $key=>$sz)
-          $("#zonelist-{{$key}}:visible").collapse('hide');
+          $("#zonelist-{!!$key!!}:visible").collapse('hide');
         @endforeach
-        $("#zonelist-{{$dashboard_map['id']}}").collapse('show');
+        $("#zonelist-{!!$dashboard_map['id']!!}").collapse('show');
         close_dmi_out();
         close_dmi_info();
         <?php $count = 0;?>
         @foreach ($dashboard_map_items_outputs as $dmio)
           @if ( ($dmio->map_id == $dashboard_map['id']) && ($count == 0) )
-            $("#dmi-out-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}:hidden").collapse('show');
+            $("#dmi-out-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}:hidden").collapse('show');
             <?php $count++;?>
           @endif
         @endforeach
 
         @foreach ($apartments as $aps)
           @if ( ($aps['map_id'] == $dashboard_map['id']) && ($count == 0) )
-            $("#dmi-info-{{$aps['device_id']}}-{{$aps['command']}}-{{$aps['map_id']}}:hidden").collapse('show');
+            $("#dmi-info-{!!$aps['device_id']!!}-{!!$aps['command']!!}-{!!$aps['map_id']!!}:hidden").collapse('show');
             <?php $count++;?>
           @endif
         @endforeach
@@ -940,13 +940,13 @@
 
   function close_dmi_info(){
     @foreach ($apartments as $aps)
-      $("#dmi-info-{{$aps['device_id']}}-{{$aps['command']}}-{{$aps['map_id']}}:visible").collapse('hide');
+      $("#dmi-info-{!!$aps['device_id']!!}-{!!$aps['command']!!}-{!!$aps['map_id']!!}:visible").collapse('hide');
     @endforeach
   }
 
     function close_dmi_out(){
       @foreach ($dashboard_map_items_outputs as $dmio)
-        $("#dmi-out-{{$dmio->device_id}}-{{$dmio->command}}-{{$dmio->map_id}}:visible").collapse('hide');
+        $("#dmi-out-{!!$dmio->device_id!!}-{!!$dmio->command!!}-{!!$dmio->map_id!!}:visible").collapse('hide');
       @endforeach
     }
 

@@ -8,17 +8,17 @@
 @section('content')
 
 @if ($thisBldg->name == "526 West 139th Street")
-	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{{ $thisBldg->name }} - Consumables Detail</h3></div>
+	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{!! $thisBldg->name !!} - Consumables Detail</h3></div>
 
 	<div class="page-nav">
-		<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+		<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 	</div>
 
 	<br>
 
 	<div style="margin-left: auto; margin-right: auto; width: 90%;">
 		<div id="accordion">
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/yellowbutton.png')}} Oil &emsp; {{HTML::image('images/caution.png')}}  <span class="yellow-alarm">Tank #1 Low</span></h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/yellowbutton.png')!!} Oil &emsp; {!!HTML::image('images/caution.png')!!}  <span class="yellow-alarm">Tank #1 Low</span></h4>
 			<div>
 				<div id="tankbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -29,10 +29,10 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltanklow.png')}}
+						            {!!HTML::image('images/oiltanklow.png')!!}
 						        </td>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank2.png')}}
+						            {!!HTML::image('images/oiltank2.png')!!}
 						        </td>
 							</tr>
 						</tbody>
@@ -74,7 +74,7 @@
 				</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Gas</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Gas</h4>
 			<div>
 				<div id="gaschart" style="width: 95%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 				<script>
@@ -147,7 +147,7 @@
 			</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Water Usage</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Water Usage</h4>
 			<div>
 				<div id="watertank" style="width: 250px; height: 250px; margin-left: auto; margin-right: auto"></div>
 					<script>
@@ -416,7 +416,7 @@
 				</div>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Electric</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Electric</h4>
 			<div>
 				<div id="meterbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -426,7 +426,7 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 825px; height: 150px">
-						            {{HTML::image('images/elecmeters.png')}}
+						            {!!HTML::image('images/elecmeters.png')!!}
 						        </td>
 					        </tr>
 						</tbody>
@@ -469,17 +469,17 @@
 		</div>
 	</div>
 @elseif ($thisBldg->name == "400 West 139th Street")
-	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{{ $thisBldg->name }} - Consumables Detail</h3></div>
+	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{!! $thisBldg->name !!} - Consumables Detail</h3></div>
 
 	<div class="page-nav">
-		<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+		<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 	</div>
 
 	<br>
 
 		<div style="margin-left: auto; margin-right: auto; width: 90%;">
 		<div id="accordion">
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Oil</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Oil</h4>
 			<div>
 				<div id="tankbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -490,10 +490,10 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank1.png')}}
+						            {!!HTML::image('images/oiltank1.png')!!}
 						        </td>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank2.png')}}
+						            {!!HTML::image('images/oiltank2.png')!!}
 						        </td>
 							</tr>
 						</tbody>
@@ -548,7 +548,7 @@
 				</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/yellowbutton.png')}} Gas &emsp; {{HTML::image('images/caution.png')}}  <span class="yellow-alarm">Usage Mismatch</span></h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/yellowbutton.png')!!} Gas &emsp; {!!HTML::image('images/caution.png')!!}  <span class="yellow-alarm">Usage Mismatch</span></h4>
 			<div>
 				<div id="gaschart" style="width: 95%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 				<script>
@@ -621,7 +621,7 @@
 			</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Water Usage</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Water Usage</h4>
 			<div>
 				<div id="watertank" style="width: 250px; height: 250px; margin-left: auto; margin-right: auto"></div>
 					<script>
@@ -890,7 +890,7 @@
 				</div>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Electric</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Electric</h4>
 			<div>
 				<div id="meterbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -900,7 +900,7 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 825px; height: 150px">
-						            {{HTML::image('images/elecmeters.png')}}
+						            {!!HTML::image('images/elecmeters.png')!!}
 						        </td>
 					        </tr>
 						</tbody>
@@ -943,17 +943,17 @@
 		</div>
 	</div>
 @elseif ($thisBldg->name == "191 Joralemon Street")
-	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{{ $thisBldg->name }} - Consumables Detail</h3></div>
+	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{!! $thisBldg->name !!} - Consumables Detail</h3></div>
 
 	<div class="page-nav">
-		<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+		<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 	</div>
 
 	<br>
 
 	<div style="margin-left: auto; margin-right: auto; width: 90%;">
 		<div id="accordion">
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Oil</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Oil</h4>
 			<div>
 				<div id="tankbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -964,10 +964,10 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank1.png')}}
+						            {!!HTML::image('images/oiltank1.png')!!}
 						        </td>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank2.png')}}
+						            {!!HTML::image('images/oiltank2.png')!!}
 						        </td>
 							</tr>
 						</tbody>
@@ -1022,7 +1022,7 @@
 				</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Gas</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Gas</h4>
 			<div>
 				<div id="gaschart" style="width: 95%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 				<script>
@@ -1095,7 +1095,7 @@
 				</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/yellowbutton.png')}} Water Usage &emsp; {{HTML::image('images/caution.png')}}  <span class="yellow-alarm">Make-up Water High</span></h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/yellowbutton.png')!!} Water Usage &emsp; {!!HTML::image('images/caution.png')!!}  <span class="yellow-alarm">Make-up Water High</span></h4>
 			<div>
 				<div id="tankboxbad" style="width: 250px; height: 250px; margin-left: auto; margin-right: auto"></div>
 					<script>
@@ -1364,7 +1364,7 @@
 				</div>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Electric</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Electric</h4>
 			<div>
 				<div id="meterbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -1374,7 +1374,7 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 825px; height: 150px">
-						            {{HTML::image('images/elecmeters.png')}}
+						            {!!HTML::image('images/elecmeters.png')!!}
 						        </td>
 					        </tr>
 						</tbody>
@@ -1417,17 +1417,17 @@
 		</div>
 	</div>
 @else
-	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{{ $thisBldg->name }} - Consumables Detail</h3></div>
+	<div class="page-title" style="height: 95px; line-height: 55px"><h3>{!! $thisBldg->name !!} - Consumables Detail</h3></div>
 
 	<div class="page-nav">
-		<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+		<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 	</div>
 
 	<br>
 
 	<div style="margin-left: auto; margin-right: auto; width: 90%;">
 		<div id="accordion">
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Oil</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Oil</h4>
 			<div>
 				<div id="tankbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -1438,10 +1438,10 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank1.png')}}
+						            {!!HTML::image('images/oiltank1.png')!!}
 						        </td>
 						        <td style="width: 250px; height: 150px">
-						            {{HTML::image('images/oiltank2.png')}}
+						            {!!HTML::image('images/oiltank2.png')!!}
 						        </td>
 							</tr>
 						</tbody>
@@ -1496,7 +1496,7 @@
 				</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Gas</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Gas</h4>
 			<div>
 				<div id="gaschart" style="width: 95%; margin-left: auto; margin-right: auto; float: left; padding: 1px"></div>
 				<script>
@@ -1569,7 +1569,7 @@
 			</script>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Water Usage</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Water Usage</h4>
 			<div>
 				<div id="watertank" style="width: 250px; height: 250px; margin-left: auto; margin-right: auto"></div>
 					<script>
@@ -1838,7 +1838,7 @@
 				</div>
 			</div>
 
-			<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Electric</h4>
+			<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Electric</h4>
 			<div>
 				<div id="meterbox" style="margin-left: auto; margin-right: auto">
 					<table style="margin-left: auto; margin-right: auto">
@@ -1848,7 +1848,7 @@
 						<tbody>
 						    <tr>
 						        <td style="width: 825px; height: 150px">
-						            {{HTML::image('images/elecmeters.png')}}
+						            {!!HTML::image('images/elecmeters.png')!!}
 						        </td>
 					        </tr>
 						</tbody>

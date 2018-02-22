@@ -68,12 +68,12 @@
 <br>
 
 @if(Request::is('user/create'))
-  {{Form::open(['url'=>URL::route('user.store'), 'class'=>'form-spaced well form-horizontal'])}}
+  {!!Form::open(['url'=>URL::route('user.store'), 'class'=>'form-spaced well form-horizontal'])!!}
 @else
-  {{Form::open(['url'=>'user/'.$user->id, 'method'=>'PUT', 'class'=>'form-spaced well form-horizontal'])}}
+  {!!Form::open(['url'=>'user/'.$user->id, 'method'=>'PUT', 'class'=>'form-spaced well form-horizontal'])!!}
 @endif
 
-{{Form::open(['url'=>(Request::is('user/create'))?'user/store':'user/update/'.$user->id, 'class'=>'form-spaced'])}}
+{!!Form::open(['url'=>(Request::is('user/create'))?'user/store':'user/update/'.$user->id, 'class'=>'form-spaced'])!!}
 
 <div class="row">
   @if(Request::is('user/create'))
@@ -81,74 +81,74 @@
   @else
   <div class="update_users_tour col-sm-6 col-sm-offset-3">
   @endif
-    {{Form::label('customer_id', 'Customer Account')}}
-    {{Form::text('customer_name', $customer->name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'style'=> 'height:34px; font-size:14px;', 'disabled'])}}
+    {!!Form::label('customer_id', 'Customer Account')!!}
+    {!!Form::text('customer_name', $customer->name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'style'=> 'height:34px; font-size:14px;', 'disabled'])!!}
   </div>
   @if(Request::is('user/create'))
     <div class="col-sm-6">
-      {{Form::label('role', 'Authorization Level')}}
-      {{Form::select('role', $roles, ' ', ['class' => 'form-control', 'style'=> 'height:34px; font-size:14px;', 'id'=>'role'])}}
+      {!!Form::label('role', 'Authorization Level')!!}
+      {!!Form::select('role', $roles, ' ', ['class' => 'form-control', 'style'=> 'height:34px; font-size:14px;', 'id'=>'role'])!!}
     </div>
   @endif
 </div>
 
 <div class="row">
   <div class="update_users_tour col-sm-6">
-    {{Form::label('email', 'Email Address')}}
-    {{Form::email('email', $user->email, ['class'=>'form-control input-lg', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Email Address', 'id'=>'email'])}}
+    {!!Form::label('email', 'Email Address')!!}
+    {!!Form::email('email', $user->email, ['class'=>'form-control input-lg', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Email Address', 'id'=>'email'])!!}
     <br>
   </div>
 
   <div class="update_users_tour col-sm-3">
-    {{Form::label('mobile_number', 'Mobile Number')}}
-    {{Form::text('mobile_number', $user->mobile_number, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'XXXXXXXXXX', 'id'=>'mobile_number', 'type'=>"tel",'title'=>'10-digit US phone number'])}}
+    {!!Form::label('mobile_number', 'Mobile Number')!!}
+    {!!Form::text('mobile_number', $user->mobile_number, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'XXXXXXXXXX', 'id'=>'mobile_number', 'type'=>"tel",'title'=>'10-digit US phone number'])!!}
   </div>
 
   <div class="update_users_tour col-sm-3">
-    {{Form::label('mobile_carrier', 'Mobile Carrier')}}
-    {{Form::select('mobile_carrier', $mobile_carriers, $user->mobile_carrier,['class' => 'form-control', 'id'=>'mobile_carrier']) }}
+    {!!Form::label('mobile_carrier', 'Mobile Carrier')!!}
+    {!!Form::select('mobile_carrier', $mobile_carriers, $user->mobile_carrier,['class' => 'form-control', 'id'=>'mobile_carrier']) !!}
     <a href="http://freecarrierlookup.com/" target="_blank">Not sure? Look it up</a>
   </div>
 </div>
 <div class="row">
   <div class="update_users_tour col-sm-1">
-    {{Form::label('prefix', 'Prefix')}}
-    {{Form::select('prefix', array(' ','Mx.','Ms.','Mrs.','Mr.'), $user->prefix, ['class' => 'form-control', 'id'=>'prefix']) }}
+    {!!Form::label('prefix', 'Prefix')!!}
+    {!!Form::select('prefix', array(' ','Mx.','Ms.','Mrs.','Mr.'), $user->prefix, ['class' => 'form-control', 'id'=>'prefix']) !!}
   </div>
 
   <div class="update_users_tour col-sm-3">
-    {{Form::label('first_name', 'First Name')}}
-    {{Form::text('first_name', $user->first_name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'First Name', 'required'])}}
+    {!!Form::label('first_name', 'First Name')!!}
+    {!!Form::text('first_name', $user->first_name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'First Name', 'required'])!!}
   </div>
 
   <div class="update_users_tour col-sm-2">
-    {{Form::label('middle_initial', 'Middle Initial')}}
-    {{Form::text('middle_initial', $user->middle_initial, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Middle Initial', 'id'=>'middle_initial'])}}
+    {!!Form::label('middle_initial', 'Middle Initial')!!}
+    {!!Form::text('middle_initial', $user->middle_initial, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Middle Initial', 'id'=>'middle_initial'])!!}
   </div>
 
   <div class="update_users_tour col-sm-5">
-    {{Form::label('last_name', 'Last Name')}}
-    {{Form::text('last_name', $user->last_name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Last Name', 'required'])}}
+    {!!Form::label('last_name', 'Last Name')!!}
+    {!!Form::text('last_name', $user->last_name, ['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Last Name', 'required'])!!}
   </div>
 
   <div class="update_users_tour col-sm-1">
-    {{Form::label('suffix', 'Suffix')}}
-    {{Form::select('suffix', array(' ','Sr.','Jr.','III','M.D.','PhD','CPA'), $user->suffix, ['class' => 'form-control', 'id'=>'suffix']) }}
+    {!!Form::label('suffix', 'Suffix')!!}
+    {!!Form::select('suffix', array(' ','Sr.','Jr.','III','M.D.','PhD','CPA'), $user->suffix, ['class' => 'form-control', 'id'=>'suffix']) !!}
   </div>
 
   @if(Request::is('user/create'))
     <br>
     <div class="col-sm-6">
-        {{Form::label('password', 'Password')}}
+        {!!Form::label('password', 'Password')!!}
         <div style="display: flex;">
-          {{Form::password('password', ['class'=>'form-control pull-left Password', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Password', 'required'])}}
+          {!!Form::password('password', ['class'=>'form-control pull-left Password', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Password', 'required'])!!}
           <i class="fa fa-eye show pull-right" title="show the password entered"></i>
         </div>
     </div>
     <div class="col-sm-6">
-        {{Form::label('re-password', 'Retype Password')}}
+        {!!Form::label('re-password', 'Retype Password')!!}
         <div style="display: flex;">
-          {{Form::password('re-password', ['class'=>'form-control pull-left Password', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Retype Password', 'required'])}}
+          {!!Form::password('re-password', ['class'=>'form-control pull-left Password', 'style'=> 'height:34px; font-size:14px;', 'placeholder'=>'Retype Password', 'required'])!!}
           <i class="fa fa-eye show pull-right" title="show the password entered"></i>
         </div>
     </div>
@@ -157,24 +157,24 @@
 </div>
 <div class="row">
 
-  <div class="update_users_tour col-xs-12 col-xs-offset-0 col-sm-4 {{(! Request::is('user/create'))?'col-sm-offset-2':'col-sm-offset-4'}}" style="padding: 15px">
+  <div class="update_users_tour col-xs-12 col-xs-offset-0 col-sm-4 {!!(! Request::is('user/create'))?'col-sm-offset-2':'col-sm-offset-4'!!}" style="padding: 15px">
 
-    {{Form::submit('Save', ['class'=>'btn btn-primary btn-sm col-xs-12 pull-right', 'id'=>'submitform'])}}
-    {{Form::close()}}
+    {!!Form::submit('Save', ['class'=>'btn btn-primary btn-sm col-xs-12 pull-right', 'id'=>'submitform'])!!}
+    {!!Form::close()!!}
   </div>
 
   @if((!Request::is('user/create'))&&(Auth::user()->id != $user->id))
     <div class="delete_users_tour col-xs-12 col-sm-4" style="padding: 15px">
-      {{Form::open(['url'=>'user/'.$user->id, 'method'=>'DELETE'])}}
-      {{Form::submit('Delete User', ['class'=>'btn btn-danger btn-sm js-confirm pull-right col-xs-12', 'data-confirm'=>'Are you sure you want to delete this user account?'])}}
-      {{Form::close()}}
+      {!!Form::open(['url'=>'user/'.$user->id, 'method'=>'DELETE'])!!}
+      {!!Form::submit('Delete User', ['class'=>'btn btn-danger btn-sm js-confirm pull-right col-xs-12', 'data-confirm'=>'Are you sure you want to delete this user account?'])!!}
+      {!!Form::close()!!}
     </div>
   @endif
 </div>
 
 @if(! Request::is('user/create'))
   <!-- Password Reset Modal -->
-  {{Form::open(['url'=>'user/password/'.$user->id, 'class'=>'form-spaced'])}}
+  {!!Form::open(['url'=>'user/password/'.$user->id, 'class'=>'form-spaced'])!!}
   <div class="modal fade" id="passwordReset" tabindex="-1" role="dialog" aria-labelledby="passwordResetLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -192,19 +192,19 @@
           </h4>
         </div>
         <div class="modal-body">
-          {{Form::label('email', 'Email')}}
-          {{Form::text('email', $user->email,['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', "disabled"])}}
+          {!!Form::label('email', 'Email')!!}
+          {!!Form::text('email', $user->email,['class'=>'form-control', 'style'=> 'height:34px; font-size:14px;', "disabled"])!!}
           <!-- new password -->
-          {{Form::label('password', 'New password')}}
+          {!!Form::label('password', 'New password')!!}
           <div style="display: flex;">
-            {{Form::password('password', ['class'=>'form-control pull-left Password passwordform', 'style'=> 'height:34px; font-size:14px;', 'required', 'name'=> 'passwordmodal'])}}
+            {!!Form::password('password', ['class'=>'form-control pull-left Password passwordform', 'style'=> 'height:34px; font-size:14px;', 'required', 'name'=> 'passwordmodal'])!!}
             <i class="fa fa-eye show pull-right" title="show the password entered"></i>
           </div>
           <br>
           <!-- verify password -->
-          {{Form::label('re-password', 'Password Verification')}}
+          {!!Form::label('re-password', 'Password Verification')!!}
           <div style="display: flex;">
-            {{Form::password('re-password', ['class'=>'form-control pull-left Password re_passwordform', 'style'=> 'height:34px; font-size:14px;', 'required', 'name'=> 're-passwordmodal'])}}
+            {!!Form::password('re-password', ['class'=>'form-control pull-left Password re_passwordform', 'style'=> 'height:34px; font-size:14px;', 'required', 'name'=> 're-passwordmodal'])!!}
             <i class="fa fa-eye show pull-right" title="show the password entered"></i>
           </div>
         </div>
@@ -213,13 +213,13 @@
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
             Cancel
           </button>
-          {{Form::submit('Save', ['class'=>'btn btn-primary btn-sm', 'id'=> 'submitform_modal'])}}
+          {!!Form::submit('Save', ['class'=>'btn btn-primary btn-sm', 'id'=> 'submitform_modal'])!!}
         </div>
       </div>
     </div>
   </div>
 
-  {{Form::close()}}
+  {!!Form::close()!!}
 @endif
 <script>
   //password validation

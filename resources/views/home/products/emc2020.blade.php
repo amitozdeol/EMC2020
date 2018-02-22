@@ -15,7 +15,7 @@
 <div class="col-xs-12" style="background: url(images/home_page/blurred_blue_circular_scale.png); min-height: 6000px;">
    <div class="col-sm-12 col-md-10 col-md-offset-1">
         <h3>
-            <a href="{{URL::to('home')}}" class="path-link">HOME&nbsp;></a>&nbsp;<a href="{{URL::to('products')}}" class="path-link">PRODUCTS&nbsp;></a>&nbsp;<b>EMC&nbsp;20/20</b>
+            <a href="{!!URL::to('home')!!}" class="path-link">HOME&nbsp;></a>&nbsp;<a href="{!!URL::to('products')!!}" class="path-link">PRODUCTS&nbsp;></a>&nbsp;<b>EMC&nbsp;20/20</b>
         </h3>
 	</div>
 

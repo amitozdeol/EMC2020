@@ -38,7 +38,7 @@
   <br>
   <br>
   <br>
-    <a href="{{URL::route('user.create')}}" class="users_tour btn btn-primary btn-sm pull-right">
+    <a href="{!!URL::route('user.create')!!}" class="users_tour btn btn-primary btn-sm pull-right">
       <span class="visible-xs">
         <span class="glyphicon glyphicon-plus"></span>
       </span>
@@ -52,9 +52,9 @@
     <div class="panel-heading">
       <div class="panel-title" style="font-size: 18px;">
         <strong>
-          {{$user->prefix}} {{$user->first_name}} {{$user->middle_initial}} {{$user->last_name}} {{$user->suffix}}
+          {!!$user->prefix!!} {!!$user->first_name!!} {!!$user->middle_initial!!} {!!$user->last_name!!} {!!$user->suffix!!}
         </strong>
-        <a href="{{url('user/'.$user->id.'/edit');}}" class="@if($set_users_tour) users_tour @endif btn btn-primary btn-sm pull-right editbutton" style="color: white; margin-top: -5px;">
+        <a href="{!!url('user/'.$user->id.'/edit');!!}" class="@if($set_users_tour) users_tour @endif btn btn-primary btn-sm pull-right editbutton" style="color: white; margin-top: -5px;">
           <span class="visible-xs" style="font-size: 15px;">
             <span class="glyphicon glyphicon-edit"></span>
           </span>
@@ -63,9 +63,9 @@
       </div>
     </div>
     <div class="panel-body">
-      <strong>Email: </strong><small>{{$user->email}}</small>
+      <strong>Email: </strong><small>{!!$user->email!!}</small>
       <br>
-      <strong>Mobile Phone: </strong><small>{{'('.substr($user->mobile_number,0,3).') '.substr($user->mobile_number,3,3).'-'.substr($user->mobile_number,6,4)}}</small>
+      <strong>Mobile Phone: </strong><small>{!!'('.substr($user->mobile_number,0,3).') '.substr($user->mobile_number,3,3).'-'.substr($user->mobile_number,6,4)!!}</small>
       <br>
       <strong>Mobile Carrier: </strong><small><?php echo (isset($mobile_carrier[$user->mobile_carrier]))?($mobile_carrier[$user->mobile_carrier]): ($user->mobile_carrier); ?> </small>
     </div>

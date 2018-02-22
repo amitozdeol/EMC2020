@@ -188,7 +188,7 @@
 			<ul id="sidemenu" class="sidebar-nav">
 				@if($routePrefix != 'touchscreen')
 					<li>
-						<a href="{{URL::route($routePrefix.'.system', [$thisBldg->id, $thisSystem->id])}}" class="sidebar-item wrap" >
+						<a href="{!!URL::route($routePrefix.'.system', [$thisBldg->id, $thisSystem->id])!!}" class="sidebar-item wrap" >
 							<span class="sidebar-icon"><i class="fa fa-home"></i></span>
 							<span class="sidebar-title">Dashboard</span>
 						</a>
@@ -227,16 +227,16 @@
 						?>
 						@if($item->label == 'Operations' )<!--replace operations with reports-->
 							<li>
-								<a href="{{URL::route('reports.index', [$thisBldg->id, $thisSystem->id])}}?routeprefix={{$routePrefix}}" class="sidebar-item wrap" >
-									<span class="sidebar-icon"><i class="fa {{$this_icon}}"></i></span>
+								<a href="{!!URL::route('reports.index', [$thisBldg->id, $thisSystem->id])!!}?routeprefix={!!$routePrefix!!}" class="sidebar-item wrap" >
+									<span class="sidebar-icon"><i class="fa {!!$this_icon!!}"></i></span>
 									<span class="sidebar-title">Reports</span>
 								</a>
 							</li>
 						@else
 							<li>
-								<a href="{{URL::route($routePrefix.'.dashboard', [$thisBldg->id, $thisSystem->id, $item->id])}}" class="sidebar-item wrap">
-									<span class="sidebar-icon"><i class="fa {{$this_icon}}"></i></span>
-									<span class="sidebar-title">{{ $item->label }}</span>
+								<a href="{!!URL::route($routePrefix.'.dashboard', [$thisBldg->id, $thisSystem->id, $item->id])!!}" class="sidebar-item wrap">
+									<span class="sidebar-icon"><i class="fa {!!$this_icon!!}"></i></span>
+									<span class="sidebar-title">{!! $item->label !!}</span>
 								</a>
 							</li>
 						@endif
@@ -244,7 +244,7 @@
 				@endforeach
 				@if(Auth::user()->auth_role >= 4 && $routePrefix != 'touchscreen')
 					<li>
-						<a href="{{URL::route('setpointmapping.index', [$thisBldg->id, $thisSystem->id])}}" class="sidebar-item wrap">
+						<a href="{!!URL::route('setpointmapping.index', [$thisBldg->id, $thisSystem->id])!!}" class="sidebar-item wrap">
 							<span class="sidebar-icon"><i class="fa fa-tasks"></i></span>
 							<span class="sidebar-title">Setpoints</span>
 						</a>
@@ -274,7 +274,7 @@
 		sidebar_wrapper.style.top = top_margin+"px";
 	}else{
 		// If page is not loading in EMC touchscreen
-		if('{{$routePrefix }}'!= "touchscreen"){
+		if('{!!$routePrefix !!}'!= "touchscreen"){
 			//change sidebar vertical position when scrolling
 			$(window).scroll(function() {
 				var top = top_margin - $(window).scrollTop();

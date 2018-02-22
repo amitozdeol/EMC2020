@@ -106,7 +106,7 @@
 
     <div id="output">
       @foreach(explode("\n", $exception) as $line)
-        <span>{{$line}}<br></span>
+        <span>{!!$line!!}<br></span>
       @endforeach
     </div>
 

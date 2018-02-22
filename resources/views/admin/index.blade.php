@@ -60,7 +60,7 @@
     @if($customer->deleted_at == null)
       <div class="grid-item customer">
         <div class="col-xs-12">
-          <span style="font-family: serif; font-weight: 700;">{{$customer->name}}</span>
+          <span style="font-family: serif; font-weight: 700;">{!!$customer->name!!}</span>
         </div>
 
         <?php $systemcount = 0; ?>
@@ -69,31 +69,31 @@
           @if($building->customer_id == $customer->id && $building->deleted_at == null)
             <?php $systemcount = 0; ?>
             <div class="col-xs-12 col-sm-6 building">
-              <span class="building-title" style="font-family: serif; font-weight: 500;">{{$building->name}}</span>
+              <span class="building-title" style="font-family: serif; font-weight: 500;">{!!$building->name!!}</span>
 
               @foreach($systems as $system)
                 @if($system->building_id == $building->id and $system->system_delete == null)
 
-                  <a href="{{URL::route('building.system', [$system->building_id, $system->id])}}">
+                  <a href="{!!URL::route('building.system', [$system->building_id, $system->id])!!}">
 
                     @if($system->alarm_severity == 0)
-                        <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system system-ok" title="V{{$system->software_version}}">
+                        <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system system-ok" title="V{!!$system->software_version!!}">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        {{$system->name}}
+                        {!!$system->name!!}
                       </div>
                     @endif
 
                     @if($system->alarm_severity == 1)
-                      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system" style="background:#<?php echo dechex(0xffff55-(0x040404*$system->alarm_intensity));?>;color:#030;" title="V{{$system->software_version}}">
+                      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system" style="background:#<?php echo dechex(0xffff55-(0x040404*$system->alarm_intensity));?>;color:#030;" title="V{!!$system->software_version!!}">
                         <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                        {{$system->name}}
+                        {!!$system->name!!}
                       </div>
                     @endif
 
                     @if($system->alarm_severity == 2)
-                      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system" style="background:#<?php echo dechex(0xff2222-(0x0e0000*$system->alarm_intensity));?>;color:white;" title="V{{$system->software_version}}">
+                      <div class="col-xs-offset-1 col-xs-10 col-md-offset-0 col-md-12 system" style="background:#<?php echo dechex(0xff2222-(0x0e0000*$system->alarm_intensity));?>;color:white;" title="V{!!$system->software_version!!}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        {{$system->name}}
+                        {!!$system->name!!}
                       </div>
                     @endif
 
@@ -105,7 +105,7 @@
               @if(!$systemcount)
                 <div class="col-xs-12" style="text-align: center; padding: 0px 20px; ">
                   <h3>
-                    <a class="path-link" href="{{URL::to('building/' . $building->id . '/newsystem')}}" style="color: #ffffff;">Add System</a>
+                    <a class="path-link" href="{!!URL::to('building/' . $building->id . '/newsystem')!!}" style="color: #ffffff;">Add System</a>
                   </h3>
                 </div>
               @endif

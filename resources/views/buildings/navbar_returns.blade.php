@@ -71,8 +71,8 @@
   @if( Route::currentRouteName() !== 'touchscreen.system' )
     <!-- back button for touchscreen -->
     <div class="col-xs-12">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-4 page-nav" style="cursor: pointer; margin-top: 20px; margin-bottom: 5px;" onclick="window.location='{{$back_url}}';">
-        {{$back_message}}
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-4 page-nav" style="cursor: pointer; margin-top: 20px; margin-bottom: 5px;" onclick="window.location='{!!$back_url!!}';">
+        {!!$back_message!!}
       </div>
     </div>
   @endif
@@ -81,7 +81,7 @@
   <nav class="navbar navbar-default navbar-returns affix" style="box-shadow: black 0.1em 0.1em 0.2em; z-index:2; border-radius: 0px;" data-spy="affix" data-offset-top="0">
     <div class="container col-xs-12" style="align-items: center; height: 50px; display: grid;">
       <div class="page-title col-xs-12">
-          {{$thisBldg->name}} - {{$thisSystem->name}}
+          {!!$thisBldg->name!!} - {!!$thisSystem->name!!}
       </div>
   </nav>
   <br>

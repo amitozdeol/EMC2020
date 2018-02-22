@@ -6,7 +6,7 @@
 <div class="col-xs-12" style="background: url(images/home_page/blurred_blue_circular_scale.png); background-position: ; min-height: 6000px;">
    <div class="col-sm-12 col-md-10 col-md-offset-1">
         <h3>
-            <a href="{{URL::to('home')}}" class="path-link">HOME&nbsp;>&nbsp;</a><a href="{{URL::to('products')}}" class="path-link">PRODUCTS&nbsp;>&nbsp;</a><b>EMC&nbsp;WIRELESS&nbsp;SENSORS</b>
+            <a href="{!!URL::to('home')!!}" class="path-link">HOME&nbsp;>&nbsp;</a><a href="{!!URL::to('products')!!}" class="path-link">PRODUCTS&nbsp;>&nbsp;</a><b>EMC&nbsp;WIRELESS&nbsp;SENSORS</b>
         </h3>
     </div>
 

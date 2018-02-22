@@ -189,21 +189,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="{{URL::to('/')}}" >
-            {{HTML::image('images/logo-bw-light-back.png', 'EMC20/20', array('class' => 'nav-bar-logo'))}}
+          <a href="{!!URL::to('/')!!}" >
+            {!!HTML::image('images/logo-bw-light-back.png', 'EMC20/20', array('class' => 'nav-bar-logo'))!!}
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-mobile">
             <!-- class="col-sm-12 col-md-2 col-offset-md-6"-->
             @if(Auth::check())
-            <li class="path-link" ><a class = "android_nav" href="{{URL::to('/')}}">Home</a></li>
+            <li class="path-link" ><a class = "android_nav" href="{!!URL::to('/')!!}">Home</a></li>
               @if(Auth::user()->customer_id == 0)
                 @include('layouts.navbar.staff_navbar')
               @else
                 @include('layouts.navbar.customer_navbar')
               @endif
-              <li class="path-link"><a class="StopRefresh help-btn" href="" data-toggle="modal" data-target="#help-modal" data-scrollto="{{$help_id}}-help">Help</a></li>
+              <li class="path-link"><a class="StopRefresh help-btn" href="" data-toggle="modal" data-target="#help-modal" data-scrollto="{!!$help_id!!}-help">Help</a></li>
               @include('layouts.navbar.user_dropdown')
             @else
               @include('layouts.navbar.public_navbar')
@@ -223,7 +223,7 @@
       <nav id="navbar_buildingtitle" class="navbar navbar-default navbar-returns affix" style="box-shadow: black 0.1em 0.1em 0.2em; z-index:200; border-radius: 0px;" data-spy="affix" data-offset-top="0">
           <div class="container col-xs-12" style="align-items: center; height: 50px; line-height: 50px;">
             <div class="page-title col-xs-12">
-                {{$thisBldg->name}} - {{$thisSystem->name}}
+                {!!$thisBldg->name!!} - {!!$thisSystem->name!!}
             </div>
       </nav>
     @endif
@@ -266,7 +266,7 @@
       var z = document.getElementsByClassName("android_nav_building");  // navbar items under building dropdown
       //check if there's any user logged in and store the username- send it to android/ios app
       //username
-      array[0] = '@if(Auth::check()) @if(Auth::user()->first_name !== "" && Auth::user()->last_name !== ""){{Auth::user()->first_name}} {{Auth::user()->last_name}}@else{{Auth::user()->email}}@endif @endif'.trim();
+      array[0] = '@if(Auth::check()) @if(Auth::user()->first_name !== "" && Auth::user()->last_name !== ""){!!Auth::user()->first_name!!} {!!Auth::user()->last_name!!}@else{!!Auth::user()->email!!}@endif @endif'.trim();
       for(var j=1, i=0; i<x.length; i++, j++)
       {
         array[j] = x[i].href;
@@ -284,7 +284,7 @@
         array_dropdown_building[j] = z[i].innerText;
       }
       //work as a help anchor in android app
-      helpID = '@if(Auth::check()){{$help_id}}@endif';
+      helpID = '@if(Auth::check()){!!$help_id!!}@endif';
       sendDataToIOS = {
         "ios_nav": array,
         "ios_dropdown": array_dropdown,

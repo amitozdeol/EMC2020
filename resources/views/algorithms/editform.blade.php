@@ -11,18 +11,18 @@
 
     var templates = {
       @foreach($algorithm->toArray() as $alg)
-         {{$alg['id']}}: {
+         {!!$alg['id']!!}: {
           @foreach($alg as $key => $value)
-            {{$key}}: '{{$value}}',
+            {!!$key!!}: '{!!$value!!}',
           @endforeach
          },
       @endforeach
     };
     var commandTypes = {
       @foreach($deviceTypes->toArray() as $type)
-        {{$type['command']}}:{
+        {!!$type['command']!!}:{
           @foreach($type as $key => $value)
-            {{$key}}: '{{$value}}',
+            {!!$key!!}: '{!!$value!!}',
             @endforeach
         },
         @endforeach
@@ -241,17 +241,17 @@
     function sensorTitle(tempID){
       if(tempID in templates){
       @foreach($deviceTypes as $type)
-      SensorGroup = '{{str_replace(' ','',$type->function)}}Sensors';
-      $('#{{str_replace(' ','',$type->function)}}ButtonLabel').removeClass('active');
+      SensorGroup = '{!!str_replace(' ','',$type->function)!!}Sensors';
+      $('#{!!str_replace(' ','',$type->function)!!}ButtonLabel').removeClass('active');
 
-        if(templates[tempID].algorithm_name === '{{$type->function}}'){
-          $("#{{str_replace(' ','',$type->function)}}Sensors").show();
-          $('#{{str_replace(' ','',$type->function)}}ButtonLabel').addClass('active');
+        if(templates[tempID].algorithm_name === '{!!$type->function!!}'){
+          $("#{!!str_replace(' ','',$type->function)!!}Sensors").show();
+          $('#{!!str_replace(' ','',$type->function)!!}ButtonLabel').addClass('active');
 
       }
 
-      else if(!($("#{{$type->function}}Sensors").hasClass("hidden"))){
-        $("#{{str_replace(' ','',$type->function)}}Sensors").hide();
+      else if(!($("#{!!$type->function!!}Sensors").hasClass("hidden"))){
+        $("#{!!str_replace(' ','',$type->function)!!}Sensors").hide();
       }
       @endforeach  }
     }
@@ -301,11 +301,11 @@
 
           @if($product->product_id == $device->product_id)
               @foreach($deviceTypes as $type)
-                var commandType = '{{$type->function}}';
+                var commandType = '{!!$type->function!!}';
                 var commandTypeFix = commandType.replace(' ','');
-                var commandsString = '{{$product->commands}}';
+                var commandsString = '{!!$product->commands!!}';
                 var commands = commandsString.split(',');
-                var commandFound = commands.indexOf("" + {{$type->command}} + "");
+                var commandFound = commands.indexOf("" + {!!$type->command!!} + "");
                 if(commandFound != -1){
                   $('#' + commandTypeFix + 'ButtonLabel').removeAttr('disabled');
                 }
@@ -319,7 +319,7 @@
           @endif
 
         @foreach($deviceTypes as $type)
-        var commandType = '{{$type->function}}';
+        var commandType = '{!!$type->function!!}';
         var commandTypeFix = commandType.replace(' ','');
             $("#" + commandTypeFix + "Sensors").hide;
             $("#" + commandTypeFix + "Sensors").removeClass("hidden");
@@ -363,7 +363,7 @@
 </head>
 
 <body>
-{{Form::open(['route'=>['algorithm.update', $thisBldg->id, $sid, $oldOutput->id], "method" => "put", "class"=>"js-supress-enter"])}}
+{!!Form::open(['route'=>['algorithm.update', $thisBldg->id, $sid, $oldOutput->id], "method" => "put", "class"=>"js-supress-enter"])!!}
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <h3>Edit Algorithm</h3>
@@ -380,7 +380,7 @@
     </div>
     <br>
     <div class ="col-xs-12 col-md-8" style="margin-bottom: 5px">
-      {{Form::text('algorithm_name',$oldOutput->algorithm_name,["class" => "form-control input-lg  ", "style" => "color:black", "placeholder" => "Algorithm Name", "id" => "algorithm_name", "title" => "Individual name of this algorithm."])}}
+      {!!Form::text('algorithm_name',$oldOutput->algorithm_name,["class" => "form-control input-lg  ", "style" => "color:black", "placeholder" => "Algorithm Name", "id" => "algorithm_name", "title" => "Individual name of this algorithm."])!!}
     </div>
   </div>
   <div class="col-xs-12 col-md-6" style="text-align: center; border-style: solid; border-color: white; padding-bottom: 10px;">
@@ -392,16 +392,16 @@
     <div class="col-xs-12">
       Name:
       @if($algOutputDevice->name != '')
-        <b>{{$algOutputDevice->name}}</b>
+        <b>{!!$algOutputDevice->name!!}</b>
       @else
-        No name found for device #{{$algOutputDevice->id}}
+        No name found for device #{!!$algOutputDevice->id!!}
       @endif
       <br>
-      Product Type: <b>{{$algOutputProduct->name or 'Unknown Product'}}</b><br>
+      Product Type: <b>{!!$algOutputProduct->name or 'Unknown Product'!!}</b><br>
       Zone:
       @if($algOutputDevice->zone != '0')
         @if(isset($algOutputDevice->zone))
-          <b>{{$zone_names[$algOutputDevice->zone] or 'Unknown Zone'}}</b>
+          <b>{!!$zone_names[$algOutputDevice->zone] or 'Unknown Zone'!!}</b>
         @else
           Unknown Zone
         @endif
@@ -410,10 +410,10 @@
       @endif
       <br>
       Physical Location:
-      <b>{{$algOutputDevice->physical_location or 'Unknown Location'}}</b>
+      <b>{!!$algOutputDevice->physical_location or 'Unknown Location'!!}</b>
       <br>
       Comments:
-      <b>{{$algOutputDevice->comments or 'none'}}</b>
+      <b>{!!$algOutputDevice->comments or 'none'!!}</b>
     </div>
   </div>
 </div>
@@ -430,7 +430,7 @@
         Template
       </h4>
     </label>
-    {{Form::select('algorithm_id', $algorithmTemps, $oldOutput->algorithm_id ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "algorithm_id","name" => "algorithm_id", "title" => "Choose your basic algorithm template."])}}
+    {!!Form::select('algorithm_id', $algorithmTemps, $oldOutput->algorithm_id ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "algorithm_id","name" => "algorithm_id", "title" => "Choose your basic algorithm template."])!!}
   </div>
   <div class="col-xs-12 col-md-6" style="text-align: center;">
     <label for="sensorDisplay">
@@ -445,9 +445,9 @@
           <?php
             $commandArray[$commandIndex++] = $type->function;
           ?>
-            <label class="col-xs-6 col-sm-3 col-md-3 btn btn-primary" id="{{str_replace(' ','',$type->function)}}ButtonLabel" disabled="true" for="{{$type->function}}Button">
-              <input type="checkbox" id="{{$type->function}}Button" onChange="displaySensors(this.id,'{{$type->function}}')">
-              {{$type->function}}
+            <label class="col-xs-6 col-sm-3 col-md-3 btn btn-primary" id="{!!str_replace(' ','',$type->function)!!}ButtonLabel" disabled="true" for="{!!$type->function!!}Button">
+              <input type="checkbox" id="{!!$type->function!!}Button" onChange="displaySensors(this.id,'{!!$type->function!!}')">
+              {!!$type->function!!}
             </label>
             <?php
               $i++;
@@ -485,7 +485,7 @@
 
     @if($types->algorithm_active)
 
-      <div id="{{str_replace(' ','',$types->function)}}Sensors" name="{{$types->function}}Sensors" class="hidden">
+      <div id="{!!str_replace(' ','',$types->function)!!}Sensors" name="{!!$types->function!!}Sensors" class="hidden">
       @foreach($deviceTypes as $type)
         @if($types->function == $type->function)
         @foreach($devices as $sensor)
@@ -616,22 +616,22 @@
 <div class="form-group">
 <div class="row" style="text-align:center">
    <div class="col-xs-6 col-sm-4 col-md-2">Logic Mode<br>
-        {{Form::select('logicmode',['0' => 'AND', '1' => 'OR', '2' =>'NAND', '3' => 'NOR', '4' => 'EXOR'],$oldOutput->logicmode,["class" => "form-control", "style" => "color:black", "id" => "logicmode", "title" => "Choose the mode which the sensors will be compared."])}}
+        {!!Form::select('logicmode',['0' => 'AND', '1' => 'OR', '2' =>'NAND', '3' => 'NOR', '4' => 'EXOR'],$oldOutput->logicmode,["class" => "form-control", "style" => "color:black", "id" => "logicmode", "title" => "Choose the mode which the sensors will be compared."])!!}
    </div>
    <div class="col-xs-6 col-sm-4 col-md-2 "><text id="votesLabel">Votes</text><br>
-        {{Form::text('min_required_inputs',$oldOutput->min_required_inputs,["class" => "form-control", "style" => "color:black", "placeholder" => "# Votes", "id" => "min_required_inputs", "title" => "Minimum number of sensors required to activate."])}}
+        {!!Form::text('min_required_inputs',$oldOutput->min_required_inputs,["class" => "form-control", "style" => "color:black", "placeholder" => "# Votes", "id" => "min_required_inputs", "title" => "Minimum number of sensors required to activate."])!!}
    </div>
    <div class="col-xs-6 col-sm-4 col-md-2 ">Polarity Mode<br>
-        {{Form::select('polarity',['0' => 'Direct', '1' => 'Inverse'],$oldOutput->polarity,["class" => "form-control", "style" => "color:black", "id" => "polarity", "title" => "Choose direct or inverse polarity."])}}
+        {!!Form::select('polarity',['0' => 'Direct', '1' => 'Inverse'],$oldOutput->polarity,["class" => "form-control", "style" => "color:black", "id" => "polarity", "title" => "Choose direct or inverse polarity."])!!}
    </div>
    <div class="col-xs-6 col-sm-4 col-md-2 ">Active Season<br>
-        {{Form::select('season',['0' => 'Winter', '1' => 'Summer', '2' => 'Year-Round'],$oldOutput->season,["class" => "form-control", "style" => "color:black", "id" => "season", "title" => "Choose whether to observe or ignore the season."])}}
+        {!!Form::select('season',['0' => 'Winter', '1' => 'Summer', '2' => 'Year-Round'],$oldOutput->season,["class" => "form-control", "style" => "color:black", "id" => "season", "title" => "Choose whether to observe or ignore the season."])!!}
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2 ">Response<br>
-        {{Form::select('response',['0' => 'Off', '1' => 'On'], $oldOutput->response,["class" => "form-control", "style" => "color:black", "id" => "response", "title" => "Turn response on or off." ])}}
+        {!!Form::select('response',['0' => 'Off', '1' => 'On'], $oldOutput->response,["class" => "form-control", "style" => "color:black", "id" => "response", "title" => "Turn response on or off." ])!!}
     </div>
     <div class="col-xs-6 col-sm-4 col-md-2">Priority Event Algorithm<br>
-        {{Form::select('priority_events',['0' => 'Off', '1' => 'On'],$oldOutput->priority_events,["class" => "form-control", "style" => "color:black", "id" => "priority_events", "title" => "Choose whether this algorithm state should be monitored."])}}
+        {!!Form::select('priority_events',['0' => 'Off', '1' => 'On'],$oldOutput->priority_events,["class" => "form-control", "style" => "color:black", "id" => "priority_events", "title" => "Choose whether this algorithm state should be monitored."])!!}
     </div>
 </div>
 <br>
@@ -639,89 +639,89 @@
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">On Delay<br>
       <div class="input-group">
             @if((($oldOutput->ondelay)%60 == 0) && (($oldOutput->ondelay)%3600 != 0) && ((int)$oldOutput->ondelay != 0))
-            {{Form::text('ondelay',($oldOutput->ondelay/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])}}
-                <span class="input-group-btn">{{Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('ondelay',($oldOutput->ondelay/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])!!}
+                <span class="input-group-btn">{!!Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])!!}</span>
             @elseif((($oldOutput->ondelay)%3600 == 0)  && ((int)$oldOutput->ondelay != 0))
-            {{Form::text('ondelay',($oldOutput->ondelay/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])}}
-                <span class="input-group-btn">{{Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('ondelay',($oldOutput->ondelay/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])!!}
+                <span class="input-group-btn">{!!Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])!!}</span>
             @else
-            {{Form::text('ondelay',$oldOutput->ondelay,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])}}
-                <span class="input-group-btn">{{Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('ondelay',$oldOutput->ondelay,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])!!}
+                <span class="input-group-btn">{!!Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
             @endif
           </div>
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">Off Delay<br>
         <div class="input-group">
             @if((($oldOutput->offdelay)%60 == 0) && (($oldOutput->offdelay)%3600 != 0) && ((int)$oldOutput->offdelay != 0))
-                {{Form::text('offdelay',($oldOutput->offdelay/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])}}
-                <span class="input-group-btn">{{Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('offdelay',($oldOutput->offdelay/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])!!}
+                <span class="input-group-btn">{!!Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])!!}</span>
             @elseif((($oldOutput->offdelay)%3600 == 0) && ((int)$oldOutput->ondelay != 0))
-                {{Form::text('offdelay',($oldOutput->offdelay/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])}}
-                <span class="input-group-btn">{{Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('offdelay',($oldOutput->offdelay/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])!!}
+                <span class="input-group-btn">{!!Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])!!}</span>
             @else
-                {{Form::text('offdelay',$oldOutput->offdelay,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])}}
-                <span class="input-group-btn">{{Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('offdelay',$oldOutput->offdelay,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])!!}
+                <span class="input-group-btn">{!!Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
             @endif
         </div>
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">On Duration<br>
       <div class="input-group">
         @if((($oldOutput->duration)%60 == 0) && (($oldOutput->duration)%3600 != 0)  && ((int)$oldOutput->duration != 0))
-            {{Form::text('duration',($oldOutput->duration/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])}}
-            <span class="input-group-btn">{{Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('duration',($oldOutput->duration/60),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])!!}
+            <span class="input-group-btn">{!!Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "style" => "color:black"])!!}</span>
         @elseif((($oldOutput->duration)%3600 == 0) && ((int)$oldOutput->ondelay != 0))
-            {{Form::text('duration',($oldOutput->duration/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])}}
-            <span class="input-group-btn">{{Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('duration',($oldOutput->duration/3600),["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])!!}
+            <span class="input-group-btn">{!!Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "style" => "color:black"])!!}</span>
         @else
-            {{Form::text('duration',$oldOutput->duration,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])}}
-            <span class="input-group-btn">{{Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+            {!!Form::text('duration',$oldOutput->duration,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])!!}
+            <span class="input-group-btn">{!!Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
         @endif
       </div>
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3" style="margin-bottom: 15px;">Default State<br>
-        {{Form::select('default_state', [0 => 'Off', 1 => 'On', 2 => 'Toggle'], $oldOutput->default_state, ["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "default_state", "title" => "State set if algorithms are unable to calculate the state."])}}
+        {!!Form::select('default_state', [0 => 'Off', 1 => 'On', 2 => 'Toggle'], $oldOutput->default_state, ["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "default_state", "title" => "State set if algorithms are unable to calculate the state."])!!}
     </div>
     <?php $disabledToggle = "disabled"; ?>
       @if($oldOutput->default_state == 2)
         <?php $disabledToggle = null; ?>
       @endif
     <div class="col-xs-10 col-xs-offset-1 col-sm-4  col-sm-offset-0 col-md-3 form-group">Toggle Percent On<br>
-      {{Form::text('default_toggle_percent_on',$oldOutput->default_toggle_percent_on,["class" => "form-control", $disabledToggle, "style" => "color:black",  "placeholder" => "0", "id" => "default_toggle_percent_on", "title" => "Percentage of the Toggle Period time which the algorithm will choose to be ON/High, in the event of a defaulted state"])}}
+      {!!Form::text('default_toggle_percent_on',$oldOutput->default_toggle_percent_on,["class" => "form-control", $disabledToggle, "style" => "color:black",  "placeholder" => "0", "id" => "default_toggle_percent_on", "title" => "Percentage of the Toggle Period time which the algorithm will choose to be ON/High, in the event of a defaulted state"])!!}
     </div>
     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">Toggle Duration<br>
       <div class="input-group">
         @if((($oldOutput->default_toggle_duration)%60 == 0) && (($oldOutput->default_toggle_duration)%3600 != 0)  && ((int)$oldOutput->default_toggle_duration != 0))
-            {{Form::text('default_toggle_duration',($oldOutput->default_toggle_duration/60),["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])}}
-            <span class="input-group-btn">{{Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])}}</span>
+            {!!Form::text('default_toggle_duration',($oldOutput->default_toggle_duration/60),["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])!!}
+            <span class="input-group-btn">{!!Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'60',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])!!}</span>
         @elseif((($oldOutput->default_toggle_duration)%3600 == 0) && ((int)$oldOutput->ondelay != 0))
-            {{Form::text('default_toggle_duration',($oldOutput->default_toggle_duration/3600),["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])}}
-            <span class="input-group-btn">{{Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])}}</span>
+            {!!Form::text('default_toggle_duration',($oldOutput->default_toggle_duration/3600),["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])!!}
+            <span class="input-group-btn">{!!Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'3600',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])!!}</span>
         @else
-            {{Form::text('default_toggle_duration',$oldOutput->default_toggle_duration,["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])}}
-            <span class="input-group-btn">{{Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])}}</span>
+            {!!Form::text('default_toggle_duration',$oldOutput->default_toggle_duration,["class" => "form-control", "style" => "color:black", $disabledToggle, "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])!!}
+            <span class="input-group-btn">{!!Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "id" => "toggleDurationFactor", "style" => "color:black", $disabledToggle])!!}</span>
         @endif
       </div>
     </div>
 </div>
 
     <div class="col-xs-12" style="margin-top: 50px;margin-bottom: 50px">
-        <div style="margin-bottom: 5px">Description<br>{{Form::textarea('description',$oldOutput->description,["class" => "form-control", "rows" => "2", "style" => "color:black; resize: vertical; max-height: 200px;", "height" => "1000px", "id" => "description","placeholder" => "Enter Description", "title" => "Brief description of the algorithms purpose or function."])}}</div><br>
-        <div>{{Form::text('inputs',$oldOutput->inputs,["id" => "inputs", "style" => "color:black", "name" => "inputs", "style" => "display:none"])}}</div>
-        <div>{{Form::text('reserveinputs',$oldOutput->reserveinputs,["id" => "reserveinputs", "style" => "color:black", "name" => "reserveinputs", "style" => "display:none"])}}</div>
+        <div style="margin-bottom: 5px">Description<br>{!!Form::textarea('description',$oldOutput->description,["class" => "form-control", "rows" => "2", "style" => "color:black; resize: vertical; max-height: 200px;", "height" => "1000px", "id" => "description","placeholder" => "Enter Description", "title" => "Brief description of the algorithms purpose or function."])!!}</div><br>
+        <div>{!!Form::text('inputs',$oldOutput->inputs,["id" => "inputs", "style" => "color:black", "name" => "inputs", "style" => "display:none"])!!}</div>
+        <div>{!!Form::text('reserveinputs',$oldOutput->reserveinputs,["id" => "reserveinputs", "style" => "color:black", "name" => "reserveinputs", "style" => "display:none"])!!}</div>
         @if(strtotime($oldOutput->updated_at) + $oldOutput->overridetime > $currentTime )
-          {{Form::submit('Save', ["class"=>"col-xs-12 col-md-4 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save", "js-confirm" => "Are you sure you'd like to save this change? It will clear the web instruction currently controlled by this algorithm."])}}
+          {!!Form::submit('Save', ["class"=>"col-xs-12 col-md-4 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save", "js-confirm" => "Are you sure you'd like to save this change? It will clear the web instruction currently controlled by this algorithm."])!!}
         @else
-          {{Form::submit('Save', ["class"=>"col-xs-12 col-md-4 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save"])}}
+          {!!Form::submit('Save', ["class"=>"col-xs-12 col-md-4 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save"])!!}
         @endif
-            <a class="col-xs-12 col-md-4 col-md-offset-2 btn btn-lg btn-primary" href="{{URL::route('system.editSystem', [$thisBldg->id, $sid])}}" style="text-align:center">Cancel</a>
-        {{Form::close()}}
+            <a class="col-xs-12 col-md-4 col-md-offset-2 btn btn-lg btn-primary" href="{!!URL::route('system.editSystem', [$thisBldg->id, $sid])!!}" style="text-align:center">Cancel</a>
+        {!!Form::close()!!}
     </div>
 
 </div>
 
-{{Form::open(['route'=>['algorithm.destroy', $thisBldg->id, $sid, $oldOutput->id], "method" => "delete"])}}
-{{Form::submit('Delete Algorithm', ["class"=>"col-xs-12 col-md-4 col-md-offset-4 btn btn-lg btn-danger js-confirm", "data-confirm" => "Are you sure you want to permanently remove this algorithm? Doing so will mean device control will be lost, pending setup of new device control algorithm.","style"=>"margin-bottom:40px;","title"=>"WARNING: Removes current control over output device!"])}}
-{{Form::close()}}
+{!!Form::open(['route'=>['algorithm.destroy', $thisBldg->id, $sid, $oldOutput->id], "method" => "delete"])!!}
+{!!Form::submit('Delete Algorithm', ["class"=>"col-xs-12 col-md-4 col-md-offset-4 btn btn-lg btn-danger js-confirm", "data-confirm" => "Are you sure you want to permanently remove this algorithm? Doing so will mean device control will be lost, pending setup of new device control algorithm.","style"=>"margin-bottom:40px;","title"=>"WARNING: Removes current control over output device!"])!!}
+{!!Form::close()!!}
 
 
 </body>

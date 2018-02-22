@@ -290,10 +290,10 @@
                 <div class="col-xs-12 transparent_blue_white" style="padding: 10px; ">
                   <div class="col-xs-12 transparent_blue_white"  style="padding: 20px; ">
                     YESTERDAY'S TOTALS<br>
-                    <small>{{date('m/d/Y',$yesterday_time)}}</small><br>
+                    <small>{!!date('m/d/Y',$yesterday_time)!!}</small><br>
                     @foreach($device_durations as $dd)
                       <div class="col-xs-12 border_blue_white transparent_blue_white" style="padding: 5px;">
-                        {{$dd['device_name']}}<br>
+                        {!!$dd['device_name']!!}<br>
                         <?php
                           $run_time = 0;
                           echo HumanReadableTime($dd['yesterdays_total_duration']);
@@ -327,10 +327,10 @@
                   <div class="col-xs-12 transparent_blue_white" style="padding: 10px; " >
                     <div class="col-xs-12 transparent_blue_white" style="padding: 20px; ">
                       TODAY'S TOTAL<br>
-                      <small>{{date('m/d/Y h:i:s A',$current_time)}}</small><br>
+                      <small>{!!date('m/d/Y h:i:s A',$current_time)!!}</small><br>
                       @foreach($device_durations as $dd)
                         <div class="col-xs-12 border_blue_white transparent_blue_white" style="padding: 5px;">
-                          {{$dd['device_name']}}<br>
+                          {!!$dd['device_name']!!}<br>
                           <?php
                             $run_time = 0;
                             echo HumanReadableTime($dd['todays_total_duration']);
@@ -353,10 +353,10 @@
       </ul>
       <div id="myTabContent" class="myTabContent tab-content row">
         <div id='custom-totals' class="col-xs-12 container-fluid transparent_blue_white tab-pane fade <?php if(isset($custom_totals) || !isset($currentmode)) echo 'in active'; ?>" style="padding: 15px; margin-bottom: 15px;">
-          {{ Form::open(array("role" => "form")) }}
+          {!! Form::open(array("role" => "form")) !!}
           <div class="col-xs-12 transparent_blue_white" style="">
             @if(isset($custom_totals))
-              {{$custom_totals['name']}}
+              {!!$custom_totals['name']!!}
               <br>
               ON time:
               <br>
@@ -367,7 +367,7 @@
               </div>
               <br>
               <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                For the period from <br>{{$custom_totals['start_time']}} to {{$custom_totals['end_time']}}
+                For the period from <br>{!!$custom_totals['start_time']!!} to {!!$custom_totals['end_time']!!}
               </div>
               <br>
             @else
@@ -376,12 +376,12 @@
           </div>
           <div class="col-xs-12 transparent_blue_white custom_totals_inner">
             <div class="col-xs-12 col-md-6 col-md-offset-3 " style="padding: 0px;">
-              {{Form::label('alg_id', 'Device')}}
+              {!!Form::label('alg_id', 'Device')!!}
               <select class="total_events_tour form-control" name="alg_id" id="alg_id" required>
                 <option value="">Select a Device</option>
                   @foreach($custom_device_options as $cdo)
-                    <option value="{{$cdo->device_id}}">
-                      {{$cdo->name}}
+                    <option value="{!!$cdo->device_id!!}">
+                      {!!$cdo->name!!}
                     </option>
                   @endforeach
               </select>
@@ -410,23 +410,23 @@
                 @endif
               </div>
               @if(!Request::is('EMC/*'))
-                <div id='custom_timeframe' class="col-xs-12 container-fluid collapse transparent_blue_white {{$expand['custom_time_frame']}}" style="padding: 15px; margin-bottom: 15px;">
+                <div id='custom_timeframe' class="col-xs-12 container-fluid collapse transparent_blue_white {!!$expand['custom_time_frame']!!}" style="padding: 15px; margin-bottom: 15px;">
                   <div class="total_events_tour col-xs-6 col-sm-6 col-md-4 col-md-offset-2" style="padding: 15px 15px 15px 0px">
-                    {{Form::label('startdate', 'Start Date')}}
-                    {{Form::input('date', 'startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                    {!!Form::label('startdate', 'Start Date')!!}
+                    {!!Form::input('date', 'startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
                   </div>
                   <div class="total_events_tour col-xs-6 col-sm-6 col-md-4" style="padding: 15px 0px 15px 15px">
-                    {{Form::label('enddate', 'End Date')}}
-                    {{Form::input('date', 'enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                    {!!Form::label('enddate', 'End Date')!!}
+                    {!!Form::input('date', 'enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
                   </div>
                 </div>
               @endif
             </div>
           </div>
           <div class="col-xs-12 transparent_blue_white" style="padding: 15px">
-            {{Form::submit('Submit', ['class'=>'total_events_tour btn btn-primary btn-lg btn-block'])}}
+            {!!Form::submit('Submit', ['class'=>'total_events_tour btn btn-primary btn-lg btn-block'])!!}
           </div>
-          {{Form::close()}}
+          {!!Form::close()!!}
         </div>
         <!-- ACTIVE CONTROL EVENTS -->
         <div id="active-events" class="container-fluid tab-pane fade <?php if($currentmode == "A") echo'in active'; ?>" >
@@ -562,25 +562,25 @@
             }
             ?>
           <div class="@if($set_active_tour) list_events_active_tour @elseif($set_history_tour) list_events_history_tour @endif col-xs-12 col-sm-12 col-md-12 col-lg-12 block_emc" style="background-color: #123E5D; border-color: white;">
-            {{ Form::open(array("role" => "form")) }}
+            {!! Form::open(array("role" => "form")) !!}
             <div class="form-group">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--NAME/ALARM LEVEL/IMAGE-->
                 <div class="col-xs-6 row-padding"><!--NAME-->
                   <font style="color: <?php echo $collabelcolor; ?>;">
                     <b>
-                      {{$DName}}
+                      {!!$DName!!}
                     </b>
                   </font>
                 </div>
                 @if ($mode=="A")
-                  <div class="col-xs-6 row-padding" title="{{$Almlist->description}}" style="text-align: right;"><!--ALARM LEVEL/IMAGE-->
-                    <i class="fa fa-exclamation-triangle fa-3x" style="color: {{$Alarmcolor}}"></i>
+                  <div class="col-xs-6 row-padding" title="{!!$Almlist->description!!}" style="text-align: right;"><!--ALARM LEVEL/IMAGE-->
+                    <i class="fa fa-exclamation-triangle fa-3x" style="color: {!!$Alarmcolor!!}"></i>
                   </div>
                 @else
-                  <div class="col-xs-6 row-padding" title="{{$Almlist->description}}" style="text-align: right;"><!--ALARM LEVEL-->
+                  <div class="col-xs-6 row-padding" title="{!!$Almlist->description!!}" style="text-align: right;"><!--ALARM LEVEL-->
                     <font style="color: <?php echo $Alarmcolor; ?>;">
                       <b>
-                        {{$AlarmName}}
+                        {!!$AlarmName!!}
                       </b>
                     </font>
                   </div>
@@ -593,7 +593,7 @@
                       State:
                     </small>
                     <b>
-                      {{$CommDsp}}
+                      {!!$CommDsp!!}
                     </b>
                   </li>
                   <li class="list-group-item col-xs-12 col-sm-6 col-md-4"><!--ALGORITHM TYPE-->
@@ -601,7 +601,7 @@
                       Algorithm Type:
                     </small>
                     <b>
-                      {{$FName}}
+                      {!!$FName!!}
                     </b>
                   </li>
                   <li class="list-group-item col-xs-12 col-sm-6 col-md-4"><!--DURATION-->
@@ -609,7 +609,7 @@
                       Duration:
                     </small>
                     <b>
-                      {{$duration}}
+                      {!!$duration!!}
                     </b>
                   </li>
                   <li class="list-group-item col-xs-12 col-sm-6 col-md-4"><!--START TIMES-->
@@ -639,7 +639,7 @@
                 </ul>
               </div>
             </div>
-            {{ Form::close() }}
+            {!! Form::close() !!}
           </div>
           <?php
             $set_history_tour = false;
@@ -684,18 +684,18 @@
           ?>
           <div class="col-xs-12" style="color: white; background-color: #969696;">
             <div class="col-xs-12"><!--DROP-DOWN / BUTTONS-->
-              {{ Form::open(array("role" => "form", "name"=>"header")) }}
-              {{ Form::hidden('currentmode', $mode) }}<!--to retain the active tab when page loads -->
+              {!! Form::open(array("role" => "form", "name"=>"header")) !!}
+              {!! Form::hidden('currentmode', $mode) !!}<!--to retain the active tab when page loads -->
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 row-padding"><!--FILTER DROP-DOWN-->
                 <select class="@if($set_active_tour) list_events_active_tour @elseif($set_history_tour) list_events_history_tour @endif form-control" style="color: black; width:100%;" name="EventAlg" onchange="this.form.submit()">
                   <option value="All">
                     Show All
                   </option>
-                  <option value="priority" @if ($Filter == "priority") {{ "selected" }} @endif>
+                  <option value="priority" @if ($Filter == "priority") {!! "selected" !!} @endif>
                     Priority Events
                   </option>
                   @foreach ($algorithms as $algorithm)
-                    <option value="{{$algorithm->device_id}}" @if ($Filter == $algorithm->device_id) {{ "selected" }} @endif>
+                    <option value="{!!$algorithm->device_id!!}" @if ($Filter == $algorithm->device_id) {!! "selected" !!} @endif>
                       <?php echo $algorithm->algorithm_name/*." - ".$algorithm->function_type;*/ ?>
                     </option>
                   @endforeach
@@ -704,32 +704,32 @@
               <div class="@if($set_active_tour) list_events_active_tour @elseif($set_history_tour) list_events_history_tour @endif col-xs-12 col-sm-12 col-md-6 col-lg-8"><!--NEXT/PREV BUTTONS-->
                 @if ($mode=="A")
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center">
-                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="PrevA" value="{{$Filter}}" {{$Page==1?"disabled":""}}>
+                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="PrevA" value="{!!$Filter!!}" {!!$Page==1?"disabled":""!!}>
                       Prev
                     </button>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center">
-                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="NextA" value="{{$Filter}}" {{$Count<21?"disabled":""}}>
+                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="NextA" value="{!!$Filter!!}" {!!$Count<21?"disabled":""!!}>
                       Next
                     </button>
                   </div>
-                  <input class="form-control" style="color: black" name="PageA" type="hidden" value="{{$Page}}">
+                  <input class="form-control" style="color: black" name="PageA" type="hidden" value="{!!$Page!!}">
                 @else
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center">
-                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="PrevH" value="{{$Filter}}" {{$Page==1?"disabled":""}}>
+                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="PrevH" value="{!!$Filter!!}" {!!$Page==1?"disabled":""!!}>
                       Prev
                     </button>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center">
-                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="NextH" value="{{$Filter}}" {{$Count<21?"disabled":""}}>
+                    <button class="btn btn-primary button_padding" style="width: 100%;" type="submit" name="NextH" value="{!!$Filter!!}" {!!$Count<21?"disabled":""!!}>
                       Next
                     </button>
                   </div>
-                  <input class="form-control" style="color: black" name="PageH" type="hidden" value="{{$Page}}">
+                  <input class="form-control" style="color: black" name="PageH" type="hidden" value="{!!$Page!!}">
                 @endif
               </div>
-              <input class="form-control" style="color: black" name="Filter" type="hidden" value="{{$Filter}}">
-              {{ Form::close() }}
+              <input class="form-control" style="color: black" name="Filter" type="hidden" value="{!!$Filter!!}">
+              {!! Form::close() !!}
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div style="text-align: center">

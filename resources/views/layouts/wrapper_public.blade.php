@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>{{isset($title) ? $title : 'EMC20/20'}}</title>
+        <title>{!!isset($title) ? $title : 'EMC20/20'!!}</title>
     <meta name="description" content="The latest in building automation technology. Sense and control your building remotely." />
     <meta name="ROBOTS" content="INDEX, FOLLOW" />
     <meta name="GOOGLEBOT" content="INDEX, FOLLOW" />
@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" href="{{{ asset('images/apple-touch-icon.png') }}}">
+    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
     <?
       //Cache control -
       //Add last modified date of a file to the URL, as get parameter.
@@ -50,7 +50,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{URL::to('/')}}">{{HTML::image('images/home_page/logo-white-light-back.png', 'EMC20/20', array('class' => 'nav-bar-logo'))}}</a>
+                <a class="navbar-brand" href="{!!URL::to('/')!!}">{!!HTML::image('images/home_page/logo-white-light-back.png', 'EMC20/20', array('class' => 'nav-bar-logo'))!!}</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -61,10 +61,10 @@
                       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Support <span class="caret"></span></a>
                       <ul class="dropdown-menu">
                         <li class="pub_nav_item"><a href="#contact">Contact</a></li>
-                        <li class="pub_nav_item"><a href="{{URL::to('/support')}}">Help Center</a></li>
+                        <li class="pub_nav_item"><a href="{!!URL::to('/support')!!}">Help Center</a></li>
                       </ul>
                     </li>
-                    <li><a href="{{URL::to('login')}}">Login</a></li>
+                    <li><a href="{!!URL::to('login')!!}">Login</a></li>
                 </ul>
             </div>
         </div>
@@ -76,7 +76,7 @@
   <!-- hide for ios app -->
   @if(!strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/ios")) > 0)
     <!--  ==================================START CONTACT SECTION================================================-->
-    {{View::make('home.footer')}}
+    {!!View::make('home.footer')!!}
     <!--  ==================================END CONTACT SECTION================================================-->
   @endif
 

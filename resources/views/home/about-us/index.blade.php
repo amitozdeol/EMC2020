@@ -5,7 +5,7 @@
 	<div class="col-xs-12" style="background: url(images/home_page/blurred_blue_circular_scale.png); min-height: 2000px;">
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
             <h3>
-                <a href="{{URL::to('home')}}" class="path-link">HOME&nbsp;></a>&nbsp;<b>ABOUT&nbsp;US</b>
+                <a href="{!!URL::to('home')!!}" class="path-link">HOME&nbsp;></a>&nbsp;<b>ABOUT&nbsp;US</b>
             </h3>
         </div>
 	    <!--about us-->

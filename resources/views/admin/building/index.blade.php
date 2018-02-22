@@ -56,12 +56,12 @@
   <br>
   <br>
   @if(Session::has('message'))
-    <div class="alert {{ Session::get('alert-class') }}" role="alert">
+    <div class="alert {!! Session::get('alert-class') !!}" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('message') }}
+        {!! Session::get('message') !!}
     </div>
   @endif
-  <a href="{{URL::route('admin.building.create')}}" class="btn btn-primary btn-sm pull-right">
+  <a href="{!!URL::route('admin.building.create')!!}" class="btn btn-primary btn-sm pull-right">
     <span class="visible-xs glyphicon glyphicon-plus">
     </span>
     <span class="hidden-xs">New Building</span>
@@ -71,22 +71,22 @@
 <div class="gridlayout" data-columns>
   @foreach($customers as $customer)
     <div class="customer" style="position: relative;">
-      <a href="{{URL::route('admin.customer.edit', $customer->id)}}" class="editbtn">
+      <a href="{!!URL::route('admin.customer.edit', $customer->id)!!}" class="editbtn">
         <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
       </a>
       <div class="col-xs-12" style="padding-left: 0px; padding-right: 30px;">
         <h2 style="display:inline">
-          {{$customer->name}}
+          {!!$customer->name!!}
         </h2>
       </div>
 
       <div class="col-xs-12 building">
         @foreach($buildings as $building)
           @if($customer->id === $building->customer_id)
-              <a href="{{URL::route('admin.building.edit', $building->id)}}">
+              <a href="{!!URL::route('admin.building.edit', $building->id)!!}">
                 <h4 class="system">
-                  {{$building->name}}<br>
-                  <small style="color: white;text-shadow: 0px 0px 10px #000;">Building #{{$building->id}}</small>
+                  {!!$building->name!!}<br>
+                  <small style="color: white;text-shadow: 0px 0px 10px #000;">Building #{!!$building->id!!}</small>
                 </h4>
               </a>
           @endif

@@ -48,13 +48,13 @@
 	 				The season indicates to your controls whether they should behave normally, based on the chosen inputs, or if they should remain off and ignore their input readings. Different controls may or may not react to the season you set here.
 	 			</p>
 	 		</div>
-	 		{{ Form::open(array('route'=>['settings.updatecustomerbuildings',$customer_id])) }}
+	 		{!! Form::open(array('route'=>['settings.updatecustomerbuildings',$customer_id])) !!}
 	 		<div class="multi_season_change_tour col-xs-12 col-sm-6" style="margin-top: 20pt; margin-bottom:20pt;">
 	 			<div class="col-xs-12" style="margin-bottom: 20px">
 	 				Set All Systems To:
 	 				<br>
 		 			<div class="multi_season_change_tour col-xs-12" style="margin-top: 20px; margin-bottom: 10px;">
-	 					{{ Form::select('All_Season', array('0' => 'Winter', '1' => 'Summer'), null, array("class" => "form-control", "style" => "color:black;cursor: pointer;")) }}
+	 					{!! Form::select('All_Season', array('0' => 'Winter', '1' => 'Summer'), null, array("class" => "form-control", "style" => "color:black;cursor: pointer;")) !!}
  					</div>
 	 			</div>
 				<button name='AllSeasons' class="multi_season_change_tour btn btn-primary col-xs-6" type="button" data-toggle="modal" data-target="#all-change"  data-backdrop="static" onclick="update_button(this)">
@@ -71,7 +71,7 @@
 	 	<div class="col-xs-12 col-sm-6 " style="height: 300px; overflow-y: scroll; box-shadow: 0px 10px 20px 0px #123E5D inset; padding-top: 10px; border: 1px solid #123E5D;">
 	 		<?php $set_single_tour = true; ?>
 		 	@foreach ($sysarray as $sys )
-		 		<div id="system-select-{{$sys['system_id']}}" class="@if($set_single_tour) single_season_change_tour @endif col-xs-12 block_emc system-select" data-toggle="collapse" data-parent="#collapse-container" href="#change-some-{{$sys['system_id']}}">
+		 		<div id="system-select-{!!$sys['system_id']!!}" class="@if($set_single_tour) single_season_change_tour @endif col-xs-12 block_emc system-select" data-toggle="collapse" data-parent="#collapse-container" href="#change-some-{!!$sys['system_id']!!}">
 		 			<div class="col-xs-4" style="margin-top: 10px;">
 		 				<?php
 		                  if($sys['season_mode_code'] == '0'){
@@ -89,19 +89,19 @@
 		                  	$confirmPicture = 'images/redbutton-smallSmall.png';
 		                  }
 		                ?>
-		 				{{HTML::image($seasonPicture,$seasonPicDesc,array('width' => '100px','padding' => '10px'))}}
+		 				{!!HTML::image($seasonPicture,$seasonPicDesc,array('width' => '100px','padding' => '10px'))!!}
 		 			</div>
 		 			<div class="col-xs-8" style="text-shadow: 0px 0px 10px #000000; overflow: hidden">
 		 				<big>
-							{{$sys['building_name']}}
+							{!!$sys['building_name']!!}
 						</big>
 						<br>
 						<small>
-							{{$sys['system_name']}}
+							{!!$sys['system_name']!!}
 						</small>
 		 			</div>
 		 			<!-- <div class="col-xs-2 pull-right">
-		 				{{HTML::image($confirmPicture,'confirmation indicator',array('title' => $confirmPicDesc, 'width' => '30px', 'overflow' => 'scroll'))}}
+		 				{!!HTML::image($confirmPicture,'confirmation indicator',array('title' => $confirmPicDesc, 'width' => '30px', 'overflow' => 'scroll'))!!}
 		 			</div> -->
 		 		</div>
 		 		<?php $set_single_tour = false; ?>
@@ -110,7 +110,7 @@
 
 	 	<!-- Here the user can change the setting for the individual systems -->
 	 	<div class="col-xs-12 col-sm-6" style="margin-top: 10px;">
-		 	{{ Form::open(array('route'=>['settings.updatecustomerbuildings',$customer_id])) }}
+		 	{!! Form::open(array('route'=>['settings.updatecustomerbuildings',$customer_id])) !!}
 		 	<div id="change-some-0" class="col-xs-12 block_emc container-fluid collapse in" style="text-align: center; text-shadow: 0px 0px 10px #000000; margin-top: 10px;">
 			 		<div class="col-xs-12  " >
 			 			<div class="col-xs-12">
@@ -125,7 +125,7 @@
 				</div>
 			<?php $set_single_tour = true; ?>
 			@foreach ($sysarray as $sys )
-		 		<div id="change-some-{{$sys['system_id']}}" class="col-xs-12 block_emc container-fluid collapse" style="text-align: center; text-shadow: 0px 0px 10px #000000; margin-top: 10px; overflow: hidden;">
+		 		<div id="change-some-{!!$sys['system_id']!!}" class="col-xs-12 block_emc container-fluid collapse" style="text-align: center; text-shadow: 0px 0px 10px #000000; margin-top: 10px; overflow: hidden;">
 			 		<div class="col-xs-12  " >
 			 			<div class="col-xs-12 col-sm-4" style="padding:20px;">
 			 				<?php
@@ -146,22 +146,22 @@
 			                  	$confirmPicture = 'images/redbutton-smallSmall.png';
 			                  }
 			                ?>
-			 				{{HTML::image($seasonPicture,$seasonPicDesc,array('width' => '100px','padding' => '10px', 'title' => $pictureTitle))}}
+			 				{!!HTML::image($seasonPicture,$seasonPicDesc,array('width' => '100px','padding' => '10px', 'title' => $pictureTitle))!!}
 			 			</div>
 
 			 			<div class="col-xs-12 col-sm-8" style="margin-top: 40px;" >
 							<big>
-								{{$sys['building_name']}}
+								{!!$sys['building_name']!!}
 							</big>
 							<br>
 							<small>
-								{{$sys['system_name']}}
+								{!!$sys['system_name']!!}
 							</small>
 			 			</div>
 			 		</div>
 		 			<div class="@if($set_single_tour) single_season_change_tour @endif col-xs-12">
 			 			<div class="col-xs-12" style="margin-top: 20px; margin-bottom: 10px;">
-			 				{{ Form::select('Season_'.$sys['system_id'], array('0' => 'Winter', '1' => 'Summer'), $sys['season_mode_code'], array("class" => "form-control", "style" => "color:black; cursor:pointer;", "id"=> "Season_".$sys['system_id'])) }}
+			 				{!! Form::select('Season_'.$sys['system_id'], array('0' => 'Winter', '1' => 'Summer'), $sys['season_mode_code'], array("class" => "form-control", "style" => "color:black; cursor:pointer;", "id"=> "Season_".$sys['system_id'])) !!}
 			 			</div>
 		 			</div>
 
@@ -234,17 +234,17 @@
 			</div>
 		</div>
 	</div>
-	{{ Form::close() }}
+	{!! Form::close() !!}
 @endif
 
 	<script type="text/javascript">
 		@foreach ($sysarray as $sys)
-			$("#system-select-{{$sys['system_id']}}").click(function(){
+			$("#system-select-{!!$sys['system_id']!!}").click(function(){
 				$("#change-some-0:visible").collapse('hide');
 				@foreach ($sysarray as $subsys)
-					$("#change-some-{{$subsys['system_id']}}:visible").collapse('hide');
+					$("#change-some-{!!$subsys['system_id']!!}:visible").collapse('hide');
 				@endforeach
-				$("#change-some-{{$sys['system_id']}}:hidden").collapse('show');
+				$("#change-some-{!!$sys['system_id']!!}:hidden").collapse('show');
 			});
 		@endforeach
 		$(document).ready(function(){

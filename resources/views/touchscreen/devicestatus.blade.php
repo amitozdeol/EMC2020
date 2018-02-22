@@ -7,10 +7,10 @@
 @section('content')
   @include('buildings.DashboardSidebar')
   <main id="page-content-wrapper" role="main" style="margin: 30px 10px; position: relative;">
-<div class="page-title"><h3>{{ $thisBldg->name }} - System Device Status</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - System Device Status</h3></div>
 
 <div class="page-nav">
-    <a href="{{ URL::to('EMC', array($thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+    <a href="{!! URL::to('EMC', array($thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <?php
@@ -118,27 +118,27 @@
 
             <div class="row" style="color: white; background-color: #01082A;">
               <!--<div class="form-group">-->
-                <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {{$device->id}}</font><BR>
+                <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {!!$device->id!!}</font><BR>
                                                                       <?php $TT= Expanpos($device->id);
                                                                             $BD=$TT['BN']; $PS=$TT['DN'];
                                                                       ?>
-                                                                         {{"Board- ".$BD."<BR> Pos- ".$PS;}}
+                                                                         {!!"Board- ".$BD."<BR> Pos- ".$PS;!!}
 
                 </div>
 
                                                               <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Mode</font><BR>
-                  {{$device->device_mode }}
+                  {!!$device->device_mode !!}
                          </div>
 
 
                                                                 <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
-                                                                     {{$device->zone }}
+                                                                     {!!$device->zone !!}
                                                                 </div>
 
 
                 <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-                                                                       {{$device->name."<BR>"}}
-                                                                       {{$device->physical_location }}
+                                                                       {!!$device->name."<BR>"!!}
+                                                                       {!!$device->physical_location !!}
 
                                                                 </div>
 
@@ -178,7 +178,7 @@
                                                                 ?>
                                                                </div>
                                                                 <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Last Report</font><BR>
-                                                                     {{$Reporttime}}
+                                                                     {!!$Reporttime!!}
                                                                 </div>
                 <div class="col-xs-2 row-padding">Inputs<BR>
                                                                    <?php
@@ -235,7 +235,7 @@
                                                                 </div>
                                                               <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Algorithm</font><BR>
                                                                   <!-- add link to algorithm here open a popup with details of algorithm -->
-                                                                     {{$Alg}}
+                                                                     {!!$Alg!!}
                                                                 </div>
                                               <!--  </div> -->
 
@@ -267,29 +267,29 @@
 
                                 </div>
 
-                                 @if ($devicesin==Null) {{"No Wired Sensors" }} @endif
+                                 @if ($devicesin==Null) {!!"No Wired Sensors" !!} @endif
                                  @foreach ($devicesin as $device)
 
               @if ($device->device_mode=="wired")
             <div class="row" style="color: white; background-color: #01082A;">
               <!--<div class="form-group">-->
-                <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {{$device->id}}</font><BR>
+                <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {!!$device->id!!}</font><BR>
                                                                       <?php $TT= Expanpos($device->id);
                                                                             $BD=$TT['BN']; $PS=$TT['DN'];
                                                                       ?>
-                                                                         {{"Board- ".$BD."<BR> Pos- ".$PS;}}
+                                                                         {!!"Board- ".$BD."<BR> Pos- ".$PS;!!}
 
                 </div>
 
 
                                                                 <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
-                                                                     {{$device->zone }}
+                                                                     {!!$device->zone !!}
                                                                 </div>
 
 
                 <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-                                                                        {{$device->name."<BR>"}}
-                                                                        {{$device->physical_location }}
+                                                                        {!!$device->name."<BR>"!!}
+                                                                        {!!$device->physical_location !!}
 
 
                                                                 </div>
@@ -360,19 +360,19 @@
                                                                 ?>
                                                                </div>
                                                                <div class="col-xs-3 row-padding"><font style="color: <?=$collabelcolor?>;">Current Value</font><BR>
-                                                                  {{$function."- ".$currentvalue." ".$units}}
+                                                                  {!!$function."- ".$currentvalue." ".$units!!}
                                                                 </div>
                                                                 <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Last Report</font><BR>
-                                                                     {{$Reporttime}}
+                                                                     {!!$Reporttime!!}
                                                                 </div>
 
                                                               <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Alarm</font><BR>
                                                                    @if ($currentalarm==0)
-                                                                       {{ HTML::image('images/greenbutton-small.png', 'No Alarms')}}
+                                                                       {!! HTML::image('images/greenbutton-small.png', 'No Alarms')!!}
                                                                    @elseif ($currentalarm==1)
-                                                                       {{ HTML::image('images/yellowbutton-small.png', 'Warning Alarms')}}
+                                                                       {!! HTML::image('images/yellowbutton-small.png', 'Warning Alarms')!!}
                                                                    @else
-                                                                       {{ HTML::image('images/redbutton-small.png', 'Critical Alarms')}}
+                                                                       {!! HTML::image('images/redbutton-small.png', 'Critical Alarms')!!}
                                                                    @endif
 
 
@@ -398,7 +398,7 @@
 
                                 </div>
                               <!-- Wireless sensors  -->
-                                 @if ($devicesin==Null) {{"No Wireless Sensors" }} @endif
+                                 @if ($devicesin==Null) {!!"No Wireless Sensors" !!} @endif
 
 
                                  @foreach ($devicesin as $device)
@@ -418,21 +418,21 @@
                                                   ?>
             <div class="row" style="color: white; background-color: #01082A;">
               <!--<div class="form-group">-->
-                <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {{$device->id}}</font><BR>
-                                                                        {{$PN}}<BR>
-                  {{"Short Address<BR>".strtoupper(dechex($device->short_address))."<BR>".
-                                                                        "Mac Address<BR>".$device->mac_address }}
+                <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {!!$device->id!!}</font><BR>
+                                                                        {!!$PN!!}<BR>
+                  {!!"Short Address<BR>".strtoupper(dechex($device->short_address))."<BR>".
+                                                                        "Mac Address<BR>".$device->mac_address !!}
                 </div>
 
 
                                                                 <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
-                                                                     {{$device->zone }}
+                                                                     {!!$device->zone !!}
                                                                 </div>
 
 
                 <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-                                                                      {{$device->name."<BR>"}}
-                                                                      {{$device->physical_location }}
+                                                                      {!!$device->name."<BR>"!!}
+                                                                      {!!$device->physical_location !!}
 
 
                                                                 </div>

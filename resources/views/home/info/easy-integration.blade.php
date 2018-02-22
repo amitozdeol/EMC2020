@@ -20,7 +20,7 @@
         Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
     </p>
 </div>
-<a href="{{URL::to('about-us')}}">
+<a href="{!!URL::to('about-us')!!}">
 <div class="col-xs-12 col-lg-6 typical-height" style="color: #FFFFFF; background-color: #3388AA">
     <h2>
         FAQ

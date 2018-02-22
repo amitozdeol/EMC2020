@@ -35,7 +35,7 @@
   <div class="modal fade" id="newTypeModal" tabindex="-1" role="dialog" aria-labelledby="typeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          {{Form::open(['route'=>'admin.devicetype.store'])}}
+          {!!Form::open(['route'=>'admin.devicetype.store'])!!}
           <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title" id="typeModalLabel">Add Device Type</h4>
@@ -44,68 +44,68 @@
               <div class="row">
                 <div class="col-xs-12" style="margin-bottom:10px">
                   <div class="col-xs-6 col-sm-5"><label for="name">Name</label>
-                    {{Form::text('name',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('name',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-3"><label for="function">Function</label>
-                    {{Form::text('function',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('function',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-2"><label for="units">Units</label>
-                    {{Form::text('units',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('units',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-2"><label for="IO">IO</label>
-                    {{Form::select('IO',["Input" => "Input", "Output" => "Output"],"Input",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::select('IO',["Input" => "Input", "Output" => "Output"],"Input",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="mode">Mode</label>
-                    {{Form::text('mode',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('mode',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="setpoint">Set Point</label>
-                    {{Form::text('setpoint',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('setpoint',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="hysteresis">Hysteresis</label>
-                    {{Form::text('hysteresis',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('hysteresis',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-2"><label for="alarm_high">Alarm High</label>
-                    {{Form::text('alarm_high',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('alarm_high',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-2"><label for="alarm_low">Alarm Low</label>
-                    {{Form::text('alarm_low',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('alarm_low',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="powerlevel">Power Level</label>
-                    {{Form::text('powerlevel',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('powerlevel',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-2"><label for="reporttime">Report Time</label>
-                    {{Form::text('reporttime',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('reporttime',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-3"><label for="setpoint_active">Setpoint Active</label>
-                    {{Form::select('setpoint_active',["1" => "Active", "0" => "Inactive"],"1",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::select('setpoint_active',["1" => "Active", "0" => "Inactive"],"1",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-3"><label for="algorithm_active">Algorithm Active</label>
-                    {{Form::select('algorithm_active',["1" => "Active", "0" => "Inactive"],"1",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::select('algorithm_active',["1" => "Active", "0" => "Inactive"],"1",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="powerlevel">Gain</label>
-                    {{Form::text('gain',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('gain',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-4"><label for="intercept">Intercept</label>
-                    {{Form::text('intercept',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::text('intercept',null,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                   <div class="col-xs-6 col-sm-3"><label for="state_above_setpoint">State Above Setpoint</label>
-                    {{Form::select('state_above_setpoint',["0" => "Low", "1" => "High"],"0",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                    {!!Form::select('state_above_setpoint',["0" => "Low", "1" => "High"],"0",["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                   </div>
                 </div>
               </div>
           </div>
           <div class="modal-footer" style="text-align:center">
             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-              {{Form::submit('Save',["class" => "btn btn-sm btn-primary"])}}
+              {!!Form::submit('Save',["class" => "btn btn-sm btn-primary"])!!}
           </div>
-          {{Form::close()}}
+          {!!Form::close()!!}
         </div>
       </div>
   </div>
 
   <div>
     @foreach($type_ios as $type_io)
-      <h2 class="row">{{$type_io->IO}}</h2>
+      <h2 class="row">{!!$type_io->IO!!}</h2>
       <div class="scrollleftright" style="overflow: auto;">
         <div class="direction_left">
           <div class="left">
@@ -128,7 +128,7 @@
           @foreach($type_modes as $mode)
             @if( $mode->IO == $type_io->IO)
               <thead>
-                <th scope="row" colspan="15" style="background-color: #000; color: white; text-align: center;">{{$mode->mode}}</th>
+                <th scope="row" colspan="15" style="background-color: #000; color: white; text-align: center;">{!!$mode->mode!!}</th>
                 <tr class="theadrow"style="font-size: 13px;">
                     <th scope="col" style="vertical-align:top">Name</th>
                     <th scope="col" style="vertical-align:top">Function</th>
@@ -151,28 +151,28 @@
               @foreach( $device_types as $type )
                 @if( $type->mode == $mode->mode && $type->IO == $type_io->IO)
                   <tr>
-                    <th scope="row">{{$type->name}}</th>
-                    <td data-title="Function">{{$type->function}}</td>
-                    <td data-title="Units">{{$type->units}}</td>
-                    <td data-title="Hysteresis">{{$type->hysteresis}}</td>
-                    <td data-title="Set Point">{{$type->setpoint}}</td>
-                    <td data-title="Alarm High">{{$type->alarm_high}}</td>
-                    <td data-title="Alarm Low">{{$type->alarm_low}}</td>
-                    <td data-title="Power Level">{{$type->powerlevel}}</td>
-                    <td data-title="Report Time">{{$type->reporttime}}</td>
-                    <td data-title="Set Point Active">{{$type->setpoint_active}}</td>
-                    <td data-title="Algorithm Active">{{$type->algorithm_active}}</td>
-                    <td data-title="Gain">{{$type->gain}}</td>
-                    <td data-title="Intercept">{{$type->intercept}}</td>
-                    <td data-title="State Above Set Point">{{$type->state_above_setpoint}}</td>
-                    <td><button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#{{str_replace(' ','',$type->command)}}Modal">Edit</button></td>
+                    <th scope="row">{!!$type->name!!}</th>
+                    <td data-title="Function">{!!$type->function!!}</td>
+                    <td data-title="Units">{!!$type->units!!}</td>
+                    <td data-title="Hysteresis">{!!$type->hysteresis!!}</td>
+                    <td data-title="Set Point">{!!$type->setpoint!!}</td>
+                    <td data-title="Alarm High">{!!$type->alarm_high!!}</td>
+                    <td data-title="Alarm Low">{!!$type->alarm_low!!}</td>
+                    <td data-title="Power Level">{!!$type->powerlevel!!}</td>
+                    <td data-title="Report Time">{!!$type->reporttime!!}</td>
+                    <td data-title="Set Point Active">{!!$type->setpoint_active!!}</td>
+                    <td data-title="Algorithm Active">{!!$type->algorithm_active!!}</td>
+                    <td data-title="Gain">{!!$type->gain!!}</td>
+                    <td data-title="Intercept">{!!$type->intercept!!}</td>
+                    <td data-title="State Above Set Point">{!!$type->state_above_setpoint!!}</td>
+                    <td><button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#{!!str_replace(' ','',$type->command)!!}Modal">Edit</button></td>
                   </tr>
 
                 <!-- Edit device type modal for altering current entry in modes table-->
-                <div class="modal fade" id="{{str_replace(' ','',$type->command)}}Modal" tabindex="-1" role="dialog" aria-labelledby="deviceTypeModalLabel">
+                <div class="modal fade" id="{!!str_replace(' ','',$type->command)!!}Modal" tabindex="-1" role="dialog" aria-labelledby="deviceTypeModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
-                        {{Form::open(['route'=>['admin.devicetype.update', $type->recnum], 'method'=>'put'])}}
+                        {!!Form::open(['route'=>['admin.devicetype.update', $type->recnum], 'method'=>'put'])!!}
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="deviceTypeModalLabel">Edit Device Type</h4>
@@ -181,63 +181,63 @@
                             <div class="row">
                               <div class="col-xs-12" style="margin-bottom:10px">
                                 <div class="col-xs-4 col-sm-5"><label for="name">Name</label>
-                                  {{Form::text('name',$type->name,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('name',$type->name,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-3"><label for="function">Function</label>
-                                  {{Form::text('function',$type->function,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('function',$type->function,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="units">Units</label>
-                                  {{Form::text('units',$type->units,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('units',$type->units,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="IO">IO</label>
-                                  {{Form::select('IO',["Input" => "Input", "Output" => "Output"],$type->IO,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::select('IO',["Input" => "Input", "Output" => "Output"],$type->IO,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-4"><label for="mode">Mode</label>
-                                  {{Form::text('mode',$type->mode,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('mode',$type->mode,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="setpoint">Set Point</label>
-                                  {{Form::text('setpoint',$type->setpoint,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('setpoint',$type->setpoint,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="hysteresis">Hysteresis</label>
-                                  {{Form::text('hysteresis',$type->hysteresis,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('hysteresis',$type->hysteresis,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="alarm_high">Alarm High</label>
-                                  {{Form::text('alarm_high',$type->alarm_high,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('alarm_high',$type->alarm_high,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="alarm_low">Alarm Low</label>
-                                  {{Form::text('alarm_low',$type->alarm_low,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('alarm_low',$type->alarm_low,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-4"><label for="powerlevel">Power Level</label>
-                                  {{Form::text('powerlevel',$type->powerlevel,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('powerlevel',$type->powerlevel,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-2"><label for="reporttime">Report Time</label>
-                                  {{Form::text('reporttime',$type->reporttime,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('reporttime',$type->reporttime,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-3"><label for="setpoint_active">Setpoint Active</label>
-                                  {{Form::select('setpoint_active',["1" => "Active", "0" => "Inactive"],$type->setpoint_active,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::select('setpoint_active',["1" => "Active", "0" => "Inactive"],$type->setpoint_active,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-3"><label for="algorithm_active">Algorithm Active</label>
-                                  {{Form::select('algorithm_active',["1" => "Active", "0" => "Inactive"],$type->algorithm_active,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::select('algorithm_active',["1" => "Active", "0" => "Inactive"],$type->algorithm_active,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-4"><label for="powerlevel">Gain</label>
-                                  {{Form::text('gain',$type->gain,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('gain',$type->gain,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-4 col-sm-4"><label for="intercept">Intercept</label>
-                                  {{Form::text('intercept',$type->intercept,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::text('intercept',$type->intercept,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                                 <div class="col-xs-6 col-sm-3"><label for="state_above_setpoint">State Above Setpoint</label>
-                                  {{Form::select('state_above_setpoint',["0" => "Low", "1" => "High"],$type->state_above_setpoint,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])}}
+                                  {!!Form::select('state_above_setpoint',["0" => "Low", "1" => "High"],$type->state_above_setpoint,["class" => "form-control", "style"=> "height:34px; font-size:14px;", "title" => ""])!!}
                                 </div>
                               </div>
                             </div>
                         </div>
                         <div class="modal-footer" style="text-align:center">
                           <button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
-                          {{Form::submit('Save',["class" => "btn btn-sm btn-primary pull-right"])}}
-                          {{Form::close()}}
-                          {{Form::open(['route'=>['admin.devicetype.destroy', $type->recnum], 'method'=>'DELETE'])}}
-                                {{Form::submit('Delete', ['class'=>'btn btn-sm btn-danger js-confirm pull-left', 'data-confirm'=>"Are you sure you want to delete this device type?\n\nThis cannot be undone."])}}
-                          {{Form::close()}}
+                          {!!Form::submit('Save',["class" => "btn btn-sm btn-primary pull-right"])!!}
+                          {!!Form::close()!!}
+                          {!!Form::open(['route'=>['admin.devicetype.destroy', $type->recnum], 'method'=>'DELETE'])!!}
+                                {!!Form::submit('Delete', ['class'=>'btn btn-sm btn-danger js-confirm pull-left', 'data-confirm'=>"Are you sure you want to delete this device type?\n\nThis cannot be undone."])!!}
+                          {!!Form::close()!!}
                         </div>
                       </div>
                     </div>

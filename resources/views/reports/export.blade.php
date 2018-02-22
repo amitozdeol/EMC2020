@@ -3,9 +3,9 @@
 @extends('layouts.wrapper')
 
 @section('content')
-  {{HTML::style('https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/datatables.min.css')}}
-  {{HTML::style('css/ion.rangeSlider.css')}}
-  {{HTML::style('css/ion.rangeSlider.skinHTML5.css')}}
+  {!!HTML::style('https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/datatables.min.css')!!}
+  {!!HTML::style('css/ion.rangeSlider.css')!!}
+  {!!HTML::style('css/ion.rangeSlider.skinHTML5.css')!!}
   <style>
       .dataTables_wrapper .dataTables_processing{
         background-color: #333;
@@ -47,20 +47,20 @@
             <label class="transparent_blue_white" style="width:100%">Device Data</label>
             <div  style="overflow: hidden;">
               <div class="export_data_tour col-xs-12 col-sm-6 " style="padding: 15px">
-                {{Form::label('device', 'Devices')}}
+                {!!Form::label('device', 'Devices')!!}
                 <select class="form-control input-lg" name="device_id" id="device_id" required>
                   <option value="">Select a Device</option>
                   <option value="all" name="All Devices">All Devices - By Data Type</option>
                   @foreach($zones as $zone)
-                    <optgroup label="{{$zone->zonename}}">
+                    <optgroup label="{!!$zone->zonename!!}">
                       @foreach($devices as $device)
                         @if($zone->zone === $device->zone)
                             @if($device->name != NULL && $device->name != ' ')
-                              <option value="{{$device->id}}" name="{{$device->name}}">
-                              {{$device->name}}
+                              <option value="{!!$device->id!!}" name="{!!$device->name!!}">
+                              {!!$device->name!!}
                             @else
-                              <option value="{{$device->id}}" name="{{'Device-'.$device->id}}">
-                              {{'Device-'.$device->id}}
+                              <option value="{!!$device->id!!}" name="{!!'Device-'.$device->id!!}">
+                              {!!'Device-'.$device->id!!}
                             @endif
                         </option>
                         @endif
@@ -70,28 +70,28 @@
                 </select>
               </div>
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('function', 'Data Type')}}
+                {!!Form::label('function', 'Data Type')!!}
                 <select class="form-control input-lg" name="function" id="function" required>
                   <option value="">Select a Function Type</option>
                   @foreach($functions as $function)
-                    <option value="{{$function->function}}">{{$function->function}}</option>
+                    <option value="{!!$function->function!!}">{!!$function->function!!}</option>
                   @endforeach
                 </select>
               </div>
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('startdate', 'Start Date')}}
-                {{Form::input('date', 'startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                {!!Form::label('startdate', 'Start Date')!!}
+                {!!Form::input('date', 'startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
               </div>
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('enddate', 'End Date')}}
-                {{Form::input('date', 'enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                {!!Form::label('enddate', 'End Date')!!}
+                {!!Form::input('date', 'enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
                 <div id= "Error" class="alert alert-danger alert-dismissable" style="position: absolute; z-index: 2; font-size: 15px; text-shadow: none; display:none;">
                   <strong>Error!</strong> End Date should always be chronologically after the Start Date
                 </div>
               </div>
               <br>
               <div class="col-xs-12" style="padding: 15px">
-                {{Form::button('Load Data', ['id'=> 'submitbutton', 'class'=>'export_data_tour btn btn-primary btn-lg col-xs-8 col-xs-offset-2', "style"=>"background-color: #428bca"])}}
+                {!!Form::button('Load Data', ['id'=> 'submitbutton', 'class'=>'export_data_tour btn btn-primary btn-lg col-xs-8 col-xs-offset-2', "style"=>"background-color: #428bca"])!!}
               </div>
             </div>
             <!--************************** Tables **************************-->
@@ -163,20 +163,20 @@
             <div style="overflow: hidden;">
               <!-- Device names dropdown -->
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('device', 'Devices')}}
+                {!!Form::label('device', 'Devices')!!}
                 <select class="form-control input-lg" name="device_id" id="event_device_id" required>
                   <option value="">Select a Device</option>
                   <option value="all" name="All Devices">All Devices - By Data Type</option>
                   @foreach($zones as $zone)
-                    <optgroup label="{{$zone->zonename}}">
+                    <optgroup label="{!!$zone->zonename!!}">
                       @foreach($events_devices as $device)
                         @if($zone->zone === $device->zone)
                             @if($device->name != NULL && $device->name != ' ')
-                              <option value="{{$device->id}}" name="{{$device->name}}">
-                              {{$device->name}}
+                              <option value="{!!$device->id!!}" name="{!!$device->name!!}">
+                              {!!$device->name!!}
                             @else
-                              <option value="{{$device->id}}" name="{{'Device-'.$device->id}}">
-                              {{'Device-'.$device->id}}
+                              <option value="{!!$device->id!!}" name="{!!'Device-'.$device->id!!}">
+                              {!!'Device-'.$device->id!!}
                             @endif
                         </option>
                         @endif
@@ -187,13 +187,13 @@
               </div>
               <!-- Start Date -->
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('event_startdate', 'Start Date')}}
-                {{Form::input('date', 'event_startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                {!!Form::label('event_startdate', 'Start Date')!!}
+                {!!Form::input('date', 'event_startdate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
               </div>
               <!-- End Date -->
               <div class="export_data_tour col-xs-12 col-sm-6" style="padding: 15px">
-                {{Form::label('event_enddate', 'End Date')}}
-                {{Form::input('date', 'event_enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])}}
+                {!!Form::label('event_enddate', 'End Date')!!}
+                {!!Form::input('date', 'event_enddate', date('Y-m-d', strtotime('yesterday')), ['class'=>'form-control input-lg'])!!}
                 <div id= "event_Error" class="alert alert-danger alert-dismissable" style="position: absolute; z-index: 2; font-size: 15px; text-shadow: none; display:none;">
                   <strong>Error!</strong> End Date should always be chronologically after the Start Date
                 </div>
@@ -201,7 +201,7 @@
               <br>
               <!-- Submit Button -->
               <div class="col-xs-12" style="padding: 15px">
-                {{Form::button('Load Data', ['id'=> 'submit_event_button', 'class'=>'export_data_tour btn btn-primary btn-lg col-xs-8 col-xs-offset-2', "style"=>"background-color: #428bca"])}}
+                {!!Form::button('Load Data', ['id'=> 'submit_event_button', 'class'=>'export_data_tour btn btn-primary btn-lg col-xs-8 col-xs-offset-2', "style"=>"background-color: #428bca"])!!}
               </div>
             </div>
             <!-- Events -->
@@ -267,8 +267,8 @@
         </div>
     </div>  
   </div>
-  {{HTML::script('js/vendor/ion.rangeSlider.js')}}
-  {{HTML::script('js/vendor/moment.min.js')}}
+  {!!HTML::script('js/vendor/ion.rangeSlider.js')!!}
+  {!!HTML::script('js/vendor/moment.min.js')!!}
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/datatables.min.js"></script>
@@ -446,7 +446,7 @@
       // ========================= Script for Events tab  =========================
       var name_column;
       //All devices for events
-      var deviceList = {{json_encode($events_devices)}};
+      var deviceList = {!!json_encode($events_devices)!!};
       deviceList = deviceList.map(function(element){
         return element.id;
       })

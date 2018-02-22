@@ -23,7 +23,7 @@
       No Devices Currently Mapped
     </div>
     @if(Auth::user()->auth_role >= 8)
-      <div class="col-xs-12 col-sm-offset-4 col-sm-4 micro-row-detail device-block" style="text-align: center; cursor: pointer; margin-top: 15pt;" onclick="window.location='{{$add_new_url}}';">
+      <div class="col-xs-12 col-sm-offset-4 col-sm-4 micro-row-detail device-block" style="text-align: center; cursor: pointer; margin-top: 15pt;" onclick="window.location='{!!$add_new_url!!}';">
         <p>Add New Output</p>
       </div>
     @endif
@@ -31,17 +31,17 @@
 @else
   <div class="col-xs-12 device-section">
   @if(Auth::user()->auth_role >= 8)
-    <div class="col-xs-12 col-sm-offset-4 col-sm-4 micro-row-detail device-block" style="text-align: center; cursor: pointer; margin-top: 15pt; margin-bottom: 10pt; padding: 8pt 0pt 5pt 0pt;" onclick="window.location='{{$add_new_url}}';">
+    <div class="col-xs-12 col-sm-offset-4 col-sm-4 micro-row-detail device-block" style="text-align: center; cursor: pointer; margin-top: 15pt; margin-bottom: 10pt; padding: 8pt 0pt 5pt 0pt;" onclick="window.location='{!!$add_new_url!!}';">
       <p>Add New Output</p>
     </div>
   @endif
   @foreach($mappedOutputs as $output)
-        <div class="col-xs-12  device-block alg-index" id="{{$output->id}}" style="text-align: center;">
+        <div class="col-xs-12  device-block alg-index" id="{!!$output->id!!}" style="text-align: center;">
           <div class="col-xs-12  device-title" ><!--Name-->
-              {{$output->algorithm_name}} 
+              {!!$output->algorithm_name!!} 
           </div>
           <div class="col-xs-12 alg-sub-index-dark" ><!--Description-->
-                {{$output->description}}
+                {!!$output->description!!}
           </div>
           <div class="col-xs-12 alg-sub-index-dark" ><!--Control Function-->
             <small>
@@ -50,7 +50,7 @@
             @if($output->function_type == NULL)                
               Virtual Device
             @else
-              {{$output->function_type}}
+              {!!$output->function_type!!}
             @endif
           </div>
           <div class="col-xs-12 alg-sub-index" ><!--Priority Reporting-->
@@ -69,7 +69,7 @@
                 Zone:
               </small>
                 @if($output->zone != 0)
-                    {{strtoupper($zone_names[$output->zone])}}
+                    {!!strtoupper($zone_names[$output->zone])!!}
                 @else
                     N/A
                 @endif
@@ -90,7 +90,7 @@
               @elseif((int)$output->logicmode == 4)
                 XOR
               @else
-                {{$output->logicmode}}
+                {!!$output->logicmode!!}
               @endif
              </div>
           <div class="col-xs-6 col-md-3" ><!--Required Votes-->
@@ -101,7 +101,7 @@
               @if($output->min_required_inputs == 0)
                   None
               @elseif($output->min_required_inputs > 0)
-                  {{$output->min_required_inputs}}
+                  {!!$output->min_required_inputs!!}
               @endif
           </div>
           <div class="col-xs-6 col-md-3 alg-sub-index"><!--On Delay-->
@@ -112,21 +112,21 @@
               @if((int)$output->ondelay == 0)
                 None
               @elseif((($output->ondelay)%60 == 0) && (($output->ondelay)%3600 != 0) && ((int)$output->ondelay != 0))
-                {{($output->ondelay/60)}}
+                {!!($output->ondelay/60)!!}
                 @if(($output->ondelay/60) > 1)
                   Minutes
                 @else
                   Minute
                 @endif
               @elseif((($output->ondelay)%3600 == 0) && ((int)$output->ondelay != 0))
-                {{($output->ondelay/3600)}}
+                {!!($output->ondelay/3600)!!}
                 @if(($output->ondelay/3600) > 1)
                   Hours
                 @else
                   Hour
                 @endif
               @else
-                {{$output->ondelay}}
+                {!!$output->ondelay!!}
                 @if(((int)$output->ondelay) > 1)
                   Seconds
                 @else
@@ -142,21 +142,21 @@
                 @if((int)$output->offdelay == 0)
                     None
                 @elseif((($output->offdelay)%60 == 0) && (($output->offdelay)%3600 != 0) && ((int)$output->offdelay != 0))
-                   {{$output->offdelay/60}}
+                   {!!$output->offdelay/60!!}
                    @if(($output->offdelay/60) > 1)
                         Minutes
                    @else
                         Minute
                    @endif
                 @elseif((($output->offdelay)%3600 == 0) && ((int)$output->offdelay != 0))
-                   {{$output->offdelay/3600}}
+                   {!!$output->offdelay/3600!!}
                    @if(($output->offdelay/3600) > 1)
                         Hours
                    @else
                         Hour
                    @endif
                 @else
-                   {{$output->offdelay}}
+                   {!!$output->offdelay!!}
                    @if(((int)$output->offdelay) > 1)
                         Seconds
                    @else
@@ -172,21 +172,21 @@
                 @if((int)$output->duration == 0)
                     None
                 @elseif((($output->duration)%60 == 0) && (($output->duration)%3600 != 0) && ((int)$output->duration != 0))
-                   {{$output->duration/60}}
+                   {!!$output->duration/60!!}
                    @if(($output->duration/60) > 1)
                         Minutes
                    @else
                         Minute
                    @endif
                 @elseif((($output->duration)%3600 == 0) && ((int)$output->duration != 0))
-                   {{$output->duration/3600}}
+                   {!!$output->duration/3600!!}
                    @if(($output->duration/3600) > 1)
                         Hours
                    @else
                         Hour
                    @endif
                 @else
-                   {{$output->duration}}
+                   {!!$output->duration!!}
                    @if((int)($output->duration) > 1)
                         Seconds
                    @else
@@ -217,7 +217,7 @@
                 <small>
                   Toggle Percent On:
                 </small>
-                  {{$output->default_toggle_percent_on}}%
+                  {!!$output->default_toggle_percent_on!!}%
             </div>
             <div class="col-xs-12 col-md-4"><!--Toggle Period-->
                 <small>
@@ -226,21 +226,21 @@
                   @if((int)$output->default_toggle_duration == 0)
                       None
                   @elseif((($output->default_toggle_duration)%60 == 0) && (($output->default_toggle_duration)%3600 != 0) && ((int)$output->default_toggle_duration != 0))
-                     {{$output->default_toggle_duration/60}}
+                     {!!$output->default_toggle_duration/60!!}
                      @if(($output->default_toggle_duration/60) > 1)
                         Minutes
                      @else
                         Minute
                      @endif
                   @elseif((($output->default_toggle_duration)%3600 == 0) && ((int)$output->default_toggle_duration != 0))
-                     {{$output->default_toggle_duration/3600}}
+                     {!!$output->default_toggle_duration/3600!!}
                      @if(($output->default_toggle_duration/3600) > 1)
                         Hours
                      @else
                         Hour
                      @endif
                   @else
-                     {{$output->default_toggle_duration}}
+                     {!!$output->default_toggle_duration!!}
                      @if((int)($output->default_toggle_duration) > 1)
                         Seconds
                      @else
@@ -284,36 +284,36 @@
               @endif
           </div>
           <div class="col-xs-12">
-            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-0 btn btn-primary" style="margin-top: 7px;" data-toggle="modal" data-target="#device{{$output->device_id}}Modal"><!--Input Devices-->
+            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-0 btn btn-primary" style="margin-top: 7px;" data-toggle="modal" data-target="#device{!!$output->device_id!!}Modal"><!--Input Devices-->
               Inputs
                 @if(array_key_exists($output->device_id, $used_retired_devices))
                   &nbsp;<span style="color: red;"><b><i class="glyphicon glyphicon-warning-sign retired-warning"></i></b></span>
                 @endif
             </div>
             @if(Auth::user()->auth_role >= 8)
-            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-0 btn btn-primary" style="margin-top: 7px; text-align: center; cursor: pointer;" onclick="window.location='{{URL::route('algorithm.edit', [$id, $sid, $output->id])}}';"><!--Edit-->
+            <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-0 btn btn-primary" style="margin-top: 7px; text-align: center; cursor: pointer;" onclick="window.location='{!!URL::route('algorithm.edit', [$id, $sid, $output->id])!!}';"><!--Edit-->
               Edit
             </div>
             @endif
           </div>
         </div>
     <!-- device Modal -->
-    <div class="modal fade" id="device{{$output->device_id}}Modal" tabindex="-1" role="dialog" aria-labelledby="device{{$output->device_id}}ModalLabel" aria-hidden="true" style="color: black">
+    <div class="modal fade" id="device{!!$output->device_id!!}Modal" tabindex="-1" role="dialog" aria-labelledby="device{!!$output->device_id!!}ModalLabel" aria-hidden="true" style="color: black">
           <div class="modal-dialog modal-md">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="device{{$output->device_id}}ModalLabel" style="text-align:center">Input Devices</h3>
+                <h3 class="modal-title" id="device{!!$output->device_id!!}ModalLabel" style="text-align:center">Input Devices</h3>
               </div>
               <div class="modal-body">
                 <div id="helpTabs" role="tabpanel">
                   <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active col-xs-4"><a href="#active_inputs_{{$output->device_id}}" aria-controls="active_inputs_{{$output->device_id}}" role="tab" data-toggle="tab" style="text-align:center">Active</a></li>
-                    <li role="presentation" class="col-xs-4"><a href="#primary_inputs_{{$output->device_id}}" aria-controls="primary_inputs_{{$output->device_id}}" role="tab" data-toggle="tab" style="text-align:center">Primary</a></li>
-                    <li role="presentation" class="col-xs-4"><a href="#secondary_inputs_{{$output->device_id}}" aria-controls="secondary_inputs_{{$output->device_id}}" role="tab" data-toggle="tab" style="text-align:center">Reserve</a></li>
+                    <li role="presentation" class="active col-xs-4"><a href="#active_inputs_{!!$output->device_id!!}" aria-controls="active_inputs_{!!$output->device_id!!}" role="tab" data-toggle="tab" style="text-align:center">Active</a></li>
+                    <li role="presentation" class="col-xs-4"><a href="#primary_inputs_{!!$output->device_id!!}" aria-controls="primary_inputs_{!!$output->device_id!!}" role="tab" data-toggle="tab" style="text-align:center">Primary</a></li>
+                    <li role="presentation" class="col-xs-4"><a href="#secondary_inputs_{!!$output->device_id!!}" aria-controls="secondary_inputs_{!!$output->device_id!!}" role="tab" data-toggle="tab" style="text-align:center">Reserve</a></li>
                   </ul>
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="primary_inputs_{{$output->device_id}}" style="overflow:auto; max-height:60vh">
+                    <div role="tabpanel" class="tab-pane" id="primary_inputs_{!!$output->device_id!!}" style="overflow:auto; max-height:60vh">
                       @if($output->inputs != '')
                         @foreach(explode(', ',str_replace('.', '', $output->inputs)) as $input => $id_type)
                             <div class="col-xs-12">
@@ -321,7 +321,7 @@
                                 <?php $values = explode(' ',$id_type); ?>
                                 @if(isset($values[0]) && isset($values[1]))
                                   <b>
-                                    {{(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:"Missing Device [".$values[0]."]")}}
+                                    {!!(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:"Missing Device [".$values[0]."]")!!}
                                   </b>
                                   @if((isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->retired:0) == 1)
                                   <span style="color:red">
@@ -329,7 +329,7 @@
                                   </span>
                                   @endif 
                                   <br>
-                                  {{"Device Type: ".$device_types_list[$values[1]]->function}}
+                                  {!!"Device Type: ".$device_types_list[$values[1]]->function!!}
                                   @if($device_types_list[$values[1]]->IO == 'Input')
                                      Sensor
                                      <br>
@@ -337,7 +337,7 @@
                                      Algorithm/Controller
                                      <br>
                                   @endif
-                                  {{"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"Index Error")}}
+                                  {!!"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"Index Error")!!}
                                   <br>
                                   <br>
                                 @endif
@@ -346,7 +346,7 @@
                         @endforeach
                       @endif
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="secondary_inputs_{{$output->device_id}}" style="overflow: auto; max-height:60vh">
+                    <div role="tabpanel" class="tab-pane" id="secondary_inputs_{!!$output->device_id!!}" style="overflow: auto; max-height:60vh">
                       @if($output->reserveinputs != '')
                           @foreach(explode(', ',str_replace('.', '', $output->reserveinputs)) as $input => $id_type)
                                 <div class="col-xs-12">
@@ -355,7 +355,7 @@
                                     @if(isset($values[0]) && isset($values[1]))
                                       @if((isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:' ') !== '')
                                         <b>
-                                          {{(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:"Missing Device [".$values[0]."]")}}
+                                          {!!(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:"Missing Device [".$values[0]."]")!!}
                                         </b>
                                         @if((isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->retired:0) == 1)
                                           <span style="color:red">
@@ -365,11 +365,11 @@
                                         <br>
                                       @else
                                         <b>
-                                          Device {{(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->id:"Index ".$values[0])}}
+                                          Device {!!(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->id:"Index ".$values[0])!!}
                                         </b>
                                         <br>
                                       @endif
-                                      {{"Device Type: ".$device_types_list[$values[1]]->function}}
+                                      {!!"Device Type: ".$device_types_list[$values[1]]->function!!}
                                       @if($device_types_list[$values[1]]->IO == 'Input')
                                          Sensor
                                          <br>
@@ -377,7 +377,7 @@
                                          Algorithm/Controller
                                          <br>
                                       @endif
-                                      {{"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"Index Error")}}
+                                      {!!"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"Index Error")!!}
                                       <br>
                                       <br>
                                     @endif
@@ -391,7 +391,7 @@
                     </div>
                       @endif
                     </div>
-                    <div role="tabpanel" class="tab-pane active" id="active_inputs_{{$output->device_id}}" style="overflow: auto; max-height:60vh">
+                    <div role="tabpanel" class="tab-pane active" id="active_inputs_{!!$output->device_id!!}" style="overflow: auto; max-height:60vh">
                       @if(strlen($output->active_inputs) > 0)
                           @foreach(explode(', ',str_replace('.', '', $output->active_inputs)) as $input => $id_type)
                                 <div class="col-xs-12">
@@ -400,7 +400,7 @@
                                     @if(isset($values[0]) && isset($values[1]))
                                       @if((isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->name:'') !== '')
                                         <b>
-                                          {{$device_names_list[$values[0]]->name}}
+                                          {!!$device_names_list[$values[0]]->name!!}
                                         </b>
                                         @if($device_names_list[$values[0]]->retired == 1)
                                           <span style="color:red">
@@ -409,11 +409,11 @@
                                         @endif<br>
                                       @else
                                         <b>
-                                          Device {{(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->id:"Index ".$values[0])}}
+                                          Device {!!(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->id:"Index ".$values[0])!!}
                                         </b>
                                         <br>
                                       @endif
-                                      {{"Device Type: ".(isset($device_types_list[$values[1]])?$device_types_list[$values[1]]->function:"...")}}
+                                      {!!"Device Type: ".(isset($device_types_list[$values[1]])?$device_types_list[$values[1]]->function:"...")!!}
                                       @if((isset($device_types_list[$values[1]])?$device_types_list[$values[1]]->IO:' ') == 'Input')
                                          Sensor
                                          <br>
@@ -421,7 +421,7 @@
                                          Algorithm/Controller
                                          <br>
                                       @endif
-                                      {{"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"N/A")}}
+                                      {!!"Physical Location: ".(isset($device_names_list[$values[0]])?$device_names_list[$values[0]]->physical_location:"N/A")!!}
                                       <br>
                                       <br>
                                     @endif

@@ -194,7 +194,7 @@
       <div class="report-container" style="width: 100%;">
         <!-- set timerange to Today when user first load the page -->
         @if( !Session::has("SelectOptionTime"))
-          {{Session::flash('SelectOptionTime', 'Today')}}
+          {!!Session::flash('SelectOptionTime', 'Today')!!}
         @endif
         <div class="panel panel-default">
           <label class="panel panel-heading" style="margin-bottom: 0; width: 100%;">Global Settings</lable>
@@ -204,7 +204,7 @@
               <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
               <strong>Warning!</strong> This will load all the charts for a time frame, which will be slower. We recommend using custom chart filter for faster loading.
             </div>
-          {{Form::open(['route'=>['reports.update', $thisBldg->id, $thisSystem->id] ])}}
+          {!!Form::open(['route'=>['reports.update', $thisBldg->id, $thisSystem->id] ])!!}
             <div>
               <label class="reports_tour">
                 Filter
@@ -214,28 +214,28 @@
                   else //Touchscreen
                     $timerange_selection = ['Today' => 'Today', 'Last Week' => 'Last Week'];
                 ?>
-                {{ Form::select('timerange', $timerange_selection, Session::get("SelectOptionTime"), ['class'=>'form-control', 'id'=>'Globaltimerange-select']) }}
+                {!! Form::select('timerange', $timerange_selection, Session::get("SelectOptionTime"), ['class'=>'form-control', 'id'=>'Globaltimerange-select']) !!}
               </label>
               <label class="reports_tour" id="SD-label" style="display: none;">
                 Start Date
-                {{Form::input('date', 'start-date', date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                {!!Form::input('date', 'start-date', date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])!!}
               </label>
               <label class="reports_tour" id="ED-label" style="display: none;">
                 End Date
-                {{Form::input('date', 'end-date', date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                {!!Form::input('date', 'end-date', date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])!!}
               </label>
               <div class="form-group" style="display: inline-block; margin: 0; vertical-align: bottom; padding: 0 10px;">
                 <div class="reports_tour ">
                     <label>
                       Show Retired Devices
-                      {{ Form::checkbox('retired', 1, $retired, ['class' => 'tgl tgl-skewed', 'id'=>'retiredcheckbox']) }}
+                      {!! Form::checkbox('retired', 1, $retired, ['class' => 'tgl tgl-skewed', 'id'=>'retiredcheckbox']) !!}
                       <label class='tgl-btn' data-tg-off='HIDE' data-tg-on='SHOW' for='retiredcheckbox' style="margin: 5px 0 0;"></label>
                     </label>
                 </div>
               </div>
-            {{Form::submit('Submit', ['class'=>'reports_tour btn btn-default btn-sm', 'style' => 'display: inline-block;'])}}
+            {!!Form::submit('Submit', ['class'=>'reports_tour btn btn-default btn-sm', 'style' => 'display: inline-block;'])!!}
             </div>
-          {{Form::close()}}
+          {!!Form::close()!!}
           </div>
         </div>
         <!-- Add more chart button -->
@@ -247,10 +247,10 @@
             </button>
             <ul class="dropdown-menu">
               @for ($i = 0; $i < count($functionList); $i++)
-                <li><a href="#" class="small" data-value="{{str_replace(' ', '', $functionList[$i])}}" tabIndex="{{$i}}">
-                  <input class='tgl tgl-skewed' id='cb3{{str_replace(' ', '', $functionList[$i])}}' type='checkbox' checked>
-                  <label class='tgl-btn' data-tg-off='HIDE' data-tg-on='SHOW' for='cb3{{str_replace(' ', '', $functionList[$i])}}' style="display: inline-block"></label>
-                  <h4 class="ChartFunction-dropdown" data-tg-off='HIDE' data-tg-on='SHOW' for='cb3{{str_replace(' ', '', $functionList[$i])}}'>&nbsp;{{$functionList[$i]}}</h4>
+                <li><a href="#" class="small" data-value="{!!str_replace(' ', '', $functionList[$i])!!}" tabIndex="{!!$i!!}">
+                  <input class='tgl tgl-skewed' id='cb3{!!str_replace(' ', '', $functionList[$i])!!}' type='checkbox' checked>
+                  <label class='tgl-btn' data-tg-off='HIDE' data-tg-on='SHOW' for='cb3{!!str_replace(' ', '', $functionList[$i])!!}' style="display: inline-block"></label>
+                  <h4 class="ChartFunction-dropdown" data-tg-off='HIDE' data-tg-on='SHOW' for='cb3{!!str_replace(' ', '', $functionList[$i])!!}'>&nbsp;{!!$functionList[$i]!!}</h4>
                 </a></li>
               @endfor
             </ul>
@@ -260,79 +260,79 @@
         <div class="row" style="width: 100%; overflow: hidden; margin: auto;">
           <!-- REPORTS CONTAINER -->
           @for ($i = 0; $i < count($functionList); $i++)
-            <div id = "{{str_replace(' ', '', $functionList[$i]).'wrapper'}}" class="js-reports-load {{str_replace(' ', '', $functionList[$i])}}wrapper chart-wrapper" >
+            <div id = "{!!str_replace(' ', '', $functionList[$i]).'wrapper'!!}" class="js-reports-load {!!str_replace(' ', '', $functionList[$i])!!}wrapper chart-wrapper" >
               <div class="panel with-nav-tabs panel-primary">
                 <div class="panel-heading">
                   <ul class="nav nav-tabs">
-                    <li class="time-range {{Session::get('SelectOptionTime') == 'Today' ? 'active' : ''}}" data-range="Today">
-                      <a data-toggle="tab" onclick="PerChartFilter('Today', '{{$functionList[$i]}}', '{{$i}}')">Today</a>
+                    <li class="time-range {!!Session::get('SelectOptionTime') == 'Today' ? 'active' : ''!!}" data-range="Today">
+                      <a data-toggle="tab" onclick="PerChartFilter('Today', '{!!$functionList[$i]!!}', '{!!$i!!}')">Today</a>
                     </li>
-                    <li class="time-range{{Session::get('SelectOptionTime') == 'Last Week' ? 'active' : ''}}" data-range="Last Week">
-                      <a data-toggle="tab" onclick="PerChartFilter('Last Week', '{{$functionList[$i]}}', '{{$i}}')">Last Week</a>
+                    <li class="time-range{!!Session::get('SelectOptionTime') == 'Last Week' ? 'active' : ''!!}" data-range="Last Week">
+                      <a data-toggle="tab" onclick="PerChartFilter('Last Week', '{!!$functionList[$i]!!}', '{!!$i!!}')">Last Week</a>
                     </li>
                     @if($routePrefix != 'touchscreen')
-                      <li class="time-range {{Session::get('SelectOptionTime') == 'Last Month' ? 'active' : ''}}" data-range="Last Month">
-                        <a data-toggle="tab" onclick="PerChartFilter('Last Month', '{{$functionList[$i]}}', '{{$i}}')">Last Month</a>
+                      <li class="time-range {!!Session::get('SelectOptionTime') == 'Last Month' ? 'active' : ''!!}" data-range="Last Month">
+                        <a data-toggle="tab" onclick="PerChartFilter('Last Month', '{!!$functionList[$i]!!}', '{!!$i!!}')">Last Month</a>
                       </li>
-                      <li class="time-range {{Session::get('SelectOptionTime') == 'Last Year' ? 'active' : ''}}" data-range="Last Year">
-                        <a data-toggle="tab" onclick="PerChartFilter('Last Year', '{{$functionList[$i]}}', '{{$i}}')">Last Year</a>
+                      <li class="time-range {!!Session::get('SelectOptionTime') == 'Last Year' ? 'active' : ''!!}" data-range="Last Year">
+                        <a data-toggle="tab" onclick="PerChartFilter('Last Year', '{!!$functionList[$i]!!}', '{!!$i!!}')">Last Year</a>
                       </li>
-                      <li class="time-range {{Session::get('SelectOptionTime') == 'Custom' ? 'active' : ''}}" data-range="Custom">
-                        <a data-toggle="modal" data-target="#CustomDateModal{{str_replace(' ', '', $functionList[$i])}}">Custom</a>
+                      <li class="time-range {!!Session::get('SelectOptionTime') == 'Custom' ? 'active' : ''!!}" data-range="Custom">
+                        <a data-toggle="modal" data-target="#CustomDateModal{!!str_replace(' ', '', $functionList[$i])!!}">Custom</a>
                       </li>
                     @endif
                   </ul>
                 </div>
                 <div class="panel-body">
                     <!-- Custom Date Modal -->
-                    <div id="CustomDateModal{{str_replace(' ', '', $functionList[$i])}}" class="modal fade" role="dialog">
+                    <div id="CustomDateModal{!!str_replace(' ', '', $functionList[$i])!!}" class="modal fade" role="dialog">
                       <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Select Custom Date for {{str_replace(' ', '', $functionList[$i])}}</h4>
+                            <h4 class="modal-title">Select Custom Date for {!!str_replace(' ', '', $functionList[$i])!!}</h4>
                           </div>
-                          <div class="modal-body" id="modal-body-{{$functionList[$i]}}">
+                          <div class="modal-body" id="modal-body-{!!$functionList[$i]!!}">
                             <label>
                               Start Date
-                              {{Form::input('date', 'start-date-modal', date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                              {!!Form::input('date', 'start-date-modal', date_format($startDate, 'Y-m-d'), ['class' => 'form-control'])!!}
                             </label>
                             <label>
                               End Date
-                              {{Form::input('date', 'end-date-modal', date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])}}
+                              {!!Form::input('date', 'end-date-modal', date_format($endDate, 'Y-m-d'), ['class' => 'form-control'])!!}
                             </label>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" id="close{{$functionList[$i]}}" class="pull-left btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                            <button type="button" id="submit{{$functionList[$i]}}" class="btn btn-primary btn-sm" onclick="PerChartFilter('Custom', '{{$functionList[$i]}}', '{{$i}}')">Submit</button>
+                            <button type="button" id="close{!!$functionList[$i]!!}" class="pull-left btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                            <button type="button" id="submit{!!$functionList[$i]!!}" class="btn btn-primary btn-sm" onclick="PerChartFilter('Custom', '{!!$functionList[$i]!!}', '{!!$i!!}')">Submit</button>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="tab-content">
-                      <div id = "{{str_replace(' ', '', $functionList[$i]).'chart-outer'}}" class="chart_outer row">
+                      <div id = "{!!str_replace(' ', '', $functionList[$i]).'chart-outer'!!}" class="chart_outer row">
                           <!-- chart -->
-                          <div id="{{str_replace(' ', '', $functionList[$i]).'chart'}}" class="chart-container">
+                          <div id="{!!str_replace(' ', '', $functionList[$i]).'chart'!!}" class="chart-container">
                           </div>
                           <!-- legend -->
-                          <div id = "{{str_replace(' ', '', $functionList[$i]).'legend'}}" class="legendContainer">
+                          <div id = "{!!str_replace(' ', '', $functionList[$i]).'legend'!!}" class="legendContainer">
                           </div>
                           <!-- Hide expand button in android and IOS app -->
                           @if(strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/ios")) <= 0 && strlen(strstr($_SERVER['HTTP_USER_AGENT'],"EMC2020/1.0/Android")) <= 0)
                             <!-- top-right expand button -->
-                            <i class="expand-button chart-buttons fa fa-expand fa-lg" aria-hidden="true" data-chart="{{str_replace(' ', '', $functionList[$i]).'wrapper'}}" data-id="{{$i}}" ></i>
+                            <i class="expand-button chart-buttons fa fa-expand fa-lg" aria-hidden="true" data-chart="{!!str_replace(' ', '', $functionList[$i]).'wrapper'!!}" data-id="{!!$i!!}" ></i>
                           @endif
                           <!-- top-right legend button -->
                           <i  class="legend-button chart-buttons fa fa-caret-square-o-down fa-lg" aria-hidden="true"></i>
                           <!-- top-right legend button -->
-                          <!-- <i class="Re-chart chart-buttons fa fa-caret-square-o-down fa-lg" data-id="{{$i}}" data-func="{{$functionList[$i]}}" aria-hidden="true"></i> -->
+                          <!-- <i class="Re-chart chart-buttons fa fa-caret-square-o-down fa-lg" data-id="{!!$i!!}" data-func="{!!$functionList[$i]!!}" aria-hidden="true"></i> -->
                       </div>
                       <!-- zone selection -->
-                      <div id="{{str_replace(' ', '', $functionList[$i]).'zone-toggles'}}" style="text-align: center; margin-top: 5px;">
+                      <div id="{!!str_replace(' ', '', $functionList[$i]).'zone-toggles'!!}" style="text-align: center; margin-top: 5px;">
                         <div class="reports_tour" data-toggle="buttons">
                           <div class="btn-group">
-                            <button type="button" class="btn btn-primary" onclick="zoneButtons(0, '{{$functionList[$i]}}', {{$i}}, this)" >All Devices</button>
+                            <button type="button" class="btn btn-primary" onclick="zoneButtons(0, '{!!$functionList[$i]!!}', {!!$i!!}, this)" >All Devices</button>
                             <?php
                               $unique_zones = array();
                             ?>
@@ -341,7 +341,7 @@
                                 <?php
                                   $unique_zones[] = $zonename;
                                 ?>
-                                  <button type="button" class="btn btn-primary" onclick='zoneButtons({{$InitData[$functionList[$i]]["zone_id"][$index]}}, "{{$functionList[$i]}}", {{$i}}, this)'>{{$zonename}}</button>
+                                  <button type="button" class="btn btn-primary" onclick='zoneButtons({!!$InitData[$functionList[$i]]["zone_id"][$index]!!}, "{!!$functionList[$i]!!}", {!!$i!!}, this)'>{!!$zonename!!}</button>
                                 @endif
                               @endforeach
                           </div>
@@ -367,15 +367,15 @@
   </main>
 <!-- ================================================== LOCAL CUSTOM SCRIPTS============================================================== -->
   <script>
-    var system_id     = {{$thisSystem->id}};
-    var functionList  = {{json_encode($functionList)}};
-    var InitData      = {{json_encode($InitData)}};
-    var SelectOptionTime = "{{Session::get("SelectOptionTime")}}";
-    var startDate     = "{{Session::get("startDate")}}";
-    var endDate       = "{{Session::get("endDate")}}";
-    var fetchDate     = '{{date_format($startDate, 'n/d/Y')}}';
-    var fetchLimit    = '{{date_format($endDate, 'n/d/Y')}}';
-    var routePrefix   = '{{$routePrefix}}';
+    var system_id     = {!!$thisSystem->id!!};
+    var functionList  = {!!json_encode($functionList)!!};
+    var InitData      = {!!json_encode($InitData)!!};
+    var SelectOptionTime = "{!!Session::get("SelectOptionTime")!!}";
+    var startDate     = "{!!Session::get("startDate")!!}";
+    var endDate       = "{!!Session::get("endDate")!!}";
+    var fetchDate     = '{!!date_format($startDate, 'n/d/Y')!!}';
+    var fetchLimit    = '{!!date_format($endDate, 'n/d/Y')!!}';
+    var routePrefix   = '{!!$routePrefix!!}';
     //append loading/"No data" div container
     for (var i = 0; i < functionList.length; i++) {
       var loadingDiv = '<div class="'+'loading loading'+functionList[i].replace(/\s+/g, '').toLowerCase()+'"><div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><span class="loading-message"></span></div>';

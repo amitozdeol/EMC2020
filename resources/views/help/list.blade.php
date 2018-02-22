@@ -52,7 +52,7 @@
 
 </script>
 
-<div class="modal-header help-headcer" help-id="{{$help_id}}">
+<div class="modal-header help-headcer" help-id="{!!$help_id!!}">
   <button type="button" class="StartRefresh close" data-dismiss="modal" aria-label="Close" style="font-size: 25pt;"><span aria-hidden="true">&times;</span></button>
   <h2 class="modal-title" id="myModalLabel" style="text-align:center">User Guide</h2>
   <div class="help-subhead" data-toggle="collapse" data-parent="#modal-header" href="#help-sections" style="color: #0000FF;cursor: pointer;background-color: #f4f6f8;text-align: center;padding: 5px;padding-top: 10px;border-top: 4px solid #888888;">
@@ -256,12 +256,12 @@
       <h4 class="help-subhead" style="padding-top: 10px;border-top: 4px solid #888888;">Input Devices</h4>
       <div class="help-subcontent">
         <p>The EMC<sup>20/20</sup> makes an important distinction between input devices (aka: sensors) and output devices. Whereas the state or status of an output device is dictated by you and your system's algorithms, input devices simply report the values they measure. Where <b>your input</b> comes in is the input's other values, its setpoint, setback(s) and alarm levels. You can learn more about these settings by going to the <a href="#setpointmapping-help">Setpoints</a> section of this help document.</p>
-        <p>{{HTML::image('images/system-status-input.png','Responsive image', array('style' => 'display: block; max-width: 100%; height: auto;'))}}</p>
+        <p>{!!HTML::image('images/system-status-input.png','Responsive image', array('style' => 'display: block; max-width: 100%; height: auto;'))!!}</p>
         <p>Your input devices will be displayed on the System Status page as an icon; this icon is meant to represent the type of data your input device/sensor is collecting. The color of the icon is meant to represent whether the device is nearing or in a high/low reading alarmed state (i.e. the current reading is alarmingly high/low). Green icons indicate devices within normal alarm limits. Clicking on these icons will display the device's name and current value; simultaneously, the device's current value, last report time, and settings (current setpoint and alarm levels), along with other relevant information, will be displayed in the information panel (to the right on medium to large screens and below on smaller screens). This information panel will display the most recently selected device. You can jump to the <a href="#setpointmapping-help">Setpoints</a> page by clicking on the device's displayed settings within this information panel. If you would prefer to see a device's previous readings, visit the <a href="#reports-help" title="more help info">Reports</a> page.</p>
         <p>For large systems, multiple tabs may be used to create separate views. You can access these other views by clicking areas listed above the current view.</p>
         <h4 class="help-subhead" style="padding-top: 10px;border-top: 4px solid #888888;">Output Devices</h4>
         <p>Output devices are those devices whose state/status may be set, dynamically, either by the user directly (using an <i>bypass</i> command) or by mapping the device as an algorithm output. From the System Status page, users may check on the current state/status of an output device, view the device's basic algorithm information, and/or select to temporarily bypass the device's state/status.</p>
-        <p>{{HTML::image('images/system-status-output.png', 'Responsive image', array('style' => 'display: block; max-width: 100%; height: auto;'))}}</p>
+        <p>{!!HTML::image('images/system-status-output.png', 'Responsive image', array('style' => 'display: block; max-width: 100%; height: auto;'))!!}</p>
       </div>
       <h4 class="help-subhead" style="padding-top: 10px;border-top: 4px solid #888888;">Controlling Your Devices</h4>
       <div class="help-subcontent">
@@ -438,7 +438,7 @@
         <p>Each alarm features the name of the alarmed device and the data type on which the alarm is based.</p>
         <p class="help-content-detail" style="padding-top: 5px;border-top: 1px dashed #333333;">Severity Indicator</p>
         <p>As mentioned above, alarms may be of two different levels: <i>critical</i> or <i>warning</i>. The round <i>alarm indicator</i> will display either red or yellow.</p>
-        <p style="text-align: center">{{HTML::image('images/yellowbutton.png')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{HTML::image('images/redbutton.png')}}</p>
+        <p style="text-align: center">{!!HTML::image('images/yellowbutton.png')!!}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!!HTML::image('images/redbutton.png')!!}</p>
         <p>Depending on the type of alarm, users may be presented with possible actions related to the alarm type shown. By hovering over the red or yellow <i>alarm indicator</i>, users may be presented with the option of navigating to the <i>setpoint</i> page, or users may be presented with the option of navigating directly to the <i>zone status</i> page. Simply clicking on the <i>alarm indicator</i> will redirect users to the another page where they may be able to take actions to resolve the alarm, or else where they might find more information regaring thte status of the alarmed device. If redirected, users may return the the alarms page using their browsers back button.</p>
         <p class="help-content-detail" style="padding-top: 5px;border-top: 1px dashed #333333;">Alarm Message</p>
         <p>A text description of the alarm is provided. This description ought to give a simple explanation of the reason for the alarm state.</p>
@@ -898,7 +898,7 @@
       var z = document.getElementsByClassName("android_help_content_admin");
       var admintitle = document.getElementsByClassName("android_help_title_admin");
       var Authuser = "";
-      Authuser = "{{Auth::user()->role}}";
+      Authuser = "{!!Auth::user()->role!!}";
       //check if there's any user logged in and store the username- send it to android app
       for(var i=0; i<x.length; i++){
         array_title[i] = x[i].innerHTML;

@@ -199,14 +199,14 @@
             @else
               <div class="@if($set_past_alarm_tour) past_alarms_tour @endif item block_emc" style="background-color: #2B3C51; border-color: white;">
             @endif
-              {{ Form::open(array("role" => "form")) }}
+              {!! Form::open(array("role" => "form")) !!}
               <div class="form-group">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--NAME/IMAGE/DESCRIPTION-->
                   <div class="row" style="background: #071a27; margin-left: -15px; margin-right: -15px;">
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"><!--DEVICE NAME-->
                       <font style="color: <?php echo $collabelcolor; ?>;">
                         <b>
-                          {{$Devdsp }}
+                          {!!$Devdsp !!}
                         </b>
                       </font>
                     </div>
@@ -234,9 +234,9 @@
                         }
                       ?>
                       @if($remedy == "none")<!--ALARM IMAGE-->
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-padding" data-toggle="tooltip" data-placement="bottom" title="{{$tooltip_text}}" style="text-align: center;">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-padding" data-toggle="tooltip" data-placement="bottom" title="{!!$tooltip_text!!}" style="text-align: center;">
                       @else
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-padding" @if(Auth::check()) style="cursor: pointer; text-align: center;" data-toggle="tooltip" data-placement="bottom" title="{{$tooltip_text}}" @endif >
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-padding" @if(Auth::check()) style="cursor: pointer; text-align: center;" data-toggle="tooltip" data-placement="bottom" title="{!!$tooltip_text!!}" @endif >
                       @endif
                           <i class="fa fa-exclamation-triangle fa-3x" style="color: <?php echo $Alarmcolor; ?>"></i>
                         </div>
@@ -244,7 +244,7 @@
                       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 row-padding">
                         <!--<font style="color: <?php echo $Alarmcolor; ?>;">
                           <b>
-                            {{$AlarmName }}
+                            {!!$AlarmName !!}
                           </b>
                         </font>-->
                       </div>
@@ -253,7 +253,7 @@
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-padding"><!--DESCRIPTION-->
                     <font style="color: <?php echo $collabelcolor; ?>;">
                       <b>
-                        {{$Almlist->description}}
+                        {!!$Almlist->description!!}
                       </b>
                     </font>
                   </div>
@@ -290,7 +290,7 @@
                         Duration:
                       </small>
                       <b>
-                        {{$duration}}
+                        {!!$duration!!}
                       </b>
                     </li>
 
@@ -298,15 +298,15 @@
                   @if ($mode=="A")<!--RESOLUTION OPTION-->
                     </ul>
                     <div class="@if($set_active_alarm_tour) alarms_tour @endif col-xs-12 col-sm-12 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--FIX ISSUE-->
-                      <button class="btn btn-primary <?php if($destination == "") echo " disabled"; ?>" style="width: 100%; white-space: normal;" name="Alarm" onclick="window.location.href = '{{$destination}}'; return false;">
-                        {{$tooltip_text}}
+                      <button class="btn btn-primary <?php if($destination == "") echo " disabled"; ?>" style="width: 100%; white-space: normal;" name="Alarm" onclick="window.location.href = '{!!$destination!!}'; return false;">
+                        {!!$tooltip_text!!}
                       </button>
                     </div>
                     <div class="@if($set_active_alarm_tour) alarms_tour @endif col-xs-12 col-sm-12 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--CLEAR-->
                       <button class="btn btn-danger" style="width: 100%; white-space: normal;" type="submit" name="Alarm">
                         Clear Alarm
                       </button>
-                      <input class="form-control" style="color: black" name="Alarm:{{$Almlist->id}}[resolution]" type="hidden" value="manual">
+                      <input class="form-control" style="color: black" name="Alarm:{!!$Almlist->id!!}[resolution]" type="hidden" value="manual">
                     </div>
                   @else
                     <li class="list-group-item" style="color: black;">
@@ -315,14 +315,14 @@
                         Resolution:
                       </small>
                       <b>
-                        {{$resolve}}
+                        {!!$resolve!!}
                       </b>
                     </li>
                   @endif
                   </ul>
                 </div>
               </div>
-              {{ Form::close() }}
+              {!! Form::close() !!}
             </div>
         <?php
           }
@@ -360,7 +360,7 @@
         ?>
         <div class="grid-item" style="color: white; background-color: #969696;">
           <div ><!--BUTTONS-->
-            {{ Form::open(array("role" => "form", "name"=>"header")) }}
+            {!! Form::open(array("role" => "form", "name"=>"header")) !!}
             <div class="alarms_tour col-xs-12 col-sm-12 col-md-12 col-lg-6"><!--PRIORITY/ALL-->
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center" data-toggle="tooltip" data-placement="top" title="Set Priority alarms by editing your devices' Setpoints."><!--BUTTON: PRIORITY-->
                 <button class="btn btn-primary" style="width: 100%;" type="submit" name="Priority" value="1">
@@ -376,34 +376,34 @@
             @if ($mode=="A")
               <div class="alarms_tour col-xs-12 col-sm-12 col-md-12 col-lg-6"><!--NEXT/PREV-->
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--BUTTON: PREVIOUS-->
-                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="PrevA" value="{{$Filter}}" {{$Page==1?"disabled":""}}>
+                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="PrevA" value="{!!$Filter!!}" {!!$Page==1?"disabled":""!!}>
                     Prev
                   </button>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--BUTTON: NEXT-->
-                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="NextA" value="{{$Filter}}" {{$Count<21?"disabled":""}}>
+                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="NextA" value="{!!$Filter!!}" {!!$Count<21?"disabled":""!!}>
                     Next
                   </button>
                 </div>
-                <input class="form-control" style="color: black" name="PageA" type="hidden" value="{{$Page}}">
+                <input class="form-control" style="color: black" name="PageA" type="hidden" value="{!!$Page!!}">
                 </div>
             @else
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6"><!--NEXT/PREV-->
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--BUTTON: PREVIOUS-->
-                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="PrevH" value="{{$Filter}}" {{$Page==1?"disabled":""}}>
+                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="PrevH" value="{!!$Filter!!}" {!!$Page==1?"disabled":""!!}>
                     Prev
                   </button>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-padding" style="text-align: center"><!--BUTTON: NEXT-->
-                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="NextH" value="{{$Filter}}" {{$Count<21?"disabled":""}}>
+                  <button class="btn btn-primary" style="width: 100%;" type="submit" name="NextH" value="{!!$Filter!!}" {!!$Count<21?"disabled":""!!}>
                     Next
                   </button>
                 </div>
-                <input class="form-control" style="color: black" name="PageH" type="hidden" value="{{$Page}}">
+                <input class="form-control" style="color: black" name="PageH" type="hidden" value="{!!$Page!!}">
               </div>
             @endif
-            <input class="form-control" style="color: black" name="Filter" type="hidden" value="{{$Filter}}">
-            {{ Form::close() }}
+            <input class="form-control" style="color: black" name="Filter" type="hidden" value="{!!$Filter!!}">
+            {!! Form::close() !!}
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="grid" style="text-align: center">

@@ -16,7 +16,7 @@
 
 ?>
 
-<div class="page-title"><h3>{{ $thisBldg->name }} - {{$sysname}} - Device Status</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - {!!$sysname!!} - Device Status</h3></div>
 
 <?php
   $collabelcolor="#EED5EF";
@@ -95,21 +95,21 @@
 
 		<div class="row" style="color: white; background-color: #01082A;">
       <!--<div class="form-group">-->
-      <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {{$device->id}}</font><BR>
+      <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {!!$device->id!!}</font><BR>
         <?php $TT= Expanpos($device->id);
               $BD=$TT['BN']; $PS=$TT['DN'];
         ?>
-        {{"Board- ".$BD."<BR> Pos- ".$PS;}}
+        {!!"Board- ".$BD."<BR> Pos- ".$PS;!!}
       </div>
       <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Mode</font><BR>
-        {{$device->device_mode }}
+        {!!$device->device_mode !!}
       </div>
       <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
-        {{$device->zone }}
+        {!!$device->zone !!}
       </div>
       <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-        {{$device->name."<BR>"}}
-        {{$device->physical_location }}
+        {!!$device->name."<BR>"!!}
+        {!!$device->physical_location !!}
       </div>
       <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Status</font><BR>
         <?php
@@ -148,7 +148,7 @@
         ?>
       </div>
       <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Last Report</font><BR>
-        {{$Reporttime}}
+        {!!$Reporttime!!}
       </div>
       <div class="col-xs-2 row-padding">Inputs<BR>
         <?php
@@ -213,7 +213,7 @@
       </div>
       <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Algorithm</font><BR>
         <!-- add link to algorithm here open a popup with details of algorithm -->
-        {{$Alg}}
+        {!!$Alg!!}
       </div>
       <!--  </div> -->
     </div>
@@ -229,7 +229,7 @@
       <div class="col-xs-9 row-padding" style="font-weight: bold; color:#1c94c4;">EMC Wired Sensors</div>
     </div>
     @if ($devicesin==Null)
-      {{"No Wired Sensors" }}
+      {!!"No Wired Sensors" !!}
     @endif
     @foreach ($devicesin as $device)
       @if ($device->device_mode=="wired")
@@ -245,20 +245,20 @@
         } ?>
         <div class="row" style="color: white; background-color: #01082A;">
           <!--<div class="form-group">-->
-          <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;"><a name="Device # {{$device->id}}">Device # {{$device->id}}</a></font><BR>
-            {{$PN}}<BR>
+          <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;"><a name="Device # {!!$device->id!!}">Device # {!!$device->id!!}</a></font><BR>
+            {!!$PN!!}<BR>
             <?php
               $TT= Expanpos($device->id);
               $BD=$TT['BN']; $PS=$TT['DN'];
             ?>
-            {{"Board- ".$BD."<BR> Pos- ".$PS;}}
+            {!!"Board- ".$BD."<BR> Pos- ".$PS;!!}
           </div>
           <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
-            {{$device->zone }}
+            {!!$device->zone !!}
           </div>
           <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-            {{$device->name."<BR>"}}
-            {{$device->physical_location }}
+            {!!$device->name."<BR>"!!}
+            {!!$device->physical_location !!}
           </div>
           <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Status</font><BR>
             <?php
@@ -334,10 +334,10 @@
             ?>
           </div>
           <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Current Value</font><BR>
-            {{$function."- ".$currentvalue." ".$units}}
+            {!!$function."- ".$currentvalue." ".$units!!}
           </div>
           <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Last Report</font><BR>
-            {{$Reporttime}}
+            {!!$Reporttime!!}
           </div>
           <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Alarm</font><BR>
             <?php
@@ -390,7 +390,7 @@
     </div>
     <!-- Wireless sensors  -->
     @if ($devicesin==Null)
-      {{"No Wireless Sensors" }}
+      {!!"No Wireless Sensors" !!}
     @endif
     @foreach ($devicesin as $device)
       @if ($device->device_mode=="wireless" or $device->device_mode=="echostream")
@@ -407,17 +407,17 @@
           }
         } ?>
         <div class="row" style="color: white; background-color: #01082A;">
-          <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {{$device->id}}</font><BR>
-            {{$PN}}<BR>
-            {{"Short Address:<BR>".strtoupper(dechex($device->short_address))."<BR>"."Mac Address:<BR>".$device->mac_address }}
+          <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Device # {!!$device->id!!}</font><BR>
+            {!!$PN!!}<BR>
+            {!!"Short Address:<BR>".strtoupper(dechex($device->short_address))."<BR>"."Mac Address:<BR>".$device->mac_address !!}
           </div>
           <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Zone</font><BR>
             <!--GET THE TEXT CORRESPONDING TO THE ZONE! NOBODY CARES ABOUT THE NUMBER!-->
-            {{$device->zone }}
+            {!!$device->zone !!}
           </div>
           <div class="col-xs-2 row-padding"><font style="color: <?=$collabelcolor?>;">Name/Physical Location</font><BR>
-            {{$device->name."<BR>"}}
-            {{$device->physical_location }}
+            {!!$device->name."<BR>"!!}
+            {!!$device->physical_location !!}
           </div>
           <div class="col-xs-1 row-padding"><font style="color: <?=$collabelcolor?>;">Status</font><BR>
             <?php

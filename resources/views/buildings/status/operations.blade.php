@@ -7,17 +7,17 @@
 
 @section('content')
 
-<div class="page-title"><h3>{{ $thisBldg->name }} - Operations Detail</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - Operations Detail</h3></div>
 
 <div class="page-nav">
-	<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+	<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <br>
 
 <div style="margin-left: auto; margin-right: auto; width: 90%;">
 	<div id="accordion">
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Environment</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Environment</h4>
 		<div>
 			<div id="tabs">
   				<ul>
@@ -33,24 +33,24 @@
 			</div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Systems</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Systems</h4>
 		<div>
 			<div id="meterbox" style="width: 50%; margin-left: auto; margin-right: auto; float: left">
-				{{HTML::image('images/sysinfo.png', 'sysinfo.png', array('class' => 'operations-imgs'))}}
+				{!!HTML::image('images/sysinfo.png', 'sysinfo.png', array('class' => 'operations-imgs'))!!}
 			</div>
 			<div id="imagebox" style="width: 50%; margin-left: auto; margin-right: auto; float: left">
-				{{HTML::image('images/burners.png', 'burners.png', array('class' => 'operations-imgs'))}}
+				{!!HTML::image('images/burners.png', 'burners.png', array('class' => 'operations-imgs'))!!}
 			</div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Monitors</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Monitors</h4>
 		<div>
 			<div id="imagebox" style="width: 100%; margin-left: auto; margin-right: auto">
-				{{HTML::image('images/meters.png', 'meters.png', array('class' => 'operations-imgs'))}}
+				{!!HTML::image('images/meters.png', 'meters.png', array('class' => 'operations-imgs'))!!}
 			</div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Lighting and Security</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Lighting and Security</h4>
 		<div>
 			<div id="textbox" style="width: 100%; margin-left: auto; margin-right: auto">
 
@@ -75,9 +75,9 @@
 							<div class="operations-row-padding">Rear Entry</div>
 						</div>
 						<div class="col-xs-3">
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lightoff.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lightoff.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
 						</div>
 						<div class="col-xs-3">
 							<div class="operations-row-padding">SET</div>
@@ -97,8 +97,8 @@
 							<div class="operations-row-padding">Conference Room</div>
 						</div>
 						<div class="col-xs-3">
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lightoff.png') }}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lightoff.png') !!}</div>
 						</div>
 						<div class="col-xs-3">
 							<div class="operations-row-padding">NOT SET</div>
@@ -117,8 +117,8 @@
 							<div class="operations-row-padding">Bottom Entrance</div>
 						</div>
 						<div class="col-xs-3">
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
 						</div>
 						<div class="col-xs-3">
 							<div class="operations-row-padding">SET</div>
@@ -137,8 +137,8 @@
 							<div class="operations-row-padding">Bottom Entrance</div>
 						</div>
 						<div class="col-xs-3">
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
 						</div>
 						<div class="col-xs-3">
 							<div class="operations-row-padding">SET</div>
@@ -157,8 +157,8 @@
 							<div class="operations-row-padding">West Roof Access</div>
 						</div>
 						<div class="col-xs-3">
-							<div class="operations-row-padding">{{ HTML::image('images/lightoff.png') }}</div>
-							<div class="operations-row-padding">{{ HTML::image('images/lighton.png') }}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lightoff.png') !!}</div>
+							<div class="operations-row-padding">{!! HTML::image('images/lighton.png') !!}</div>
 						</div>
 						<div class="col-xs-3">
 							<div class="operations-row-padding">SET</div>
@@ -170,7 +170,7 @@
 			</div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} EMC Status</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} EMC Status</h4>
 		<div>
 			<div id="emcstatus" style="width: 100%; margin-left: auto; margin-right: auto">
 

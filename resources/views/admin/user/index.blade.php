@@ -49,12 +49,12 @@
     <br>
     <br>
     @if(Session::has('message'))
-      <div class="alert {{ Session::get('alert-class') }}" role="alert">
+      <div class="alert {!! Session::get('alert-class') !!}" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          {{ Session::get('message') }}
+          {!! Session::get('message') !!}
       </div>
     @endif
-      {{HTML::link(URL::route('admin.user.create'), 'New User', ['class'=>'btn btn-primary btn-sm pull-right'])}}
+      {!!HTML::link(URL::route('admin.user.create'), 'New User', ['class'=>'btn btn-primary btn-sm pull-right'])!!}
   </div>
   <br>
 
@@ -63,14 +63,14 @@
       <div class="col-md-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>{{$customer->name}}</strong></h3>
+            <h3 class="panel-title"><strong>{!!$customer->name!!}</strong></h3>
           </div>
           <div class="panel-body">
             @foreach($users as $user)
               @if($customer->id == $user->customer_id)
-                <p id="{{$user->id}}">
-                  <strong>{{$user->first_name}}&nbsp;{{$user->last_name}}</strong><br class="nextline">
-                  {{HTML::link(URL::route('admin.user.edit', $user->id), $user->email, array('style' => 'word-wrap: break-word;'))}}
+                <p id="{!!$user->id!!}">
+                  <strong>{!!$user->first_name!!}&nbsp;{!!$user->last_name!!}</strong><br class="nextline">
+                  {!!HTML::link(URL::route('admin.user.edit', $user->id), $user->email, array('style' => 'word-wrap: break-word;'))!!}
                 </p>
               @endif
             @endforeach
@@ -89,9 +89,9 @@
       <div class="panel-body">
         @foreach($users as $user)
           @if($user->customer_id == 0)
-            <p id="{{$user->id}}">
-              <strong>{{$user->first_name}} {{$user->last_name}}</strong>
-              {{HTML::link(URL::route('admin.user.edit', $user->id), $user->email)}}
+            <p id="{!!$user->id!!}">
+              <strong>{!!$user->first_name!!} {!!$user->last_name!!}</strong>
+              {!!HTML::link(URL::route('admin.user.edit', $user->id), $user->email)!!}
             </p>
           @endif
         @endforeach

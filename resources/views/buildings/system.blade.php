@@ -15,7 +15,7 @@
 
   <div class="page-title" style="height: 95px; line-height: 55px">
     <h3>
-      {{$thisBldg->name}} - {{$sysname}} Overview
+      {!!$thisBldg->name!!} - {!!$sysname!!} Overview
     </h3>
   </div>
 
@@ -84,10 +84,10 @@
     ?>
 
     <div class="col-sm-12 row-detail block_emc" >
-      <a href="./{{$thisSystem->id . '/detail/' . $param->group_number}}" title="{{ $title }}">
-        <!--{{HTML::image($alarmdsp)}}-->
+      <a href="./{!!$thisSystem->id . '/detail/' . $param->group_number!!}" title="{!! $title !!}">
+        <!--{!!HTML::image($alarmdsp)!!}-->
       </a>
-      {{ $param->group_name }}
+      {!! $param->group_name !!}
     </div>
   @endforeach
 
@@ -114,7 +114,7 @@
     }
     ?>
 
-    <a href="./{{$thisSystem->id}}/zonestatus" title="ZONE DASHBOARD --TEMP">
+    <a href="./{!!$thisSystem->id!!}/zonestatus" title="ZONE DASHBOARD --TEMP">
       <?php {
         // look for active alarm state from alarmlog for system
         $alarmstate = DB::table('alarms')
@@ -143,10 +143,10 @@
       }
       ?>
     </a>
-    {{ "EMC ZONE STATUS" }}
+    {!! "EMC ZONE STATUS" !!}
   </div>
   <div class="col-sm-12 row-detail block_emc" >
-    <a href="./{{$thisSystem->id}}/alarmstatus" class="img-responsive" title="EMC ALARM STATUS">
+    <a href="./{!!$thisSystem->id!!}/alarmstatus" class="img-responsive" title="EMC ALARM STATUS">
       <?php {
         if ($Alarmdsp==0) {
           print_r(HTML::image('images/greenbutton.png'));
@@ -158,10 +158,10 @@
       }
        ?>
     </a>
-    {{ "ALARMS" }}
+    {!! "ALARMS" !!}
   </div>
   <div class="col-sm-12 row-detail block_emc" >
-    <a href="./{{$thisSystem->id}}/eventstatus" title="SYSTEM EVENTS">
+    <a href="./{!!$thisSystem->id!!}/eventstatus" title="SYSTEM EVENTS">
       <?php {
         // look for active alarm state from alarmlog for system
         $alarmstate = DB::table('alarms')
@@ -184,10 +184,10 @@
       }
       ?>
     </a>
-    {{ "CONTROL EVENTS" }}
+    {!! "CONTROL EVENTS" !!}
   </div>
   <div class="col-sm-12 row-detail block_emc">
-    <a href="./{{$thisSystem->id}}/devicestatus" title="EMC DEVICE STATUS">
+    <a href="./{!!$thisSystem->id!!}/devicestatus" title="EMC DEVICE STATUS">
       <?php {
         // look for active alarm state from alarmlog for system
         $alarmstate = DB::table('alarms')
@@ -217,7 +217,7 @@
       }
       ?>
     </a>
-    {{ "EMC HARDWARE SYSTEM STATUS" }}
+    {!! "EMC HARDWARE SYSTEM STATUS" !!}
   </div>
 
 @stop

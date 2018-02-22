@@ -56,7 +56,7 @@
   }
 </style>
 
-<div class="page-title">{{$customer->name}} - Building Management</div>
+<div class="page-title">{!!$customer->name!!} - Building Management</div>
 <div style="margin:auto;overflow:hidden; text-align:center;">
   <?php
     $bld_id_arr = array(); //create a countable array
@@ -78,13 +78,13 @@
     }
   ?>
   @foreach($customer_buildings_for_navbar as $building)
-    <div id="#{{$building->id}}" class="@if($set_tour) dashboard_tiles_tour @endif bldg-div {{$bldg_col}} " style="color:white; cursor: pointer;" data-toggle="modal" data-target="#{{$building->id}}">
+    <div id="#{!!$building->id!!}" class="@if($set_tour) dashboard_tiles_tour @endif bldg-div {!!$bldg_col!!} " style="color:white; cursor: pointer;" data-toggle="modal" data-target="#{!!$building->id!!}">
       <span class="fa-stack fa-3x" style="margin-top:5pt; margin-bottom:5pt;">
-        <i class="fa fa-building fa-stack-2x" aria-hidden="true" style="color:{{$alarm_icons[$IDbuilding[$building->id]]}}; padding:5pt;"></i>
+        <i class="fa fa-building fa-stack-2x" aria-hidden="true" style="color:{!!$alarm_icons[$IDbuilding[$building->id]]!!}; padding:5pt;"></i>
       </span>
       <hr style="margin-top:15px; margin-bottom:5px;">
       <div style="font-size:1.2em; min-height:2.8em;">
-		    {{strtoupper($building->name)}}
+		    {!!strtoupper($building->name)!!}
       </div>
     </div>
     <? $set_tour = FALSE; ?>
@@ -93,13 +93,13 @@
 
 @foreach($customer_buildings_for_navbar as $building)
 <!-- Modal -->
-  <div class="modal fade" id="{{$building->id}}" role="dialog">
+  <div class="modal fade" id="{!!$building->id!!}" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">{{$building->name}}</h3>
+          <h3 class="modal-title">{!!$building->name!!}</h3>
         </div>
         <? $set_tour =TRUE; ?>
         <div style="overflow:hidden; height:100%;  width: 100%;">
@@ -109,8 +109,8 @@
               @foreach($systemsData[$building->id] as $system)
               <!-- if there's only one system then make it active -->
               <li class="<?php if($count== 1) echo "active"?>">
-                <a class="@if($set_tour) dashboard_tiles_tour @endif" data-toggle="tab" href="#{{preg_replace("/\s+/","",$system->name)}}">
-                  {{$system->name}}
+                <a class="@if($set_tour) dashboard_tiles_tour @endif" data-toggle="tab" href="#{!!preg_replace("/\s+/","",$system->name)!!}">
+                  {!!$system->name!!}
                 </a>
               </li>
               <? $set_tour =FALSE; ?>
@@ -121,12 +121,12 @@
         <div class="tab-content">
           <? $set_tour =TRUE; ?>
           @foreach($systemsData[$building->id] as $system)
-          <div id="{{preg_replace("/\s+/","",$system->name)}}" class="tab-pane fade <?php if($count==1)echo 'active in';?>">
+          <div id="{!!preg_replace("/\s+/","",$system->name)!!}" class="tab-pane fade <?php if($count==1)echo 'active in';?>">
             <!-- Modal body-->
               <div class="modal-body" style="padding-left: 0; padding-right: 0;">
 
                 <div class="removemargin row" style="text-align:center;">
-                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{{URL::route('building.system', [$building->id, $system->id])}}">
+                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{!!URL::route('building.system', [$building->id, $system->id])!!}">
                     <span class="fa-stack fa-3x">
                       <i class="fa fa-home fa-stack-1x" style="color: white;"></i>
                     </span>
@@ -166,25 +166,25 @@
                       }
                     ?>
                     @if($item->label == 'Operations' )<!--replace operations with reports-->
-                      <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{{URL::route('reports.index', [$building->id, $system->id])}}">
+                      <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{!!URL::route('reports.index', [$building->id, $system->id])!!}">
                         <span class="fa-stack fa-3x">
-                          <i class="fa {{$this_icon}} fa-stack-1x" style="color: {{$this_color}};"></i>
+                          <i class="fa {!!$this_icon!!} fa-stack-1x" style="color: {!!$this_color!!};"></i>
                         </span>
                         <hr style="margin-top:5px; margin-bottom:5px;">
                         <p>Reports</p>
                       </a>
                     @else
-                      <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{{URL::route('building.dashboard', [$building->id, $system->id, $item->id])}}" >
+                      <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-4 col-sm-3 col-md-3 building-overview-item " href="{!!URL::route('building.dashboard', [$building->id, $system->id, $item->id])!!}" >
                         <span class="fa-stack fa-3x">
-                          <i class="fa {{$this_icon}} fa-stack-1x" style="color: {{$this_color}};"></i>
+                          <i class="fa {!!$this_icon!!} fa-stack-1x" style="color: {!!$this_color!!};"></i>
                         </span>
                         <hr style="margin-top:5px; margin-bottom:5px;">
-                        <p>{{$item->label}}</p>
+                        <p>{!!$item->label!!}</p>
                       </a>
                     @endif
                   @endforeach
 
-                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-3 col-sm-3 col-md-3 building-overview-item " href="{{URL::route('setpointmapping.index', [$building->id, $system->id])}}">
+                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-3 col-sm-3 col-md-3 building-overview-item " href="{!!URL::route('setpointmapping.index', [$building->id, $system->id])!!}">
                     <span class="fa-stack fa-3x">
                       <i class="fa fa-tasks fa-stack-1x" style="color: white;"></i>
                     </span>
@@ -192,7 +192,7 @@
                     <p>Setpoints</p>
                   </a>
 
-                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-3 col-sm-3 col-md-3 building-overview-item " href="{{URL::route('reports.export', [$building->id, $system->id])}}">
+                  <a class="@if($set_tour) dashboard_tiles_tour @endif col-xs-3 col-sm-3 col-md-3 building-overview-item " href="{!!URL::route('reports.export', [$building->id, $system->id])!!}">
                     <span class="fa-stack fa-3x">
                       <i class="fa fa-cloud-download fa-stack-1x" style="color: white;"></i>
                     </span>
@@ -255,12 +255,12 @@
 @endforeach
 
 <script language"javascript" type"text/javascript">
-  var InitData = {{json_encode($systemsData)}};
+  var InitData = {!!json_encode($systemsData)!!};
   console.log('------------------------------------');
   console.log(InitData);
   console.log('------------------------------------');
   console.log('------------------------------------');
-  console.log({{json_encode($customer_buildings_for_navbar)}});
+  console.log({!!json_encode($customer_buildings_for_navbar)!!});
   console.log('------------------------------------');
   $(document).ready(function(){
     $('.pmd-floating-action').prepend('\

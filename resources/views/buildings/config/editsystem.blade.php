@@ -50,7 +50,7 @@
 	@elseif ($confirm == "updateInput")
 		<div style="padding: 10px"><div class="notify">Inputs Updated.</div></div>
 	@else
-		<div style="padding: 10px"><div class="notify">New Device # {{$confirm->id }} added.</div></div>
+		<div style="padding: 10px"><div class="notify">New Device # {!!$confirm->id !!} added.</div></div>
 	@endif
 @endif
 
@@ -207,28 +207,28 @@
 		<li class="col-xs-12 col-sm-2" onclick="highlightTab(this)"><a data-toggle="tab" href="#zone-labels">ZONE SETUP</a></li>
 		<li class="col-xs-12 col-sm-2" onclick="highlightTab(this)"><a data-toggle="tab" href="#system-commands">COMMANDS</a></li>
 		@if(Auth::user()->auth_role >= 8)
-			<li class="col-xs-12 col-sm-2" onclick="highlightTab(this)"><a href="{{URL::route('webmapping.index', [$thisBldg->id, $thisSystem->id])}}">WEB MAPPING</a></li>
+			<li class="col-xs-12 col-sm-2" onclick="highlightTab(this)"><a href="{!!URL::route('webmapping.index', [$thisBldg->id, $thisSystem->id])!!}">WEB MAPPING</a></li>
 		@endif
 
 	</ul>
 	<div id="myTabContent" class="tab-content">
 		<!-- SYSTEM CONFIGURATION -->
 		<div id="system-configuration" class="col-xs-12 container-fluid collapse active" style="margin-bottom: 3pt;">
-			{{ Form::model($thisSystem, array("role" => "form")) }}
-			<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+			{!! Form::model($thisSystem, array("role" => "form")) !!}
+			<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 			<!-- SYS NAME / SYS MODE / ZONE COUNT -->
 			<div class="col-xs-12 seamless_block_emc device-block stitch">
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-4 row-padding" title="EXAMPLE: 'Residential System' or 'Industrial System'">
-						System Name {{ Form::text('name', $thisSystem->name, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+						System Name {!! Form::text('name', $thisSystem->name, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						System Mode
-						{{ Form::select('system_mode', array('0' => 'Reset', '1' => 'Operation', '2' => 'Commission'), $thisSystem->system_mode, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+						{!! Form::select('system_mode', array('0' => 'Reset', '1' => 'Operation', '2' => 'Commission'), $thisSystem->system_mode, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Number of System Zones
-						{{ Form::text('system_zones', $thisSystem->system_zones, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+						{!! Form::text('system_zones', $thisSystem->system_zones, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 					</div>
 				</div>
 			</div>
@@ -237,15 +237,15 @@
 				<div class="form-group">
 			        <div class="col-xs-12 col-sm-4 row-padding">
 			        	Network Format
-			        	{{ Form::select('coordinator_format', array('1' => 'BACnet', '2' => 'EMC Wireless', '4' => 'Inovonics', '3' => 'BACnet & EMC WireLess', '5' => 'BACnet & Inovonics', '6' => 'EMC Wireless & Inovonics'), $thisSystem->coordinator_format, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+			        	{!! Form::select('coordinator_format', array('1' => 'BACnet', '2' => 'EMC Wireless', '4' => 'Inovonics', '3' => 'BACnet & EMC WireLess', '5' => 'BACnet & Inovonics', '6' => 'EMC Wireless & Inovonics'), $thisSystem->coordinator_format, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 		        	</div>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Number of Wireless Sensors
-						{{ Form::text('wireless_sensors', $thisSystem->wireless_sensors, array("class" => "form-control", "style" => "color:black")) }}
+						{!! Form::text('wireless_sensors', $thisSystem->wireless_sensors, array("class" => "form-control", "style" => "color:black")) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Number of Bacnet Devices
-						{{ Form::text('bacnet_devices', $thisSystem->bacnet_devices, array("class" => "form-control", "style" => "color:black")) }}
+						{!! Form::text('bacnet_devices', $thisSystem->bacnet_devices, array("class" => "form-control", "style" => "color:black")) !!}
 					</div>
 				</div>
 			</div>
@@ -254,15 +254,15 @@
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Season Mode
-						{{ Form::select('season_mode', array('0' => 'Winter', '1' => 'Summer'), $thisSystem->season_mode, array("class" => "form-control", "style" => "color:black")) }}
+						{!! Form::select('season_mode', array('0' => 'Winter', '1' => 'Summer'), $thisSystem->season_mode, array("class" => "form-control", "style" => "color:black")) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Temperature Format
-						{{ Form::select('temperature_format', array('C' => 'Centigrade', 'F' => 'Fahrenheit'), $thisSystem->temperature_format, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+						{!! Form::select('temperature_format', array('C' => 'Centigrade', 'F' => 'Fahrenheit'), $thisSystem->temperature_format, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 					</div>
 		        	<div class="col-xs-12 col-sm-4 row-padding hidden" >
 		        		Coordinator MAC
-		        		{{ Form::text('coordinator_mac', $thisSystem->coordinator_mac, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+		        		{!! Form::text('coordinator_mac', $thisSystem->coordinator_mac, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 	        		</div>
 				</div>
 			</div>
@@ -271,19 +271,19 @@
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-4 row-padding" title="EXAMPLE: 00:00:00:00:00:00">
 						Ethernet MAC
-						{{ Form::text('net_mac', $thisSystem->net_mac, array("class" => "form-control", "style" => "color:black", $disable_user)) }}
+						{!! Form::text('net_mac', $thisSystem->net_mac, array("class" => "form-control", "style" => "color:black", $disable_user)) !!}
 					</div>
 					<div class="col-xs-6 col-sm-2 row-padding static-network-settings">
 						Ethernet Port
-						{{ Form::text('ethernet_port', $thisSystem->ethernet_port, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) }}
+						{!! Form::text('ethernet_port', $thisSystem->ethernet_port, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) !!}
 					</div>
 	                <div class="col-xs-6 col-sm-2 row-padding static-network-settings">
 	                	Wireless Port
-	                	{{ Form::text('wireless_port', $thisSystem->wireless_port, array("class" => "form-control", "style" => "color:black", 'disabled')) }}
+	                	{!! Form::text('wireless_port', $thisSystem->wireless_port, array("class" => "form-control", "style" => "color:black", 'disabled')) !!}
 	            	</div>
 		         	<div class="col-xs-12 col-sm-4 row-padding">
 			         	Wireless IP
-			         	{{ Form::text('wireless_ip', $thisSystem->wireless_ip, array("class" => "form-control", "style" => "color:black", 'disabled')) }}
+			         	{!! Form::text('wireless_ip', $thisSystem->wireless_ip, array("class" => "form-control", "style" => "color:black", 'disabled')) !!}
 		         	</div>
 				</div>
 			</div>
@@ -292,7 +292,7 @@
 				<div class="form-group">
 	            	<div class="col-xs-12 col-sm-4 row-padding">
 		            	Ethernet IP
-		            	{{ Form::text('ethernet_ip', $thisSystem->ethernet_ip, array("class" => "form-control", "style" => "color:black", 'disabled', "onChange" => "confirmNetworkChange(this)")) }}
+		            	{!! Form::text('ethernet_ip', $thisSystem->ethernet_ip, array("class" => "form-control", "style" => "color:black", 'disabled', "onChange" => "confirmNetworkChange(this)")) !!}
 	            	</div>
 					<!-- DOWNLINK -->
 					<div class="col-xs-12 col-xs-offset-0 col-sm-offset-1 col-sm-2 device-block" style="padding: 4pt 2pt; text-align: center;">
@@ -303,13 +303,13 @@
 							<input class="tgl tgl-skewed js-confirm"
 								type="checkbox"
 								name="downlink"
-								id="downlink" @if($thisSystem->downlink) checked @endif onChange="ipConfigUpdate()" data-confirm="{{$netWarning}}">
+								id="downlink" @if($thisSystem->downlink) checked @endif onChange="ipConfigUpdate()" data-confirm="{!!$netWarning!!}">
 							<label class="tgl-btn" data-tg-off="STATIC" data-tg-on="DYNAMIC" for="downlink"></label>
 						</div>
 					</div>
 					<div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-1 row-padding static-network-settings">
 			         	Local Static IP (Static Network Setting)
-			         	{{ Form::text('static_ip', $thisNetwork->static_ip, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) }}
+			         	{!! Form::text('static_ip', $thisNetwork->static_ip, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) !!}
 		         	</div>
 				</div>
 			</div>
@@ -318,15 +318,15 @@
 				<div class="form-group">
 		         	<div class="col-xs-12 col-sm-4 row-padding">
 			         	Netmask (Static Network Setting)
-			         	{{ Form::text('netmask', $thisNetwork->netmask, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) }}
+			         	{!! Form::text('netmask', $thisNetwork->netmask, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) !!}
 		         	</div>
 		         	<div class="col-xs-12 col-sm-4 row-padding">
 			         	Gateway (Static Network Setting)
-			         	{{ Form::text('gateway', $thisNetwork->gateway, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) }}
+			         	{!! Form::text('gateway', $thisNetwork->gateway, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) !!}
 		         	</div>
 		         	<div class="col-xs-12 col-sm-4 row-padding">
 			         	DNS Name Server (Static Network Setting)
-			         	{{ Form::text('dns_nameserver', $thisNetwork->dns_nameserver, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) }}
+			         	{!! Form::text('dns_nameserver', $thisNetwork->dns_nameserver, array("class" => "form-control", "style" => "color:black", $disable_user, "onChange" => "confirmNetworkChange(this)")) !!}
 		         	</div>
 				</div>
 			</div>
@@ -338,11 +338,11 @@
 					?>
 					<div class="col-xs-12 col-sm-4 row-padding">
 						Main Board Hardware Version
-						{{ Form::select('main_board_version', array('01' => 'M4613-001 - Main Board', '11' => 'M4613-011- Expanded Main Board'), $boom[0], array("class" => "form-control", "style" => "color:black", "id" => "hardware_version_form", "onChange" => "hardwareVersionUpdate('mainboard')")) }}
+						{!! Form::select('main_board_version', array('01' => 'M4613-001 - Main Board', '11' => 'M4613-011- Expanded Main Board'), $boom[0], array("class" => "form-control", "style" => "color:black", "id" => "hardware_version_form", "onChange" => "hardwareVersionUpdate('mainboard')")) !!}
 					</div>
 					<div class="col-xs-12 col-xs-offset-0 col-sm-4 row-padding">
 						Number of Expansion Boards
-						{{ Form::select('extender_boards', array('0','1','2','3'),$thisSystem->extender_boards, array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "expansion_board_count", "onChange" => "expBoardCountUpdate()")) }}
+						{!! Form::select('extender_boards', array('0','1','2','3'),$thisSystem->extender_boards, array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "expansion_board_count", "onChange" => "expBoardCountUpdate()")) !!}
 					</div>
 					<div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-1  device-block" style="padding: 4pt 2pt; text-align: center;">
 						<span title="Use devices from matching hardware configurations to re-enable retired/inhibited devices when turning 'ON' hardware" >
@@ -365,15 +365,15 @@
 				<div class="form-group">
 					<div class="col-xs-12 col-sm-4" title="Bottom Board">
 						Expansion Board 1
-						{{ Form::select('exp_board_1_version', array(), isset($boom[1])?$boom[1]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_1_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) }}
+						{!! Form::select('exp_board_1_version', array(), isset($boom[1])?$boom[1]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_1_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4">
 						Expansion Board 2
-						{{ Form::select('exp_board_2_version', array(), isset($boom[2])?$boom[2]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_2_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) }}
+						{!! Form::select('exp_board_2_version', array(), isset($boom[2])?$boom[2]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_2_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) !!}
 					</div>
 					<div class="col-xs-12 col-sm-4">
 						Expansion Board 3
-						{{ Form::select('exp_board_3_version', array(), isset($boom[3])?$boom[3]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_3_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) }}
+						{!! Form::select('exp_board_3_version', array(), isset($boom[3])?$boom[3]:"00" , array("class" => "form-control", "style" => "color:black", $disable_user, "id" => "exp_board_3_version_form", "onChange" => "hardwareVersionUpdate('expboard')")) !!}
 					</div>
 				</div>
 			</div>
@@ -385,22 +385,22 @@
 				Once you've selected a valid hardware configuration, your I/O options will be displayed here.
 			</div>
 			@foreach($hardware_options as $hardware_option => $hwo)
-				<div id="hw-select-section-{{$hardware_option}}" class="form-group col-xs-12 seamless_block_emc device-block stitch">
+				<div id="hw-select-section-{!!$hardware_option!!}" class="form-group col-xs-12 seamless_block_emc device-block stitch">
 					<div class="col-xs-12" style="border:solid 1px rgba(255,255,255,0.5)">
-						<div class="col-xs-12" style="color: rgba(0,0,0,0.1);"><small><small>{{$hardware_option}}</small></small></div><!-- hw version watermark -->
+						<div class="col-xs-12" style="color: rgba(0,0,0,0.1);"><small><small>{!!$hardware_option!!}</small></small></div><!-- hw version watermark -->
 						@foreach($hwo as $location => $wired_dev)
 							<div class="col-xs-6 col-sm-2 device-block" style="padding: 4pt 2pt; text-align: center;">
 								<small>
-									{{$wired_dev[0].' '.$wired_dev[1].', '.$wired_dev[2].' '.$wired_dev[3].':'}}
+									{!!$wired_dev[0].' '.$wired_dev[1].', '.$wired_dev[2].' '.$wired_dev[3].':'!!}
 								</small>
 								<div style="padding: 2pt 2pt 6pt 20pt;">
 									<?php $str_hw_version = str_replace('.', '-', $hardware_option); ?>
 									<input class="tgl tgl-skewed"
 										type="checkbox"
-										name="expansion_io-{{$str_hw_version}}-{{$location}}"
-										id="expansion_io-{{$str_hw_version}}-{{$location}}"
-										@if(isset($active_components[$hardware_option][$location])) {{$active_components[$hardware_option][$location]==1?"checked":""}} @endif>
-									<label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="expansion_io-{{$str_hw_version}}-{{$location}}"></label>
+										name="expansion_io-{!!$str_hw_version!!}-{!!$location!!}"
+										id="expansion_io-{!!$str_hw_version!!}-{!!$location!!}"
+										@if(isset($active_components[$hardware_option][$location])) {!!$active_components[$hardware_option][$location]==1?"checked":""!!} @endif>
+									<label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="expansion_io-{!!$str_hw_version!!}-{!!$location!!}"></label>
 								</div>
 							</div>
 						@endforeach
@@ -425,7 +425,7 @@
 			<div class="col-xs-12 seamless_block_emc device-block stitch">
 				&nbsp;
 			</div>
-			{{ Form::close() }}
+			{!! Form::close() !!}
 		</div>
 		<!-- end SYSTEM CONFIGURATION -->
 		<!-- SYSTEM DEVICES -->
@@ -451,8 +451,8 @@
 				
 				<!-- WIRED RELAY OUTPUTS -->
 				<div id="system-devices-relays" class="col-xs-12 container-fluid collapse device-section system-devices in">
-					{{ Form::open(array("role" => "form")) }}
-					<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+					{!! Form::open(array("role" => "form")) !!}
+					<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 					@if (isset($relay_devices))
 						<div class="col-xs-12 device-title">
 							<div class="col-xs-9 row-padding">
@@ -473,78 +473,78 @@
 							$retired_dev = ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1)? TRUE:FALSE;
 							$product_params = HardwareDeviceID($device->location, $device->device_mode, $thisSystem->hardware_version,$hardware_options);
 							?>
-							<div class="col-xs-12 seamless_block_emc device-block{{$dev_bg}}">
+							<div class="col-xs-12 seamless_block_emc device-block{!!$dev_bg!!}">
 								<div class="form-group">
 									<div class="col-xs-12 col-md-3 row-padding device-subtitle">
 										@if(!$retired_dev)
-											Board - {{$product_params['board_num']}}<br>
-											{{$product_params['data_type']}} - {{$product_params['dev_num']}}<br>
-											Device # {{$device->id}}
+											Board - {!!$product_params['board_num']!!}<br>
+											{!!$product_params['data_type']!!} - {!!$product_params['dev_num']!!}<br>
+											Device # {!!$device->id!!}
 										@else
 											<br>
-											Device # {{$device->id}}
+											Device # {!!$device->id!!}
 											<br>
 											<br>
 										@endif
 
-										<input type="hidden" name="Device:{{$device->recnum}}[device_type]" value="wired_relay">
-										<input type="hidden" name="Device:{{$device->recnum}}[location]" value="{{$device->location}}">
-										<input type="hidden" name="Device:{{$device->recnum}}[device_mode]" value="wired">
-										<input type="hidden" name="Device:{{$device->recnum}}[mac_address]" value="-">
-	                                    <input type="hidden" name="Device:{{$device->recnum}}[short_address]" value="{{$device->short_address}}">
-	                                    <input type="hidden" name="Device:{{$device->recnum}}[reporttime]" value="NA">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[device_type]" value="wired_relay">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[location]" value="{!!$device->location!!}">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[device_mode]" value="wired">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[mac_address]" value="-">
+	                                    <input type="hidden" name="Device:{!!$device->recnum!!}[short_address]" value="{!!$device->short_address!!}">
+	                                    <input type="hidden" name="Device:{!!$device->recnum!!}[reporttime]" value="NA">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">
 										Product Type
-										<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[product_id]" {{$disable_user}}>
+										<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[product_id]" {!!$disable_user!!}>
 											<option value="direct" >
 												Direct Connection
 											</option>
 											@foreach ($products as $product)
 												@if (($product->product_type == "Relay") and ($product->mode=="Output")and ($product->direct!="BacNet"))
-													<option value="<?=$product->product_id?>" @if ($device->product_id == $product->product_id) {{ "selected" }} @endif><?=$product->name?></option>
+													<option value="<?=$product->product_id?>" @if ($device->product_id == $product->product_id) {!! "selected" !!} @endif><?=$product->name?></option>
 								  	       		@endif
 											@endforeach
 										</select>
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Device Function
-										<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[device_function]" {{$disable_user}}>
+										<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[device_function]" {!!$disable_user!!}>
 											<option value="Choose">
 												Choose a Function
 											</option>
 											@foreach ($devicetypes as $function)
-											<option value="<?=$function?>" @if ($device->device_function == $function) {{ "selected" }} @endif><?=$function?></option>
+											<option value="<?=$function?>" @if ($device->device_function == $function) {!! "selected" !!} @endif><?=$function?></option>
 											@endforeach
 										</select>
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">
 										Name
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[name]" type="text" value="{{$device->name}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[name]" type="text" value="{!!$device->name!!}">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">
 										Physical Location
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[physical_location]" type="text" value="{{$device->physical_location}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[physical_location]" type="text" value="{!!$device->physical_location!!}">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">
 										Zone
-										{{Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])}}
+										{!!Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])!!}
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">
 										Functional Description
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[functional_description]" type="text" value="{{$device->functional_description}}" {{$disable_user}}>
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[functional_description]" type="text" value="{!!$device->functional_description!!}" {!!$disable_user!!}>
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-xs-12 col-sm-2 row-padding device-block" style="text-align: center;" title="You may adjust this relay device status from the SYSTEM CONFIGURATION tab">
 									<?php $tourcount_relays = 0;//allow on first entry ?>
-									<small @if($tourcount_page < 1) class = "tour" id="{{$tourcount_page}}" data-tour-title="Status" data-tour-content="This device can be activated "@endif>
+									<small @if($tourcount_page < 1) class = "tour" id="{!!$tourcount_page!!}" data-tour-title="Status" data-tour-content="This device can be activated "@endif>
 										<?php $tourcount_page+=1; ?>
 										Status
 									</small>
 									<?php $tourcount_relays = 1; ?>
 										<p>
 											<big><big>
-												<input type="hidden" name="Device:{{$device->recnum}}[status]" value="{{$SV}}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[status]" value="{!!$SV!!}">
 												@if($SV == 4)
 														Active
 												@elseif($SV == 6 or $SV == 2)
@@ -558,7 +558,7 @@
 										</p>
 									</div>
 									<div class="col-xs-12 col-sm-10 row-padding">Comments/Notes
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[comments]" type="text" value="{{$device->comments}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[comments]" type="text" value="{!!$device->comments!!}">
 									</div>
 								</div>
 							</div>
@@ -581,13 +581,13 @@
 							</div>
 						</div>
 					@endif
-					{{ Form::close() }}
+					{!! Form::close() !!}
 				</div> 
 				<!-- end WIRED RELAY OUTPUTS -->
 				<!-- WIRED SENSOR INPUTS -->
 				<div id="system-devices-wired" class="col-xs-12 container-fluid collapse device-section system-devices">
-					{{ Form::open(array("role" => "form")) }}
-					<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+					{!! Form::open(array("role" => "form")) !!}
+					<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 					@if (isset($wired_input_devices))<!--if the system has wired inputs-->
 						<div class="col-xs-12 seamless_block_emc device-title">
 				  			<div class="col-xs-9 row-padding">Wired Sensors</div>
@@ -603,56 +603,56 @@
 							$retired_dev = ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1)? TRUE:FALSE;
 							$product_params = HardwareDeviceID($device->location, $device->device_mode, $thisSystem->hardware_version,$hardware_options);
 							?>
-							<div class="col-xs-12 seamless_block_emc device-block{{$dev_bg}}">
+							<div class="col-xs-12 seamless_block_emc device-block{!!$dev_bg!!}">
 								<div class="form-group">
 									<div class="col-xs-12 col-md-3 row-padding device-subtitle">
 										@if(!$retired_dev)
-											Board - {{$product_params['board_num']}}<br>
-											{{$product_params['data_type']}} - {{$product_params['dev_num']}}<br>
-											Device # {{$device->id}}
+											Board - {!!$product_params['board_num']!!}<br>
+											{!!$product_params['data_type']!!} - {!!$product_params['dev_num']!!}<br>
+											Device # {!!$device->id!!}
 										@else
 											<br>
-											Device # {{$device->id}}
+											Device # {!!$device->id!!}
 											<br>
 											<br>
 										@endif
 
-										<input type="hidden" name="Device:{{$device->recnum}}[device_type]" value="wired_relay">
-										<input type="hidden" name="Device:{{$device->recnum}}[location]" value="{{$device->location}}">
-										<input type="hidden" name="Device:{{$device->recnum}}[device_mode]" value="wired">
-										<input type="hidden" name="Device:{{$device->recnum}}[mac_address]" value="-">
-										<input type="hidden" name="Device:{{$device->recnum}}[short_address]" value="{{$device->short_address}}">
-										<input type="hidden" name="Device:{{$device->recnum}}[reporttime]" value="NA">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[device_type]" value="wired_relay">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[location]" value="{!!$device->location!!}">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[device_mode]" value="wired">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[mac_address]" value="-">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[short_address]" value="{!!$device->short_address!!}">
+										<input type="hidden" name="Device:{!!$device->recnum!!}[reporttime]" value="NA">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Product Type
-										<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[product_id]" {{$disable_user}}>
+										<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[product_id]" {!!$disable_user!!}>
 											@foreach ($products as $product)
 												@if (($product->product_type == "Sensor") and ($product->mode=="Input")and ($product->hardwarebus="Wired") and (substr($product->product_id,0,2)=="AN" or substr($product->product_id,0,1)=="D" or substr($product->product_id,0,1)=="C"))
-													<option value="<?=$product->product_id?>" @if ($device->product_id == $product->product_id) {{ "selected" }} @endif><?=$product->name?></option>
+													<option value="<?=$product->product_id?>" @if ($device->product_id == $product->product_id) {!! "selected" !!} @endif><?=$product->name?></option>
 								  	       		@endif
 											@endforeach
 
 										</select>
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Device Function
-										<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[device_function]" {{$disable_user}}>
+										<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[device_function]" {!!$disable_user!!}>
 											<option value="Choose">Choose a Function</option>
 											@foreach ($devicetypes as $function)
-												<option value="<?=$function?>" @if ($device->device_function == $function) {{ "selected" }} @endif><?=$function?></option>
+												<option value="<?=$function?>" @if ($device->device_function == $function) {!! "selected" !!} @endif><?=$function?></option>
 											@endforeach
 										</select>
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Name
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[name]" type="text" value="{{$device->name}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[name]" type="text" value="{!!$device->name!!}">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Physical Location
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[physical_location]" type="text" value="{{$device->physical_location}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[physical_location]" type="text" value="{!!$device->physical_location!!}">
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Zone
-										{{Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])}}
+										{!!Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])!!}
 									</div>
 									<div class="col-xs-12 col-md-3 row-padding">Functional Description
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[functional_description]" type="text" value="{{$device->functional_description}}" {{$disable_user}}>
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[functional_description]" type="text" value="{!!$device->functional_description!!}" {!!$disable_user!!}>
 									</div>
 								</div>
 								<div class="form-group">
@@ -662,7 +662,7 @@
 										</small>
 										<p>
 											<big><big>
-												<input type="hidden" name="Device:{{$device->recnum}}[status]" value="{{$SV}}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[status]" value="{!!$SV!!}">
 												@if($SV == 4)
 														Active
 												@elseif($SV == 6 or $SV == 2)
@@ -677,7 +677,7 @@
 										</p>
 									</div>
 									<div class="col-xs-12 col-sm-10 row-padding">Comments/Notes
-										<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[comments]" type="text" value="{{$device->comments}}">
+										<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[comments]" type="text" value="{!!$device->comments!!}">
 									</div>
 								</div>
 							</div>
@@ -696,7 +696,7 @@
 							<div class="col-xs-9 row-padding">No Wired Sensor Inputs</div>
 						</div>
 					@endif
-					{{ Form::close() }}
+					{!! Form::close() !!}
 				</div> <!-- enc WIRED SENSOR INPUTS -->
 				<!-- WIRELESS SENSOR INPUTS -->
 		        <!--  Will appear in two groups - mapped or commissioned and unmapped or needing commissioning
@@ -708,8 +708,8 @@
 		          will have additional input field to indicate a replacement where the device ID of the unit it is replacing is
 		          indicated in a drop down of retired devices.  -->
 				<div id="system-devices-wireless" class="col-xs-12 container-fluid collapse device-section system-devices">
-					{{ Form::open(array("role" => "form")) }}
-					<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+					{!! Form::open(array("role" => "form")) !!}
+					<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 					@if($WLSFlag)<!--if the system has wireless sensors-->
 						<div class="col-xs-12 seamless_block_emc device-title">
 							<div class="col-xs-9 row-padding">
@@ -793,46 +793,46 @@
 									}
 
 								?>
-								<div class="col-xs-12 seamless_block_emc device-block{{$dev_bg}}">
+								<div class="col-xs-12 seamless_block_emc device-block{!!$dev_bg!!}">
 									<div class="form-group">
 										<div class="col-xs-12 device-subtitle">
-											<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 row-padding"><small>Device:</small> #{{$device->id}}<BR>
-												{{"<small>Mac Address: </small>".$device->mac_address."<BR>"}}
-												{{"<small>Short Address: </small>".$device->short_address}}
-												<input type="hidden" name="Device:{{$device->recnum}}[device_type]" value="sensor">
-												<input type="hidden" name="Device:{{$device->recnum}}[location]" value="{{$device->location}}">
-												<input type="hidden" name="Device:{{$device->recnum}}[device_mode]" value="{{$device->device_mode}}">
-												<input type="hidden" name="Device:{{$device->recnum}}[mac_address]" value="{{$device->mac_address}}">
-												<input type="hidden" name="Device:{{$device->recnum}}[short_address]" value="{{$device->short_address}}">
-												<input type="hidden" name="Device:{{$device->recnum}}[product_id]" value="{{$device->product_id}}">
-												<input type="hidden" name="Device:{{$device->recnum}}[device_function]" value="{{$device->device_function}}">
+											<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 row-padding"><small>Device:</small> #{!!$device->id!!}<BR>
+												{!!"<small>Mac Address: </small>".$device->mac_address."<BR>"!!}
+												{!!"<small>Short Address: </small>".$device->short_address!!}
+												<input type="hidden" name="Device:{!!$device->recnum!!}[device_type]" value="sensor">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[location]" value="{!!$device->location!!}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[device_mode]" value="{!!$device->device_mode!!}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[mac_address]" value="{!!$device->mac_address!!}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[short_address]" value="{!!$device->short_address!!}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[product_id]" value="{!!$device->product_id!!}">
+												<input type="hidden" name="Device:{!!$device->recnum!!}[device_function]" value="{!!$device->device_function!!}">
 											</div>
 											<div class="col-xs-6 col-sm-3col-md-4 col-lg-3 row-padding"><small>Product Type:</small><BR>
-												{{$PN}}
+												{!!$PN!!}
 												@if ($ProdOKFlag==0)
-													{{"<font color='#FF5544'><b><br> Product Type not defined in Product_Type Table
-													<BR>Update table before proceeding</b></font>"}}
+													{!!"<font color='#FF5544'><b><br> Product Type not defined in Product_Type Table
+													<BR>Update table before proceeding</b></font>"!!}
 												@endif
 											</div>
 											<div class="col-xs-6 col-sm-3col-md-4 col-lg-3 row-padding"><small>Device Function:</small><BR>
-												{{$PF}}
+												{!!$PF!!}
 											</div>
 											@if ($Status==0 and $ProdOKFlag==1)
 												<div class="col-xs-12">
 													<div class="col-xs-12 col-sm-6 row-padding">New or Replacement for Device #
-														<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]">
+														<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]">
 															<option value="New" <? if ($SV == "ND") { echo "selected"; }?> >New</option>
 															@foreach ($wirelessdevices as $option)
 																@if ($option->retired==1)
 																	@if($option->product_id==$device->product_id)
-																		<option value="{{$option->id}}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {{ "selected" }} @endif>Retired # - {{$option->id}} - {{$option->name}}</option>
+																		<option value="{!!$option->id!!}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {!! "selected" !!} @endif>Retired # - {!!$option->id!!} - {!!$option->name!!}</option>
 																	@endif
 																@endif
 															@endforeach
 														</select>
 													</div>
 													<div class="col-xs-12 col-sm-6 row-padding"; style="font-weight: bold; color: #bce8f1">
-														<input type="checkbox"  name="Device:{{$device->recnum}}[comm]" value="1">
+														<input type="checkbox"  name="Device:{!!$device->recnum!!}[comm]" value="1">
 															Check to Commission
 													</div>
 												</div>
@@ -841,16 +841,16 @@
 										@if ($Status==1 and $ProdOKFlag==1)
 											<div class="col-xs-12">
 												<div class="col-xs-12 col-sm-6 row-padding">Name
-													<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[name]" type="text" value="{{$device->name}}">
+													<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[name]" type="text" value="{!!$device->name!!}">
 												</div>
 												<div class="col-xs-12 col-sm-6 row-padding">Physical Location
-													<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[physical_location]" type="text" value="{{$device->physical_location}}">
+													<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[physical_location]" type="text" value="{!!$device->physical_location!!}">
 												</div>
 												<div class="col-xs-12 col-sm-6 row-padding">Zone
-													{{Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])}}
+													{!!Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])!!}
 												</div>
 												<div class="col-xs-12 col-sm-6 row-padding">Functional Description
-														<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[functional_description]" type="text" value="{{$device->functional_description}}" {{$disable_user}}>
+														<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[functional_description]" type="text" value="{!!$device->functional_description!!}" {!!$disable_user!!}>
 												</div>
 											</div>
 										@endif
@@ -859,26 +859,26 @@
 									<div class="form-group">
 										@if ($Status==1)
 											<div class="col-xs-6 row-padding">Status
-												<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]" {{$disable_user}}>
+												<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]" {!!$disable_user!!}>
 													@if($SV==0)
-														<option value="0" @if ($SV == 0) {{ "selected" }} @endif>Uncommissioned</option>
+														<option value="0" @if ($SV == 0) {!! "selected" !!} @endif>Uncommissioned</option>
 													@endif
-													<option value="4" @if ($SV == 4) {{ "selected" }} @endif>
+													<option value="4" @if ($SV == 4) {!! "selected" !!} @endif>
 															Active
 													</option>
-													<option value="6" @if ($SV == 6 or $SV == 2) {{ "selected" }} @endif>
+													<option value="6" @if ($SV == 6 or $SV == 2) {!! "selected" !!} @endif>
 															Inhibited
 													</option>
-													<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {{ "selected" }} @endif>
+													<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {!! "selected" !!} @endif>
 															Retired
 													</option>
 												</select>
 											</div>
 											<div class="col-xs-6 row-padding">Report Time(mins)
-												<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[reporttime]" type="text" value="{{$PRTime}}" {{$disable_user}}>
+												<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[reporttime]" type="text" value="{!!$PRTime!!}" {!!$disable_user!!}>
 											</div>
 											<div class="col-xs-12 row-padding">Comments/Notes
-												<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[comments]" type="text" value="{{$device->comments}}">
+												<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[comments]" type="text" value="{!!$device->comments!!}">
 											</div>
 											<div class="col-xs-12 border_blue_white" style="text-align:center; padding-bottom:10px;">
 												<span style="font-size:18pt;"> Calibration Factors</span>
@@ -898,8 +898,8 @@
 															$display_units = '&deg;'.$thisSystem->temperature_format;
 														}
 													?>
-													<div class="{{$xs_col_width}} {{$lg_col_width}} row-padding" title="May not exceed three decimal places">
-														{{$device_type_names[$command]}} ( {{$display_units}} )
+													<div class="{!!$xs_col_width!!} {!!$lg_col_width!!} row-padding" title="May not exceed three decimal places">
+														{!!$device_type_names[$command]!!} ( {!!$display_units!!} )
 														@if (isset($devicesoffset[$device->id][$command]))
 														<?php
 															$offset_value = $devicesoffset[$device->id][$command];
@@ -908,11 +908,11 @@
 															Store the "original_offset" for later comparison with the submitted offset. We compare in the updatesystem() function.
 															*/
 														?>
-														<input type="hidden" name="Device:{{$device->recnum}}[original_offset-{{$device->id}}-{{$command}}]" value="{{round($offset_value,3,PHP_ROUND_HALF_DOWN)}}">
-														<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[offset-{{$device->id}}-{{$command}}]" type="text" value="{{round($offset_value,3,PHP_ROUND_HALF_DOWN)}}" {{$disable_user}}>
+														<input type="hidden" name="Device:{!!$device->recnum!!}[original_offset-{!!$device->id!!}-{!!$command!!}]" value="{!!round($offset_value,3,PHP_ROUND_HALF_DOWN)!!}">
+														<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[offset-{!!$device->id!!}-{!!$command!!}]" type="text" value="{!!round($offset_value,3,PHP_ROUND_HALF_DOWN)!!}" {!!$disable_user!!}>
 														@else
-														<input type="hidden" name="Device:{{$device->recnum}}[original_offset-{{$device->id}}-{{$command}}]" value="0">
-														<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[offset-{{$device->id}}-{{$command}}]" type="text" value="0" {{$disable_user}}>
+														<input type="hidden" name="Device:{!!$device->recnum!!}[original_offset-{!!$device->id!!}-{!!$command!!}]" value="0">
+														<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[offset-{!!$device->id!!}-{!!$command!!}]" type="text" value="0" {!!$disable_user!!}>
 														@endif
 													</div>
 													<?php
@@ -943,13 +943,13 @@
 							<div class="col-xs-9 row-padding">No WireLess Sensors</div>
 						</div>
 					@endif
-					{{ Form::close() }}
+					{!! Form::close() !!}
 				</div>   
 				<!-- emd WIRELESS SENSOR INPUTS -->
 				<!-- BACNET MSTP -->
 				<div id="system-devices-bacnetmstp" class="col-xs-12 container-fluid collapse device-section system-devices">
-					{{ Form::open(array("role" => "form")) }}
-					<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+					{!! Form::open(array("role" => "form")) !!}
+					<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 					@if ($BACNETFlag)<!--if bacnet devices detected-->
 						<div class="col-xs-12 seamless_block_emc device-title">
 				  			<div class="col-xs-9 row-padding">BACNet MSTP Devices</div>
@@ -1028,83 +1028,83 @@
 										$PM="Undefined";
 									}
 								?>
-								<div class="col-xs-12 seamless_block_emc device-block{{$dev_bg}}">
+								<div class="col-xs-12 seamless_block_emc device-block{!!$dev_bg!!}">
 									<div class="form-group">
-										<div class="col-xs-12 row-padding  device-subtitle"><small>Device: </small>#{{$device->id}}<BR>
-											{{"<small>Mac Address: </small>".$device->mac_address}}<BR>
-											{{"<small>Mode: </small>".$PM}}
+										<div class="col-xs-12 row-padding  device-subtitle"><small>Device: </small>#{!!$device->id!!}<BR>
+											{!!"<small>Mac Address: </small>".$device->mac_address!!}<BR>
+											{!!"<small>Mode: </small>".$PM!!}
 											@if ($Status==0 and $ProdOKFlag==1)
 												<div style="font-weight: bold; color: #bce8f1">Check to Commission
-													<input type="checkbox"  name="Device:{{$device->recnum}}[comm]" value="1">
+													<input type="checkbox"  name="Device:{!!$device->recnum!!}[comm]" value="1">
 												</div>
 											@endif
-											<input type="hidden" name="Device:{{$device->recnum}}[device_type]" value="sensor">
-											<input type="hidden" name="Device:{{$device->recnum}}[location]" value="{{$device->location}}">
-											<input type="hidden" name="Device:{{$device->recnum}}[device_mode]" value="bacnetmstp">
-											<input type="hidden" name="Device:{{$device->recnum}}[mac_address]" value="{{$device->mac_address}}">
-											<input type="hidden" name="Device:{{$device->recnum}}[short_address]" value="{{$device->short_address}}">
-											<input type="hidden" name="Device:{{$device->recnum}}[product_id]" value="{{$device->product_id}}">
-											<input type="hidden" name="Device:{{$device->recnum}}[device_function]" value="{{$device->device_function}}">
-											<!-- <input type="hidden" name="Device:{{$device->recnum}}[reporttime]" value="NA"> -->
+											<input type="hidden" name="Device:{!!$device->recnum!!}[device_type]" value="sensor">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[location]" value="{!!$device->location!!}">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[device_mode]" value="bacnetmstp">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[mac_address]" value="{!!$device->mac_address!!}">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[short_address]" value="{!!$device->short_address!!}">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[product_id]" value="{!!$device->product_id!!}">
+											<input type="hidden" name="Device:{!!$device->recnum!!}[device_function]" value="{!!$device->device_function!!}">
+											<!-- <input type="hidden" name="Device:{!!$device->recnum!!}[reporttime]" value="NA"> -->
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Product Type<BR>
-											{{$PN}}
+											{!!$PN!!}
 											@if ($ProdOKFlag==0) 
-												{{"<font color='#FF5544'><b><br> Product Type not defined
-												<BR>Update table before proceeding</b></font>"}}
+												{!!"<font color='#FF5544'><b><br> Product Type not defined
+												<BR>Update table before proceeding</b></font>"!!}
 											@endif
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Device Function<BR>
-											{{$PF}}
+											{!!$PF!!}
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Name
-											<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[name]" type="text" value="{{$device->name}}">
+											<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[name]" type="text" value="{!!$device->name!!}">
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Physical Location
-											<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[physical_location]" type="text" value="{{$device->physical_location}}">
+											<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[physical_location]" type="text" value="{!!$device->physical_location!!}">
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Zone
-											{{Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])}}
+											{!!Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])!!}
 										</div>
 										<div class="col-xs-12 col-sm-6 row-padding">Functional Description
-											<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[functional_description]" type="text" value="{{$device->functional_description}}" {{$disable_user}}>
+											<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[functional_description]" type="text" value="{!!$device->functional_description!!}" {!!$disable_user!!}>
 										</div>
 									</div>
 									<div class="form-group">
 										@if ($Status==1)
 											<div class="col-xs-6 row-padding">Status
-												<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]" {{$disable_user}}>
+												<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]" {!!$disable_user!!}>
 													@if($SV==0)
-														<option value="0" @if ($SV == 0) {{ "selected" }} @endif>Uncommissioned</option>
+														<option value="0" @if ($SV == 0) {!! "selected" !!} @endif>Uncommissioned</option>
 													@endif
-													<option value="4" @if ($SV == 4) {{ "selected" }} @endif>
+													<option value="4" @if ($SV == 4) {!! "selected" !!} @endif>
 															Active
 													</option>
-													<option value="6" @if ($SV == 6 or $SV == 2) {{ "selected" }} @endif>
+													<option value="6" @if ($SV == 6 or $SV == 2) {!! "selected" !!} @endif>
 															Inhibited
 													</option>
-													<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {{ "selected" }} @endif>
+													<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {!! "selected" !!} @endif>
 															Retired
 													</option>
 												</select>
 											</div>
 										@else
 											<div class="col-xs-6 row-padding">New or Replacement for Device #
-												<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]">
+												<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]">
 													<option value="New" <? if ($SV == "ND") { echo "selected"; }?> >New</option>
 													@foreach ($bacnetdevices as $option)
 														@if ($option->retired==1)
-															<option value="{{'Rpl-'.$device->id}}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {{ "selected" }} @endif>Retired Device # - {{$option->id}}</option>
+															<option value="{!!'Rpl-'.$device->id!!}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {!! "selected" !!} @endif>Retired Device # - {!!$option->id!!}</option>
 														@endif
 													@endforeach
 							 					</select>
 											</div>
 										@endif
 										<div class="col-xs-6 row-padding">Report Time(mins)
-											<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[reporttime]" type="text" value="{{$PRTime}}" {{$disable_user}}>
+											<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[reporttime]" type="text" value="{!!$PRTime!!}" {!!$disable_user!!}>
 										</div>
 										<div class="col-xs-12 row-padding">Comments/Notes
-											<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[comments]" type="text" value="{{$device->comments}}">
+											<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[comments]" type="text" value="{!!$device->comments!!}">
 										</div>
 									</div>
 								</div>
@@ -1128,7 +1128,7 @@
 							<div class="col-xs-9 row-padding">No BACNET Devices</div>
 						</div>
 					@endif
-					{{ Form::close() }}
+					{!! Form::close() !!}
 				</div>  
 				<!-- end BACNET MSTP -->
 				<!-- UTILITY DEVICE -->
@@ -1136,8 +1136,8 @@
 					@foreach($boroughs as $borough)
 						@if(strcasecmp($thisBldg->city, $borough) == 0)
 							<div id="system-devices-utility" class="col-xs-12 container-fluid collapse device-section system-devices">
-								{{ Form::open(array("role" => "form")) }}
-									<input class="hidden" type="hidden" name="current_user" value="{{Auth::user()->email}}">
+								{!! Form::open(array("role" => "form")) !!}
+									<input class="hidden" type="hidden" name="current_user" value="{!!Auth::user()->email!!}">
 									<div class="col-xs-12 seamless_block_emc device-title">
 										<div class="col-xs-9 row-padding">Utility Devices</div>
 										<div class="col-xs-3 row-padding" style="text-align: center">
@@ -1220,83 +1220,83 @@
 														$PM="Undefined";
 													}
 												?>
-												<div class="col-xs-12 seamless_block_emc device-block{{$dev_bg}}">
+												<div class="col-xs-12 seamless_block_emc device-block{!!$dev_bg!!}">
 													<div class="form-group">
-														<div class="col-xs-12 row-padding  device-subtitle"><small>Device: </small>#{{$device->id}}<BR>
-															{{"<small>Mac Address: </small>".$device->mac_address}}<BR>
-															{{"<small>Mode: </small>".$PM}}
+														<div class="col-xs-12 row-padding  device-subtitle"><small>Device: </small>#{!!$device->id!!}<BR>
+															{!!"<small>Mac Address: </small>".$device->mac_address!!}<BR>
+															{!!"<small>Mode: </small>".$PM!!}
 															@if ($Status==0 and $ProdOKFlag==1)
 																<div style="font-weight: bold; color: #bce8f1">Check to Commission
-																	<input type="checkbox"  name="Device:{{$device->recnum}}[comm]" value="1">
+																	<input type="checkbox"  name="Device:{!!$device->recnum!!}[comm]" value="1">
 																</div>
 															@endif
-															<input type="hidden" name="Device:{{$device->recnum}}[device_type]" value="sensor">
-															<input type="hidden" name="Device:{{$device->recnum}}[location]" value="{{$device->location}}">
-															<input type="hidden" name="Device:{{$device->recnum}}[device_mode]" value="api">
-															<input type="hidden" name="Device:{{$device->recnum}}[mac_address]" value="{{$device->mac_address}}">
-															<input type="hidden" name="Device:{{$device->recnum}}[short_address]" value="{{$device->short_address}}">
-															<input type="hidden" name="Device:{{$device->recnum}}[product_id]" value="{{$device->product_id}}">
-															<input type="hidden" name="Device:{{$device->recnum}}[device_function]" value="{{$device->device_function}}">
-															<!-- <input type="hidden" name="Device:{{$device->recnum}}[reporttime]" value="NA"> -->
+															<input type="hidden" name="Device:{!!$device->recnum!!}[device_type]" value="sensor">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[location]" value="{!!$device->location!!}">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[device_mode]" value="api">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[mac_address]" value="{!!$device->mac_address!!}">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[short_address]" value="{!!$device->short_address!!}">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[product_id]" value="{!!$device->product_id!!}">
+															<input type="hidden" name="Device:{!!$device->recnum!!}[device_function]" value="{!!$device->device_function!!}">
+															<!-- <input type="hidden" name="Device:{!!$device->recnum!!}[reporttime]" value="NA"> -->
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Product Type<BR>
-															{{$PN}}
+															{!!$PN!!}
 															@if ($ProdOKFlag==0) 
-																{{"<font color='#FF5544'><b><br> Product Type not defined.
-																<BR>Update table before proceeding</b></font>"}}
+																{!!"<font color='#FF5544'><b><br> Product Type not defined.
+																<BR>Update table before proceeding</b></font>"!!}
 															@endif
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Device Function<BR>
-															{{$PF}}
+															{!!$PF!!}
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Name
-															<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[name]" type="text" value="{{$device->name}}">
+															<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[name]" type="text" value="{!!$device->name!!}">
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Physical Location
-															<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[physical_location]" type="text" value="{{$device->physical_location}}">
+															<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[physical_location]" type="text" value="{!!$device->physical_location!!}">
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Zone
-															{{Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])}}
+															{!!Form::select("Device:".$device->recnum."[zone]",$zone_labels,$device->zone,["class" => "form-control", "style" => "color:black"])!!}
 														</div>
 														<div class="col-xs-12 col-sm-6 row-padding">Functional Description
-															<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[functional_description]" type="text" value="{{$device->functional_description}}" {{$disable_user}}>
+															<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[functional_description]" type="text" value="{!!$device->functional_description!!}" {!!$disable_user!!}>
 														</div>
 													</div>
 													<div class="form-group">
 														@if ($Status==1)
 															<div class="col-xs-6 row-padding">Status
-																<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]" {{$disable_user}}>
+																<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]" {!!$disable_user!!}>
 																	@if($SV==0)
-																		<option value="0" @if ($SV == 0) {{ "selected" }} @endif>Uncommissioned</option>
+																		<option value="0" @if ($SV == 0) {!! "selected" !!} @endif>Uncommissioned</option>
 																	@endif
-																	<option value="4" @if ($SV == 4) {{ "selected" }} @endif>
+																	<option value="4" @if ($SV == 4) {!! "selected" !!} @endif>
 																			Active
 																	</option>
-																	<option value="6" @if ($SV == 6 or $SV == 2) {{ "selected" }} @endif>
+																	<option value="6" @if ($SV == 6 or $SV == 2) {!! "selected" !!} @endif>
 																			Inhibited
 																	</option>
-																	<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {{ "selected" }} @endif>
+																	<option value="7" @if ($SV == 7 or $SV == 5 or $SV == 3 or $SV == 1) {!! "selected" !!} @endif>
 																			Retired
 																	</option>
 																</select>
 															</div>
 														@else
 															<div class="col-xs-6 row-padding">New or Replacement for Device #
-																<select class="form-control" style="color: black" name="Device:{{$device->recnum}}[status]">
+																<select class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[status]">
 																	<option value="New" <? if ($SV == "ND") { echo "selected"; }?> >New</option>
 																	@foreach ($utilitydevices as $option)
 																		@if ($option->retired==1)
-																			<option value="{{'Rpl-'.$device->id}}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {{ "selected" }} @endif>Retired Device # - {{$option->id}}</option>
+																			<option value="{!!'Rpl-'.$device->id!!}" @if (substr($device->status,4,strlen($device->status)-4))==$option->id) {!! "selected" !!} @endif>Retired Device # - {!!$option->id!!}</option>
 																		@endif
 																	@endforeach
 																</select>
 															</div>
 														@endif
 														<div class="col-xs-6 row-padding">Report Time(mins)
-															<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[reporttime]" type="text" value="{{$PRTime}}" {{$disable_user}}>
+															<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[reporttime]" type="text" value="{!!$PRTime!!}" {!!$disable_user!!}>
 														</div>
 														<div class="col-xs-12 row-padding">Comments/Notes
-															<input class="form-control" style="color: black" name="Device:{{$device->recnum}}[comments]" type="text" value="{{$device->comments}}">
+															<input class="form-control" style="color: black" name="Device:{!!$device->recnum!!}[comments]" type="text" value="{!!$device->comments!!}">
 														</div>
 													</div>
 												</div>
@@ -1340,7 +1340,7 @@
 											<button class="btn btn-lg btn-primary" type="submit" name="Devices">Save</button>
 										</div>
 									</div>
-								{{ Form::close() }}
+								{!! Form::close() !!}
 							</div>  
 						@endif
 					@endforeach
@@ -1350,12 +1350,12 @@
 		</div>
 		<!-- ALGORITHM MAPPING LIST -->
 		<div id="device-mapping" class="container-fluid collapse col-xs-12">
-			{{ AlgorithmController::index($thisBldg->id, $thisSystem->id) }}
+			{!! AlgorithmController::index($thisBldg->id, $thisSystem->id) !!}
 		</div>
 		<!-- end ALGORITHM MAPPING LIST -->
 		<!-- ZONE LABELS -->
 		<div id="zone-labels" class="container-fluid collapse col-xs-12 ">
-			{{ ZoneController::index($thisBldg->id, $thisSystem->id) }}
+			{!! ZoneController::index($thisBldg->id, $thisSystem->id) !!}
 		</div>
 		<!-- end ZONE LABELS -->
 		<!-- SYSTEM COMMANDS -->
@@ -1367,11 +1367,11 @@
 					</div>
 					<!-- SYSTEM RESET -->
 					<div class="col-xs-12 device-block" style="padding: 15pt;">
-						{{ Form::open(array("role" => "form")) }}
+						{!! Form::open(array("role" => "form")) !!}
 							<button class="micro-row-detail device-block seamless_block_emc col-xs-12 col-sm-2 js-confirm" type="submit" name="ResetSystem" data-confirm='Request Local System Reset?' style="margin-top: 40pt;">
 								RESET SYSTEM
 							</button>
-						{{ Form::close() }}
+						{!! Form::close() !!}
 						<div class="col-xs-12 col-sm-6">
 							<p>
 								This command will generate a file to be transmitted to the local system. The file will be interpreted on the local system and should result in the local system watchdog being triggered, thus triggering a reset of the local system.
@@ -1388,7 +1388,7 @@
 								Last System Reset:
 								<br>
 								@if(isset($reset_log))
-									{{$reset_log->datetime}}
+									{!!$reset_log->datetime!!}
 								@else
 									No Resets Recorded in Last Three Weeks
 								@endif
@@ -1396,21 +1396,21 @@
 						</div>
 						<?php $command_sent = RemoteTask::ConfirmSent($thisSystem->id,'var.2020_command.xx_forcewatchdog.emc') ?>
 						@if(!$command_sent)
-							{{ Form::open(array("role" => "form")) }}
+							{!! Form::open(array("role" => "form")) !!}
 								<button class="micro-row-detail device-block seamless_block_emc col-xs-12 col-sm-2 js-confirm" type="submit" name="UndoResetSystem" data-confirm='Remove Pending Local System Reset Request?' style="margin-top: 20pt;" title="The reset request is still waiting to be transmitted to the local system.">
 									CANCEL PENDING RESET
 								</button>
-							{{ Form::close() }}
+							{!! Form::close() !!}
 						@endif
 					</div>
 					<!-- end SYSTEM RESET -->
 					<!-- SOFTWARE UPDATE -->
 					<div class="col-xs-12 device-block" style="padding: 15pt;">
-						{{ Form::open(array("role" => "form")) }}
+						{!! Form::open(array("role" => "form")) !!}
 							<button class="micro-row-detail device-block seamless_block_emc col-xs-12 col-sm-2 js-confirm" type="submit" name="SoftwareUpdate" style="margin-top: 40pt;" data-confirm='Request Local System Software Update?'>
 								UPDATE SOFTWARE
 							</button>
-						{{ Form::close() }}
+						{!! Form::close() !!}
 						<div class="col-xs-12 col-sm-6">
 							<p>
 								This command will attempt to bring the system up-to-date with the latest software changes for this EMC<sup>20/20</sup> system.
@@ -1427,24 +1427,24 @@
 								Current Software Version:
 								<br>
 								<big>
-									{{$thisSystem->software_version}}
+									{!!$thisSystem->software_version!!}
 								</big>
 							</p>
 							<p class="device-block" style="text-align: center;">
 								Latest Available Software Version:
 								<br>
 								<big>
-									{{$latest_sw_version}}
+									{!!$latest_sw_version!!}
 								</big>
 							</p>
 						</div>
 						<?php $command_sent = RemoteTask::ConfirmSent($thisSystem->id,'var.2020_command.xx_gitupdate.emc') ?>
 						@if(!$command_sent)
-							{{ Form::open(array("role" => "form")) }}
+							{!! Form::open(array("role" => "form")) !!}
 								<button class="micro-row-detail device-block seamless_block_emc col-xs-12 col-sm-2 js-confirm" type="submit" name="UndoSoftwareUpdate" data-confirm='Remove Pending Local System Software Update Request?' style="margin-top: 20pt;" title="The reset request is still waiting to be transmitted to the local system.">
 									CANCEL PENDING UPDATE
 								</button>
-							{{ Form::close() }}
+							{!! Form::close() !!}
 						@endif
 					</div>
 					<!-- end SOFTWARE UPDATE -->
@@ -1548,7 +1548,7 @@
 	function confirmNetworkChange(element) {
 		var oldValue = element.defaultValue;
 		var newValue = element.value;
-		if (window.confirm('{{$netWarning}}')) {
+		if (window.confirm('{!!$netWarning!!}')) {
 			element.defaultValue = newValue;
 		} else {
 			element.value = element.defaultValue;
@@ -1625,9 +1625,9 @@
 		exp_board_2_version_section.parentNode.className = exp_board_2_version_section.parentNode.className.replace(/ hidden/g,"");
 		exp_board_3_version_section.parentNode.className = exp_board_3_version_section.parentNode.className.replace(/ hidden/g,"");
 
-		exp_board_1_version_section.value = (run == "first")?"{{isset($boom[1])?$boom[1]:"00"}}":"00";
-		exp_board_2_version_section.value = (run == "first")?"{{isset($boom[2])?$boom[2]:"00"}}":"00";
-		exp_board_3_version_section.value = (run == "first")?"{{isset($boom[3])?$boom[3]:"00"}}":"00";
+		exp_board_1_version_section.value = (run == "first")?"{!!isset($boom[1])?$boom[1]:"00"!!}":"00";
+		exp_board_2_version_section.value = (run == "first")?"{!!isset($boom[2])?$boom[2]:"00"!!}":"00";
+		exp_board_3_version_section.value = (run == "first")?"{!!isset($boom[3])?$boom[3]:"00"!!}":"00";
 		console.log("--Print Values: #("+exp_board_number+") ..:"+exp_board_1_version_section.value+":"+exp_board_2_version_section.value+":"+exp_board_3_version_section.value);
 		switch(exp_board_number){
 			case "0":

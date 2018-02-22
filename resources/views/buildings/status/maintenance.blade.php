@@ -3,22 +3,22 @@
 
 @section('content')
 
-<div class="page-title" style="height: 95px; line-height: 55px"><h3>{{ $thisBldg->name }} - Maintenance Detail</h3></div>
+<div class="page-title" style="height: 95px; line-height: 55px"><h3>{!! $thisBldg->name !!} - Maintenance Detail</h3></div>
 
 <div class="page-nav">
-	<a href="{{ URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+	<a href="{!! URL::to('building', array($thisBldg->id, 'system', $thisSystem->id)) !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <br>
 
 <div style="margin-left: auto; margin-right: auto; width: 90%;">
 	<div id="accordion">
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Stack Temperatures</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Stack Temperatures</h4>
 		<div>
 			<div id="stackchart" style="width: 85%; margin-left: auto; margin-right: auto; float: left"></div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Lamp Hours</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Lamp Hours</h4>
 				<div>
 					<div id="tabs">
   						<ul>
@@ -72,7 +72,7 @@
 			</div>
 		</div>
 
-		<h4 class="row-detail" style="width: 100%">{{HTML::image('images/greenbutton.png')}} Service Alarms</h4>
+		<h4 class="row-detail" style="width: 100%">{!!HTML::image('images/greenbutton.png')!!} Service Alarms</h4>
 		<div>
 			<div id="servicetable" style="width: 100%; margin-left: auto; margin-right: auto">
 
@@ -89,35 +89,35 @@
 						<div class="col-xs-3 maintenance-row-padding">Burner 1</div>
 						<div class="col-xs-3 maintenance-row-padding">Feb 27, 2013</div>
 						<div class="col-xs-3 maintenance-row-padding">Feb 25, 2014</div>
-						<div class="col-xs-3 maintenance-row-padding">{{HTML::image('images/redbutton.png')}}</div>
+						<div class="col-xs-3 maintenance-row-padding">{!!HTML::image('images/redbutton.png')!!}</div>
 					</div>
 
 					<div class="row" style="color: white; text-align: center; background-color: #01082A;">
 						<div class="col-xs-3 maintenance-row-padding">Burner 2</div>
 						<div class="col-xs-3 maintenance-row-padding">March 10, 2014</div>
 						<div class="col-xs-3 maintenance-row-padding">March 12, 2015</div>
-						<div class="col-xs-3 maintenance-row-padding">{{HTML::image('images/greenbutton.png')}}</div>
+						<div class="col-xs-3 maintenance-row-padding">{!!HTML::image('images/greenbutton.png')!!}</div>
 					</div>
 
 					<div class="row" style="color: white; text-align: center; background-color: #01082A;">
 						<div class="col-xs-3 maintenance-row-padding">Hot Water 1</div>
 						<div class="col-xs-3 maintenance-row-padding">March 29, 2013</div>
 						<div class="col-xs-3 maintenance-row-padding">March 30, 2014</div>
-						<div class="col-xs-3 maintenance-row-padding">{{HTML::image('images/greenbutton.png')}}</div>
+						<div class="col-xs-3 maintenance-row-padding">{!!HTML::image('images/greenbutton.png')!!}</div>
 					</div>
 
 					<div class="row" style="color: white; text-align: center; background-color: #01082A;">
 						<div class="col-xs-3 maintenance-row-padding">Hot Water 2</div>
 						<div class="col-xs-3 maintenance-row-padding">March 29, 2013</div>
 						<div class="col-xs-3 maintenance-row-padding">March 30, 2014</div>
-						<div class="col-xs-3 maintenance-row-padding">{{HTML::image('images/yellowbutton.png')}}</div>
+						<div class="col-xs-3 maintenance-row-padding">{!!HTML::image('images/yellowbutton.png')!!}</div>
 					</div>
 
 					<div class="row" style="color: white; text-align: center; background-color: #01082A;">
 						<div class="col-xs-3 maintenance-row-padding">Ventilation Fan</div>
 						<div class="col-xs-3 maintenance-row-padding">December 15, 2013</div>
 						<div class="col-xs-3 maintenance-row-padding">December 10, 2014</div>
-						<div class="col-xs-3 maintenance-row-padding">{{HTML::image('images/greenbutton.png')}}</div>
+						<div class="col-xs-3 maintenance-row-padding">{!!HTML::image('images/greenbutton.png')!!}</div>
 					</div>
 				</div>
 			</div>

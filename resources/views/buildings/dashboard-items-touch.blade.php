@@ -81,16 +81,16 @@
     ?>
     @if($item->label != 'Operations' )<!--replace operations with reports-->
       <div class="item_col col-xs-6 col-md-4">
-        <a class="building-overview-item system-blocks" href="{{URL::route($routePrefix.'.dashboard', [$thisBldg->id, $thisSystem->id, $item->id])}}" >
-            <i class="fa {{$this_icon}} fa-3x" style="color: white;"></i>
+        <a class="building-overview-item system-blocks" href="{!!URL::route($routePrefix.'.dashboard', [$thisBldg->id, $thisSystem->id, $item->id])!!}" >
+            <i class="fa {!!$this_icon!!} fa-3x" style="color: white;"></i>
           <hr style="margin-top:10px; margin-bottom:5px;">
-          <p class="item_title">{{ $item->label }}</p>
+          <p class="item_title">{!! $item->label !!}</p>
         </a>
       </div>
     @else
       <div class="item_col col-xs-6 col-md-4">
-        <a class="building-overview-item system-blocks" href="{{URL::route('reports.index', [$thisBldg->id, $thisSystem->id])}}?routeprefix=touchscreen" >
-            <i class="fa {{$this_icon}} fa-3x" style="color: white;"></i>
+        <a class="building-overview-item system-blocks" href="{!!URL::route('reports.index', [$thisBldg->id, $thisSystem->id])!!}?routeprefix=touchscreen" >
+            <i class="fa {!!$this_icon!!} fa-3x" style="color: white;"></i>
           <hr style="margin-top:10px; margin-bottom:5px;">
           <p class="item_title">Reports</p>
         </a>
@@ -101,10 +101,10 @@
 
   <script type="text/javascript">
     @if(isset($times))
-      var times = {{ json_encode($times, JSON_NUMERIC_CHECK) }};
+      var times = {!! json_encode($times, JSON_NUMERIC_CHECK) !!};
     @endif
     @if(isset($chart_data))
-      var chart_data = {{ json_encode($chart_data, JSON_NUMERIC_CHECK) }};
+      var chart_data = {!! json_encode($chart_data, JSON_NUMERIC_CHECK) !!};
     @endif
   </script>
 @stop

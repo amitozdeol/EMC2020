@@ -9,18 +9,18 @@
 
     var templates = {
       @foreach($algorithm->toArray() as $alg)
-         {{$alg['id']}}: {
+         {!!$alg['id']!!}: {
           @foreach($alg as $key => $value)
-            {{$key}}: '{{$value}}',
+            {!!$key!!}: '{!!$value!!}',
           @endforeach
          },
       @endforeach
     };
     var commandTypes = {
       @foreach($deviceTypes->toArray() as $type)
-        {{$type['command']}}:{
+        {!!$type['command']!!}:{
           @foreach($type as $key => $value)
-            {{$key}}: '{{$value}}',
+            {!!$key!!}: '{!!$value!!}',
             @endforeach
         },
         @endforeach
@@ -29,7 +29,7 @@
 
     var deviceZones = {
       @foreach($devices as $device)
-        {{$device->id}}: {{$device->zone}},
+        {!!$device->id!!}: {!!$device->zone!!},
       @endforeach
     };
     deviceZones[0] = 0;
@@ -263,16 +263,16 @@
     function sensorTitle(tempID){
         if(tempID in templates){
           @foreach($deviceTypes as $type)
-            SensorGroup = '{{str_replace(' ','',$type->function)}}Sensors';
-            $('#{{str_replace(' ','',$type->function)}}ButtonLabel').removeClass('active');
+            SensorGroup = '{!!str_replace(' ','',$type->function)!!}Sensors';
+            $('#{!!str_replace(' ','',$type->function)!!}ButtonLabel').removeClass('active');
 
-            if(templates[tempID].algorithm_name === '{{$type->function}}'){
-              $("#{{str_replace(' ','',$type->function)}}Sensors").show();
-              $('#{{str_replace(' ','',$type->function)}}ButtonLabel').addClass('active');
+            if(templates[tempID].algorithm_name === '{!!$type->function!!}'){
+              $("#{!!str_replace(' ','',$type->function)!!}Sensors").show();
+              $('#{!!str_replace(' ','',$type->function)!!}ButtonLabel').addClass('active');
             }
 
-            else if(!($("#{{$type->function}}Sensors").hasClass("hidden"))){
-              $("#{{str_replace(' ','',$type->function)}}Sensors").hide();
+            else if(!($("#{!!$type->function!!}Sensors").hasClass("hidden"))){
+              $("#{!!str_replace(' ','',$type->function)!!}Sensors").hide();
             }
           @endforeach
     }
@@ -331,11 +331,11 @@
 
           @if($product->product_id == $device->product_id)
             @foreach($deviceTypes as $type)
-              var commandType = '{{$type->function}}';
+              var commandType = '{!!$type->function!!}';
               var commandTypeFix = commandType.replace(' ','');
-              var commandsString = '{{$product->commands}}';
+              var commandsString = '{!!$product->commands!!}';
               var commands = commandsString.split(',');
-              var commandFound = commands.indexOf("" + {{$type->command}} + "");
+              var commandFound = commands.indexOf("" + {!!$type->command!!} + "");
               if(commandFound != -1){
                 $('#' + commandTypeFix + 'ButtonLabel').removeAttr('disabled');
               }
@@ -349,7 +349,7 @@
         @endif
 
       @foreach($deviceTypes as $type)
-      var commandType = '{{$type->function}}';
+      var commandType = '{!!$type->function!!}';
       var commandTypeFix = commandType.replace(' ','');
           $("#" + commandTypeFix + "Sensors").hide();
           $("#" + commandTypeFix + "Sensors").removeClass("hidden");
@@ -393,7 +393,7 @@
 </style>
 
 
-{{Form::open(['route'=>['algorithm.store', $thisBldg->id, $sid], "method" => "post", "class"=>"js-supress-enter"])}}
+{!!Form::open(['route'=>['algorithm.store', $thisBldg->id, $sid], "method" => "post", "class"=>"js-supress-enter"])!!}
 <div class="row">
   <div class="col-xs-12">
     <h3>Add Algorithm</h3>
@@ -402,11 +402,11 @@
 <div class="row">
   <div class="col-xs-12 col-md-6" style="text-align: center;">
     <label for="algorithm_name"><h4>Algorithm Name</h4></label>
-    {{Form::text('algorithm_name','Algorithm '. count($outDevices),["class" => "form-control input-lg  ", "style" => "color:black", "placeholder" => "Algorithm Name", "id" => "algorithm_name", "title" => "Individual name of this algorithm."])}}
+    {!!Form::text('algorithm_name','Algorithm '. count($outDevices),["class" => "form-control input-lg  ", "style" => "color:black", "placeholder" => "Algorithm Name", "id" => "algorithm_name", "title" => "Individual name of this algorithm."])!!}
   </div>
   <div class="col-xs-12 col-md-6" style="text-align: center;">
     <label for="device_id"><h4>Output Device</h4></label><br>
-    {{Form::select('device_id', $outputDevices, 0 ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "device_id","name" => "device_id", "title" => "Choose a device to control."])}}
+    {!!Form::select('device_id', $outputDevices, 0 ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "device_id","name" => "device_id", "title" => "Choose a device to control."])!!}
     <div class=" col-xs-12 btn-group" data-toggle="buttons" style="text-shadow:none; padding:10px;">
       <div class="col-xs-6">
         <label class="btn btn-primary btn-lg emc-radio-btn">
@@ -431,7 +431,7 @@
   ?>
   <div class="form-group col-xs-12 col-md-6" style="text-align: center;">
     <label for="function_type"><h4>Template</h4></label>
-    {{Form::select('algorithm_id', $algorithmTemps, $algorithmTemps[0] ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "algorithm_id","name" => "algorithm_id", "title" => "Choose your basic algorithm template."])}}
+    {!!Form::select('algorithm_id', $algorithmTemps, $algorithmTemps[0] ,["class" => "form-control input-lg", "style" => "color:black; text-align: center","id" => "algorithm_id","name" => "algorithm_id", "title" => "Choose your basic algorithm template."])!!}
   </div>
   <div class="col-xs-12 col-md-6" style="text-align: center;">
       <label for="sensorDisplay"><h4>Sensor Types</h4></label>
@@ -441,7 +441,7 @@
         <!-- @if((int)$type->algorithm_active) -->
           @if(array_search($type->function,$commandArray, false) === false)
             <?php $commandArray[$commandIndex++] = $type->function; ?>
-            <label class="col-xs-6 col-sm-3 col-md-3 btn btn-primary" id="{{str_replace(' ','',$type->function)}}ButtonLabel" disabled="true" for="{{$type->function}}Button"><input type="checkbox" id="{{$type->function}}Button" onChange="displaySensors(this.id,'{{$type->function}}')">{{$type->function}}</label>
+            <label class="col-xs-6 col-sm-3 col-md-3 btn btn-primary" id="{!!str_replace(' ','',$type->function)!!}ButtonLabel" disabled="true" for="{!!$type->function!!}Button"><input type="checkbox" id="{!!$type->function!!}Button" onChange="displaySensors(this.id,'{!!$type->function!!}')">{!!$type->function!!}</label>
             <?php $i++; ?>
             @if($i%4==0)
               </div>
@@ -468,7 +468,7 @@
     @foreach($deviceTypeFunctions as $types)
 
       <!-- @if((int)$types->algorithm_active) -->
-        <div id="{{str_replace(' ','',$types->function)}}Sensors" name="{{$types->function}}Sensors" class="hidden">
+        <div id="{!!str_replace(' ','',$types->function)!!}Sensors" name="{!!$types->function!!}Sensors" class="hidden">
         @foreach($deviceTypes as $type)
           @if($types->function == $type->function)
             @foreach($devices as $sensor)
@@ -533,67 +533,67 @@
 <div class="form-group">
     <div class="row" style="text-align:center">
         <div class="col-xs-6 col-sm-4 col-md-2">Logic Mode<br>
-          {{Form::select('logicmode',['0' => 'AND', '1' => 'OR', '2' =>'NAND', '3' => 'NOR', '4' => 'XOR'],0,["class" => "form-control", "style" => "color:black", "id" => "logicmode", "title" => "Choose the mode which the sensors will be compared."])}}
+          {!!Form::select('logicmode',['0' => 'AND', '1' => 'OR', '2' =>'NAND', '3' => 'NOR', '4' => 'XOR'],0,["class" => "form-control", "style" => "color:black", "id" => "logicmode", "title" => "Choose the mode which the sensors will be compared."])!!}
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2">Priority Event<br>
-          {{Form::select('priority_events',['0' => 'Off', '1' => 'On'],1,["class" => "form-control", "style" => "color:black", "id" => "priority_events", "title" => "Choose whether this algorithm state should be monitored."])}}
+          {!!Form::select('priority_events',['0' => 'Off', '1' => 'On'],1,["class" => "form-control", "style" => "color:black", "id" => "priority_events", "title" => "Choose whether this algorithm state should be monitored."])!!}
         </div>
        <div class="col-xs-6 col-sm-4 col-md-2"><text id="votesLabel">Votes</text><br>
-          {{Form::text('min_required_inputs',1,["class" => "form-control", "style" => "color:black", "placeholder" => "# Votes", "id" => "min_required_inputs", "title" => "Minimum number of sensors required to activate."])}}
+          {!!Form::text('min_required_inputs',1,["class" => "form-control", "style" => "color:black", "placeholder" => "# Votes", "id" => "min_required_inputs", "title" => "Minimum number of sensors required to activate."])!!}
        </div>
        <div class="col-xs-6 col-sm-4 col-md-2">Polarity Mode<br>
-          {{Form::select('polarity',['0' => 'Direct', '1' => 'Inverse'],0,["class" => "form-control", "style" => "color:black", "id" => "polarity", "title" => "Choose direct or inverse polarity."])}}
+          {!!Form::select('polarity',['0' => 'Direct', '1' => 'Inverse'],0,["class" => "form-control", "style" => "color:black", "id" => "polarity", "title" => "Choose direct or inverse polarity."])!!}
        </div>
        <div class="col-xs-6 col-sm-4 col-md-2">Active Season<br>
-          {{Form::select('season',['0' => 'Winter', '1' => 'Summer', '2' => 'Year-Round'],0,["class" => "form-control", "style" => "color:black", "id" => "season", "title" => "Choose whether to observe or ignore the season."])}}
+          {!!Form::select('season',['0' => 'Winter', '1' => 'Summer', '2' => 'Year-Round'],0,["class" => "form-control", "style" => "color:black", "id" => "season", "title" => "Choose whether to observe or ignore the season."])!!}
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2">Response<br>
-          {{Form::select('response',['0' => 'Off', '1' => 'On'], 1,["class" => "form-control", "style" => "color:black", "id" => "response", "title" => "Turn response on or off." ])}}
+          {!!Form::select('response',['0' => 'Off', '1' => 'On'], 1,["class" => "form-control", "style" => "color:black", "id" => "response", "title" => "Turn response on or off." ])!!}
         </div>
         <div class="col-xs-6 col-sm-4 col-md-2">Zone<br>
-          {{Form::select('zone',$zone_array,0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "zone", "title" => "Zone associated with this algorithm."])}}
+          {!!Form::select('zone',$zone_array,0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "zone", "title" => "Zone associated with this algorithm."])!!}
         </div>
     </div>
     <div class="row" style="text-align:center">
         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">On Delay<br>
             <div class="input-group">
-                {{Form::text('ondelay',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])}}
-                <span class="input-group-btn">{{Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('ondelay',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "ondelay", "title" => "Time delay before activation."])!!}
+                <span class="input-group-btn">{!!Form::select('onDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
             </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">Off Delay<br>
             <div class="input-group">
-                {{Form::text('offdelay',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])}}
-                <span class="input-group-btn">{{Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('offdelay',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "offdelay", "title" => "Time delay before deactivation."])!!}
+                <span class="input-group-btn">{!!Form::select('offDelayFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
             </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">Duration<br>
             <div class="input-group">
-                {{Form::text('duration',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])}}
-                <span class="input-group-btn">{{Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])}}</span>
+                {!!Form::text('duration',0,["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "duration", "title" => "Duration of time to remain active before automatically deactivating."])!!}
+                <span class="input-group-btn">{!!Form::select('durationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "style" => "color:black"])!!}</span>
             </div>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3" style="margin-bottom: 15px;">Default State<br>
-          {{Form::select('default_state', [0 => 'Off', 1 => 'On', 2 => 'Toggle'], 0, ["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "default_state", "title" => "If the inputs to the algorithm have stopped reporting or have, themselves, defaulted, the algorithm will assume the chosen state"])}}
+          {!!Form::select('default_state', [0 => 'Off', 1 => 'On', 2 => 'Toggle'], 0, ["class" => "form-control", "style" => "color:black", "placeholder" => "0", "id" => "default_state", "title" => "If the inputs to the algorithm have stopped reporting or have, themselves, defaulted, the algorithm will assume the chosen state"])!!}
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-4  col-sm-offset-0 col-md-3">Toggle Percent On<br>
-          {{Form::text('default_toggle_percent_on',0,["class" => "form-control", "disabled", "style" => "color:black", "placeholder" => "0", "id" => "default_toggle_percent_on", "title" => "Percentage of the Toggle Period time which the algorithm will choose to be ON/High, in the event of a defaulted state"])}}
+          {!!Form::text('default_toggle_percent_on',0,["class" => "form-control", "disabled", "style" => "color:black", "placeholder" => "0", "id" => "default_toggle_percent_on", "title" => "Percentage of the Toggle Period time which the algorithm will choose to be ON/High, in the event of a defaulted state"])!!}
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 col-md-3 form-group">Toggle Period<br>
             <div class="input-group">
-                {{Form::text('default_toggle_duration',0,["class" => "form-control", "disabled", "style" => "color:black", "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])}}
-                <span class="input-group-btn">{{Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "id" => "toggleDurationFactor", "disabled", "style" => "color:black"])}}</span>
+                {!!Form::text('default_toggle_duration',0,["class" => "form-control", "disabled", "style" => "color:black", "placeholder" => "0", "id" => "default_toggle_duration", "title" => "The time of one complete toggling cycle of ON/High and OFF/Low states, in the event of a defaulted state"])!!}
+                <span class="input-group-btn">{!!Form::select('toggleDurationFactor',['1' => 'Seconds', '60' => 'Minutes', '3600' => 'Hours'],'1',["class" => "btn", "id" => "toggleDurationFactor", "disabled", "style" => "color:black"])!!}</span>
             </div>
         </div>
     </div><br>
     <div class="row" style=" margin-bottom: 50px">
       <div class="col-xs-12" style="margin-bottom: 5px">Description<br>
-      {{Form::textarea('description',NULL,["class" => "form-control", "rows" => "2", "style" => "color:black; resize: vertical; max-height: 200px;", "height" => "1000px", "id" => "description","placeholder" => "Enter Description", "title" => "Brief description of the algorithms purpose or function."])}}</div><br>
-        <div>{{Form::text('inputs',NULL,["id" => "inputs", "style" => "color:black", "name" => "inputs", "style" => "display:none"])}}</div>
-        <div>{{Form::text('reserveinputs',NULL,["id" => "reserveinputs", "style" => "color:black", "name" => "reserveinputs", "style" => "display:none"])}}</div>
+      {!!Form::textarea('description',NULL,["class" => "form-control", "rows" => "2", "style" => "color:black; resize: vertical; max-height: 200px;", "height" => "1000px", "id" => "description","placeholder" => "Enter Description", "title" => "Brief description of the algorithms purpose or function."])!!}</div><br>
+        <div>{!!Form::text('inputs',NULL,["id" => "inputs", "style" => "color:black", "name" => "inputs", "style" => "display:none"])!!}</div>
+        <div>{!!Form::text('reserveinputs',NULL,["id" => "reserveinputs", "style" => "color:black", "name" => "reserveinputs", "style" => "display:none"])!!}</div>
         <div class="col-xs-12" style="margin-top: 15px;">
-        {{Form::submit('Select Devices', ["class"=>"col-xs-12 col-md-3 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save", "disabled" => "true"])}}
-        <a class="col-xs-12 col-md-3 col-md-offset-1 btn btn-lg btn-primary" href="{{URL::route('system.editSystem', [$thisBldg->id, $sid])}}" style="text-align:center">Cancel</a>
+        {!!Form::submit('Select Devices', ["class"=>"col-xs-12 col-md-3 col-md-offset-1 btn btn-lg btn-primary", "name" => "save", "id" => "save", "disabled" => "true"])!!}
+        <a class="col-xs-12 col-md-3 col-md-offset-1 btn btn-lg btn-primary" href="{!!URL::route('system.editSystem', [$thisBldg->id, $sid])!!}" style="text-align:center">Cancel</a>
         <button class="col-xs-12 col-md-3 col-md-offset-1 btn btn-lg btn-primary" type="button" data-toggle="modal" data-target="#templateModal" onclick="fillAlgTempName()">Save as Template</button>
         </div>
     </div>
@@ -610,17 +610,17 @@
       <div class="modal-body row">
         <div style="text-align:left" class="col-xs-6 col-xs-offset-3">
           <label>Name:</label>
-        {{Form::text('name',NULL,["id" => "name", "class" => "form-control"])}}
+        {!!Form::text('name',NULL,["id" => "name", "class" => "form-control"])!!}
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        {{Form::submit('Save Template', ["class"=>"btn btn-primary", "name" => "savetemp", "id" => "savetemp"])}}
+        {!!Form::submit('Save Template', ["class"=>"btn btn-primary", "name" => "savetemp", "id" => "savetemp"])!!}
       </div>
     </div>
   </div>
 </div>
-{{Form::close()}}
+{!!Form::close()!!}
 
 @stop
 @stop

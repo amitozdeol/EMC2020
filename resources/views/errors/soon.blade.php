@@ -12,7 +12,7 @@
       and unfortunately this one isn&rsquo;t quite ready yet.
     </p>
     <p>
-      <a href="{{ URL::previous() }}">previous page</a>.
+      <a href="{!! URL::previous() !!}">previous page</a>.
     </p>
 
 @stop

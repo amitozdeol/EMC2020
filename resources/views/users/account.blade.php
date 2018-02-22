@@ -82,58 +82,58 @@
       <br>
       <br>
       @if(Session::has('message'))
-        <div class="alert {{ Session::get('alert-class') }}" role="alert">
+        <div class="alert {!! Session::get('alert-class') !!}" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ Session::get('message') }}
+            {!! Session::get('message') !!}
         </div>
       @endif
     <div class="col-xs-12 row-padding">
       <div class="user_account_tour pull-right">
-        {{HTML::link(URL::route('account.password.index'), 'Update Password', ['class'=>'btn btn-info btn-sm pull-right col-xs-12', 'style'=>'font-weight: bold;'])}}
+        {!!HTML::link(URL::route('account.password.index'), 'Update Password', ['class'=>'btn btn-info btn-sm pull-right col-xs-12', 'style'=>'font-weight: bold;'])!!}
       </div>
     </div>
-  {{Form::model($user, ['route' => 'account.update', 'method'=>'POST'])}}
+  {!!Form::model($user, ['route' => 'account.update', 'method'=>'POST'])!!}
     <div class="col-xs-12 info-box" style="padding-bottom: 15px;">
       <h2 class="col-xs-12">User Details</h2>
       <div class="user_account_tour col-xs-12 col-sm-6">
-        {{Form::label('email', 'Email')}}
-        {{Form::email('email', NULL, ['class'=>'form-control input-lg', 'placeholder'=>'Email', 'id'=>'email', 'required'])}}
+        {!!Form::label('email', 'Email')!!}
+        {!!Form::email('email', NULL, ['class'=>'form-control input-lg', 'placeholder'=>'Email', 'id'=>'email', 'required'])!!}
         <br>
       </div>
       <div class="user_account_tour col-xs-12 col-sm-3">
-        {{Form::label('mobile_number', 'Mobile Number')}}
-        {{Form::text('mobile_number', Input::old('mobile_number'), ['class'=>'form-control input-lg', 'placeholder'=>'XXXXXXXXXX', 'id'=>'mobile_number', 'type'=>"tel",'title'=>'10-digit US phone number'])}}
+        {!!Form::label('mobile_number', 'Mobile Number')!!}
+        {!!Form::text('mobile_number', Input::old('mobile_number'), ['class'=>'form-control input-lg', 'placeholder'=>'XXXXXXXXXX', 'id'=>'mobile_number', 'type'=>"tel",'title'=>'10-digit US phone number'])!!}
       </div>
 
       <div class="user_account_tour col-xs-12 col-sm-3">
-        {{Form::label('mobile_carrier', 'Mobile Carrier')}}
-        {{Form::select('mobile_carrier', $mobile_carriers, $user->mobile_carrier, ['class' => 'form-control input-lg', 'id'=>'mobile_carrier']) }}
+        {!!Form::label('mobile_carrier', 'Mobile Carrier')!!}
+        {!!Form::select('mobile_carrier', $mobile_carriers, $user->mobile_carrier, ['class' => 'form-control input-lg', 'id'=>'mobile_carrier']) !!}
         <a href="http://freecarrierlookup.com/" target="_blank">Look it up</a>
       </div>
 
       <div class="user_account_tour col-sm-2">
-        {{Form::label('prefix', 'Prefix')}}
-        {{Form::select('prefix', array(' ','Mx.','Ms.','Mrs.','Mr.'), $user->prefix, ['class' => 'form-control', 'id'=>'prefix']) }}
+        {!!Form::label('prefix', 'Prefix')!!}
+        {!!Form::select('prefix', array(' ','Mx.','Ms.','Mrs.','Mr.'), $user->prefix, ['class' => 'form-control', 'id'=>'prefix']) !!}
       </div>
 
       <div class="user_account_tour col-sm-3">
-        {{Form::label('first_name', 'First Name')}}
-        {{Form::text('first_name', Input::old('first_name'), ['class'=>'form-control', 'placeholder'=>'First Name', 'id'=>'first_name'])}}
+        {!!Form::label('first_name', 'First Name')!!}
+        {!!Form::text('first_name', Input::old('first_name'), ['class'=>'form-control', 'placeholder'=>'First Name', 'id'=>'first_name'])!!}
       </div>
 
       <div class="user_account_tour col-sm-2">
-        {{Form::label('middle_initial', 'Middle Initial')}}
-        {{Form::text('middle_initial', Input::old('middle_initial'), ['class'=>'form-control', 'placeholder'=>'Middle Initial', 'id'=>'middle_initial'])}}
+        {!!Form::label('middle_initial', 'Middle Initial')!!}
+        {!!Form::text('middle_initial', Input::old('middle_initial'), ['class'=>'form-control', 'placeholder'=>'Middle Initial', 'id'=>'middle_initial'])!!}
       </div>
 
       <div class="user_account_tour col-sm-3">
-        {{Form::label('last_name', 'Last Name')}}
-        {{Form::text('last_name', Input::old('last_name'), ['class'=>'form-control', 'placeholder'=>'Last Name', 'id'=>'last_name'])}}
+        {!!Form::label('last_name', 'Last Name')!!}
+        {!!Form::text('last_name', Input::old('last_name'), ['class'=>'form-control', 'placeholder'=>'Last Name', 'id'=>'last_name'])!!}
       </div>
 
       <div class="user_account_tour col-sm-2">
-        {{Form::label('suffix', 'Suffix')}}
-        {{Form::select('suffix', array(' ','Sr.','Jr.','III','M.D.','PhD','CPA'), $user->suffix, ['class' => 'form-control', 'id'=>'suffix']) }}
+        {!!Form::label('suffix', 'Suffix')!!}
+        {!!Form::select('suffix', array(' ','Sr.','Jr.','III','M.D.','PhD','CPA'), $user->suffix, ['class' => 'form-control', 'id'=>'suffix']) !!}
       </div>
     </div>
     <br>
@@ -153,7 +153,7 @@
               $set_user_account_tour = true;
             ?>
             @foreach($buildings as $building)
-              <li class="<?php if($count == 0) echo"active ";?>"><a class="@if($set_user_account_tour) user_account_tour @endif" href="#{{str_replace(' ','',$building->name)}}-content" data-toggle="tab" id="building-{{$building->id}}-title">{{$building->name}}</a></li>
+              <li class="<?php if($count == 0) echo"active ";?>"><a class="@if($set_user_account_tour) user_account_tour @endif" href="#{!!str_replace(' ','',$building->name)!!}-content" data-toggle="tab" id="building-{!!$building->id!!}-title">{!!$building->name!!}</a></li>
               <?php $count++; $set_user_account_tour = false;?>
             @endforeach
           </ul>
@@ -164,15 +164,15 @@
               $set_sys_tour = true;
             ?>
             @foreach($buildings as $building)
-              <div class="tab-pane fade <?php if($count == 0) echo"in active ";?>" id="{{str_replace(' ','',$building->name)}}-content">
+              <div class="tab-pane fade <?php if($count == 0) echo"in active ";?>" id="{!!str_replace(' ','',$building->name)!!}-content">
                 <?php $found_system = 0; $first_system=true; $count++;?>
                 <!-- SYSTEMS DROP-DOWN -->
                 <div style="margin: 5px;">
-                  <select @if($set_sys_tour)id="first-system-select"@endif onchange="UserSystemDropdown(this,{{$building->id}})" class="@if($set_user_account_tour) user_account_tour @endif form-control" style="height:34px; font-size:14px; text-align-last: center;">
+                  <select @if($set_sys_tour)id="first-system-select"@endif onchange="UserSystemDropdown(this,{!!$building->id!!})" class="@if($set_user_account_tour) user_account_tour @endif form-control" style="height:34px; font-size:14px; text-align-last: center;">
                     @foreach($systems as $system)
                       @if($system->building_id == $building->id)
-                        <option id="system-{{$system->id}}-title" value="{{$system->id}}" data-toggle="collapse" data-href="{{str_replace('/','',str_replace(' ','',$system->name))}}-content">
-                          {{$system->name}}
+                        <option id="system-{!!$system->id!!}-title" value="{!!$system->id!!}" data-toggle="collapse" data-href="{!!str_replace('/','',str_replace(' ','',$system->name))!!}-content">
+                          {!!$system->name!!}
                         </option>
                         <?php $set_sys_tour = false; ?>
                       @endif
@@ -181,7 +181,7 @@
                 </div>
                 @foreach($systems as $system)
                   @if($system->building_id == $building->id)
-                    <div class="container-fluid collapse{{($first_system)?' in':'';}}" id="{{str_replace(' ','',$system->name)}}-content" style="margin-bottom: 15px;">
+                    <div class="container-fluid collapse{!!($first_system)?' in':'';!!}" id="{!!str_replace(' ','',$system->name)!!}-content" style="margin-bottom: 15px;">
                       <?php $first_system=false;?>
                       <!-- SENSORS -->
                       <div class="@if($set_user_account_tour) user_account_tour @endif col-sm-7" style="padding: 0px;">
@@ -197,27 +197,27 @@
                           @if(isset($commands[$system->id]))
                             @foreach($commands[$system->id] as $function => $command)
                               <tbody>
-                                <tr><td colspan="15" style="background: #c3c3c3;"><strong>{{$command}} Sensors</strong></td></tr>
+                                <tr><td colspan="15" style="background: #c3c3c3;"><strong>{!!$command!!} Sensors</strong></td></tr>
                                 <tr>
                                   <td><strong>Warning</strong></td>
                                   <td>
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'warning-'.$system->id.'-'.$function.'-email'}}"
-                                        id="{{'warning-'.$system->id.'-'.$function.'-email'}}"
-                                        {{(isset($sensor_alerts[$system->id]['warning'][$function]['email']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{{'warning-'.$system->id.'-'.$function.'-email'}}"></label>
+                                        name="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"
+                                        id="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"
+                                        {!!(isset($sensor_alerts[$system->id]['warning'][$function]['email']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"></label>
                                     </div>
                                   </td>
                                   <td>
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'warning-'.$system->id.'-'.$function.'-sms'}}"
-                                        id="{{'warning-'.$system->id.'-'.$function.'-sms'}}"
-                                        {{(isset($sensor_alerts[$system->id]['warning'][$function]['sms']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{{'warning-'.$system->id.'-'.$function.'-sms'}}"></label>
+                                        name="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"
+                                        id="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"
+                                        {!!(isset($sensor_alerts[$system->id]['warning'][$function]['sms']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"></label>
                                     </div>
                                   </td>
                                 </tr>
@@ -227,20 +227,20 @@
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'critical-'.$system->id.'-'.$function.'-email'}}"
-                                        id="{{'critical-'.$system->id.'-'.$function.'-email'}}"
-                                        {{(isset($sensor_alerts[$system->id]['critical'][$function]['email']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{{'critical-'.$system->id.'-'.$function.'-email'}}"></label>
+                                        name="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"
+                                        id="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"
+                                        {!!(isset($sensor_alerts[$system->id]['critical'][$function]['email']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"></label>
                                     </div>
                                   </td>
                                   <td>
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'critical-'.$system->id.'-'.$function.'-sms'}}"
-                                        id="{{'critical-'.$system->id.'-'.$function.'-sms'}}"
-                                        {{(isset($sensor_alerts[$system->id]['critical'][$function]['sms']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{{'critical-'.$system->id.'-'.$function.'-sms'}}"></label>
+                                        name="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"
+                                        id="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"
+                                        {!!(isset($sensor_alerts[$system->id]['critical'][$function]['sms']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"></label>
                                     </div>
                                   </td>
                                 </tr>
@@ -264,15 +264,15 @@
                               @if($alarm_code->alarm_class == "control")
                               <tbody>
                                 <tr>
-                                  <td><strong>{{$alarm_code->description}}</strong></td>
+                                  <td><strong>{!!$alarm_code->description!!}</strong></td>
                                   <td>
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'alarm-'.$system->id.'-'.$alarm_code->id.'-email'}}"
-                                        id="alarm-{{$system->id}}-{{$alarm_code->id}}-email"
-                                        {{(isset($control_alerts[$system->id][$alarm_code->id]['email']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="alarm-{{$system->id}}-{{$alarm_code->id}}-email">
+                                        name="{!!'alarm-'.$system->id.'-'.$alarm_code->id.'-email'!!}"
+                                        id="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-email"
+                                        {!!(isset($control_alerts[$system->id][$alarm_code->id]['email']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-email">
                                       </label>
                                     </div>
                                   </td>
@@ -280,10 +280,10 @@
                                     <div style="display: inline-block;">
                                       <input class="tgl tgl-skewed"
                                         type="checkbox"
-                                        name="{{'alarm-'.$system->id.'-'.$alarm_code->id.'-sms'}}"
-                                        id="alarm-{{$system->id}}-{{$alarm_code->id}}-sms"
-                                        {{(isset($control_alerts[$system->id][$alarm_code->id]['sms']))?"checked":""}}>
-                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="alarm-{{$system->id}}-{{$alarm_code->id}}-sms">
+                                        name="{!!'alarm-'.$system->id.'-'.$alarm_code->id.'-sms'!!}"
+                                        id="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-sms"
+                                        {!!(isset($control_alerts[$system->id][$alarm_code->id]['sms']))?"checked":""!!}>
+                                      <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-sms">
                                       </label>
                                     </div>
                                   </td>
@@ -325,25 +325,25 @@
                   @foreach($log_types as $log_type)
                     @if($log_type->id <= round(count($log_types)/2))
                       <tr>
-                        <td class="ServerLogName"><strong>{{str_replace('_', ' ', $log_type->name)}}</strong></td>
+                        <td class="ServerLogName"><strong>{!!str_replace('_', ' ', $log_type->name)!!}</strong></td>
                         <td>
                           <div style="display: inline-block;">
                             <input class="tgl tgl-skewed"
                               type="checkbox"
-                              name="{{'log-0-'.$log_type->id.'-email'}}"
-                              id="log-0-{{$log_type->id}}-email"
-                              {{(isset($log_alerts[0][$log_type->id]['email']))?"checked":""}}>
-                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-0-{{$log_type->id}}-email"></label>
+                              name="{!!'log-0-'.$log_type->id.'-email'!!}"
+                              id="log-0-{!!$log_type->id!!}-email"
+                              {!!(isset($log_alerts[0][$log_type->id]['email']))?"checked":""!!}>
+                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-0-{!!$log_type->id!!}-email"></label>
                           </div>
                         </td>
                         <td>
                           <div style="display: inline-block;">
                             <input class="tgl tgl-skewed"
                               type="checkbox"
-                              name="{{'log-0-'.$log_type->id.'-sms'}}"
-                              id="log-0-{{$log_type->id}}-sms"
-                              {{(isset($log_alerts[0][$log_type->id]['sms']))?"checked":""}}>
-                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-0-{{$log_type->id}}-sms"></label>
+                              name="{!!'log-0-'.$log_type->id.'-sms'!!}"
+                              id="log-0-{!!$log_type->id!!}-sms"
+                              {!!(isset($log_alerts[0][$log_type->id]['sms']))?"checked":""!!}>
+                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-0-{!!$log_type->id!!}-sms"></label>
                           </div>
                         </td>
                       </tr>
@@ -365,25 +365,25 @@
                   @foreach($log_types as $log_type)
                     @if($log_type->id > round(count($log_types)/2))
                       <tr>
-                        <td class="ServerLogName"><strong>{{str_replace('_', ' ', $log_type->name)}}</strong></td>
+                        <td class="ServerLogName"><strong>{!!str_replace('_', ' ', $log_type->name)!!}</strong></td>
                         <td>
                           <div style="display: inline-block;">
                             <input class="tgl tgl-skewed"
                               type="checkbox"
-                              name="{{'log-0-'.$log_type->id.'-email'}}"
-                              id="log-0-{{$log_type->id}}-email"
-                              {{(isset($log_alerts[0][$log_type->id]['email']))?"checked":""}}>
-                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-0-{{$log_type->id}}-email"></label>
+                              name="{!!'log-0-'.$log_type->id.'-email'!!}"
+                              id="log-0-{!!$log_type->id!!}-email"
+                              {!!(isset($log_alerts[0][$log_type->id]['email']))?"checked":""!!}>
+                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-0-{!!$log_type->id!!}-email"></label>
                           </div>
                         </td>
                         <td>
                           <div style="display: inline-block;">
                             <input class="tgl tgl-skewed"
                               type="checkbox"
-                              name="{{'log-0-'.$log_type->id.'-sms'}}"
-                              id="log-0-{{$log_type->id}}-sms"
-                              {{(isset($log_alerts[0][$log_type->id]['sms']))?"checked":""}}>
-                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-0-{{$log_type->id}}-sms"></label>
+                              name="{!!'log-0-'.$log_type->id.'-sms'!!}"
+                              id="log-0-{!!$log_type->id!!}-sms"
+                              {!!(isset($log_alerts[0][$log_type->id]['sms']))?"checked":""!!}>
+                            <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-0-{!!$log_type->id!!}-sms"></label>
                           </div>
                         </td>
                       </tr>
@@ -402,23 +402,23 @@
                 <strong>Select a Customer: </strong>
                 <select onchange="AdminSystemDropdown(this)" class="form-control" style="height:34px; font-size:14px; text-align-last: center;">
                   @foreach($customers as $customer)
-                    <option id="customer-{{$customer->id}}-title" value="{{$customer->id}}" data-toggle="collapse" data-href="{{str_replace(' ','',$customer->name)}}-content">
-                      {{$customer->name}} : {{$customer->address1}}, {{$customer->city}}, {{$customer->state}}, {{$customer->zip}}
+                    <option id="customer-{!!$customer->id!!}-title" value="{!!$customer->id!!}" data-toggle="collapse" data-href="{!!str_replace(' ','',$customer->name)!!}-content">
+                      {!!$customer->name!!} : {!!$customer->address1!!}, {!!$customer->city!!}, {!!$customer->state!!}, {!!$customer->zip!!}
                     </option>
                   @endforeach
                 </select>
               </div>
               <?php $first_customer=true;?>
               @foreach($customers as $customer)
-                <div class="collapse{{($first_customer)?' in':'';}}" id="{{str_replace(' ','',$customer->name)}}-content">
+                <div class="collapse{!!($first_customer)?' in':'';!!}" id="{!!str_replace(' ','',$customer->name)!!}-content">
                   <div class="col-sm-6">
                     <?php $first_customer=false;?>
                     <strong>Select a Building:</strong>
                     <select onchange="AdminBuildingSystemDropdown(this)" class="form-control" style="height:34px; font-size:14px; text-align-last: center;">
                       @foreach($buildings as $building)
                         @if($building->customer_id == $customer->id)
-                          <option id="building-{{$building->id}}-title" value="{{$building->customer_id}}" data-toggle="collapse" data-href="{{str_replace(' ','',$building->name)}}-content">
-                            {{$building->name}} : {{$building->address1}}, {{$building->city}}, {{$building->state}}, {{$building->zip}}
+                          <option id="building-{!!$building->id!!}-title" value="{!!$building->customer_id!!}" data-toggle="collapse" data-href="{!!str_replace(' ','',$building->name)!!}-content">
+                            {!!$building->name!!} : {!!$building->address1!!}, {!!$building->city!!}, {!!$building->state!!}, {!!$building->zip!!}
                           </option>
                         @endif
                       @endforeach
@@ -430,17 +430,17 @@
                     @foreach($buildings as $building)
                       @if($building->customer_id == $customer->id)
                         <?php $found_building = 1;?>
-                        <div class="container-fluid collapse{{($first_building)?' in':'';}}" id="{{str_replace(' ','',$building->name)}}-content" style="padding: 0px; margin: 0px -10px;">
+                        <div class="container-fluid collapse{!!($first_building)?' in':'';!!}" id="{!!str_replace(' ','',$building->name)!!}-content" style="padding: 0px; margin: 0px -10px;">
                           <?php $first_building=false;?>
                           <?php $found_system = 0; ?>
                           @foreach($systems as $system)
                             @if($system->building_id == $building->id)
                               <?php $found_system = 1; ?>
                               <div class="panel panel-info">
-                                <h3 class="panel-heading panel-title" id="system-{{$system->id}}-title">
-                                  <strong>{{$system->name}}</strong>
+                                <h3 class="panel-heading panel-title" id="system-{!!$system->id!!}-title">
+                                  <strong>{!!$system->name!!}</strong>
                                 </h3>
-                                <div class=" panel-body container-fluid collapse in" id="{{str_replace(' ','',$system->name)}}-content" style="margin-bottom: 15px;">
+                                <div class=" panel-body container-fluid collapse in" id="{!!str_replace(' ','',$system->name)!!}-content" style="margin-bottom: 15px;">
                                   <!-- SENSORS -->
                                   <div class="col-sm-7 plain-list" style="padding: 0px;">
                                     <h3><b>Sensors</b></h3>
@@ -455,27 +455,27 @@
                                       <tbody>
                                         @if(isset($commands[$system->id]))
                                           @foreach($commands[$system->id] as $function => $command)
-                                            <tr><td colspan="15" style="background: #c3c3c3;"><strong>{{$command}} Sensors</strong></td></tr>
+                                            <tr><td colspan="15" style="background: #c3c3c3;"><strong>{!!$command!!} Sensors</strong></td></tr>
                                             <tr>
                                               <td><strong>Warning</strong></td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'warning-'.$system->id.'-'.$function.'-email'}}"
-                                                  id="{{'warning-'.$system->id.'-'.$function.'-email'}}"
-                                                  {{(isset($sensor_alerts[$system->id]['warning'][$function]['email']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{{'warning-'.$system->id.'-'.$function.'-email'}}"></label>
+                                                  name="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"
+                                                  id="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"
+                                                  {!!(isset($sensor_alerts[$system->id]['warning'][$function]['email']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{!!'warning-'.$system->id.'-'.$function.'-email'!!}"></label>
                                                 </div>
                                               </td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed "
                                                   type="checkbox"
-                                                  name="{{'warning-'.$system->id.'-'.$function.'-sms'}}"
-                                                  id="{{'warning-'.$system->id.'-'.$function.'-sms'}}"
-                                                  {{(isset($sensor_alerts[$system->id]['warning'][$function]['sms']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{{'warning-'.$system->id.'-'.$function.'-sms'}}"></label>
+                                                  name="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"
+                                                  id="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"
+                                                  {!!(isset($sensor_alerts[$system->id]['warning'][$function]['sms']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{!!'warning-'.$system->id.'-'.$function.'-sms'!!}"></label>
                                                 </div>
                                               </td>
                                             </tr>
@@ -485,20 +485,20 @@
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'critical-'.$system->id.'-'.$function.'-email'}}"
-                                                  id="{{'critical-'.$system->id.'-'.$function.'-email'}}"
-                                                  {{(isset($sensor_alerts[$system->id]['critical'][$function]['email']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{{'critical-'.$system->id.'-'.$function.'-email'}}"></label>
+                                                  name="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"
+                                                  id="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"
+                                                  {!!(isset($sensor_alerts[$system->id]['critical'][$function]['email']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="{!!'critical-'.$system->id.'-'.$function.'-email'!!}"></label>
                                                 </div>
                                               </td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed "
                                                   type="checkbox"
-                                                  name="{{'critical-'.$system->id.'-'.$function.'-sms'}}"
-                                                  id="{{'critical-'.$system->id.'-'.$function.'-sms'}}"
-                                                  {{(isset($sensor_alerts[$system->id]['critical'][$function]['sms']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{{'critical-'.$system->id.'-'.$function.'-sms'}}"></label>
+                                                  name="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"
+                                                  id="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"
+                                                  {!!(isset($sensor_alerts[$system->id]['critical'][$function]['sms']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="{!!'critical-'.$system->id.'-'.$function.'-sms'!!}"></label>
                                                 </div>
                                               </td>
                                             </tr>
@@ -522,25 +522,25 @@
                                         @foreach($alarm_codes as $alarm_code)
                                           @if($alarm_code->alarm_class == "control")
                                           <tr>
-                                            <td>{{$alarm_code->description}}</td>
+                                            <td>{!!$alarm_code->description!!}</td>
                                             <td>
                                               <div style="display: inline-block;">
                                                 <input class="tgl tgl-skewed"
                                                 type="checkbox"
-                                                name="{{'alarm-'.$system->id.'-'.$alarm_code->id.'-email'}}"
-                                                id="alarm-{{$system->id}}-{{$alarm_code->id}}-email"
-                                                {{(isset($control_alerts[$system->id][$alarm_code->id]['email']))?"checked":""}}>
-                                                <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="alarm-{{$system->id}}-{{$alarm_code->id}}-email"></label>
+                                                name="{!!'alarm-'.$system->id.'-'.$alarm_code->id.'-email'!!}"
+                                                id="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-email"
+                                                {!!(isset($control_alerts[$system->id][$alarm_code->id]['email']))?"checked":""!!}>
+                                                <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-email"></label>
                                               </div>
                                             </td>
                                             <td>
                                               <div style="display: inline-block;">
                                                 <input class="tgl tgl-skewed"
                                                 type="checkbox"
-                                                name="{{'alarm-'.$system->id.'-'.$alarm_code->id.'-sms'}}"
-                                                id="alarm-{{$system->id}}-{{$alarm_code->id}}-sms"
-                                                {{(isset($control_alerts[$system->id][$alarm_code->id]['sms']))?"checked":""}}>
-                                                <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="alarm-{{$system->id}}-{{$alarm_code->id}}-sms"></label>
+                                                name="{!!'alarm-'.$system->id.'-'.$alarm_code->id.'-sms'!!}"
+                                                id="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-sms"
+                                                {!!(isset($control_alerts[$system->id][$alarm_code->id]['sms']))?"checked":""!!}>
+                                                <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="alarm-{!!$system->id!!}-{!!$alarm_code->id!!}-sms"></label>
                                               </div>
                                             </td>
                                           @endif
@@ -567,25 +567,25 @@
                                           @foreach($log_types as $log_type)
                                             @if($log_type->id <= round(count($log_types)/2))
                                             <tr>
-                                              <td>{{str_replace('_', ' ', $log_type->name)}}</td>
+                                              <td>{!!str_replace('_', ' ', $log_type->name)!!}</td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'log-'.$system->id.'-'.$log_type->id.'-email'}}"
-                                                  id="log-{{$system->id}}-{{$log_type->id}}-email"
-                                                  {{(isset($log_alerts[$system->id][$log_type->id]['email']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-{{$system->id}}-{{$log_type->id}}-email"></label>
+                                                  name="{!!'log-'.$system->id.'-'.$log_type->id.'-email'!!}"
+                                                  id="log-{!!$system->id!!}-{!!$log_type->id!!}-email"
+                                                  {!!(isset($log_alerts[$system->id][$log_type->id]['email']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-{!!$system->id!!}-{!!$log_type->id!!}-email"></label>
                                                 </div>
                                               </td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'log-'.$system->id.'-'.$log_type->id.'-sms'}}"
-                                                  id="log-{{$system->id}}-{{$log_type->id}}-sms"
-                                                  {{(isset($log_alerts[$system->id][$log_type->id]['sms']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-{{$system->id}}-{{$log_type->id}}-sms"></label>
+                                                  name="{!!'log-'.$system->id.'-'.$log_type->id.'-sms'!!}"
+                                                  id="log-{!!$system->id!!}-{!!$log_type->id!!}-sms"
+                                                  {!!(isset($log_alerts[$system->id][$log_type->id]['sms']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-{!!$system->id!!}-{!!$log_type->id!!}-sms"></label>
                                                 </div>
                                               </td>
                                             @endif
@@ -607,25 +607,25 @@
                                           @foreach($log_types as $log_type)
                                             @if($log_type->id > round(count($log_types)/2))
                                             <tr>
-                                              <td>{{str_replace('_', ' ', $log_type->name)}}</td>
+                                              <td>{!!str_replace('_', ' ', $log_type->name)!!}</td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'log-'.$system->id.'-'.$log_type->id.'-email'}}"
-                                                  id="log-{{$system->id}}-{{$log_type->id}}-email"
-                                                  {{(isset($log_alerts[$system->id][$log_type->id]['email']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-{{$system->id}}-{{$log_type->id}}-email"></label>
+                                                  name="{!!'log-'.$system->id.'-'.$log_type->id.'-email'!!}"
+                                                  id="log-{!!$system->id!!}-{!!$log_type->id!!}-email"
+                                                  {!!(isset($log_alerts[$system->id][$log_type->id]['email']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="EMAIL" for="log-{!!$system->id!!}-{!!$log_type->id!!}-email"></label>
                                                 </div>
                                               </td>
                                               <td>
                                                 <div style="display: inline-block;">
                                                   <input class="tgl tgl-skewed"
                                                   type="checkbox"
-                                                  name="{{'log-'.$system->id.'-'.$log_type->id.'-sms'}}"
-                                                  id="log-{{$system->id}}-{{$log_type->id}}-sms"
-                                                  {{(isset($log_alerts[$system->id][$log_type->id]['sms']))?"checked":""}}>
-                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-{{$system->id}}-{{$log_type->id}}-sms"></label>
+                                                  name="{!!'log-'.$system->id.'-'.$log_type->id.'-sms'!!}"
+                                                  id="log-{!!$system->id!!}-{!!$log_type->id!!}-sms"
+                                                  {!!(isset($log_alerts[$system->id][$log_type->id]['sms']))?"checked":""!!}>
+                                                  <label class="tgl-btn" data-tg-off="OFF" data-tg-on="TEXT" for="log-{!!$system->id!!}-{!!$log_type->id!!}-sms"></label>
                                                 </div>
                                               </td>
                                             @endif
@@ -662,18 +662,18 @@
       <div class="col-sm-10 col-sm-offset-1">
 
         <div class="user_account_tour col-xs-12 col-sm-4 col-md-3 pull-right">
-          {{Form::submit('Submit', ['class'=>'btn btn-primary btn-sm col-xs-12'])}}
+          {!!Form::submit('Submit', ['class'=>'btn btn-primary btn-sm col-xs-12'])!!}
           <div class="col-xs-12"><br>{{-- Spacing for mobile --}}</div>
         </div>
         <div class="user_account_tour col-xs-12 col-sm-4 col-md-3 pull-left">
-          {{HTML::link (URL::route('account.index'), 'Cancel', ['class'=>'btn btn-default btn-sm col-xs-12'])}}
+          {!!HTML::link (URL::route('account.index'), 'Cancel', ['class'=>'btn btn-default btn-sm col-xs-12'])!!}
           <div class="col-xs-12"><br>{{-- Spacing for mobile --}}</div>
         </div>
 
       </div>
 
     </div>
-  {{Form::close()}}
+  {!!Form::close()!!}
 
   <?
     //Cache control - Scripts
@@ -708,11 +708,11 @@
     function UserSystemDropdown(s,building_id){
       var select_ref = s[s.selectedIndex].dataset.href;
       @foreach($systems as $system)
-        if(building_id == Number({{$system->building_id}})){
+        if(building_id == Number({!!$system->building_id!!})){
           console.log("same building");
-          if(select_ref != "{{str_replace('/','',str_replace(' ','',$system->name))}}-content"){
+          if(select_ref != "{!!str_replace('/','',str_replace(' ','',$system->name))!!}-content"){
             setTimeout(function () {
-              $("#{{str_replace('/','',str_replace(' ','',$system->name))}}-content").collapse('hide');
+              $("#{!!str_replace('/','',str_replace(' ','',$system->name))!!}-content").collapse('hide');
             }, 100);
           }
         }else{
@@ -730,7 +730,7 @@
     function AdminSystemDropdown(s){
       var content = s[s.selectedIndex].dataset.href;
       @foreach($customers as $customer)
-          var localcontent = "{{str_replace(' ','',$customer->name)}}-content";
+          var localcontent = "{!!str_replace(' ','',$customer->name)!!}-content";
           if(content.trim() != localcontent.trim())
             $("#"+localcontent+":visible").collapse('hide');
       @endforeach
@@ -741,8 +741,8 @@
       function AdminBuildingSystemDropdown(s){
         var content = s[s.selectedIndex].dataset.href;
         @foreach($buildings as $building)
-          if({{$building->customer_id}} == s[s.selectedIndex].value){
-            var localcontent = "{{str_replace(' ','',$building->name)}}-content";
+          if({!!$building->customer_id!!} == s[s.selectedIndex].value){
+            var localcontent = "{!!str_replace(' ','',$building->name)!!}-content";
             if(content.trim() != localcontent.trim())
               $("#"+localcontent+":visible").collapse('hide');
           }

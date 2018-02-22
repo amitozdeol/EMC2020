@@ -77,18 +77,18 @@
         <tbody>
           @foreach($managers as $manager)
             <tr>
-              <th scope="row">{{$manager->name}}</th>
+              <th scope="row">{!!$manager->name!!}</th>
               <td data-title="User">
                 @if($manager->first_name !== '' && $manager->last_name !== '')
-                  {{$manager->first_name}} {{$manager->last_name}}
+                  {!!$manager->first_name!!} {!!$manager->last_name!!}
                 @else
-                  {{$manager->email}}
+                  {!!$manager->email!!}
                 @endif
               </td>
               <td data-title="Access Level">
-                {{Form::open(['action'=>'access.destroy', 'method'=>'DELETE'])}}
-                {{Form::hidden('building_manager_id',$manager->id)}}
-                {{$manager->label}}
+                {!!Form::open(['action'=>'access.destroy', 'method'=>'DELETE'])!!}
+                {!!Form::hidden('building_manager_id',$manager->id)!!}
+                {!!$manager->label!!}
               </td>
               <td data-title="Remove">
                 <button type="submit" class="btn btn-danger btn-sm pull-right js-confirm" data-confirm="Are you sure you want to delete this access rule?">
@@ -96,7 +96,7 @@
                   <span class="hidden-xs">Remove</span>
                 </button>
               </td>
-                {{Form::close()}}
+                {!!Form::close()!!}
             </tr>
           @endforeach
         </tbody>
@@ -128,18 +128,18 @@
   <br>
     <div class="row groupaccess_title">
       <h3 class="col-xs-4 col-sm-6 col-sm-offset-2" style="margin-top: 5px; text-align: center;">
-        {{$group->name}}
+        {!!$group->name!!}
 
       </h3>
       <div class="pull-right" style="margin-top: 5px;">
         <div class="btn-group">
-          <button class="btn btn-default btn-sm"  style="margin:1px;" data-toggle="modal" data-target="#edit-group-{{$group->id}}">Edit</button>
-          <button type="button" class="btn btn-sm btn-default" style="margin:1px;" data-toggle="modal" data-target="#add-building-{{$group->id}}">
+          <button class="btn btn-default btn-sm"  style="margin:1px;" data-toggle="modal" data-target="#edit-group-{!!$group->id!!}">Edit</button>
+          <button type="button" class="btn btn-sm btn-default" style="margin:1px;" data-toggle="modal" data-target="#add-building-{!!$group->id!!}">
             <span class="visible-xs-inline hidden-sm-inline"><i class="glyphicon glyphicon-plus"></i></span>
             <span class="hidden-xs">Add</span>
             Building
           </button>
-          <button type="button" class="btn btn-sm btn-default" style="margin:1px;" data-toggle="modal" data-target="#add-manager-{{$group->id}}">
+          <button type="button" class="btn btn-sm btn-default" style="margin:1px;" data-toggle="modal" data-target="#add-manager-{!!$group->id!!}">
             <span class="visible-xs-inline hidden-sm-inline"><i class="glyphicon glyphicon-plus"></i></span>
             <span class="hidden-xs">Add</span>
             Manager
@@ -162,18 +162,18 @@
             @foreach($group_buildings AS $group_building)
               @if($group->id === $group_building->building_group_id)
               <tr>
-                <th scope="row">{{$group_building->name}}</th>
+                <th scope="row">{!!$group_building->name!!}</th>
                 <td data-title="Address">
-                  <span>{{$group_building->address1}}</span>
-                  {{Form::open(['action'=>'access.deleteGroupBuilding', 'method'=>'DELETE', 'class'=>'pull-right'])}}
-                  {{Form::hidden('id', $group_building->id)}}
+                  <span>{!!$group_building->address1!!}</span>
+                  {!!Form::open(['action'=>'access.deleteGroupBuilding', 'method'=>'DELETE', 'class'=>'pull-right'])!!}
+                  {!!Form::hidden('id', $group_building->id)!!}
                 </td>
                 <td data-title="Remove">
                   <button type="submit" class="btn btn-danger btn-sm pull-right js-confirm" data-confirm="Are you sure you want to delete this access rule?">
                     <i class="glyphicon glyphicon-remove"></i>
                     <span class="hidden-xs">Remove</span>
                   </button>
-                  {{Form::close()}}
+                  {!!Form::close()!!}
                 </td>
               </tr>
               @endif
@@ -195,18 +195,18 @@
             @foreach($group_managers as $group_manager)
               @if($group_manager->building_group_id === $group->id)
               <tr>
-                <th scope="row">{{$group_manager->email}}</th>
+                <th scope="row">{!!$group_manager->email!!}</th>
                 <td data-title="Access Level">
-                  <span>{{$group_manager->label}}</span>
-                  {{Form::open(['action'=>'access.deleteGroupManager', 'method'=>'DELETE', 'class'=>'pull-right'])}}
-                  {{Form::hidden('id', $group_manager->id)}}
+                  <span>{!!$group_manager->label!!}</span>
+                  {!!Form::open(['action'=>'access.deleteGroupManager', 'method'=>'DELETE', 'class'=>'pull-right'])!!}
+                  {!!Form::hidden('id', $group_manager->id)!!}
                 </td>
                 <td data-title="Remove">
                   <button type="submit" class="btn btn-danger btn-sm pull-right js-confirm" data-confirm="Are you sure you want to delete this access rule?">
                     <i class="glyphicon glyphicon-remove"></i>
                     <span class="hidden-xs">Remove</span>
                   </button>
-                  {{Form::close()}}
+                  {!!Form::close()!!}
                 </td>
               </tr>
               @endif
@@ -223,7 +223,7 @@
 <div class="modal fade" id="new-manager-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {{Form::open(['action'=>'access.store', 'class'=>'form-spaced'])}}
+      {!!Form::open(['action'=>'access.store', 'class'=>'form-spaced'])!!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -232,21 +232,21 @@
           </h4>
         </div>
         <div class="modal-body">
-            {{Form::label('building_id','Building')}}
-            {{Form::select('building_id',$buildings, null, ['class'=>'form-control'])}}
+            {!!Form::label('building_id','Building')!!}
+            {!!Form::select('building_id',$buildings, null, ['class'=>'form-control'])!!}
 
-            {{Form::label('user_id','User')}}
-            {{Form::select('user_id',$users, null, ['class'=>'form-control'])}}
+            {!!Form::label('user_id','User')!!}
+            {!!Form::select('user_id',$users, null, ['class'=>'form-control'])!!}
 
-            {{Form::label('role','Access Level')}}
-            {{Form::select('role', $labels, null, ['class'=>'form-control'])}}
+            {!!Form::label('role','Access Level')!!}
+            {!!Form::select('role', $labels, null, ['class'=>'form-control'])!!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
           <input  type="submit" class="btn btn-primary btn-sm" value="Save">
         </div>
       </div>
-      {{Form::close()}}
+      {!!Form::close()!!}
     </div>
   </div>
 </div>
@@ -254,7 +254,7 @@
 <div class="modal fade" id="new-group-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {{Form::open(['action'=>'access.storeGroup', 'class'=>'form-spaced'])}}
+      {!!Form::open(['action'=>'access.storeGroup', 'class'=>'form-spaced'])!!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -263,25 +263,25 @@
           </h4>
         </div>
         <div class="modal-body">
-          {{Form::label('name', 'Group Name')}}
-          {{Form::text('name', null, ['class'=>'form-control'])}}
+          {!!Form::label('name', 'Group Name')!!}
+          {!!Form::text('name', null, ['class'=>'form-control'])!!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
           <input  type="submit" class="btn btn-primary btn-sm" value="Save">
         </div>
       </div>
-      {{Form::close()}}
+      {!!Form::close()!!}
     </div>
   </div>
 </div>
 
 @foreach($groups as $group)
-<div class="modal fade" id="edit-group-{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-group-{!!$group->id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {{Form::open(['action'=>'access.updateGroup', 'class'=>'form-spaced'])}}
-      {{Form::hidden('id', $group->id)}}
+      {!!Form::open(['action'=>'access.updateGroup', 'class'=>'form-spaced'])!!}
+      {!!Form::hidden('id', $group->id)!!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -290,71 +290,71 @@
           </h4>
         </div>
         <div class="modal-body">
-          {{Form::label('name', 'Group Name')}}
-          {{Form::text('name', $group->name, ['class'=>'form-control'])}}
+          {!!Form::label('name', 'Group Name')!!}
+          {!!Form::text('name', $group->name, ['class'=>'form-control'])!!}
         </div>
         <div class="modal-footer">
-          {{HTML::link('access/group/delete/'.$group->id, 'Delete Group', ['class'=>'btn btn-danger btn-sm pull-left js-confirm', 'data-confirm'=>'Are you sure you want to delete this group and all of the associated building/manager access rules?'])}}
+          {!!HTML::link('access/group/delete/'.$group->id, 'Delete Group', ['class'=>'btn btn-danger btn-sm pull-left js-confirm', 'data-confirm'=>'Are you sure you want to delete this group and all of the associated building/manager access rules?'])!!}
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
           <input  type="submit" class="btn btn-primary btn-sm" value="Save">
         </div>
       </div>
-      {{Form::close()}}
+      {!!Form::close()!!}
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="add-building-{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-building-{!!$group->id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {{Form::open(['action'=>'access.addGroupBuilding', 'class'=>'form-spaced'])}}
-      {{Form::hidden('id', $group->id)}}
+      {!!Form::open(['action'=>'access.addGroupBuilding', 'class'=>'form-spaced'])!!}
+      {!!Form::hidden('id', $group->id)!!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title">
-            Add a building to {{$group->name}}.
+            Add a building to {!!$group->name!!}.
           </h4>
         </div>
         <div class="modal-body">
-          {{Form::label('building_id', 'Building')}}
-          {{Form::select('building_id', $buildings, NULL, ['class'=>'form-control'])}}
+          {!!Form::label('building_id', 'Building')!!}
+          {!!Form::select('building_id', $buildings, NULL, ['class'=>'form-control'])!!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
           <input  type="submit" class="btn btn-primary btn-sm" value="Save">
         </div>
       </div>
-      {{Form::close()}}
+      {!!Form::close()!!}
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="add-manager-{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-manager-{!!$group->id!!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      {{Form::open(['action'=>'access.addGroupManager', 'class'=>'form-spaced'])}}
-      {{Form::hidden('id', $group->id)}}
+      {!!Form::open(['action'=>'access.addGroupManager', 'class'=>'form-spaced'])!!}
+      {!!Form::hidden('id', $group->id)!!}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
           <h4 class="modal-title">
-            Add a Manager to {{$group->name}}.
+            Add a Manager to {!!$group->name!!}.
           </h4>
         </div>
         <div class="modal-body">
-          {{Form::label('user_id', 'User')}}
-          {{Form::select('user_id', $users, NULL, ['class'=>'form-control'])}}
+          {!!Form::label('user_id', 'User')!!}
+          {!!Form::select('user_id', $users, NULL, ['class'=>'form-control'])!!}
 
-          {{Form::label('role', 'Access Level')}}
-          {{Form::select('role', $labels, NULL, ['class'=>'form-control'])}}
+          {!!Form::label('role', 'Access Level')!!}
+          {!!Form::select('role', $labels, NULL, ['class'=>'form-control'])!!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
           <input  type="submit" class="btn btn-primary btn-sm" value="Save">
         </div>
       </div>
-      {{Form::close()}}
+      {!!Form::close()!!}
     </div>
   </div>
 </div>

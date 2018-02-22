@@ -26,7 +26,7 @@
             <br><a href="#" class="btn btn-default-new">Learn more</a>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12 module">
-            {{HTML::image('images/home_page/product.jpeg', '', array('class' => 'img-responsive img-thumbnail'))}}
+            {!!HTML::image('images/home_page/product.jpeg', '', array('class' => 'img-responsive img-thumbnail'))!!}
         </div>
       </div>
 
@@ -113,8 +113,8 @@
             <div class="item active set_slider_padding ">
               <div id="skills" class="row" style="background: white;">
                 <div class="col-sm-6 tab_slider_img aos-init aos-animate" data-aos="fade-in">
-                  {{ HTML::image('images/home_page/zone_new_mobile.png', 'image title', array('class' => 'tab_slider_img_mobile responsive')) }}
-                  {{ HTML::image('images/home_page/zone_new.png', 'image title', array('class' => 'tab_slider_img_non-mobile responsive')) }}
+                  {!! HTML::image('images/home_page/zone_new_mobile.png', 'image title', array('class' => 'tab_slider_img_mobile responsive')) !!}
+                  {!! HTML::image('images/home_page/zone_new.png', 'image title', array('class' => 'tab_slider_img_non-mobile responsive')) !!}
                 </div>
                 <div class="col-sm-6 aos-init aos-animate" data-aos="fade-in">
                   <div class="sectionTitle">
@@ -142,7 +142,7 @@
             <div class="item set_slider_padding">
               <div id="mission" class="row jshide" style="display: block; background: white;">
                 <div class="col-sm-6 tab_slider_img">
-                  {{ HTML::image('images/home_page/expansion_board.jpeg', 'image title', array('class' => 'responsive')) }}
+                  {!! HTML::image('images/home_page/expansion_board.jpeg', 'image title', array('class' => 'responsive')) !!}
                 </div>
                 <div class="col-sm-6">
                   <div class="sectionTitle">
@@ -171,7 +171,7 @@
             <div class="item set_slider_padding">
               <div id="values" class="row jshide" style="display: block; background: white;">
                 <div class="col-sm-6 tab_slider_img">
-                  {{ HTML::image('images/home_page/touch-screen.jpg', 'image title', array('class' => 'responsive')) }}
+                  {!! HTML::image('images/home_page/touch-screen.jpg', 'image title', array('class' => 'responsive')) !!}
                 </div>
                 <div class="col-sm-6">
                   <div class="sectionTitle">
@@ -271,7 +271,7 @@
           </div>
           <div class="row">
             <div class="col-sm-6 mobile_advert">
-              {{HTML::image('images/applogo.png', '', array('class' => 'img-responsive img-thumbnail' ,'style' => 'background: white; max-height: 100px;'))}}
+              {!!HTML::image('images/applogo.png', '', array('class' => 'img-responsive img-thumbnail' ,'style' => 'background: white; max-height: 100px;'))!!}
               <h2>Take EMC<sup>20/20</sup> anywhere you go</h2>
               <label style="padding: 10px 0;">Control your building automation system from anywhere with our new EMC<sup>20/20</sup> app on your iOS and Android devices.</label>
 
@@ -283,13 +283,13 @@
                 <!-- ios logo -->
                 <div class="col-xs-6">
                   <a href="#">
-                    {{HTML::image('images/home_page/iOS_badge.svg', '', array('class' => 'img-responsive img-thumbnail' ,'style' => 'background: white; height: 70px; padding-top: 10px;'))}}
+                    {!!HTML::image('images/home_page/iOS_badge.svg', '', array('class' => 'img-responsive img-thumbnail' ,'style' => 'background: white; height: 70px; padding-top: 10px;'))!!}
                   </a>
                 </div>
               </div>
             </div>
             <div class="col-sm-6" >
-              {{HTML::image('images/home_page/iphone6s.png', '', array('class' => 'img-responsive img-thumbnail iphoneimg' ,'style' => 'background: white;'))}}
+              {!!HTML::image('images/home_page/iphone6s.png', '', array('class' => 'img-responsive img-thumbnail iphoneimg' ,'style' => 'background: white;'))!!}
             </div>
           </div>
       </div>

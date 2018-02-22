@@ -233,7 +233,7 @@
           <tr >
             <td  style="display:block">
               <a href="http://emc.eawelectro.com">
-                {{ HTML::image("images/logo-bw-light-back.png","Logo", array('title'=>"Logo",'height'=>"80",'width'=>"150")) }}
+                {!! HTML::image("images/logo-bw-light-back.png","Logo", array('title'=>"Logo",'height'=>"80",'width'=>"150")) !!}
               </a>
               </a>
             </td>
@@ -270,10 +270,10 @@
             <td align="center">
               @if(isset($alert['notification_type']))
                 @if($alert['notification_type'] == 'alarm')
-                  <p>Click {{ HTML::linkRoute('account.index', 'here') }} to update your email preferences.</p>
+                  <p>Click {!! HTML::linkRoute('account.index', 'here') !!} to update your email preferences.</p>
                   <p>
-                    <a href={{URL::route('update_subscription', $alert['unsubscribe_key'])}} >
-                      Unsubscribe from <u>{{$alarm_code['description']}}@if(isset($alert['function'])) - {{ $alert['function']}}@endif </u> related mails.
+                    <a href={!!URL::route('update_subscription', $alert['unsubscribe_key'])!!} >
+                      Unsubscribe from <u>{!!$alarm_code['description']!!}@if(isset($alert['function'])) - {!! $alert['function']!!}@endif </u> related mails.
                     </a>
                   </p>
                 @endif

@@ -226,9 +226,9 @@
           scrollTop: $( $.attr(this, 'href') ).offset().top
       }, 500);
   });
-  $("#nav_product").attr("href", "{{URL::to('/').'#products'}}");
-  $("#nav_services").attr("href", "{{URL::to('/').'#services'}}");
-  $("#nav_aboutus").attr("href", "{{URL::to('/').'#aboutus'}}");
+  $("#nav_product").attr("href", "{!!URL::to('/').'#products'!!}");
+  $("#nav_services").attr("href", "{!!URL::to('/').'#services'!!}");
+  $("#nav_aboutus").attr("href", "{!!URL::to('/').'#aboutus'!!}");
 
 
 </script>

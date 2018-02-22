@@ -6,10 +6,10 @@
 
 @section('content')
 
-<div class="page-title"><h3>{{ $thisBldg->name }} - System {{ $thisSystem->id }} - {{$sysDetail[0]['group_name']}} Detail</h3></div>
+<div class="page-title"><h3>{!! $thisBldg->name !!} - System {!! $thisSystem->id !!} - {!!$sysDetail[0]['group_name']!!} Detail</h3></div>
 
 <div class="page-nav">
-  <a href="{{ URL::previous() }}" style="color: white">Back to {{ $thisBldg->name }}, System {{$thisSystem->id}} Overview</a>
+  <a href="{!! URL::previous() !!}" style="color: white">Back to {!! $thisBldg->name !!}, System {!!$thisSystem->id!!} Overview</a>
 </div>
 
 <br>
@@ -69,20 +69,20 @@
 
           }
                 ?>
-        <h4 class="row-detail" style="width: 100%; font-size: 14pt" title="{{ $title }}">{{$alarmdsp!=""?(HTML::image($alarmdsp)):"&nbsp;&nbsp;&nbsp;"}} {{$category->subgroup_name}} </h4>
+        <h4 class="row-detail" style="width: 100%; font-size: 14pt" title="{!! $title !!}">{!!$alarmdsp!=""?(HTML::image($alarmdsp)):"&nbsp;&nbsp;&nbsp;"!!} {!!$category->subgroup_name!!} </h4>
     <div>
       <div class="tabs">
           <ul>
         @foreach ($categories as $item)
           @if ($item->subgroup_number == $category->subgroup_number)
-              <li><a href="#tabs-{{ $item->itemnumber }}" class="text-color">{{ $item->subgroup_name }}: All</a></li>
+              <li><a href="#tabs-{!! $item->itemnumber !!}" class="text-color">{!! $item->subgroup_name !!}: All</a></li>
               @if ($item->subgroup_name == "Temperatures")
                 @for ($i = 1; $i <= $numTempZones; $i++) <!-- Spawn more tabs according to number of zones -->
-                  <li><a href="#tabs-{{ $i+1 }}" class="text-color">{{ "Zone " . $zoneTempCharts[$i]['zone'] }}</a></li>
+                  <li><a href="#tabs-{!! $i+1 !!}" class="text-color">{!! "Zone " . $zoneTempCharts[$i]['zone'] !!}</a></li>
               @endfor
             @elseif ($item->subgroup_name == "Humidity")
                 @for ($i = 1; $i <= $numHumZones; $i++) <!-- Spawn more tabs according to number of zones -->
-                  <li><a href="#tabs-{{ $i+1 }}" class="text-color">{{ "Zone " . $zoneHumCharts[$i]['zone'] }}</a></li>
+                  <li><a href="#tabs-{!! $i+1 !!}" class="text-color">{!! "Zone " . $zoneHumCharts[$i]['zone'] !!}</a></li>
               @endfor
             @endif
             @endif
@@ -91,19 +91,19 @@
 
           @foreach ($categories as $item)
             @if ($item->subgroup_number == $category->subgroup_number)
-            <div id="tabs-{{ $item->itemnumber }}">
-              <div id="{{$item->subgroup_number}}-{{$item->itemnumber}}" style="width: 90%; margin-left: 0; margin-right: auto"></div>
+            <div id="tabs-{!! $item->itemnumber !!}">
+              <div id="{!!$item->subgroup_number!!}-{!!$item->itemnumber!!}" style="width: 90%; margin-left: 0; margin-right: auto"></div>
             </div>
             @if ($item->subgroup_name == "Temperatures")
                 @for ($i = 1; $i <= $numTempZones; $i++) <!-- Spawn more divs according to number of zones (with zone label tagged on) -->
-                  <div id="tabs-{{ $i+1 }}">
-                  <div id="{{$item->subgroup_number}}-{{$item->itemnumber}}-{{ $i }}" style="width: 90%; margin-left: 0; margin-right: auto">{{ $i }}</div>
+                  <div id="tabs-{!! $i+1 !!}">
+                  <div id="{!!$item->subgroup_number!!}-{!!$item->itemnumber!!}-{!! $i !!}" style="width: 90%; margin-left: 0; margin-right: auto">{!! $i !!}</div>
                 </div>
               @endfor
             @elseif ($item->subgroup_name == "Humidity")
                 @for ($i = 1; $i <= $numHumZones; $i++) <!-- Spawn more divs according to number of zones (with zone label tagged on) -->
-                  <div id="tabs-{{ $i+1 }}">
-                  <div id="{{$item->subgroup_number}}-{{$item->itemnumber}}-{{ $i }}" style="width: 90%; margin-left: 0; margin-right: auto">{{ $i }}</div>
+                  <div id="tabs-{!! $i+1 !!}">
+                  <div id="{!!$item->subgroup_number!!}-{!!$item->itemnumber!!}-{!! $i !!}" style="width: 90%; margin-left: 0; margin-right: auto">{!! $i !!}</div>
                 </div>
               @endfor
             @endif
