@@ -1,6 +1,7 @@
 <?php
 
-class DeviceTypesTableSeeder extends Seeder {
+class DeviceTypesTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -96,6 +97,4 @@ class DeviceTypesTableSeeder extends Seeder {
           'mode' => 'wired',
         ));
     }
-
 }
-

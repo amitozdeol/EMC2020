@@ -1,6 +1,7 @@
 <?php
 
-class DevicesTableSeeder extends Seeder {
+class DevicesTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -256,7 +257,6 @@ class DevicesTableSeeder extends Seeder {
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+          ));
     }
-
 }

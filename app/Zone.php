@@ -1,16 +1,16 @@
 <?php
 
-class Zone extends Eloquent {
+class Zone extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'zone_labels';
+    protected $table = 'zone_labels';
 
-  protected $primaryKey = 'recnum';
+    protected $primaryKey = 'recnum';
 
-  public $timestamps = false;
-
+    public $timestamps = false;
 }

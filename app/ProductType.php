@@ -1,14 +1,14 @@
 <?php
 
-class ProductType extends Eloquent {
+class ProductType extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'product_types';
+    protected $table = 'product_types';
 
-  protected $primaryKey = 'recnum';
-
+    protected $primaryKey = 'recnum';
 }

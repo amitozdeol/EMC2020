@@ -1,15 +1,15 @@
 <?php
 
-class NetworkSettings extends Eloquent {
-  use SoftDeletingTrait;
+class NetworkSettings extends Eloquent
+{
+    use SoftDeletingTrait;
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'network_settings';
+    protected $table = 'network_settings';
 
-  protected $dates = ['deleted_at'];
-
+    protected $dates = ['deleted_at'];
 }

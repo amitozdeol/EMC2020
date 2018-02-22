@@ -1,6 +1,7 @@
 <?php
 
-class PermissionTableSeeder extends Seeder {
+class PermissionTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -13,4 +14,3 @@ class PermissionTableSeeder extends Seeder {
         ));
     }
 }
-

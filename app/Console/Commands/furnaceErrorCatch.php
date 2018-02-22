@@ -1,9 +1,11 @@
 <?php
 
-class furnaceErrorCatch  {
+class furnaceErrorCatch
+{
 
 
-     public static function catchMissingData($variable){
+    public static function catchMissingData($variable)
+    {
         // $variable = $variables;
         //   try{
         //         if(! $variable->isEmpty()){
@@ -11,7 +13,7 @@ class furnaceErrorCatch  {
         //           // dd($AQS1->toArray());
         //          }else{
         //           throw new Exception ('No entry has been found in the database for this field');
-        // }      
+        // }
             
 
         //     }catch(Exception $e){
@@ -24,15 +26,12 @@ class furnaceErrorCatch  {
         //   return 'hello';
         // }
 
-      if(isset($variable))
+        if (isset($variable)) {
             return $variable;
-       elseif (empty($variable) || is_null($variable))
-             return  $variable = 'There is No Data for this field';
-      else 
+        } elseif (empty($variable) || is_null($variable)) {
+            return  $variable = 'There is No Data for this field';
+        } else {
             return  $variable =  'There is No Data for this field';
-
-     }
-
+        }
+    }
 }
-
-?>

@@ -1,13 +1,12 @@
 <?php
 
-class BuildingGroupManager extends Eloquent {
+class BuildingGroupManager extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'building_group_managers';
-
-
+    protected $table = 'building_group_managers';
 }

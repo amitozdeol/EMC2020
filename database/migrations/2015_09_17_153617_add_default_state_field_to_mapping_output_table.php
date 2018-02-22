@@ -3,32 +3,30 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDefaultStateFieldToMappingOutputTable extends Migration {
+class AddDefaultStateFieldToMappingOutputTable extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('mapping_output', function($table)
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
-        $table->integer('default_state')->default(0);
-    });
-	}
+        Schema::table('mapping_output', function ($table) {
+            $table->integer('default_state')->default(0);
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::table('mapping_output', function($table)
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
     {
-      $table->dropColumn('default_state');
-    });
-	}
-
+        Schema::table('mapping_output', function ($table) {
+            $table->dropColumn('default_state');
+        });
+    }
 }

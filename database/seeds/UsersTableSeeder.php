@@ -1,6 +1,7 @@
 <?php
 
-class UsersTableSeeder extends Seeder {
+class UsersTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -22,5 +23,4 @@ class UsersTableSeeder extends Seeder {
           'password'    => Hash::make('demo')
         ));
     }
-
 }

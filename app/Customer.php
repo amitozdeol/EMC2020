@@ -1,17 +1,16 @@
 <?php
 
-class Customer extends Eloquent {
+class Customer extends Eloquent
+{
 
-  use SoftDeletingTrait;
+    use SoftDeletingTrait;
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'customers';
+    protected $table = 'customers';
 
-  protected $dates = ['deleted_at'];
-
-
+    protected $dates = ['deleted_at'];
 }

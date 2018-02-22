@@ -1,19 +1,19 @@
 <?php
 
-class HelpController extends \BaseController {
+class HelpController extends \BaseController
+{
 
   /**
    * Display a listing of the resource.
    *
    * @return Response
    */
-  public static function index()
-  {
-     /*Displays example on page for help section. Set false or remove entirely before releasing to production.*/
-    $example = false; 
+    public static function index()
+    {
+         /*Displays example on page for help section. Set false or remove entirely before releasing to production.*/
+        $example = false;
 
-    return View::make('help.list')
-      ->with('example',$example);
-  }
-
+        return View::make('help.list')
+        ->with('example', $example);
+    }
 }

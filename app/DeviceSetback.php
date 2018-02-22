@@ -1,15 +1,16 @@
 <?php
 
-class DeviceSetback extends Eloquent {
+class DeviceSetback extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'device_setback';
+    protected $table = 'device_setback';
 
-  protected $primaryKey = 'recnum';
+    protected $primaryKey = 'recnum';
 
-  public $timestamps = false;
+    public $timestamps = false;
 }

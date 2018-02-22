@@ -1,6 +1,7 @@
 <?php
 
-class BuildingsTableSeeder extends Seeder {
+class BuildingsTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -39,6 +40,4 @@ class BuildingsTableSeeder extends Seeder {
           'zip' => 12602
         ));
     }
-
 }
-

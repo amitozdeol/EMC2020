@@ -1,21 +1,22 @@
 <?php
 
-class SystemLog extends Eloquent {
+class SystemLog extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'system_log';
+    protected $table = 'system_log';
 
-  protected $primaryKey = 'recnum';
+    protected $primaryKey = 'recnum';
 
   /**
    * Set use of creation and update timestamps in the table.
    * @var boolean
    */
-  public $timestamps = false;
+    public $timestamps = false;
 
 
   /**
@@ -25,36 +26,34 @@ class SystemLog extends Eloquent {
    * @param  integer $log_type  An id linking to the `log_types` table
    * @return boolean            The return status from executing the database insert
    */
-  private static function insertEvent($system_id, $report, $log_type, $severity)
-  {
-    if(gettype($report) === 'object') {
+    private static function insertEvent($system_id, $report, $log_type, $severity)
+    {
+        if (gettype($report) === 'object') {
+            $report_string  = 'EXCEPTION: ' . $report->getMessage();
 
-      $report_string  = 'EXCEPTION: ' . $report->getMessage();
+            if ($url = Request::url()) {
+                $report_string .= ' URL: ' . $url;
+            }
 
-      if( $url = Request::url() ) {
-        $report_string .= ' URL: ' . $url;
-      }
+            if ($file = $report->getFile() && $line = $report->getLine()) {
+                if (strlen($file) > 1) {
+                    $report_string .= ' FILE: ' . $file . ':' . $line;
+                }
+            }
 
-      if( $file = $report->getFile() && $line = $report->getLine() ) {
-        if(strlen($file) > 1) {
-          $report_string .= ' FILE: ' . $file . ':' . $line;
+            $report = $report_string;
         }
-      }
 
-      $report = $report_string;
+        $report = "[$severity] " . $report;
 
+        $log = new SystemLog();
+        $log->system_id        = intval($system_id);
+        $log->application_name = 'WEB';
+        $log->report           = substr($report, 0, 254);
+        $log->datetime         = date('Y-m-d H:i:s');
+        $log->log_type         = intval($log_type);
+        $log->save();
     }
-
-    $report = "[$severity] " . $report;
-
-    $log = new SystemLog();
-    $log->system_id        = intval($system_id);
-    $log->application_name = 'WEB';
-    $log->report           = substr($report,0,254);
-    $log->datetime         = date('Y-m-d H:i:s');
-    $log->log_type         = intval($log_type);
-    $log->save();
-  }
 
 
   /**
@@ -64,13 +63,13 @@ class SystemLog extends Eloquent {
    * @param  integer $log_type  An id linking to the `log_types` table
    * @return
    */
-  public static function info($system_id, $report, $log_type)
-  {
-    self::insertEvent($system_id, substr($report,0,254), $log_type, 'INFO');
-    Log::info($report);
+    public static function info($system_id, $report, $log_type)
+    {
+        self::insertEvent($system_id, substr($report, 0, 254), $log_type, 'INFO');
+        Log::info($report);
 
-    return;
-  }
+        return;
+    }
 
 
   /**
@@ -80,13 +79,13 @@ class SystemLog extends Eloquent {
    * @param  integer $log_type  An id linking to the `log_types` table
    * @return
    */
-  public static function warning($system_id, $report, $log_type)
-  {
-    self::insertEvent($system_id, substr($report,0,254), $log_type, 'WARNING');
-    Log::warning($report);
+    public static function warning($system_id, $report, $log_type)
+    {
+        self::insertEvent($system_id, substr($report, 0, 254), $log_type, 'WARNING');
+        Log::warning($report);
 
-    return;
-  }
+        return;
+    }
 
 
   /**
@@ -96,13 +95,11 @@ class SystemLog extends Eloquent {
    * @param  integer $log_type  An id linking to the `log_types` table
    * @return
    */
-  public static function error($system_id, $report, $log_type)
-  {
-    self::insertEvent($system_id, substr($report,0,254), $log_type, 'ERROR');
-    Log::error($report);
+    public static function error($system_id, $report, $log_type)
+    {
+        self::insertEvent($system_id, substr($report, 0, 254), $log_type, 'ERROR');
+        Log::error($report);
 
-    return;
-  }
-
-
+        return;
+    }
 }

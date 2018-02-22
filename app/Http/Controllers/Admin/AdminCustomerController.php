@@ -1,20 +1,20 @@
 <?php
 
-class AdminCustomerController extends BaseController {
+class AdminCustomerController extends BaseController
+{
 
   /**
    * Display a listing of the resource.
    *
    * @return Response
    */
-  public function index()
-  {
+    public function index()
+    {
 
-    $data['customers'] = Customer::where('id', '>', 0)->get();
+        $data['customers'] = Customer::where('id', '>', 0)->get();
 
-    return View::make('admin.customer.index', $data);
-
-  }
+        return View::make('admin.customer.index', $data);
+    }
 
 
   /**
@@ -22,12 +22,11 @@ class AdminCustomerController extends BaseController {
    *
    * @return Response
    */
-  public function create()
-  {
+    public function create()
+    {
 
-    return View::make('admin.customer.create');
-
-  }
+        return View::make('admin.customer.create');
+    }
 
 
   /**
@@ -35,28 +34,27 @@ class AdminCustomerController extends BaseController {
    *
    * @return Response
    */
-  public function store()
-  {
+    public function store()
+    {
 
-    $customer = new Customer();
+        $customer = new Customer();
 
-    foreach(Input::except('_token') as $field => $value) {
-      $customer->$field = $value;
+        foreach (Input::except('_token') as $field => $value) {
+            $customer->$field = $value;
+        }
+
+        if ($customer->save()) {
+            SystemLog::info(0, 'New customer #'.$customer->id.'('.$customer->name.') was created by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
+            Session::flash('message', 'The new customer account for <strong>'.$customer->name.'</strong> was created successfully.');
+            Session::flash('alert-class', 'alert-success alert-dismissable');
+        } else {
+            SystemLog::error(0, 'Failed to create new customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
+            Session::flash('message', 'There was an error creating the new customer account for <strong>'.$customer->name.'</strong>.');
+            Session::flash('alert-class', 'alert-danger alert-dismissable');
+        }
+
+        return Redirect::to(URL::route('admin.customer.index'));
     }
-
-    if( $customer->save() ) {
-      SystemLog::info(0, 'New customer #'.$customer->id.'('.$customer->name.') was created by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
-      Session::flash('message', 'The new customer account for <strong>'.$customer->name.'</strong> was created successfully.');
-      Session::flash('alert-class', 'alert-success alert-dismissable');
-    }else{
-      SystemLog::error(0, 'Failed to create new customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
-      Session::flash('message', 'There was an error creating the new customer account for <strong>'.$customer->name.'</strong>.');
-      Session::flash('alert-class', 'alert-danger alert-dismissable');
-    }
-
-    return Redirect::to( URL::route('admin.customer.index'));
-
-  }
 
 
   /**
@@ -65,14 +63,13 @@ class AdminCustomerController extends BaseController {
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
-  {
+    public function edit($id)
+    {
 
-    $data['customer'] = Customer::find($id);
+        $data['customer'] = Customer::find($id);
 
-    return View::make('admin.customer.edit', $data);
-
-  }
+        return View::make('admin.customer.edit', $data);
+    }
 
 
   /**
@@ -81,28 +78,27 @@ class AdminCustomerController extends BaseController {
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
-  {
+    public function update($id)
+    {
 
-    $customer = Customer::find($id);
+        $customer = Customer::find($id);
 
-    foreach(Input::except('_token', '_method') as $field => $value) {
-      $customer->$field = $value;
+        foreach (Input::except('_token', '_method') as $field => $value) {
+            $customer->$field = $value;
+        }
+
+        if ($customer->save()) {
+            SystemLog::info(0, 'Customer #'.$customer->id.'('.$customer->name.') was updated by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
+            Session::flash('message', 'The customer account for <strong>'.$customer->name.'</strong> was update successfully.');
+            Session::flash('alert-class', 'alert-success alert-dismissable');
+        } else {
+            SystemLog::error(0, 'Failed to update the customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
+            Session::flash('message', 'There was an error updating the customer account for <strong>'.$customer->name.'</strong>.');
+            Session::flash('alert-class', 'alert-danger alert-dismissable');
+        }
+
+        return Redirect::to(URL::route('admin.customer.index'));
     }
-
-    if( $customer->save() ) {
-      SystemLog::info(0, 'Customer #'.$customer->id.'('.$customer->name.') was updated by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
-      Session::flash('message', 'The customer account for <strong>'.$customer->name.'</strong> was update successfully.');
-      Session::flash('alert-class', 'alert-success alert-dismissable');
-    }else{
-      SystemLog::error(0, 'Failed to update the customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
-      Session::flash('message', 'There was an error updating the customer account for <strong>'.$customer->name.'</strong>.');
-      Session::flash('alert-class', 'alert-danger alert-dismissable');
-    }
-
-    return Redirect::to(URL::route('admin.customer.index'));
-
-  }
 
 
   /**
@@ -111,24 +107,21 @@ class AdminCustomerController extends BaseController {
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
-  {
+    public function destroy($id)
+    {
 
-    $customer = Customer::find($id);
+        $customer = Customer::find($id);
 
-    if( $customer->delete() ) {
-      SystemLog::info(0, 'Customer #'.$customer->id.'('.$customer->name.') was deleted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
-      Session::flash('message', 'The customer account for <strong>'.$customer->name.'</strong> was successfully removed.');
-      Session::flash('alert-class', 'alert-success alert-dismissable');
-    }else{
-      SystemLog::error(0, 'Failed to delete customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
-      Session::flash('message', 'There was an error removing the customer account for <strong>'.$customer->name.'</strong>.');
-      Session::flash('alert-class', 'alert-danger alert-dismissable');
+        if ($customer->delete()) {
+            SystemLog::info(0, 'Customer #'.$customer->id.'('.$customer->name.') was deleted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 21);
+            Session::flash('message', 'The customer account for <strong>'.$customer->name.'</strong> was successfully removed.');
+            Session::flash('alert-class', 'alert-success alert-dismissable');
+        } else {
+            SystemLog::error(0, 'Failed to delete customer #'.$customer->id.'('.$customer->name.') as attempted by user #'.Auth::user()->id.'('.Auth::user()->email.')', 22);
+            Session::flash('message', 'There was an error removing the customer account for <strong>'.$customer->name.'</strong>.');
+            Session::flash('alert-class', 'alert-danger alert-dismissable');
+        }
+
+        return Redirect::route('admin.customer.index');
     }
-
-    return Redirect::route('admin.customer.index');
-
-  }
-
-
 }

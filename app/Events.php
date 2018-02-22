@@ -1,12 +1,12 @@
 <?php
 
-class Events extends Eloquent {
+class Events extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'events';
-
+    protected $table = 'events';
 }

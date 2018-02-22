@@ -1,6 +1,7 @@
 <?php
 
-class CustomersTableSeeder extends Seeder {
+class CustomersTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -26,5 +27,4 @@ class CustomersTableSeeder extends Seeder {
           'email1' => 'bob.incerto@hvtdc.org',
         ));
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class AlgorithmController extends \BaseController {
+class AlgorithmController extends \BaseController
+{
     /**
      * Display a listing of the resource.
      *
@@ -15,22 +16,23 @@ class AlgorithmController extends \BaseController {
 
         $algorithms = Algorithm::all();
 
-        $mappedOutputs = MappingOutput::where('system_id',$sid)
+        $mappedOutputs = MappingOutput::where('system_id', $sid)
         ->get();
 
-        $devices = Device::where('system_id',$sid)
+        $devices = Device::where('system_id', $sid)
             ->get();
 
         $retiredDevices = Device::where('system_id', $sid)
-            ->where('retired',1)
+            ->where('retired', 1)
             ->get();
 
-        $zone = Zone::where('system_id',$sid)
+        $zone = Zone::where('system_id', $sid)
             ->get();
         $zone_names = array();
         foreach ($zone as $zone_num) {
-            if(strlen($zone_num->zonename) > 0)
-            $zone_names[$zone_num->zone] = $zone_num->zonename;
+            if (strlen($zone_num->zonename) > 0) {
+                $zone_names[$zone_num->zone] = $zone_num->zonename;
+            }
         }
 
         $retired_devices = array();
@@ -39,25 +41,24 @@ class AlgorithmController extends \BaseController {
             $retired_devices[$device->id] = $device->id;
         }
 
-        foreach($mappedOutputs as $output) {
-            if($output->inputs !== ''){
+        foreach ($mappedOutputs as $output) {
+            if ($output->inputs !== '') {
                 $inputs = explode(', ', str_replace('.', '', $output->inputs));
-                foreach($inputs as $index => $input) {
+                foreach ($inputs as $index => $input) {
                     $input_id = explode(' ', $input);
-                    if(array_key_exists((int)$input_id[0], $retired_devices) !== false) {
-                        if(array_key_exists((int)$input_id[0], $used_retired_devices) == false) {
+                    if (array_key_exists((int)$input_id[0], $retired_devices) !== false) {
+                        if (array_key_exists((int)$input_id[0], $used_retired_devices) == false) {
                             $used_retired_devices[$output->device_id] = $output->device_id;
                         }
                     }
                 }
-
             }
-            if($output->reserveinputs !== ''){
+            if ($output->reserveinputs !== '') {
                 $reserve_inputs = explode(', ', str_replace('.', '', $output->reserveinputs));
-                foreach($reserve_inputs as $reserve_input) {
+                foreach ($reserve_inputs as $reserve_input) {
                     $input_id = explode(' ', $reserve_input);
-                    if(array_key_exists((int)$input_id[0], $retired_devices) !== false) {
-                        if(array_key_exists((int)$input_id[0], $used_retired_devices) == false ) {
+                    if (array_key_exists((int)$input_id[0], $retired_devices) !== false) {
+                        if (array_key_exists((int)$input_id[0], $used_retired_devices) == false) {
                             $used_retired_devices[$output->device_id] = $output->device_id;
                         }
                     }
@@ -91,9 +92,9 @@ class AlgorithmController extends \BaseController {
             ->with('device_types_list', $device_types_list)
             ->with('used_retired_devices', $used_retired_devices)
             ->with('algorithms', $algorithms)
-            ->with('zone_names',$zone_names)
-            ->with('device_types_names',$device_types_names);
-  }
+            ->with('zone_names', $zone_names)
+            ->with('device_types_names', $device_types_names);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -104,18 +105,18 @@ class AlgorithmController extends \BaseController {
     {
         $thisBldg = Building::find($id);
 
-        $algorithms = Algorithm::whereIn('customer_id',[0,$thisBldg->customer_id])
+        $algorithms = Algorithm::whereIn('customer_id', [0,$thisBldg->customer_id])
             ->get();
 
         $productTypes = ProductType::all();
 
-        $deviceTypeFunctions = DeviceType::where('IO','Input')
-            ->where('algorithm_active',1)
+        $deviceTypeFunctions = DeviceType::where('IO', 'Input')
+            ->where('algorithm_active', 1)
             ->groupby('function')
             ->orderBy('function')
             ->get();
 
-        $deviceTypes = DeviceType::where('IO','Input')
+        $deviceTypes = DeviceType::where('IO', 'Input')
             ->orderby('function', 'ASC')
             ->get();
 
@@ -124,23 +125,23 @@ class AlgorithmController extends \BaseController {
             $device_types_names[$devt->command] = $devt->name;
         }
 
-        $deviceTypesAvailable = Device::where('system_id',$sid)
+        $deviceTypesAvailable = Device::where('system_id', $sid)
             ->groupby('product_id')
             ->get();
 
         $typesArray = array();
-        foreach($deviceTypes as $type){
+        foreach ($deviceTypes as $type) {
             $typesArray[$type->command] = $type->function;
         }
 
-        $devices = Device::where('system_id',$sid)
-            ->orderby('zone','ASC','id', 'ASC')
-            ->where('status',1)
-            ->where('retired',0)
+        $devices = Device::where('system_id', $sid)
+            ->orderby('zone', 'ASC', 'id', 'ASC')
+            ->where('status', 1)
+            ->where('retired', 0)
             ->get();
 
-        $outDevices = MappingOutput::where('system_id',$sid)
-            ->orderby('zone','ASC','name', 'ASC')
+        $outDevices = MappingOutput::where('system_id', $sid)
+            ->orderby('zone', 'ASC', 'name', 'ASC')
             ->get();
 
         $usedDevices = array();
@@ -150,54 +151,55 @@ class AlgorithmController extends \BaseController {
 
         $agorithmTemps = array();
         $algorithmTemps[0] = 'General';
-        foreach($algorithms as $algorithm){
+        foreach ($algorithms as $algorithm) {
             $algorithmTemps[$algorithm->id] = $algorithm->algorithm_name;
         }
 
-        $zones = Zone::where('system_id',$sid)
-            ->orderBy('zone','ASC')
+        $zones = Zone::where('system_id', $sid)
+            ->orderBy('zone', 'ASC')
             ->get();
 
         $zone_array = array();
         /*$zone_array[0] = 'No Zone';*/
-        foreach($zones as $zone) {
+        foreach ($zones as $zone) {
             $zone_array[$zone->zone] = $zone->zonename;
         }
 
-        $zone = Zone::where('system_id',$sid)
+        $zone = Zone::where('system_id', $sid)
             ->get();
         $zone_names = array();
         foreach ($zone as $zone_num) {
-            if(strlen($zone_num->zonename) > 0)
-            $zone_names[$zone_num->zone] = $zone_num->zonename;
+            if (strlen($zone_num->zonename) > 0) {
+                $zone_names[$zone_num->zone] = $zone_num->zonename;
+            }
         }
 
         $outputDevices[0] = 'Create Virtual Device';
 
-        foreach($devices as $device){
-            if($device->device_io == 'output' and $device->name != null and $device->zone != 0 and !array_key_exists($device->id, $usedDevices)){
+        foreach ($devices as $device) {
+            if ($device->device_io == 'output' and $device->name != null and $device->zone != 0 and !array_key_exists($device->id, $usedDevices)) {
                 $outputDevices[$device->id] = $device->name;
             }
         }
 
         return View::make('algorithms.addform')
-            ->with('id'                  , $id)
-            ->with('algorithm'           , $algorithms)
-            ->with('algorithmTemps'      , $algorithmTemps)
-            ->with('outputDevices'       , $outputDevices)
-            ->with('thisBldg'            , $thisBldg)
-            ->with('sid'                 , $sid)
-            ->with('thisBldg'            , $thisBldg)
-            ->with('devices'             , $devices)
-            ->with('outDevices'          , $outDevices)
+            ->with('id', $id)
+            ->with('algorithm', $algorithms)
+            ->with('algorithmTemps', $algorithmTemps)
+            ->with('outputDevices', $outputDevices)
+            ->with('thisBldg', $thisBldg)
+            ->with('sid', $sid)
+            ->with('thisBldg', $thisBldg)
+            ->with('devices', $devices)
+            ->with('outDevices', $outDevices)
             ->with('deviceTypesAvailable', $deviceTypesAvailable)
-            ->with('productTypes'        , $productTypes)
-            ->with('deviceTypeFunctions' , $deviceTypeFunctions)
-            ->with('deviceTypes'         , $deviceTypes)
-            ->with('zone_array'          , $zone_array)
-            ->with('typesArray'          , $typesArray)
-            ->with('zone_names'          , $zone_names)
-            ->with('device_types_names',$device_types_names);
+            ->with('productTypes', $productTypes)
+            ->with('deviceTypeFunctions', $deviceTypeFunctions)
+            ->with('deviceTypes', $deviceTypes)
+            ->with('zone_array', $zone_array)
+            ->with('typesArray', $typesArray)
+            ->with('zone_names', $zone_names)
+            ->with('device_types_names', $device_types_names);
     }
 
 
@@ -209,11 +211,10 @@ class AlgorithmController extends \BaseController {
     public function store($id, $sid)
     {
 
-        if( null != Input::get('savetemp') ) {
-
+        if (null != Input::get('savetemp')) {
             $algTemps = Algorithm::all();
             $tempArray = array();
-            foreach($algTemps as $temp) {
+            foreach ($algTemps as $temp) {
                 $tempArray[$temp->id] = $temp->function_type;
             }
             $input = Input::all();
@@ -222,10 +223,9 @@ class AlgorithmController extends \BaseController {
             $newTemp = new Algorithm();
             $newTemp->customer_id = $thisBldg->customer_id;
             $newTemp->algorithm_name = $input['name'];
-            if($input['algorithm_id'] != 0) {
+            if ($input['algorithm_id'] != 0) {
                 $newTemp->function_type = $tempArray[$input['algorithm_id']];
-            }
-            else {
+            } else {
                 $newTemp->function_type = 'Virtual';
             }
             $newTemp->description = '';
@@ -248,21 +248,21 @@ class AlgorithmController extends \BaseController {
 
         $output = new MappingOutput();
 
-        $maxID = Device::where('system_id',$sid)
+        $maxID = Device::where('system_id', $sid)
             ->max('id');
 
-        foreach(Input::except('_token', 'onDelayFactor', 'offDelayFactor', 'durationFactor', 'toggleDurationFactor', 'sensor', 'save','name','virtual_device_type') as $key => $value) {
+        foreach (Input::except('_token', 'onDelayFactor', 'offDelayFactor', 'durationFactor', 'toggleDurationFactor', 'sensor', 'save', 'name', 'virtual_device_type') as $key => $value) {
             $output->$key = $value;
         }
 
-        if((int)$output->device_id != 0){
-          $controlDevice = Device::where('system_id',$sid)
-          ->where('id',$output->device_id)
-          ->first();
-          $output->device_type = $controlDevice->device_types_id;
-          $output->zone = $controlDevice->zone;
+        if ((int)$output->device_id != 0) {
+            $controlDevice = Device::where('system_id', $sid)
+            ->where('id', $output->device_id)
+            ->first();
+            $output->device_type = $controlDevice->device_types_id;
+            $output->zone = $controlDevice->zone;
         }
-        if($output->device_id == 0){
+        if ($output->device_id == 0) {
             $outputDevice = new Device();
             $outputDevice->id = $maxID + 1;
             $outputDevice->building_id = $id;
@@ -277,13 +277,13 @@ class AlgorithmController extends \BaseController {
             $outputDevice->physical_location = 'the cloud';
             $outputDevice->comments = Input::get('description');
             $outputDevice->bacnet_object_type = 0;
-            if(Input::get('virtual_device_type') == 'virtual_input'){
+            if (Input::get('virtual_device_type') == 'virtual_input') {
                 $outputDevice->device_types_id = 36;
                 $outputDevice->status = '1';
                 $outputDevice->device_io = 'input';
                 $outputDevice->product_id = 'V2';
                 $outputDevice->functional_description = ' ';
-            }else{
+            } else {
                 $outputDevice->device_types_id = 19;
                 $outputDevice->device_io = 'output';
                 $outputDevice->product_id = 'V1';
@@ -294,33 +294,31 @@ class AlgorithmController extends \BaseController {
             $output->device_id = $outputDevice->id;
             $output->device_type = $outputDevice->device_types_id;
             $output->zone = Input::get('zone');
-            
         }
         $template = Algorithm::Find($output->algorithm_id);
         $output->system_id = $sid;
         $onFactor = (int)Input::get('onDelayFactor');
         $offFactor = (int)Input::get('offDelayFactor');
         $durFactor = (int)Input::get('durationFactor');
-        if(null != Input::get('toggleDurationFactor')) {
+        if (null != Input::get('toggleDurationFactor')) {
             $togFactor = (int)Input::get('toggleDurationFactor');
         }
-        if(is_null($template)){
-          $output->function_type = 'General';
-        }
-        else{
-          $output->function_type = $template->function_type;
+        if (is_null($template)) {
+            $output->function_type = 'General';
+        } else {
+            $output->function_type = $template->function_type;
         }
         $output->ondelay = $output->ondelay*$onFactor;
         $output->offdelay = $output->offdelay*$offFactor;
         $output->duration = $output->duration*$durFactor;
-        if(null != Input::get('toggleDurationFactor')) {
+        if (null != Input::get('toggleDurationFactor')) {
             $output->default_toggle_duration = $output->default_toggle_duration*$togFactor;
         } else {
             $output->default_toggle_duration = 0;
         }
-        if(null != Input::get('default_toggle_percent_on')){
+        if (null != Input::get('default_toggle_percent_on')) {
             $output->default_toggle_percent_on = Input::get('default_toggle_percent_on');
-        }else{
+        } else {
             $output->default_toggle_percent_on = 0;
         }
         $output->active_inputs = Input::get('inputs');
@@ -370,52 +368,53 @@ class AlgorithmController extends \BaseController {
             $device_types_names[$value->command] = $value->name;
         }
 
-        $deviceTypeFunctions = DeviceType::where('IO','Input')
+        $deviceTypeFunctions = DeviceType::where('IO', 'Input')
             ->groupby('function')
             ->orderBy('function')
             ->get();
 
-        $deviceTypes = DeviceType::where('IO','Input')
+        $deviceTypes = DeviceType::where('IO', 'Input')
             ->orderby('function', 'ASC')
             ->get();
-        $deviceTypesAvailable = Device::where('system_id',$sid)
+        $deviceTypesAvailable = Device::where('system_id', $sid)
             ->groupby('product_id')
             ->get();
-        $devices = Device::where('system_id',$sid)
-            ->where('id','!=',99999)
+        $devices = Device::where('system_id', $sid)
+            ->where('id', '!=', 99999)
             // ->where('status',1)
             // ->where('retired',0)
-            ->orderby('zone','ASC','id', 'ASC')
+            ->orderby('zone', 'ASC', 'id', 'ASC')
             ->get();
 
         $algOutputDevice = new Device();
         foreach ($devices as $dev) {
-            if($dev->id == $oldOutput->device_id){
+            if ($dev->id == $oldOutput->device_id) {
                 $algOutputDevice = $dev;
             }
         }
         $algOutputProduct = new ProductType();
         foreach ($productTypes as $prod) {
-            if($prod->product_id == $algOutputDevice->product_id){
+            if ($prod->product_id == $algOutputDevice->product_id) {
                 $algOutputProduct = $prod;
             }
         }
 
         $algorithmTemps = array();
-        foreach($algorithms as $algorithm){
+        foreach ($algorithms as $algorithm) {
             $algorithmTemps[$algorithm->id] = $algorithm->algorithm_name;
         }
 
-        $outDevices = MappingOutput::where('system_id',$sid)
-            ->orderby('zone','ASC','device_id', 'ASC')
+        $outDevices = MappingOutput::where('system_id', $sid)
+            ->orderby('zone', 'ASC', 'device_id', 'ASC')
             ->get();
 
-        $zone = Zone::where('system_id',$sid)
+        $zone = Zone::where('system_id', $sid)
             ->get();
         $zone_names = array();
         foreach ($zone as $zone_num) {
-            if(strlen($zone_num->zonename) > 0)
-            $zone_names[$zone_num->zone] = $zone_num->zonename;
+            if (strlen($zone_num->zonename) > 0) {
+                $zone_names[$zone_num->zone] = $zone_num->zonename;
+            }
         }
 
         return View::make('algorithms.editform')
@@ -427,17 +426,17 @@ class AlgorithmController extends \BaseController {
             ->with('outid', $outid)
             ->with('thisBldg', $thisBldg)
             ->with('devices', $devices)
-            ->with('deviceTypesAvailable',$deviceTypesAvailable)
+            ->with('deviceTypesAvailable', $deviceTypesAvailable)
             ->with('productTypes', $productTypes)
             ->with('outDevices', $outDevices)
-            ->with('deviceTypeFunctions',$deviceTypeFunctions)
+            ->with('deviceTypeFunctions', $deviceTypeFunctions)
             ->with('deviceTypes', $deviceTypes)
-            ->with('currentTime',$currentTime)
+            ->with('currentTime', $currentTime)
             ->with('oldOutput', $oldOutput)
             ->with('zone_names', $zone_names)
-            ->with('device_types_names',$device_types_names)
-            ->with('algOutputDevice',$algOutputDevice)
-            ->with('algOutputProduct',$algOutputProduct);
+            ->with('device_types_names', $device_types_names)
+            ->with('algOutputDevice', $algOutputDevice)
+            ->with('algOutputProduct', $algOutputProduct);
     }
 
     /**
@@ -454,28 +453,29 @@ class AlgorithmController extends \BaseController {
 
         $outputDevices = MappingOutput::all();
 
-        $lostDevices = Alarms::where('system_id',$sid)
-            ->where('alarm_code_id',11)
-            ->where('active',1)
+        $lostDevices = Alarms::where('system_id', $sid)
+            ->where('alarm_code_id', 11)
+            ->where('active', 1)
             ->groupby('device_id')
-            ->orderby('updated_at','DESC')
+            ->orderby('updated_at', 'DESC')
             ->get();
 
         $lostInputs = "";
         $activeInputs = "";
 
-        foreach(Input::except('_token', '_method', 'onDelayFactor', 'offDelayFactor', 'durationFactor', 'toggleDurationFactor', 'sensor', 'save', 'templates') as $key => $value) {
+        foreach (Input::except('_token', '_method', 'onDelayFactor', 'offDelayFactor', 'durationFactor', 'toggleDurationFactor', 'sensor', 'save', 'templates') as $key => $value) {
             $form->$key = $value;
         }
-        if((int)$form->logicmode != 0)
-          $form->min_required_inputs = 0;
+        if ((int)$form->logicmode != 0) {
+            $form->min_required_inputs = 0;
+        }
 
         $template = Algorithm::Find($form->algorithm_id);
 
         $onFactor = (int)Input::get('onDelayFactor');
         $offFactor = (int)Input::get('offDelayFactor');
         $durFactor = (int)Input::get('durationFactor');
-        if(null != Input::get('toggleDurationFactor')) {
+        if (null != Input::get('toggleDurationFactor')) {
             $togFactor = (int)Input::get('toggleDurationFactor');
         }
         /*Check if device name needs to be updated*/
@@ -483,8 +483,8 @@ class AlgorithmController extends \BaseController {
         $od = MappingOutput::Find($outid);
         $device_id = $od->device_id;
         DB::table('devices')
-            ->where('system_id',$sid)
-            ->where('id',$device_id)
+            ->where('system_id', $sid)
+            ->where('id', $device_id)
             ->update(['name' => $algorithmName]);
 
 
@@ -492,33 +492,33 @@ class AlgorithmController extends \BaseController {
         $form->ondelay = $form->ondelay*$onFactor;
         $form->offdelay = $form->offdelay*$offFactor;
         $form->duration = $form->duration*$durFactor;
-        if(null != Input::get('toggleDurationFactor')) {
+        if (null != Input::get('toggleDurationFactor')) {
             $form->default_toggle_duration = $form->default_toggle_duration*$togFactor;
         } else {
-          $form->default_toggle_duration = 0;
+            $form->default_toggle_duration = 0;
         }
-        if(null != Input::get('default_toggle_percent_on')) {
+        if (null != Input::get('default_toggle_percent_on')) {
             $form->default_toggle_percent_on = Input::get('default_toggle_percent_on');
         } else {
-          $form->default_toggle_percent_on = 0;
+            $form->default_toggle_percent_on = 0;
         }
 
         $primary_inputs = array ();
         $secondary_inputs = array ();
 
-        $numInputs = count( explode(',', Input::get('inputs')));
-        if(strlen(Input::get('inputs')) <= 0) {
+        $numInputs = count(explode(',', Input::get('inputs')));
+        if (strlen(Input::get('inputs')) <= 0) {
             $numInputs = 0;
         }
 
-        if('' != Input::get('inputs')){
-            foreach(explode(', ', str_replace('.', '', Input::get('inputs'))) as $index => $device) {
+        if ('' != Input::get('inputs')) {
+            foreach (explode(', ', str_replace('.', '', Input::get('inputs'))) as $index => $device) {
                 $primary_inputs[$index] = explode(' ', $device);
             }
         }
 
-        if('' != Input::get('reserveinputs')){
-            foreach(explode(', ', str_replace('.', '', Input::get('reserveinputs'))) as $index => $device) {
+        if ('' != Input::get('reserveinputs')) {
+            foreach (explode(', ', str_replace('.', '', Input::get('reserveinputs'))) as $index => $device) {
                 $secondary_inputs[$index] = explode(' ', $device);
             }
         }
@@ -529,7 +529,7 @@ class AlgorithmController extends \BaseController {
             foreach ($lostDevices as $lostDevice) {
                 if ($lostDevice->device_id == $input[0] && $lostDevice->command == $input[1]) {
                     $foundLost = 1;
-                    if($lostInputs != ""){
+                    if ($lostInputs != "") {
                         $lostInputs .= ", " . $input[0] . " " . $input[1];
                     } else {
                         $lostInputs = $input[0] . " " . $input[1];
@@ -540,7 +540,7 @@ class AlgorithmController extends \BaseController {
             }
 
             if ($foundLost == 0) {
-                if($activeInputs != ""){
+                if ($activeInputs != "") {
                     $activeInputs .= ", " . $input[0] . " " . $input[1];
                 } else {
                     $activeInputs = $input[0] . " " . $input[1];
@@ -553,7 +553,7 @@ class AlgorithmController extends \BaseController {
             foreach ($lostDevices as $lostDevice) {
                 if ($lostDevice->device_id == $input[0] && $lostDevice->command == $input[1]) {
                     $foundLost = 1;
-                    if($lostInputs != ""){
+                    if ($lostInputs != "") {
                         $lostInputs .= ", " . $input[0] . " " . $input[1];
                     } else {
                         $lostInputs = $input[0] . " " . $input[1];
@@ -562,25 +562,23 @@ class AlgorithmController extends \BaseController {
                 }
             }
 
-            if($activeCount < $numInputs && $foundLost == 0) {
-                if($activeInputs != ""){
+            if ($activeCount < $numInputs && $foundLost == 0) {
+                if ($activeInputs != "") {
                     $activeInputs .= ", " . $input[0] . " " . $input[1];
                 } else {
                     $activeInputs = $input[0] . " " . $input[1];
                 }
                 $activeCount += 1;
             }
-
-
         }
-        if($activeInputs != '') {
+        if ($activeInputs != '') {
             $activeInputs .= ".";
         }
-        if($lostInputs != '') {
+        if ($lostInputs != '') {
             $lostInputs .= ".";
         }
 
-        foreach(explode(', ', str_replace('.', '', Input::get('reserveinputs'))) as $index => $device) {
+        foreach (explode(', ', str_replace('.', '', Input::get('reserveinputs'))) as $index => $device) {
             $secondary_inputs[$index] = explode(' ', $device);
         }
 
@@ -601,15 +599,15 @@ class AlgorithmController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id,$sid,$outid)
+    public function destroy($id, $sid, $outid)
     {
         $output = MappingOutput::Find($outid);
         $device_id = $output->device_id;
         $command = $output->device_type;
-        if( $command == 19 ) {
-            $device = Device::where('system_id',$sid)
-                ->where('id',$device_id)
-                ->where('device_types_id',19)
+        if ($command == 19) {
+            $device = Device::where('system_id', $sid)
+                ->where('id', $device_id)
+                ->where('device_types_id', 19)
                 ->first();
 
             $device->delete();
@@ -637,31 +635,29 @@ class AlgorithmController extends \BaseController {
         $content = "";
 
         foreach ($mappings as $mapping) {
+            $numInputs = count(explode(',', $mapping->active_inputs));
+            if (strlen($mapping->active_inputs) <= 0) {
+                $numInputs = 0;
+            }
 
-
-          $numInputs = count( explode(',', $mapping->active_inputs));
-          if(strlen($mapping->active_inputs) <= 0) {
-            $numInputs = 0;
-          }
-
-          $content .= sprintf("%05d",$mapping->device_id)    . ' ';
-          $content .= sprintf("%02d",$mapping->device_type)  . ' ';
-          $content .= $mapping->logicmode                    . ' ';
-          $content .= $mapping->min_required_inputs          . ' ';
-          $content .= $mapping->season                       . ' ';
-          $content .= $mapping->polarity                     . ' ';
-          $content .= $mapping->ondelay                      . ' ';
-          $content .= $mapping->offdelay                     . ' ';
-          $content .= $mapping->duration                     . ' ';
-          $content .= $mapping->response                     . ' ';
-          if($mapping->default_state == '2'){/*for toggle default*/
-            $content .= ((int)$mapping->default_toggle_percent_on) . ':' . ((int)$mapping->default_toggle_duration) . ' ';
-          } else {
-            $content .= $mapping->default_state              . ' ';
-          }
-          $content .= $numInputs                             . ' ';
-          $content .= str_replace(['.',','], ['',''], $mapping->active_inputs);
-          $content .= "\n";
+            $content .= sprintf("%05d", $mapping->device_id)    . ' ';
+            $content .= sprintf("%02d", $mapping->device_type)  . ' ';
+            $content .= $mapping->logicmode                    . ' ';
+            $content .= $mapping->min_required_inputs          . ' ';
+            $content .= $mapping->season                       . ' ';
+            $content .= $mapping->polarity                     . ' ';
+            $content .= $mapping->ondelay                      . ' ';
+            $content .= $mapping->offdelay                     . ' ';
+            $content .= $mapping->duration                     . ' ';
+            $content .= $mapping->response                     . ' ';
+            if ($mapping->default_state == '2') {/*for toggle default*/
+                $content .= ((int)$mapping->default_toggle_percent_on) . ':' . ((int)$mapping->default_toggle_duration) . ' ';
+            } else {
+                $content .= $mapping->default_state              . ' ';
+            }
+            $content .= $numInputs                             . ' ';
+            $content .= str_replace(['.',','], ['',''], $mapping->active_inputs);
+            $content .= "\n";
         }
 
         RemoteTask::deployFile($system_id, '/var/2020_mapping', 'algo_out_mapping.txt', $content);

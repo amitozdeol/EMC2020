@@ -1,6 +1,7 @@
 <?php
 
-class RoleLabelTableSeeder extends Seeder {
+class RoleLabelTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -45,7 +46,5 @@ class RoleLabelTableSeeder extends Seeder {
           'id'    => 8,
           'label' => 'Sysadmin',
         ));
-
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
-class AlgorithmTableSeeder extends Seeder {
+class AlgorithmTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -42,5 +43,4 @@ class AlgorithmTableSeeder extends Seeder {
           'min_required_inputs' => 2,
         ));
     }
-
 }

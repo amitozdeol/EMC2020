@@ -1,14 +1,14 @@
 <?php
 
-class DeviceData extends Eloquent {
+class DeviceData extends Eloquent
+{
 
   /**
    * The database table used by the model.
    *
    * @var string
    */
-  protected $table = 'device_data';
+    protected $table = 'device_data';
 
-  protected $primaryKey = 'recnum';
-
+    protected $primaryKey = 'recnum';
 }

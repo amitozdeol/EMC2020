@@ -1,6 +1,7 @@
 <?php
 
-class SystemsTableSeeder extends Seeder {
+class SystemsTableSeeder extends Seeder
+{
 
     public function run()
     {
@@ -81,5 +82,4 @@ class SystemsTableSeeder extends Seeder {
           'coordinator_format' => 1,
         ));
     }
-
 }

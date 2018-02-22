@@ -3,32 +3,30 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddClassToAlarmCodes extends Migration {
+class AddClassToAlarmCodes extends Migration
+{
 
   /**
    * Run the migrations.
    *
    * @return void
    */
-  public function up()
-  {
-    Schema::table('alarm_codes', function($table)
+    public function up()
     {
-        $table->string('alarm_class')->default('OAS');
-    });
-  }
+        Schema::table('alarm_codes', function ($table) {
+            $table->string('alarm_class')->default('OAS');
+        });
+    }
 
   /**
    * Reverse the migrations.
    *
    * @return void
    */
-  public function down()
-  {
-    Schema::table('alarm_codes', function($table)
+    public function down()
     {
-      $table->dropColumn('alarm_class');
-    });
-  }
-
+        Schema::table('alarm_codes', function ($table) {
+            $table->dropColumn('alarm_class');
+        });
+    }
 }

@@ -3,32 +3,31 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddZoneLabelsTable extends Migration {
+class AddZoneLabelsTable extends Migration
+{
 
   /**
    * Run the migrations.
    *
    * @return void
    */
-  public function up()
-  {
-    Schema::create('zone_labels', function($table)
+    public function up()
     {
-      $table->increments('recnum');      
-      $table->integer('system_id');
-      $table->integer('zone');
-      $table->string('zonename');
-    });
-  }
+        Schema::create('zone_labels', function ($table) {
+            $table->increments('recnum');
+            $table->integer('system_id');
+            $table->integer('zone');
+            $table->string('zonename');
+        });
+    }
 
   /**
    * Reverse the migrations.
    *
    * @return void
    */
-  public function down()
-  {
-    Schema::dropIfExists('zone_labels');
-  }
-
+    public function down()
+    {
+        Schema::dropIfExists('zone_labels');
+    }
 }
