@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class ProductType extends Eloquent
+class ProductType extends Model
 {
 
   /**

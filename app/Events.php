@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Events extends Eloquent
+class Events extends Model
 {
 
   /**

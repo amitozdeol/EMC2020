@@ -1,9 +1,10 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Eloquent
+class Customer extends Model
 {
 
-    use SoftDeletingTrait;
+    use SoftDeletes;
 
   /**
    * The database table used by the model.

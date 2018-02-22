@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class AlarmCodes extends Eloquent
+class AlarmCodes extends Model
 {
 
   /**

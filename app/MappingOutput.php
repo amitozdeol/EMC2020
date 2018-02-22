@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class MappingOutput extends Eloquent
+class MappingOutput extends Model
 {
 
   /**

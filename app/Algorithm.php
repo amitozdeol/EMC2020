@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Algorithm extends Eloquent
+class Algorithm extends Model
 {
 
   /**

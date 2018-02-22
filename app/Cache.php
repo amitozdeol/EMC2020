@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Cache extends Eloquent
+class Cache extends Model
 {
 
   /**

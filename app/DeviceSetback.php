@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DeviceSetback extends Eloquent
+class DeviceSetback extends Model
 {
 
   /**

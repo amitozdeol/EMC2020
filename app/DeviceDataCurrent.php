@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DeviceDataCurrent extends Eloquent
+class DeviceDataCurrent extends Model
 {
 
   /**

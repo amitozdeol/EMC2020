@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Zone extends Eloquent
+class Zone extends Model
 {
 
   /**

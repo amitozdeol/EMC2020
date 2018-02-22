@@ -1,8 +1,9 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Building extends Eloquent
+class Building extends Model
 {
-    use SoftDeletingTrait;
+    use SoftDeletes;
 
   /**
    * The database table used by the model.

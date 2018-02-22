@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class ChartAttribute extends Eloquent
+class ChartAttribute extends Model
 {
 
   /**

@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class RoleLabel extends Eloquent
+class RoleLabel extends Model
 {
 
   /**

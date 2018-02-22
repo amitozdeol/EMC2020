@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class Chart extends Eloquent
+class Chart extends Model
 {
 
   /**

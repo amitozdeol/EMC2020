@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class WebMappingSystem extends Eloquent
+class WebMappingSystem extends Model
 {
 
   /**

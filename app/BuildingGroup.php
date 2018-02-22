@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class BuildingGroup extends Eloquent
+class BuildingGroup extends Model
 {
 
   /**

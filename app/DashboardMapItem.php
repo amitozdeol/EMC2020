@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DashboardMapItem extends Eloquent
+class DashboardMapItem extends Model
 {
 
   /**

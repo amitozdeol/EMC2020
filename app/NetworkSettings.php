@@ -1,8 +1,9 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class NetworkSettings extends Eloquent
+class NetworkSettings extends Model
 {
-    use SoftDeletingTrait;
+    use SoftDeletes;
 
   /**
    * The database table used by the model.

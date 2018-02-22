@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class LogType extends Eloquent
+class LogType extends Model
 {
 
   /**

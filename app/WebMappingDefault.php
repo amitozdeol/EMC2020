@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class WebMappingDefault extends Eloquent
+class WebMappingDefault extends Model
 {
 
   /**

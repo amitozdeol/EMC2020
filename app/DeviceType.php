@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Database\Eloquent\Model;
 
-class DeviceType extends Eloquent
+class DeviceType extends Model
 {
 
   /**
