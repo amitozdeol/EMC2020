@@ -65,9 +65,9 @@ class LocalParamUpdate extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID to have its local parameters file updated.'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID to have its local parameters file updated.'],
+        ];
     }
 
   /**
@@ -77,7 +77,7 @@ class LocalParamUpdate extends Command
    */
     protected function getOptions()
     {
-        return array(
-        );
+        return [
+        ];
     }
 }

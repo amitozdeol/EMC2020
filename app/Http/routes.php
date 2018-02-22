@@ -278,9 +278,9 @@ Route::get('mail/update_subscription/{unsubscribe_key}', ['as'=>'update_subscrip
 Route::get('mail/unsubscribe/{unsubscribe_key}', ['as'=>'unsubscribe', 'uses'=>'EmailController@unsubscribe']);
 
 //test the mail layouts on web
-Route::get('/foo', array('as' => 'foo', function () {
+Route::get('/foo', ['as' => 'foo', function () {
     return App::make('EmailController')->TestalarmNotification(15519);
-}));
+}]);
 //
 // Route::get('/bar', array('as' => 'bar', function(){
 //   return App::make('EmailController')->TestlogNotification(39080804);

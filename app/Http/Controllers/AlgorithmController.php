@@ -28,15 +28,15 @@ class AlgorithmController extends \BaseController
 
         $zone = Zone::where('system_id', $sid)
             ->get();
-        $zone_names = array();
+        $zone_names = [];
         foreach ($zone as $zone_num) {
             if (strlen($zone_num->zonename) > 0) {
                 $zone_names[$zone_num->zone] = $zone_num->zonename;
             }
         }
 
-        $retired_devices = array();
-        $used_retired_devices = array();
+        $retired_devices = [];
+        $used_retired_devices = [];
         foreach ($retiredDevices as $device) {
             $retired_devices[$device->id] = $device->id;
         }
@@ -68,9 +68,9 @@ class AlgorithmController extends \BaseController
 
         $deviceTypes = DeviceType::all();
 
-        $device_names_list = array();
-        $device_types_list = array();
-        $device_types_names = array();
+        $device_names_list = [];
+        $device_types_list = [];
+        $device_types_names = [];
         foreach ($devices as $device) {
             $device_names_list[$device->id] = $device;
         }
@@ -120,7 +120,7 @@ class AlgorithmController extends \BaseController
             ->orderby('function', 'ASC')
             ->get();
 
-        $device_types_names = array();
+        $device_types_names = [];
         foreach ($deviceTypes as $devt) {
             $device_types_names[$devt->command] = $devt->name;
         }
@@ -129,7 +129,7 @@ class AlgorithmController extends \BaseController
             ->groupby('product_id')
             ->get();
 
-        $typesArray = array();
+        $typesArray = [];
         foreach ($deviceTypes as $type) {
             $typesArray[$type->command] = $type->function;
         }
@@ -144,12 +144,12 @@ class AlgorithmController extends \BaseController
             ->orderby('zone', 'ASC', 'name', 'ASC')
             ->get();
 
-        $usedDevices = array();
+        $usedDevices = [];
         foreach ($outDevices as $device) {
             $usedDevices[$device->device_id] = $device->name;
         }
 
-        $agorithmTemps = array();
+        $agorithmTemps = [];
         $algorithmTemps[0] = 'General';
         foreach ($algorithms as $algorithm) {
             $algorithmTemps[$algorithm->id] = $algorithm->algorithm_name;
@@ -159,7 +159,7 @@ class AlgorithmController extends \BaseController
             ->orderBy('zone', 'ASC')
             ->get();
 
-        $zone_array = array();
+        $zone_array = [];
         /*$zone_array[0] = 'No Zone';*/
         foreach ($zones as $zone) {
             $zone_array[$zone->zone] = $zone->zonename;
@@ -167,7 +167,7 @@ class AlgorithmController extends \BaseController
 
         $zone = Zone::where('system_id', $sid)
             ->get();
-        $zone_names = array();
+        $zone_names = [];
         foreach ($zone as $zone_num) {
             if (strlen($zone_num->zonename) > 0) {
                 $zone_names[$zone_num->zone] = $zone_num->zonename;
@@ -213,7 +213,7 @@ class AlgorithmController extends \BaseController
 
         if (null != Input::get('savetemp')) {
             $algTemps = Algorithm::all();
-            $tempArray = array();
+            $tempArray = [];
             foreach ($algTemps as $temp) {
                 $tempArray[$temp->id] = $temp->function_type;
             }
@@ -363,7 +363,7 @@ class AlgorithmController extends \BaseController
         $currentTime = time();
 
         $deviceTypes = DeviceType::all();
-        $device_types_names = array();
+        $device_types_names = [];
         foreach ($deviceTypes as $value) {
             $device_types_names[$value->command] = $value->name;
         }
@@ -399,7 +399,7 @@ class AlgorithmController extends \BaseController
             }
         }
 
-        $algorithmTemps = array();
+        $algorithmTemps = [];
         foreach ($algorithms as $algorithm) {
             $algorithmTemps[$algorithm->id] = $algorithm->algorithm_name;
         }
@@ -410,7 +410,7 @@ class AlgorithmController extends \BaseController
 
         $zone = Zone::where('system_id', $sid)
             ->get();
-        $zone_names = array();
+        $zone_names = [];
         foreach ($zone as $zone_num) {
             if (strlen($zone_num->zonename) > 0) {
                 $zone_names[$zone_num->zone] = $zone_num->zonename;
@@ -503,8 +503,8 @@ class AlgorithmController extends \BaseController
             $form->default_toggle_percent_on = 0;
         }
 
-        $primary_inputs = array ();
-        $secondary_inputs = array ();
+        $primary_inputs =  [];
+        $secondary_inputs =  [];
 
         $numInputs = count(explode(',', Input::get('inputs')));
         if (strlen(Input::get('inputs')) <= 0) {

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
   /*
   |--------------------------------------------------------------------------
@@ -44,15 +44,15 @@ return array(
   |
   */
 
-  'connections' => array(
+  'connections' => [
 
-    'sqlite' => array(
+    'sqlite' => [
       'driver'   => 'sqlite',
       'database' => __DIR__.'/../database/production.sqlite',
       'prefix'   => '',
-    ),
+    ],
 
-    'mysql' => array(
+    'mysql' => [
       'driver'    => 'mysql',
       'host'      => $_ENV['DB_HOST'],
       'database'  => $_ENV['DB_NAME'],
@@ -61,15 +61,15 @@ return array(
       'charset'   => 'utf8',
       'collation' => 'utf8_unicode_ci',
       'prefix'    => '',
-    ),
+    ],
 
-    'pgsql' => array(
-    ),
+    'pgsql' => [
+    ],
 
-    'sqlsrv' => array(
-    ),
+    'sqlsrv' => [
+    ],
 
-  ),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -95,16 +95,16 @@ return array(
   |
   */
 
-  'redis' => array(
+  'redis' => [
 
     'cluster' => false,
 
-    'default' => array(
+    'default' => [
       'host'     => '127.0.0.1',
       'port'     => 6379,
       'database' => 0,
-    ),
+    ],
 
-  ),
+  ],
 
-);
+];

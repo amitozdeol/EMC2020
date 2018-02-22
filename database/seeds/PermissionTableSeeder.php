@@ -7,10 +7,10 @@ class PermissionTableSeeder extends Seeder
     {
         DB::table('building_managers')->delete();
 
-        BuildingManager::create(array(
+        BuildingManager::create([
           'user_id' => 1,
           'building_id' => 1,
           'role' => 3
-        ));
+        ]);
     }
 }

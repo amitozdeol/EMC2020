@@ -67,9 +67,9 @@ class LocalSoftwareUpdate extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID on which to attempt software update.'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID on which to attempt software update.'],
+        ];
     }
 
   /**
@@ -79,7 +79,7 @@ class LocalSoftwareUpdate extends Command
    */
     protected function getOptions()
     {
-        return array(
-        );
+        return [
+        ];
     }
 }

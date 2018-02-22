@@ -7,7 +7,7 @@ class DeviceTypesTableSeeder extends Seeder
     {
         DB::table('device_types')->delete();
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 1,
           'name' => 'System Wireless Sensor',
           'command' => 1,
@@ -15,9 +15,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wireless',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 2,
           'name' => 'System Wireless Sensor',
           'command' => 2,
@@ -25,9 +25,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wireless',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 3,
           'name' => 'System Wireless Sensor',
           'command' => 3,
@@ -35,9 +35,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wireless',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 4,
           'name' => 'System Wireless Sensor',
           'command' => 4,
@@ -45,9 +45,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wireless',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 5,
           'name' => 'System Wired Sensor',
           'command' => 5,
@@ -55,9 +55,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wired',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 6,
           'name' => 'System Wired Sensor',
           'command' => 6,
@@ -65,9 +65,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wired',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 7,
           'name' => 'System Wired Sensor',
           'command' => 7,
@@ -75,9 +75,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'input',
           'hysteresis' => 0,
           'mode' => 'wired',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 8,
           'name' => 'System Wired Controller',
           'command' => 8,
@@ -85,9 +85,9 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'output',
           'hysteresis' => 0,
           'mode' => 'wired',
-        ));
+        ]);
 
-        DeviceType::create(array(
+        DeviceType::create([
           'id' => 9,
           'name' => 'System Wired Controller',
           'command' => 9,
@@ -95,6 +95,6 @@ class DeviceTypesTableSeeder extends Seeder
           'mode' => 'output',
           'hysteresis' => 0,
           'mode' => 'wired',
-        ));
+        ]);
     }
 }

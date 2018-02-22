@@ -71,10 +71,10 @@ class SystemMacUpdate extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID to have its config updated.'),
-        array('SysMac', InputArgument::OPTIONAL, 'Update Config file based on ID/MAC correlation'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID to have its config updated.'],
+        ['SysMac', InputArgument::OPTIONAL, 'Update Config file based on ID/MAC correlation'],
+        ];
     }
 
   /**
@@ -84,7 +84,7 @@ class SystemMacUpdate extends Command
    */
     protected function getOptions()
     {
-        return array(
-        );
+        return [
+        ];
     }
 }

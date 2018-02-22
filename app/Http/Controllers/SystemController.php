@@ -13,15 +13,15 @@ class SystemController extends BaseController
 	|-------------------------------------------------------------------------*/
     public function initialize_hardware_versions()
     {
-        $HV01030000 = array();
-        $HV01030300 = array();
-        $HV01030303 = array();
-        $HV11000000 = array();
-        $HV11130000 = array();
-        $HV11131400 = array();
-        $HV11140000 = array();
-        $HV11141400 = array();
-        $HV11141414 = array();
+        $HV01030000 = [];
+        $HV01030300 = [];
+        $HV01030303 = [];
+        $HV11000000 = [];
+        $HV11130000 = [];
+        $HV11131400 = [];
+        $HV11140000 = [];
+        $HV11141400 = [];
+        $HV11141414 = [];
         /*
 		analog 5
 		digital 6
@@ -177,7 +177,7 @@ class SystemController extends BaseController
         $thisBldg = Building::find($id); // Lookup info for selected building
         $systems = System::where('building_id', $thisBldg->id)->get(); // Lookup all systems associated with selected building for nav dropdown
 
-        return View::make('buildings.config.newsystem', array('thisBldg' => $thisBldg))
+        return View::make('buildings.config.newsystem', ['thisBldg' => $thisBldg])
         ->with('systemsData', $systems);
     }
 
@@ -278,20 +278,20 @@ class SystemController extends BaseController
             ->remember(10)->first();
 
         $products = ProductType::all();                                 // Lookup all products available to this system
-        $product_commands = array();
+        $product_commands = [];
         foreach ($products as $prods) {
             $product_commands[$prods->name] = $prods->commands;
         }
         $devicetypes = [];
         $dtype = DeviceType::all();                                     // Lookup all device types
-        $device_type_names = array();
+        $device_type_names = [];
         foreach ($dtype as $dt) {
             $device_type_names[$dt->command] = $dt->function;
             if (!in_array($dt->function, $devicetypes)) {
                 array_push($devicetypes, $dt->function);    // Lookup all unique device types available to this system
             }
         }
-        $device_type_units = array();
+        $device_type_units = [];
         foreach ($dtype as $dt) {
             $device_type_units[$dt->command] = $dt->units;
         }
@@ -325,12 +325,12 @@ class SystemController extends BaseController
 
         /****************************************************/
 
-        $retired_devices = array();
-        $used_retired_devices = array();
+        $retired_devices = [];
+        $used_retired_devices = [];
         foreach ($retiredDevices as $device) {
             $retired_devices[$device->id] = $device->id;
         }
-        $device_env_offset = array();
+        $device_env_offset = [];
         foreach ($devicesetpoints as $devset) {
             $device_env_offset[$devset->device_id][$devset->command] = $devset->environmental_offset;
         }
@@ -364,7 +364,7 @@ class SystemController extends BaseController
 
 
         // WIRED RELAYS: Get vector info and create multidimensional array reflecting 4-board setup with 4 positions on each board
-        $activeRelays = array();
+        $activeRelays = [];
         $activeRelayString = str_pad(decbin($thisSys->active_relays), 16, '0', STR_PAD_LEFT); //Create a string representation of the binary value
         $board = 1;
         $position = 1;
@@ -380,7 +380,7 @@ class SystemController extends BaseController
         }
 
         // ACTIVE INPUTS: Get vector info and create array reflecting 4-board setup with 8 positions on each board
-        $activeInputs = array();
+        $activeInputs = [];
         $activeInputString = str_pad(decbin($thisSys->active_inputs1), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs2), 8, '0', STR_PAD_LEFT) .
                             str_pad(decbin($thisSys->active_inputs3), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs4), 8, '0', STR_PAD_LEFT);
         $board = 1;
@@ -400,7 +400,7 @@ class SystemController extends BaseController
           ->orderby('zone', 'ASC')
           ->get();
 
-        $zone_labels = array();
+        $zone_labels = [];
 
         foreach ($zones as $zone) {
             $zone_labels[$zone->zone] = $zone->zonename;
@@ -413,11 +413,11 @@ class SystemController extends BaseController
             ->where('device_mode', 'wired')
             ->where('retired', '0')
             ->get();
-        $existing_wired_devices = array();
+        $existing_wired_devices = [];
         foreach ($ewd as $key => $value) {
             $existing_wired_devices[$value->location] = true;
         }
-        $active_components = array();
+        $active_components = [];
         $hardware_options = SystemController::initialize_hardware_versions();               //Initialize the hardware options array
         foreach ($hardware_options as $hardware_option => $hwo) {
             switch ($thisSys->hardware_version) {
@@ -526,7 +526,7 @@ class SystemController extends BaseController
         /****************************************************/
 
 
-        return View::make('buildings.config.editsystem', array('thisBldg' => $thisBldg))
+        return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
             ->with('systemsData', $systems)
             ->with('relay_devices', $relay_devices)
             ->with('wired_input_devices', $wired_input_devices)
@@ -707,7 +707,7 @@ class SystemController extends BaseController
                         ->where('system_id', $Sys->id)
                         ->where('location', $location)
                         ->where('device_mode', 'wired')
-                        ->update(array('status'=>'0','inhibited'=>'1','retired'=>'1'));
+                        ->update(['status'=>'0','inhibited'=>'1','retired'=>'1']);
                     SystemLog::info($Sys->id, "Wired Devices Retired at location ".$location." based on $checkbox_res marked OFF", 25);
                 }
             } elseif ($checkbox_res === 'ON') {
@@ -759,7 +759,7 @@ class SystemController extends BaseController
                     DB::table('devices')
                         ->where('system_id', $Sys->id)
                         ->where('device_mode', 'wired')
-                        ->update(array('status'=>'0','inhibited'=>'1','retired'=>'1'));
+                        ->update(['status'=>'0','inhibited'=>'1','retired'=>'1']);
                     SystemLog::info($Sys->id, "Wired Devices Retired for Hardware Version 01.00.00.00", 25);
                     /*TODO: REMOVE DEVICE_SETPOINTS & OUTPUT_MAPPING*/
                 }
@@ -789,7 +789,7 @@ class SystemController extends BaseController
             default:
                 SystemLog::error($Sys->id, "User: ".$input['current_user'].": Unknown Hardware Version: [".$hw_version."]", 26);
                 Session::flash('error', 'Bad Hardware Version: '.$hw_version);
-                return Redirect::route('system.editSystem', array($Bldg->id, $Sys->id));
+                return Redirect::route('system.editSystem', [$Bldg->id, $Sys->id]);
                 break;
         }
     }
@@ -1012,7 +1012,7 @@ class SystemController extends BaseController
 
             Session::flash('success', 'System configuration updated. '.$hardware_version);
 
-            return Redirect::route('system.editSystem', array($thisBldg->id, $thisSys->id));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $thisSys->id]);
         } /*--------------------------------------------------------------------------
 		| Update Devices Button
 		|-------------------------------------------------------------------------*/
@@ -1128,7 +1128,7 @@ class SystemController extends BaseController
                                     ->where('command', $dt->command)
                                     ->where('device_id', $device->id)
                                     ->limit('1')
-                                    ->update(array('environmental_offset' => $offset_val));
+                                    ->update(['environmental_offset' => $offset_val]);
                                 $log_report = "ENVIRONMENTAL_OFFSET CHANGED FOR [ID:".$device->id."][TYPE:".$dt->command."] FROM [".$initial_offset_val."] TO [".$offset_val."]";
                                 SystemLog::info($thisSys->id, $log_report, 10);
                             }
@@ -1267,7 +1267,7 @@ class SystemController extends BaseController
             $thisSys->save();
 
             // WIRED RELAYS: Get vector info and create multidimensional array reflecting 4-board setup with 4 positions on each board
-            $activeRelays = array();
+            $activeRelays = [];
             $activeRelayString = str_pad(decbin($thisSys->active_relays), 16, '0', STR_PAD_LEFT);
             $board = 1;
             $position = 1;
@@ -1282,7 +1282,7 @@ class SystemController extends BaseController
                 }
             }
             // CURRENT LOOPS: Get vector info to check correct checkboxes
-            $currentLoops = array();
+            $currentLoops = [];
             $currentLoopString = str_pad(decbin($thisSys->current_loop_dvrs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopString); $i++) {
                 if ($currentLoopString[$i] == 1) {
@@ -1291,7 +1291,7 @@ class SystemController extends BaseController
             }
 
             // CURRENT LOOP INPUTS: Get vector info to check correct checkboxes
-            $currentLoopsInput = array();
+            $currentLoopsInput = [];
             $currentLoopStringInput = str_pad(decbin($thisSys->current_loop_inputs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopStringInput); $i++) {
                 if ($currentLoopStringInput[$i] == 1) {
@@ -1300,7 +1300,7 @@ class SystemController extends BaseController
             }
 
             // ACTIVE INPUTS: Get vector info and create array reflecting 4-board setup with 8 positions on each board
-            $activeInputs = array();
+            $activeInputs = [];
             $activeInputString = str_pad(decbin($thisSys->active_inputs1), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs2), 8, '0', STR_PAD_LEFT) .
                                 str_pad(decbin($thisSys->active_inputs3), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs4), 8, '0', STR_PAD_LEFT);
             $board = 1;
@@ -1325,7 +1325,7 @@ class SystemController extends BaseController
                 ->orderby('zone', 'ASC')
                 ->get();
 
-            $zone_labels = array();
+            $zone_labels = [];
 
             foreach ($zones as $zone) {
                 $zone_labels[$zone->zone] = $zone->zonename;
@@ -1333,7 +1333,7 @@ class SystemController extends BaseController
 
             $confirm = "updateDevice";
 
-            return Redirect::route('system.editSystem', array($thisBldg->id, $thisSys->id));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $thisSys->id]);
         } /*--------------------------------------------------------------------------
 		| Add Device button
 		|-------------------------------------------------------------------------*/
@@ -1372,7 +1372,7 @@ class SystemController extends BaseController
             $thisSys->save();
 
             // WIRED RELAYS: Get vector info and create multidimensional array reflecting 4-board setup with 4 positions on each board
-            $activeRelays = array();
+            $activeRelays = [];
             $activeRelayString = str_pad(decbin($thisSys->active_relays), 16, '0', STR_PAD_LEFT);
             $board = 1;
             $position = 1;
@@ -1387,7 +1387,7 @@ class SystemController extends BaseController
                 }
             }
             // CURRENT LOOPS: Get vector info to check correct checkboxes
-            $currentLoops = array();
+            $currentLoops = [];
             $currentLoopString = str_pad(decbin($thisSys->current_loop_dvrs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopString); $i++) {
                 if ($currentLoopString[$i] == 1) {
@@ -1396,7 +1396,7 @@ class SystemController extends BaseController
             }
 
             // CURRENT LOOP INPUTS: Get vector info to check correct checkboxes
-            $currentLoopsInput = array();
+            $currentLoopsInput = [];
             $currentLoopStringInput = str_pad(decbin($thisSys->current_loop_inputs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopStringInput); $i++) {
                 if ($currentLoopStringInput[$i] == 1) {
@@ -1405,7 +1405,7 @@ class SystemController extends BaseController
             }
 
             // ACTIVE INPUTS: Get vector info and create array reflecting 4-board setup with 8 positions on each board
-            $activeInputs = array();
+            $activeInputs = [];
             $activeInputString = str_pad(decbin($thisSys->active_inputs1), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs2), 8, '0', STR_PAD_LEFT) .
                                 str_pad(decbin($thisSys->active_inputs3), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs4), 8, '0', STR_PAD_LEFT);
             $board = 1;
@@ -1443,7 +1443,7 @@ class SystemController extends BaseController
             
             $confirm = Device::where('system_id', $thisSys->id)->orderBy('id', 'desc')->first();
 
-            return View::make('buildings.config.editsystem', array('thisBldg' => $thisBldg))
+            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('thisSystem', $thisSys)
@@ -1479,7 +1479,7 @@ class SystemController extends BaseController
                     DB::table('mapping_output')
                         ->where('system_id', $thisSys->id)
                         ->where('device_id', $deviceNum)
-                        ->update(array('algorithm_id' => $value['algorithm'], 'input_id' => $inputlist));
+                        ->update(['algorithm_id' => $value['algorithm'], 'input_id' => $inputlist]);
                 } else {
                     $mapoutput = new MappingOutput;
                     $mapoutput->system_id = $thisSys->id;
@@ -1491,7 +1491,7 @@ class SystemController extends BaseController
             }
 
             // WIRED RELAYS: Get vector info and create multidimensional array reflecting 4-board setup with 4 positions on each board
-            $activeRelays = array();
+            $activeRelays = [];
             $activeRelayString = str_pad(decbin($thisSys->active_relays), 16, '0', STR_PAD_LEFT);
             $board = 1;
             $position = 1;
@@ -1506,7 +1506,7 @@ class SystemController extends BaseController
                 }
             }
             // CURRENT LOOPS: Get vector info to check correct checkboxes
-            $currentLoops = array();
+            $currentLoops = [];
             $currentLoopString = str_pad(decbin($thisSys->current_loop_dvrs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopString); $i++) {
                 if ($currentLoopString[$i] == 1) {
@@ -1515,7 +1515,7 @@ class SystemController extends BaseController
             }
 
             // CURRENT LOOP INPUTS: Get vector info to check correct checkboxes
-            $currentLoopsInput = array();
+            $currentLoopsInput = [];
             $currentLoopStringInput = str_pad(decbin($thisSys->current_loop_inputs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopStringInput); $i++) {
                 if ($currentLoopStringInput[$i] == 1) {
@@ -1524,7 +1524,7 @@ class SystemController extends BaseController
             }
 
             // ACTIVE INPUTS: Get vector info and create array reflecting 4-board setup with 8 positions on each board
-            $activeInputs = array();
+            $activeInputs = [];
             $activeInputString = str_pad(decbin($thisSys->active_inputs1), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs2), 8, '0', STR_PAD_LEFT) .
                                 str_pad(decbin($thisSys->active_inputs3), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs4), 8, '0', STR_PAD_LEFT);
             $board = 1;
@@ -1546,7 +1546,7 @@ class SystemController extends BaseController
 
             $confirm = "updateMap";
 
-            return View::make('buildings.config.editsystem', array('thisBldg' => $thisBldg))
+            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('thisSystem', $thisSys)
@@ -1593,7 +1593,7 @@ class SystemController extends BaseController
                     default:
                         break;
                 }
-                return Redirect::route('system.editSystem', array($thisBldg->id, $thisSys->id));
+                return Redirect::route('system.editSystem', [$thisBldg->id, $thisSys->id]);
             }
                 Session::flash('success', 'Successfully logged in.');
     
@@ -1620,7 +1620,7 @@ class SystemController extends BaseController
                         default:
                             break;
                     }
-                    return Redirect::route('system.editSystem', array($thisBldg->id, $thisSys->id));
+                    return Redirect::route('system.editSystem', [$thisBldg->id, $thisSys->id]);
                 }
                 $geoclientDATA = json_decode($res1->getBody(), true);
                 if (array_key_exists('bbl', $geoclientDATA['place'])) {
@@ -1680,14 +1680,14 @@ class SystemController extends BaseController
             if ($device_created == false) {
                 Session::flash('error', 'Building not found, try using different account.');
             }
-                return Redirect::route('system.editSystem', array($thisBldg->id, $thisSys->id));
+                return Redirect::route('system.editSystem', [$thisBldg->id, $thisSys->id]);
         } /*--------------------------------------------------------------------------
 		| Alg Inputs button
 		|-------------------------------------------------------------------------*/
         else if (isset($input['AlgInput'])) {
             unset($input['AlgInput']);
             // WIRED RELAYS: Get vector info and create multidimensional array reflecting 4-board setup with 4 positions on each board
-            $activeRelays = array();
+            $activeRelays = [];
             $activeRelayString = str_pad(decbin($thisSys->active_relays), 16, '0', STR_PAD_LEFT);
             $board = 1;
             $position = 1;
@@ -1702,7 +1702,7 @@ class SystemController extends BaseController
                 }
             }
             // CURRENT LOOPS: Get vector info to check correct checkboxes
-            $currentLoops = array();
+            $currentLoops = [];
             $currentLoopString = str_pad(decbin($thisSys->current_loop_dvrs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopString); $i++) {
                 if ($currentLoopString[$i] == 1) {
@@ -1711,7 +1711,7 @@ class SystemController extends BaseController
             }
 
             // CURRENT LOOP INPUTS: Get vector info to check correct checkboxes
-            $currentLoopsInput = array();
+            $currentLoopsInput = [];
             $currentLoopStringInput = str_pad(decbin($thisSys->current_loop_inputs), 4, '0', STR_PAD_LEFT);
             for ($i = 0; $i < strlen($currentLoopStringInput); $i++) {
                 if ($currentLoopStringInput[$i] == 1) {
@@ -1720,7 +1720,7 @@ class SystemController extends BaseController
             }
 
             // ACTIVE INPUTS: Get vector info and create array reflecting 4-board setup with 8 positions on each board
-            $activeInputs = array();
+            $activeInputs = [];
             $activeInputString = str_pad(decbin($thisSys->active_inputs1), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs2), 8, '0', STR_PAD_LEFT) .
                                 str_pad(decbin($thisSys->active_inputs3), 8, '0', STR_PAD_LEFT) . str_pad(decbin($thisSys->active_inputs4), 8, '0', STR_PAD_LEFT);
             $board = 1;
@@ -1742,7 +1742,7 @@ class SystemController extends BaseController
 
             $confirm = "updateInput";
 
-            return View::make('buildings.config.editsystem', array('thisBldg' => $thisBldg))
+            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('devicetypes', $devicetypes)
@@ -1762,7 +1762,7 @@ class SystemController extends BaseController
             } catch (Exception $e) {
                 SystemLog::error($sid, $e->getMessage(), 26);
             }
-            return Redirect::route('system.editSystem', array($thisBldg->id, $sid));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $sid]);
         } else if (isset($input['UndoResetSystem'])) {
             SystemLog::info($sid, 'Web Request for reset of system '.$sid, 5);
             try {
@@ -1770,7 +1770,7 @@ class SystemController extends BaseController
             } catch (Exception $e) {
                 SystemLog::error($sid, $e->getMessage(), 26);
             }
-            return Redirect::route('system.editSystem', array($thisBldg->id, $sid));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $sid]);
         } else if (isset($input['SoftwareUpdate'])) {
             SystemLog::info($sid, 'Web Request for software update of system '.$sid, 5);
             try {
@@ -1778,7 +1778,7 @@ class SystemController extends BaseController
             } catch (Exception $e) {
                 SystemLog::error($sid, $e->getMessage(), 26);
             }
-            return Redirect::route('system.editSystem', array($thisBldg->id, $sid));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $sid]);
         } else if (isset($input['UndoSoftwareUpdate'])) {
             SystemLog::info($sid, 'Web Request for reset of system '.$sid, 5);
             try {
@@ -1786,7 +1786,7 @@ class SystemController extends BaseController
             } catch (Exception $e) {
                 SystemLog::error($sid, $e->getMessage(), 26);
             }
-            return Redirect::route('system.editSystem', array($thisBldg->id, $sid));
+            return Redirect::route('system.editSystem', [$thisBldg->id, $sid]);
         }
     }
 
@@ -2116,7 +2116,7 @@ class SystemController extends BaseController
 
         $devicetypes = DeviceType::all();
 
-        $local_devs = array();
+        $local_devs = [];
 
         foreach ($dev_details as $dd) {
             $boom = explode(',', $dd->commands);

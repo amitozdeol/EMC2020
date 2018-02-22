@@ -48,12 +48,12 @@ class WebMappingController extends \BaseController
             ->orderby('order', 'ASC')
             ->get();
 
-            $model_array = array();
+            $model_array = [];
             foreach ($dashItemModels as $model) {
                 $model_array[$model->id] = $model->label;
             }
 
-            $item_array = array();
+            $item_array = [];
             foreach ($dashItems as $item) {
                 if ($item->chart_type != strtoupper($item->chart_type) or $item->chart_type == null) {
                     $item_array[$item->label] = $item->id;
@@ -70,18 +70,18 @@ class WebMappingController extends \BaseController
 
         $chartTypes = Chart::all();
 
-        $chart_types = array();
+        $chart_types = [];
         foreach ($chartTypes as $chart) {
             $chart_types[$chart->chart_type] = $chart->chart_type.' Chart';
         }
 
-        $usedDashboardItems = array();
-        $availableDashboardItems = array();
-        $dashboardItems = array();
-        $dashboardParents = array();
-        $dashModels = array();
-        $dashboardChildren = array();
-        $onlyChildren = array();
+        $usedDashboardItems = [];
+        $availableDashboardItems = [];
+        $dashboardItems = [];
+        $dashboardParents = [];
+        $dashModels = [];
+        $dashboardChildren = [];
+        $onlyChildren = [];
 
         foreach ($dashItems as $parent) {
             $dashboardItems[$parent->id] = $parent;
@@ -157,7 +157,7 @@ class WebMappingController extends \BaseController
         ->get();
 
 
-        $definedDashItems = array();
+        $definedDashItems = [];
         foreach ($predefined as $item) {
             $definedDashItems[$item->id] = $item;
         }
@@ -263,7 +263,7 @@ class WebMappingController extends \BaseController
         ->get();
 
         $i = 0;
-        $deleteGroup = array();
+        $deleteGroup = [];
         $deleteGroup[$i++] = $id;
         foreach ($dashboardItems as $dashboardItem) {
             if (in_array($dashboardItem->parent_id, $deleteGroup)) {

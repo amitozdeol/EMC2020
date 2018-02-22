@@ -7,7 +7,7 @@ class SystemsTableSeeder extends Seeder
     {
         DB::table('systems')->delete();
 
-        System::create(array(
+        System::create([
           'building_id' => 1,
           'extender_boards' => 4,
           'wired_relay_outputs' => 3,
@@ -30,9 +30,9 @@ class SystemsTableSeeder extends Seeder
           'wireless_port' => 22,
           'coordinator_mac' => 12345,
           'coordinator_format' => 1,
-        ));
+        ]);
 
-        System::create(array(
+        System::create([
           'building_id' => 1,
           'extender_boards' => 2,
           'wired_relay_outputs' => 3,
@@ -55,9 +55,9 @@ class SystemsTableSeeder extends Seeder
           'wireless_port' => 22,
           'coordinator_mac' => 0,
           'coordinator_format' => 1,
-        ));
+        ]);
 
-        System::create(array(
+        System::create([
           'building_id' => 1,
           'extender_boards' => 2,
           'wired_relay_outputs' => 3,
@@ -80,6 +80,6 @@ class SystemsTableSeeder extends Seeder
           'wireless_port' => 22,
           'coordinator_mac' => 0,
           'coordinator_format' => 1,
-        ));
+        ]);
     }
 }

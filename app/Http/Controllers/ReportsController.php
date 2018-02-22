@@ -273,7 +273,7 @@ class ReportsController extends BaseController
             ->select('digital')
             ->where('function', $chart_type)
             ->first();
-            $device_data = array();
+            $device_data = [];
             //================= For Digital function type ===========================
             if ($DigitalDevice->digital == 1) { //Digital
                 $startTime = date_format($startfetchDate, 'Y-m-d 00:00:00');
@@ -337,7 +337,7 @@ class ReportsController extends BaseController
                             /* Add 0 to created_at-1 location, 1 at created_at location.
                              Add 1 to cleared_at location, 0 at cleared_at+1 location.
                             */
-                            $time_add_sub = array($data_point->created_at => -1, $data_point->cleared_at => 1);
+                            $time_add_sub = [$data_point->created_at => -1, $data_point->cleared_at => 1];
                             foreach ($time_add_sub as $date => $value) {
                                 // Add data
                                 array_push($json['data'][$DEV_name], 0);  //add 0 value before/after created/cleared_at
@@ -588,13 +588,13 @@ class ReportsController extends BaseController
                 if ($device_selection != 'all') {
                     $name_column = false;
                     $device_id = intval($device_selection);
-                    $columns = array(
+                    $columns = [
                       // datatable column index  => database column name
                       0=> 'created_at',     // for order by created_at
                       1=> 'cleared_at',     //for order by cleared_at
                       2=> 'duration',
                       3=> 'description'
-                            );
+                            ];
                     $query = Events::where('events.system_id', $system_id)
                                   ->where('events.device_id', $device_id)
                                   ->where('events.created_at', '>=', $startTime)
@@ -617,14 +617,14 @@ class ReportsController extends BaseController
                 } // =========================================== For All devices ===============================================
                 else {
                     $name_column = true;
-                    $columns = array(
+                    $columns = [
                       // datatable column index  => database column name
                       0=> 'name',           // for order by name from devices table
                       1=> 'created_at',     // for order by created_at
                       2=> 'cleared_at',     //for order by cleared_at
                       3=> 'duration',
                       4=> 'description'
-                            );
+                            ];
                     $devicesID = Input::get('device_list');
                     $query = Events::where('events.system_id', $system_id)
                                   ->where('events.created_at', '>=', $startTime)
@@ -670,8 +670,8 @@ class ReportsController extends BaseController
                 else {
                     $description_column = $query->select(DB::raw('distinct alarm_codes.id as id, alarm_codes.description as description'))
                                       ->get();
-                    $description_list = array();
-                    $alarm_code_list = array();
+                    $description_list = [];
+                    $alarm_code_list = [];
                     foreach ($description_column as $value) {
                         if (!is_null($value->id)) {
                             array_push($description_list, $value->description);
@@ -704,9 +704,9 @@ class ReportsController extends BaseController
                                       ->orderBy($columns[$requestData['order'][0]['column']], $requestData['order'][0]['dir'])
                                       ->take($requestData['length'])->skip($requestData['start'])
                                       ->get();
-                $data = array();
+                $data = [];
                 foreach ($device_data as $data_point) {
-                    $nestedData = array();
+                    $nestedData = [];
                     if ($name_column) { //Add name column to the table
                         $nestedData[] = $data_point->name;
                     }
@@ -730,7 +730,7 @@ class ReportsController extends BaseController
                 }
 
                 $queries = DB::getQueryLog();
-                $json_data = array(
+                $json_data = [
                         "duration"        => [Session::get('min_duration'), Session::get('max_duration')],
                         "description"     => [Session::get('description_list'), Session::get('alarm_code_list')],   // Contains data for dropdown in description column
                         "draw"            => intval($requestData['draw']),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -738,7 +738,7 @@ class ReportsController extends BaseController
                         "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
                         "data"            => $data,  // total data array
                         'queries'         => $queries,
-                          );
+                          ];
                 echo json_encode($json_data);
             }
         } /* *****************************************************************
@@ -751,7 +751,7 @@ class ReportsController extends BaseController
                 $startTime = date_format($startdate, 'Y-m-d');
                 $endTime = date_format($enddate, 'Y-m-d');
 
-                $device_data = array();
+                $device_data = [];
                 $startdatediff = date_diff($startdate, new DateTime());
                 $enddatediff = date_diff($enddate, new DateTime());
                 if (($startdatediff->days <= 14) && ($enddatediff->days <= 14)) {
@@ -782,13 +782,13 @@ class ReportsController extends BaseController
                 if ($device_selection != 'all') {
                     $name_column = false;
                     $device_id = intval($device_selection);
-                    $columns = array(
+                    $columns = [
                       // datatable column index  => database column name
                       0=> 'date',     // for order by date
                       2=> 'datetime', //for order by time
                       3=> 'current_value',
                       4=> 'setpoint'
-                            );
+                            ];
                     $query = DB::table($table_name)
                               ->where($table_name.'.system_id', $system_id)
                               ->where($table_name.'.id', $device_id)
@@ -860,8 +860,8 @@ class ReportsController extends BaseController
                     /*---------EXPORT BY FUNCTION------------------*/
                     $device_functions = DeviceType::where('function', $function)->get();
                     $all_products = ProductType::all();
-                    $relevant_products = array();
-                    $relevant_commands = array();
+                    $relevant_products = [];
+                    $relevant_commands = [];
                     foreach ($device_functions as $df) {
                         foreach ($all_products as $ap) {
                             $boom = explode(',', $ap->commands);
@@ -873,14 +873,14 @@ class ReportsController extends BaseController
                             }
                         }
                     }
-                    $columns = array(
+                    $columns = [
                       // datatable column index  => database column name
                       0=>'name',
                       1=> 'date',
                       2=> 'datetime',
                       3=> 'current_value',
                       4=> 'setpoint'
-                            );
+                            ];
                     $query = DB::table($table_name)
                               ->where($table_name.'.system_id', $system_id)
                               ->where($table_name.'.date', '>=', $startTime)
@@ -947,9 +947,9 @@ class ReportsController extends BaseController
                 }
             }
 
-            $data = array();
-            $dataseverity = array();    //Alarm severity
-            $datadescription = array();
+            $data = [];
+            $dataseverity = [];    //Alarm severity
+            $datadescription = [];
             foreach ($device_data as $data_point) {
                 if ($function == 'Temperature') {
                     $data_point->current_value = number_format(ConvFunc::convertCelciusToFarenheit($data_point->current_value), 3, '.', '');
@@ -958,7 +958,7 @@ class ReportsController extends BaseController
                     $data_point->current_value = number_format($data_point->current_value, 3, '.', '');
                     $data_point->setpoint = number_format($data_point->setpoint, 3, '.', '');
                 }
-                $nestedData = array();
+                $nestedData = [];
                 if ($name_column) { //Add name column to the table
                     $nestedData[] = $data_point->name;
                 }
@@ -980,7 +980,7 @@ class ReportsController extends BaseController
             }
             $queries = DB::getQueryLog();
 
-            $json_data = array(
+            $json_data = [
                       "current_value"   => [$device_data_rows->min_current_value, $device_data_rows->max_current_value],
                       "setpoint"        => [$device_data_rows->min_setpoint, $device_data_rows->max_setpoint],
                       "draw"            => intval($requestData['draw']),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -990,7 +990,7 @@ class ReportsController extends BaseController
                       'queries'         => $queries,
                       "severity"        => $dataseverity,
                       "description"     => $datadescription,
-                  );
+                  ];
             echo json_encode($json_data);
         }
     }

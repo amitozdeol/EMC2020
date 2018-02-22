@@ -23,101 +23,101 @@ class AddDashboardItemsTable extends Migration
             $table->string('chart_type')->nullable();
         });
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'id' => 1,
         'label' => 'Dashboard',
         'order' => 1,
         'parent_id' => 0,
         'system_id' => 0
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'id' => 2,
         'label' => 'Operations',
         'order' => 2,
         'parent_id' => 0,
         'system_id' => 0
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'id' => 3,
         'label' => 'Zone Status',
         'order' => 3,
         'parent_id' => 0,
         'system_id' => 0
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'id' => 4,
         'label' => 'Alarms',
         'order' => 4,
         'parent_id' => 1,
         'system_id' => 0,
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'id' => 5,
         'label' => 'Device Status',
         'order' => 5,
         'parent_id' => 2,
         'system_id' => 0,
-        ));
+        ]);
 
 
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'label' => '',
         'order' => 1,
         'parent_id' => 1,
         'system_id' => 0,
         'chart_type' => 'FURNACE'
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'label' => 'Temperature',
         'order' => 1,
         'parent_id' => 2,
         'system_id' => 0,
         'chart_type' => 'Temperature'
-        ));
-        DashboardItem::create(array(
+        ]);
+        DashboardItem::create([
         'label' => 'Humidity',
         'order' => 2,
         'parent_id' => 2,
         'system_id' => 0,
         'chart_type' => 'Humidity'
-        ));
-        DashboardItem::create(array(
+        ]);
+        DashboardItem::create([
         'label' => 'Pressure Differential',
         'order' => 3,
         'parent_id' => 2,
         'system_id' => 0,
         'chart_type' => 'Pressure Differential'
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'label' => '',
         'order' => 1,
         'parent_id' => 3,
         'system_id' => 0,
         'chart_type' => 'ZONE'
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'label' => '',
         'order' => 1,
         'parent_id' => 4,
         'system_id' => 0,
         'chart_type' => 'ALARM'
-        ));
+        ]);
 
-        DashboardItem::create(array(
+        DashboardItem::create([
         'label' => '',
         'order' => 1,
         'parent_id' => 5,
         'system_id' => 0,
         'chart_type' => 'DEVICE'
-        ));
+        ]);
     }
 
   /**

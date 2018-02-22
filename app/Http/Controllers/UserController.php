@@ -3,7 +3,7 @@
 class UserController extends BaseController
 {
 
-    public $mobile_carriers = array(
+    public $mobile_carriers = [
     '@txt.att.net'                => 'AT&T',
     '@tmomail.net'                => 'T-Mobile',
     '@vtext.net'                  => 'Verizon',
@@ -35,7 +35,7 @@ class UserController extends BaseController
     '@airtelmail.com'             => 'Delhi Aritel',
     '@emtelworld.net'             => 'Emtel',
     '@fido.ca'                    => 'Fido'
-    );
+    ];
 
 
 
@@ -46,7 +46,7 @@ class UserController extends BaseController
    */
     public function index()
     {
-        $mobile_carrier = array();
+        $mobile_carrier = [];
         foreach ($this->mobile_carriers as $key => $value) {
             $mobile_carrier[$key] = $value;
         }
@@ -65,7 +65,7 @@ class UserController extends BaseController
    */
     public function create()
     {
-        $mobile_carrier = array();
+        $mobile_carrier = [];
         $user = new User();
         $customer = Customer::find(Auth::user()->customer_id);
         $roles_raw = DB::table('role_labels')
@@ -255,9 +255,9 @@ class UserController extends BaseController
         $alarm_codes = AlarmCodes::all();
         $alerts = Alert::where('user_id', Auth::user()->id)->get();
 
-        $sensor_alerts = array();
-        $log_alerts = array();
-        $control_alerts = array();
+        $sensor_alerts = [];
+        $log_alerts = [];
+        $control_alerts = [];
 
         /******************* mark which alerts are currently active for this user **********************************8*/
         foreach ($alerts as $alert) {
@@ -316,7 +316,7 @@ class UserController extends BaseController
             ->get();
         }
 
-        $system_dev_types = array();
+        $system_dev_types = [];
 
         foreach ($customer_dev_types as $cdt) {
             $boom = explode(',', $cdt->commands);
@@ -330,7 +330,7 @@ class UserController extends BaseController
 
         $device_types = DeviceType::where('IO', 'Input')->get();
 
-        $commands = array();
+        $commands = [];
         foreach ($device_types as $type) {
             foreach ($system_dev_types as $key => $sdt_array) {
                 foreach ($sdt_array as $sys_dt) {

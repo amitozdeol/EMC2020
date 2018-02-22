@@ -53,17 +53,17 @@ class C3chart extends Migration
     {
         //
         Schema::table('device_data_long_term', function ($table) {
-            $table->dropColumn(array('unix_date', 'date'));
+            $table->dropColumn(['unix_date', 'date']);
                 $table->float('conversion');
         });
 
         Schema::table('device_data', function ($table) {
-            $table->dropColumn(array('unix_date', 'date'));
+            $table->dropColumn(['unix_date', 'date']);
                 $table->float('conversion');
         });
 
         Schema::table('device_data_current', function ($table) {
-            $table->dropColumn(array('unix_date', 'date'));
+            $table->dropColumn(['unix_date', 'date']);
         });
 
         Schema::dropIfExists('device_data_hourly_ave');

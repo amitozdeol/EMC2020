@@ -27,8 +27,8 @@ class SettingsController extends BaseController
             ->orderBy('building_name', 'asc')
             ->get();
 
-        $sysarray = array();
-        $confirmarray = array();
+        $sysarray = [];
+        $confirmarray = [];
         foreach ($systems as $key => $value) {
             $sysarray[$key]['system_id'] = $value->id;
             $sysarray[$key]['building_name'] = $value->building_name;
@@ -40,7 +40,7 @@ class SettingsController extends BaseController
         }
 
 
-        $data = array('customer_id' => $customer_id );
+        $data = ['customer_id' => $customer_id ];
         return View::make('settings.customerbuildings', $data)
             ->with('sysarray', $sysarray)
             ->with('confirmarray', $confirmarray);
@@ -56,8 +56,8 @@ class SettingsController extends BaseController
 	*/
     public function updatecustomerbuildings($customer_id)
     {
-        $sysarray = array();
-        $confirmarray = array();
+        $sysarray = [];
+        $confirmarray = [];
         
         $input = Input::except('_token');
 
@@ -91,7 +91,7 @@ class SettingsController extends BaseController
         
         if (isset($input['AllSeasons'])) {
             /*Set all systemsto the same season*/
-            $sysidarray = array();
+            $sysidarray = [];
             foreach ($systems as $key => $value) {
                 $sysidarray[] = $value->id;
             }
@@ -127,7 +127,7 @@ class SettingsController extends BaseController
 
 
 
-        $data = array('customer_id' => $customer_id );
+        $data = ['customer_id' => $customer_id ];
         return View::make('settings.customerbuildings', $data)
             ->with('sysarray', $sysarray)
             ->with('confirmarray', $confirmarray);

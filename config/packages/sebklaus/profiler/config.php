@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     // Set to TRUE to enable profiling, FALSE to disable. NULL to listen to the app.debug value (default)
     'profiler' => true,
@@ -21,22 +21,22 @@ return array(
     'jquery_url' => '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
 
     // Buttons: order /disable buttons
-    'btns' => array(
-        'environment'=> array('label'=>'ENV','title'=>'Environment'),
-        'memory'=>      array('label'=>'MEM','title'=>'Memory'),
-        'controller'=>  array('label'=>'CTRL','title'=>'Controller'),
-        'routes'=>      array('label'=>'ROUTES'),
-        'log'=>         array('label'=>'LOG'),
-        'sql'=>         array('label'=>'SQL'),
-        'checkpoints'=> array('label'=>'TIME'),
-        'file'=>        array('label'=>'FILES'),
-        'view'=>        array('label'=>'VIEW'),
-        'session'=>     array('label'=>'SESSION'),
-        'config'=>      array('label'=>'CONFIG'),
-        'storage'=>     array('label'=>'LOGS','title'=>'Logs in storage'),
-        'auth'=>        array('label'=>'AUTH'),
-        'auth-sentry'=> array('label'=>'AUTH')
-    ),
+    'btns' => [
+        'environment'=> ['label'=>'ENV','title'=>'Environment'],
+        'memory'=>      ['label'=>'MEM','title'=>'Memory'],
+        'controller'=>  ['label'=>'CTRL','title'=>'Controller'],
+        'routes'=>      ['label'=>'ROUTES'],
+        'log'=>         ['label'=>'LOG'],
+        'sql'=>         ['label'=>'SQL'],
+        'checkpoints'=> ['label'=>'TIME'],
+        'file'=>        ['label'=>'FILES'],
+        'view'=>        ['label'=>'VIEW'],
+        'session'=>     ['label'=>'SESSION'],
+        'config'=>      ['label'=>'CONFIG'],
+        'storage'=>     ['label'=>'LOGS','title'=>'Logs in storage'],
+        'auth'=>        ['label'=>'AUTH'],
+        'auth-sentry'=> ['label'=>'AUTH']
+    ],
     'doc' => 'http://www.laravel.com/docs/',
 
-);
+];

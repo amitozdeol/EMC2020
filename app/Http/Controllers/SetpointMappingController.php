@@ -61,12 +61,12 @@ class SetpointMappingController extends \BaseController
         ->get();
 
         $zoneNames = Zone::where('system_id', $sid)->get();
-        $zoneNameArray = array();
+        $zoneNameArray = [];
         foreach ($zoneNames as $zone) {
             $zoneNameArray[$zone->zone] = $zone->zonename;
         }
 
-        $typesArray = array();
+        $typesArray = [];
         foreach ($devTypes as $type) {
             $typesArray[$type->command] = $type->function;
         }
@@ -85,7 +85,7 @@ class SetpointMappingController extends \BaseController
         ->select('product_types.commands AS product_commands', 'devices.name AS device_name', 'devices.created_at AS device_created_at', 'devices.product_id AS product_id', 'devices.id AS device_id', 'devices.zone AS zone', 'devices.device_mode AS device_mode')
         ->get();
 
-        $devIdList = array();
+        $devIdList = [];
         foreach ($products as $p) {
             $devIdList[] = $p->device_id;
         }
@@ -97,7 +97,7 @@ class SetpointMappingController extends \BaseController
         ->get();
 
         /*Create a list of command -functions for this system's inputs, based on the system's input devices' product types*/
-        $systemCommands = array();
+        $systemCommands = [];
         foreach ($products as $p) {
             $commands = explode(',', $p->product_commands);
             foreach ($commands as $c) {
@@ -110,13 +110,13 @@ class SetpointMappingController extends \BaseController
         $functionTypes = DeviceType::wherein('command', $systemCommands)->get();
 
         $sigfigs = 2;
-        $megarray = array();
-        $functionsArray = array();
-        $zonesArray = array();
-        $functionZone = array();
-        $remapDevices = array();
-        $device_setbacks = array();
-        $bluntArray = array();
+        $megarray = [];
+        $functionsArray = [];
+        $zonesArray = [];
+        $functionZone = [];
+        $remapDevices = [];
+        $device_setbacks = [];
+        $bluntArray = [];
     
         /*BUILD MEGARRAY AND DEVICE_SETBACKS ARRAYS*/
         foreach ($products as $p) {                                 //All of the devices associated with this system
@@ -182,8 +182,8 @@ class SetpointMappingController extends \BaseController
         }
         $functionsArray = array_unique($functionsArray, SORT_STRING);
         $zonesArray = array_unique($zonesArray, SORT_STRING);
-        $commandFunctions = array();
-        $commandUnits = array();
+        $commandFunctions = [];
+        $commandUnits = [];
         foreach ($functionTypes as $ft) {
             $commandFunctions[$ft->function] = $ft->command;
       
@@ -283,9 +283,9 @@ class SetpointMappingController extends \BaseController
         $GLOBALS['session_error'] = "";
         $error_start = '<big><big>&bull; ERROR: ';
         $error_end = ' Not Set. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please Try Again.</big></big><br>';
-        $newGlobalRecnums = array();
-        $newZoneRecnums = array();
-        $newSensorRecnums = array();
+        $newGlobalRecnums = [];
+        $newZoneRecnums = [];
+        $newSensorRecnums = [];
         $updateData = Input::all();
         Log::info($updateData);
         $thisSys = System::find($sid);
@@ -296,7 +296,7 @@ class SetpointMappingController extends \BaseController
         $setbacks = DeviceSetback::where('system_id', $sid)->get();
         $devTypes = DeviceType::where('IO', 'Input')->get();
       
-        $typesArray = array();
+        $typesArray = [];
         foreach ($devTypes as $type) {
             $typesArray[$type->command] = $type->function;
         }
@@ -410,7 +410,7 @@ class SetpointMappingController extends \BaseController
                 /*UPDATE SETPOINTS BY ZONE*/
                 $devices = Device::where('system_id', $sid)->get();
           
-                $deviceZones = array();
+                $deviceZones = [];
                 foreach ($devices as $device) {
                     $deviceZones[$device->id] = $device->zone;
                 }
@@ -527,7 +527,7 @@ class SetpointMappingController extends \BaseController
                       ->groupby('function')
                       ->orderby('function')
                       ->get();
-            $hyster_array = array();
+            $hyster_array = [];
             foreach ($deviceTypes as $type) {
                 $hyster_array[$type->command] = $type->hysteresis;
             }
@@ -686,7 +686,7 @@ class SetpointMappingController extends \BaseController
         ->orderby('updated_at', 'ASC')
         ->first();
 
-        $type_array = array();
+        $type_array = [];
 
         foreach ($deviceTypes as $type) {// Create an array of all device types.
             $type_array[$type->command] = $type;
@@ -720,10 +720,10 @@ class SetpointMappingController extends \BaseController
    */
     public static function remap($id, $sid)
     {
-        $device_array = array();
-        $product_array = array();
-        $type_array = array();
-        $setpoint_array = array();
+        $device_array = [];
+        $product_array = [];
+        $type_array = [];
+        $setpoint_array = [];
 
         $thisBldg = Building::find($id);
         $thisSys = System::find($sid);
@@ -958,7 +958,7 @@ function setback_conflict_resolution($recnum, $single)
     ->orderby('device_setback.device_id')
     ->get();
   
-    $sb_entry = array();
+    $sb_entry = [];
     $rec_num = 0;
     foreach ($setbacks as $sb) {
         $start = explode(":", $sb->starttime);
@@ -1040,7 +1040,7 @@ function setback_conflict_resolution($recnum, $single)
         }
     }
   
-    $recnums_for_removal = array();
+    $recnums_for_removal = [];
     foreach ($sb_entry as $key => $sbe) {
         if ($sbe['error'] === true) {
             if (isset($sbe['recnum'])) {

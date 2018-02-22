@@ -21,7 +21,7 @@ class ProductTypeController extends \BaseController
 
         $deviceTypes = DeviceType::all();
 
-        $device_types = array();
+        $device_types = [];
         foreach ($deviceTypes as $type) {
             $device_types[$type->command] = $type->command;
         }
@@ -30,8 +30,8 @@ class ProductTypeController extends \BaseController
         ->orderby('product_type')
         ->get();
 
-        $product_ids = array();
-        $product_numbers = array();
+        $product_ids = [];
+        $product_numbers = [];
 
 
         foreach ($products as $product) {

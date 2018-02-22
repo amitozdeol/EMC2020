@@ -7,7 +7,7 @@ class DevicesTableSeeder extends Seeder
     {
         DB::table('devices')->delete();
 
-        Device::create(array(
+        Device::create([
           'id' => 1,
           'building_id' => 2,
           'system_id' => 500,
@@ -21,9 +21,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 2,
           'building_id' => 2,
           'system_id' => 500,
@@ -37,9 +37,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 0,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 3,
           'building_id' => 2,
           'system_id' => 500,
@@ -53,9 +53,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 4,
           'building_id' => 2,
           'system_id' => 500,
@@ -69,9 +69,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 0,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 5,
           'building_id' => 2,
           'system_id' => 500,
@@ -85,9 +85,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 0,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 6,
           'building_id' => 2,
           'system_id' => 500,
@@ -101,9 +101,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 7,
           'building_id' => 2,
           'system_id' => 500,
@@ -117,9 +117,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 8,
           'building_id' => 2,
           'system_id' => 500,
@@ -133,9 +133,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 9,
           'building_id' => 2,
           'system_id' => 500,
@@ -149,9 +149,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 0,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 10,
           'building_id' => 2,
           'system_id' => 500,
@@ -165,9 +165,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 11,
           'building_id' => 2,
           'system_id' => 500,
@@ -181,9 +181,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 12,
           'building_id' => 2,
           'system_id' => 500,
@@ -197,9 +197,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 13,
           'building_id' => 2,
           'system_id' => 500,
@@ -213,9 +213,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 14,
           'building_id' => 2,
           'system_id' => 500,
@@ -229,9 +229,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-        Device::create(array(
+        Device::create([
           'id' => 1,
           'building_id' => 2,
           'system_id' => 501,
@@ -243,9 +243,9 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-        ));
+        ]);
 
-          Device::create(array(
+          Device::create([
           'id' => 2,
           'building_id' => 2,
           'system_id' => 501,
@@ -257,6 +257,6 @@ class DevicesTableSeeder extends Seeder
           'physical_location' => '',
           'comments' => '',
           'status' => 1,
-          ));
+          ]);
     }
 }

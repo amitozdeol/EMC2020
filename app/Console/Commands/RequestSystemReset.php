@@ -67,9 +67,9 @@ class RequestSystemReset extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID on which to attempt reset.'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID on which to attempt reset.'],
+        ];
     }
 
   /**
@@ -79,7 +79,7 @@ class RequestSystemReset extends Command
    */
     protected function getOptions()
     {
-        return array(
-        );
+        return [
+        ];
     }
 }

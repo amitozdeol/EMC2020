@@ -71,8 +71,8 @@ class AlarmNotification extends Command
    */
     protected function getArguments()
     {
-        return array(
-        );
+        return [
+        ];
     }
 
   /**
@@ -82,7 +82,7 @@ class AlarmNotification extends Command
    */
     protected function getOptions()
     {
-        return array(
-        );
+        return [
+        ];
     }
 }

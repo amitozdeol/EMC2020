@@ -41,8 +41,8 @@ class ChartController extends \BaseController
         $chartAttributes = ChartAttribute::where('system_id', $sid)
         ->get();
 
-        $charts = array();
-        $chart_attributes = array();
+        $charts = [];
+        $chart_attributes = [];
 
         foreach ($dashboardItems as $item) {
             if ($item->chart_type !== strtoupper($item->chart_type)) {
@@ -56,9 +56,9 @@ class ChartController extends \BaseController
 
 
         /* Arrays for drop down select forms */
-        $device_types = array(); // Array to hold all of the device types with the command number as the key.
-        $device_zones = array(); // Array to hold all of the zone labels with the zone number as the key.
-        $chart_types  = array();
+        $device_types = []; // Array to hold all of the device types with the command number as the key.
+        $device_zones = []; // Array to hold all of the zone labels with the zone number as the key.
+        $chart_types  = [];
 
         $x_ranges = [
         1  => "1 Hour",

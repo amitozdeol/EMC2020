@@ -71,9 +71,9 @@ class AlgMappingUpdate extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID to have its algorithm mapping updated.'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID to have its algorithm mapping updated.'],
+        ];
     }
 
   /**
@@ -83,8 +83,8 @@ class AlgMappingUpdate extends Command
    */
     protected function getOptions()
     {
-        return array(
-        array('force', 'f', InputOption::VALUE_NONE, 'Send new algorithm mapping files to all systems.', null),
-        );
+        return [
+        ['force', 'f', InputOption::VALUE_NONE, 'Send new algorithm mapping files to all systems.', null],
+        ];
     }
 }

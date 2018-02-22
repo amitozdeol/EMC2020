@@ -165,7 +165,7 @@ class BuildingController extends BaseController
                         $FuncData[$cur_func->function]["zone_temp"][$i]["zonenames"]=explode(",", $FuncData[$cur_func->function]["zone_temp"][$i]["zonenames"]);
                     }
                     //order the zones so that high temperature always at top, and then medium and then low
-                    $order = array('high', 'medium', 'low');
+                    $order = ['high', 'medium', 'low'];
                     usort($FuncData[$cur_func->function]["zone_temp"], function ($a, $b) use ($order) {
                         $pos_a = array_search($a['temp_range'], $order);
                         $pos_b = array_search($b['temp_range'], $order);
@@ -270,10 +270,10 @@ class BuildingController extends BaseController
             $SystemLogData = $SystemLogData->where('log_type', '=', $log_type);
         }
         $data = $SystemLogData->paginate(15);
-        $res = array(
+        $res = [
         'data' => json_decode($data->toJson()),   // data
         'links' => $data->links()->render()   // link to each page
-        );
+        ];
         return Response::json($res);
     }
 
@@ -324,36 +324,36 @@ class BuildingController extends BaseController
                             ->where('id', '=', $building_id)
                             ->first();
             // This contains all the classes and HTML code to display appropriate weather icons, depending on weather condition
-            $weather_obj = array( 0 => array("condition" => 'clear',
+            $weather_obj = [ 0 => ["condition" => 'clear',
               'css_class' => 'icon sunny',
               'html' => '<div class="sun"><div class="rays"></div></div>'
-            ),1 => array(
+            ],1 => [
               'condition' => 'clouds',
               'css_class' => 'icon cloudy',
               'html' => '<div class="cloud"></div><div class="cloud"></div>'
-            ),2 => array(
+            ],2 => [
               'condition' => 'shower',
               'css_class' => 'icon rainy',
               'html' => '<div class="cloud"></div><div class="rain"></div>'
-            ),3 => array(
+            ],3 => [
               'condition' => 'rain',
               'css_class' => 'icon sun-shower',
               'html' => '<div class="cloud"></div><div class="sun"><div class="rays"></div></div><div class="rain"></div>'
-            ),4 => array(
+            ],4 => [
               'condition' => 'thunderstorm',
               'css_class' => 'icon thunder-storm',
               'html' => '<div class="cloud"></div><div class="lightning"><div class="bolt"></div><div class="bolt"></div></div>'
-            ),5 => array(
+            ],5 => [
               'condition' => 'snow',
               'css_class' => 'icon flurries',
               'html' => '<div class="cloud"></div><div class="snow"><div class="flake"></div><div class="flake"></div></div>'
-            ),6 => array(
+            ],6 => [
               'condition' => 'mist',
               'css_class' => 'icon cloudy',
               'html' => '<div class="cloud"></div><div class="cloud"></div>'
-            )
-              );
-            $forecast_obj = array( 0 => array("condition" => 'clear',
+            ]
+              ];
+            $forecast_obj = [ 0 => ["condition" => 'clear',
                     'svg' => '<svg class="sunshine" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path class="sun-full" d="M256,144c-61.8,0-112,50.2-112,112s50.2,112,112,112s112-50.2,112-112S317.8,144,256,144z M256,336
                                   c-44.2,0-80-35.8-80-80s35.8-80,80-80s80,35.8,80,80S300.2,336,256,336z" />
@@ -370,7 +370,7 @@ class BuildingController extends BaseController
                                   c-6.2,6.2-6.2,16.4,0,22.6L131.5,154.2z" />
                               <path class="sun-ray-one" d="M112,256c0-8.8-7.2-16-16-16H64c-8.8,0-16,7.2-16,16s7.2,16,16,16h32C104.8,272,112,264.8,112,256z" />
                             </svg>'
-                ),1 => array(
+                ],1 => [
                     "condition" => 'cloudy',
                     "svg" => '<svg class="windy-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <g class="cloud-wrap">
@@ -385,7 +385,7 @@ class BuildingController extends BaseController
                               <path class="wind-two" d="M16,320h94c8.8,0,16-7.2,16-16s-7.2-16-16-16H16c-8.8,0-16,7.2-16,16S7.2,320,16,320z" />
                               <path class="wind-one" d="M16,256h64c8.8,0,16-7.2,16-16s-7.2-16-16-16H16c-8.8,0-16,7.2-16,16S7.2,256,16,256z" />
                             </svg>'
-                  ),2 => array(
+                  ],2 => [
                     "condition" => 'shower',
                     "svg" => '<svg class="rain-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path class="raindrop-one" d="M96,384c0,17.7,14.3,32,32,32s32-14.3,32-32s-32-64-32-64S96,366.3,96,384z" />
@@ -398,7 +398,7 @@ class BuildingController extends BaseController
                               c10.8,0,21.1,2.2,30.4,6.1C163.7,60.7,206.3,32,256,32s92.3,28.7,113.5,70.1c9.4-3.9,19.7-6.1,30.5-6.1c44.2,0,80,35.8,80,80
                               S444.2,256,400,256z" />
                             </svg>'
-                  ),3 => array(
+                  ],3 => [
                     'condition' => 'rain',
                     'svg' => '<svg class="rain-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path class="raindrop-one" d="M96,384c0,17.7,14.3,32,32,32s32-14.3,32-32s-32-64-32-64S96,366.3,96,384z" />
@@ -411,7 +411,7 @@ class BuildingController extends BaseController
                               c10.8,0,21.1,2.2,30.4,6.1C163.7,60.7,206.3,32,256,32s92.3,28.7,113.5,70.1c9.4-3.9,19.7-6.1,30.5-6.1c44.2,0,80,35.8,80,80
                               S444.2,256,400,256z" />
                             </svg>'
-                  ),4 => array(
+                  ],4 => [
                     'condition' => 'thunderstorm',
                     'svg' => '<svg class="thunder-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path d="M400,64c-5.3,0-10.6,0.4-15.8,1.1C354.3,24.4,307.2,0,256,0s-98.3,24.4-128.2,65.1c-5.2-0.8-10.5-1.1-15.8-1.1
@@ -422,7 +422,7 @@ class BuildingController extends BaseController
                               c61.8,0,112-50.2,112-112S461.8,64,400,64z" />
                               <polygon class="bolt" points="192,352 224,384 192,480 288,384 256,352 288,256 " />
                             </svg>'
-                  ),5 => array(
+                  ],5 => [
                     'condition' => 'snow',
                     'svg' => '<svg class="snow-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path d="M512,176c0-61.8-50.2-112-112-112c-5.3,0-10.6,0.4-15.8,1.1C354.3,24.4,307.2,0,256,0s-98.3,24.4-128.2,65.1
@@ -454,7 +454,7 @@ class BuildingController extends BaseController
                             c5.6,1.5,11.4-1.9,12.9-7.4C483.1,403.5,479.8,397.8,474.2,396.2z M438.3,402.9c-4.1,4.1-10.8,4.1-14.9,0c-4.1-4.1-4.1-10.7,0-14.9
                             c4.1-4.1,10.8-4.1,14.9,0C442.4,392.2,442.4,398.9,438.3,402.9z" />
                             </svg>'
-                  ),6 => array(
+                  ],6 => [
                     'condition' => 'mist',
                     'svg' => '<svg class="sun-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
                               <path class="sun-half" d="M127.8,259.1c3.1-4.3,6.5-8.4,10-12.3c-6-11.2-9.4-24-9.4-37.7c0-44.1,35.7-79.8,79.8-79.8
@@ -478,8 +478,8 @@ class BuildingController extends BaseController
                                   c-6.2,6.2-6.2,16.4,0,22.6S326.2,112.4,332.4,106.2z" />
                               <path class="ray ray-five" d="M352,208c0,8.8,7.2,16,16,16h32c8.8,0,16-7.2,16-16s-7.2-16-16-16h-32C359.2,192,352,199.2,352,208z" />
                             </svg>'
-                  )
-                );
+                  ]
+                ];
             function kelvinToFahrenheit($value)
             {
                   return round((1.8*($value - 273) + 32));
@@ -642,7 +642,7 @@ class BuildingController extends BaseController
                 $daterange = date_diff($startfetchDate, $endfetchDate)->days;
                 //Check if digital or analog. `device_data_hourly_ave` table only contains analog values
   
-                $device_data = array();
+                $device_data = [];
                 //================= For Digital device type ===========================
                 if ($digital) { //Digital
                     $startTime = date_format($startfetchDate, 'Y-m-d 00:00:00');
@@ -703,7 +703,7 @@ class BuildingController extends BaseController
                                       $data_point->current_value = ConvFunc::convertCelciusToFarenheit($data_point->current_value);
                                       $data_point->setpoint = ConvFunc::convertCelciusToFarenheit($data_point->setpoint);
                                 }
-                                          array_push($json['lines'], array('name' => "Outside".'('.$data_point->id.')', "time" => $cur_time, 'temp' => $data_point->current_value, 'setpoint'=> $data_point->setpoint));
+                                          array_push($json['lines'], ['name' => "Outside".'('.$data_point->id.')', "time" => $cur_time, 'temp' => $data_point->current_value, 'setpoint'=> $data_point->setpoint]);
                             }
 
                             //Bar chart data
@@ -724,7 +724,7 @@ class BuildingController extends BaseController
                                     }
                                     $index = array_search($data_point->created_date, $daysArray);
                                     //seperate out each day
-                                    array_push($json['bars'][$index], array('name' => $device_name.'('.$data_point->device_id.')', 'duration' => $data_point->duration, 'Day'=> $data_point->created_date));
+                                    array_push($json['bars'][$index], ['name' => $device_name.'('.$data_point->device_id.')', 'duration' => $data_point->duration, 'Day'=> $data_point->created_date]);
                                     // array for all the device names
                                     if (!in_array($device_name.'('.$data_point->device_id.')', $json["device_names"])) {
                                         array_push($json["device_names"], $device_name.'('.$data_point->device_id.')');
@@ -967,7 +967,7 @@ class BuildingController extends BaseController
         $systems = System::where('building_id', $thisBldg->id)->get();
         $products = ProductType::all();             // Lookup all products available to this system
         $zonenames = Zone::where('system_id', $sid)->get();
-        return View::make('buildings.status.devicestatus', array('thisBldg' => $thisBldg,'thisSystem' => $thisSystem))
+        return View::make('buildings.status.devicestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('devicesout', $devicesout)
         ->with('devicesin', $devicesin)
         ->with('systemsData', $systems)
@@ -1057,16 +1057,16 @@ class BuildingController extends BaseController
 
         $alarm_codes = DB::table('alarm_codes')->get();
     
-        $timeStampsArray = array();
-        $devicesOutCurrent = array();
+        $timeStampsArray = [];
+        $devicesOutCurrent = [];
 
         $device_types = DB::table('device_types')->get();
-        $command_units = array();
+        $command_units = [];
         foreach ($device_types as $types) {
             $command_units[$types->command] = [$types->units,$types->function];
         }
         $products = ProductType::all();
-        $product_types = array();
+        $product_types = [];
         foreach ($products as $product) {
             $product_types[$product->product_id] = $product;
         }
@@ -1116,7 +1116,7 @@ class BuildingController extends BaseController
         $buliding_id_holder = $thisSystem->building_id;
 
         $zones = Zone::where('system_id', $thisSystem->id)->orderby('zone')->get();
-        $zonename = array();
+        $zonename = [];
         $outputzone = 0;
         foreach ($zones as $theZones) {
             foreach ($devicesout as $do) {
@@ -1124,18 +1124,18 @@ class BuildingController extends BaseController
                     $outputzone = 1;
                 }
             }
-            array_push($zonename, array($theZones->zone, $theZones->zonename, $outputzone));
+            array_push($zonename, [$theZones->zone, $theZones->zonename, $outputzone]);
             $outputzone = 0;
         }
 
         $mappingout = MappingOutput::where('system_id', $thisSystem->id)
                                     ->orderby('device_id')->get();
-        $mappingOutputs = array();
+        $mappingOutputs = [];
         foreach ($mappingout as $output) {
             $mappingOutputs[$output->device_id] = $output;
         }
 
-        return View::make('buildings.status.zonestatus', array('thisBldg' => $thisBldg,'thisSystem' => $thisSystem))
+        return View::make('buildings.status.zonestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('ActiveAlarms', $alarms)
         ->with('AlarmCodes', $alarm_codes)
         ->with('devicesout', $devicesout)
@@ -1288,8 +1288,8 @@ class BuildingController extends BaseController
                 $duration=ConvFunc::sec2hms($now-strtotime($CreateDate));
                 DB::table('alarms')
                 ->where('id', $temp[1])
-                ->update(array('resolution' => 'Manual','active'=>0,'cleared_at'=>$create,
-                'updated_at'=>$create,'duration'=>$duration));
+                ->update(['resolution' => 'Manual','active'=>0,'cleared_at'=>$create,
+                'updated_at'=>$create,'duration'=>$duration]);
             }
         }
 
@@ -1444,7 +1444,7 @@ class BuildingController extends BaseController
         }
 
         // update resolution field for active devices if clear button is clicked
-         return View::make('buildings.status.alarmstatus', array('thisBldg' => $thisBldg,'thisSystem' => $thisSystem))
+         return View::make('buildings.status.alarmstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
                 ->with('parent', $parent)
                 ->with('sysAlarmsActive', $sysAlarmsActive)
                 ->with('sysAlarmsHist', $sysAlarmsHist)
@@ -1634,7 +1634,7 @@ class BuildingController extends BaseController
 
                 DB::table('Events')
                 ->where('id', $temp[1])
-                ->update(array('resolution' => 'Manual','active'=>0,'cleared_at'=>$create,'updated_at'=>$create,'duration'=>$duration));
+                ->update(['resolution' => 'Manual','active'=>0,'cleared_at'=>$create,'updated_at'=>$create,'duration'=>$duration]);
             }
         }
 
@@ -1725,7 +1725,7 @@ class BuildingController extends BaseController
         $sysEventsAlg = MappingOutput::where('system_id', $sid)
         ->get();
 
-        $algorithms = array();
+        $algorithms = [];
         foreach ($sysEventsAlg as $alg) {
             $algorithms[$alg->id] = $alg;
         }
@@ -1744,7 +1744,7 @@ class BuildingController extends BaseController
         ->limit('12000')
         ->get();
 
-        $these_devices = array();
+        $these_devices = [];
         foreach ($these_events as $te) {
             $these_devices[$te->device_id] = $te->device_id;
         }
@@ -1759,15 +1759,15 @@ class BuildingController extends BaseController
             ->where('system_id', $sid);
         })->get();
 
-        $device_durations = array();
+        $device_durations = [];
         foreach ($event_devices as $ed) {
             $device_durations[] = [
             'device_name' => $ed->name,
             'device_id' => $ed->id,
             'todays_total_duration' => 0,
-            'todays_duration' => array(),
+            'todays_duration' => [],
             'yesterdays_total_duration' => 0,
-            'yesterdays_duration' => array()
+            'yesterdays_duration' => []
             ];
         }
         /*fill device durations arrays with events durations*/
@@ -1956,7 +1956,7 @@ class BuildingController extends BaseController
         // $queries = DB::getQueryLog();
     
         /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ end custom totalling ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**/
-        return View::make('buildings.status.eventsstatus', array('thisBldg' => $thisBldg,'thisSystem' => $thisSystem))
+        return View::make('buildings.status.eventsstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('sysEventsActive', $sysEventsActive)
         ->with('sysEventsAlg', $sysEventsAlg)
         ->with('sysEventsHist', $sysEventsHist)
@@ -2152,13 +2152,13 @@ class BuildingController extends BaseController
         $check = WebMappingSystem::where('system_id', $sid)->first();
         if ($check) {
             // If system is there, build page using web_mapping_system with specific system
-            $sysParams = WebMappingSystem::select(array('group_number', 'group_name'))->where('system_id', $sid)->where('active', 1)->distinct()->get();
+            $sysParams = WebMappingSystem::select(['group_number', 'group_name'])->where('system_id', $sid)->where('active', 1)->distinct()->get();
         } else {
             // If system isn't there, build page using web_mapping_default
-            $sysParams = WebMappingDefault::select(array('group_number', 'group_name'))->distinct()->where('active', 1)->get();
+            $sysParams = WebMappingDefault::select(['group_number', 'group_name'])->distinct()->where('active', 1)->get();
         }
 
-        return View::make('buildings.system', array('thisBldg' => $thisBldg, 'thisSystem' => $thisSystem))
+        return View::make('buildings.system', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
         ->with('parent', DashboardItem::find($dashboard_id))
         ->with('sysParams', $sysParams)
         ->with('sysAlarms', $sysAlarms);
@@ -2175,12 +2175,12 @@ class BuildingController extends BaseController
         $check = WebMappingSystem::where('system_id', $sid)->first();
         if ($check) {
             // If system is there, build page using web_mapping_system with specific system
-            $sysDetail = WebMappingSystem::select(array('group_name', 'subgroup_number', 'subgroup_name','alarm_state','alarm_index'))->where('system_id', $sid)->where('group_number', $gid)->where('active', 1)->distinct()->get();
-            $categories = WebMappingSystem::select(array('subgroup_number', 'subgroup_name', 'itemnumber','alarm_state','alarm_index'))->where('system_id', $sid)->where('group_number', $gid)->where('active', 1)->get();
+            $sysDetail = WebMappingSystem::select(['group_name', 'subgroup_number', 'subgroup_name','alarm_state','alarm_index'])->where('system_id', $sid)->where('group_number', $gid)->where('active', 1)->distinct()->get();
+            $categories = WebMappingSystem::select(['subgroup_number', 'subgroup_name', 'itemnumber','alarm_state','alarm_index'])->where('system_id', $sid)->where('group_number', $gid)->where('active', 1)->get();
         } else {
             // If not there, get default subgroup details for this specific group
-            $sysDetail = WebMappingDefault::select(array('group_name', 'subgroup_number', 'subgroup_name','alarm_state','alarm_index'))->where('group_number', $gid)->where('active', 1)->distinct()->get();
-            $categories = WebMappingDefault::select(array('subgroup_number', 'subgroup_name', 'itemnumber','alarm_state','alarm_index'))->where('group_number', $gid)->where('active', 1)->get();
+            $sysDetail = WebMappingDefault::select(['group_name', 'subgroup_number', 'subgroup_name','alarm_state','alarm_index'])->where('group_number', $gid)->where('active', 1)->distinct()->get();
+            $categories = WebMappingDefault::select(['subgroup_number', 'subgroup_name', 'itemnumber','alarm_state','alarm_index'])->where('group_number', $gid)->where('active', 1)->get();
         }
         //-------------------------------------------//
         // Check if there is temperature data to report
@@ -2193,7 +2193,7 @@ class BuildingController extends BaseController
             $query->where('command', 11)
             ->orWhere('command', 1);
         })
-        ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+        ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
         ->first();
 
         if ($check) {
@@ -2207,12 +2207,12 @@ class BuildingController extends BaseController
                 $query->where('command', 11)
                   ->orWhere('command', 1);
             })
-            ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+            ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
             ->orderBy('datetime', 'asc')
             ->get();
 
           // Create datetime array for chart x-axis timestamps
-            $tempCategories = array();
+            $tempCategories = [];
             foreach ($tempObj as $item) {
                 array_push($tempCategories, date('M d, Y, g:i:s A', strtotime($item->datetime)));
             }
@@ -2227,7 +2227,7 @@ class BuildingController extends BaseController
                 $query->where('command', 11)
                   ->orWhere('command', 1);
             })
-            ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+            ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
             ->orderBy('zone', 'asc')
             ->get();
 
@@ -2244,7 +2244,7 @@ class BuildingController extends BaseController
             ->lists('id');
 
           // Create 3d array for data: top level is zone id, each zone with subarray of device ids for that zone, each device with subarrays containing date|value information for that device
-            $tempDevices = array();
+            $tempDevices = [];
             foreach ($tempObj as $item) {
                 // Check if temps should be in C or F
                 if ($thisSystem->temperature_format == "C") {
@@ -2268,28 +2268,28 @@ class BuildingController extends BaseController
             }
 
           // Overall Chart initialization
-            $tempChart["chart"] = array("zoomType" => "x");
-            $tempChart["title"] = array("text" => "Temperature Data: " . $tempCategories[0] . " - " . $tempCategories[(count($tempCategories)-1)]);
-            $tempChart["yAxis"] = array("title"=> array("text" => "Temperature (".$tempFormat.")"));
-            $tempChart["tooltip"] = array("crosshairs" => array(array("color" => "black", "dashStyle" => "shortdot"), array("color" => "black", "dashStyle" => "shortdot")), "valueDecimals" => 2, "valueSuffix" => " ".$tempFormat);
+            $tempChart["chart"] = ["zoomType" => "x"];
+            $tempChart["title"] = ["text" => "Temperature Data: " . $tempCategories[0] . " - " . $tempCategories[(count($tempCategories)-1)]];
+            $tempChart["yAxis"] = ["title"=> ["text" => "Temperature (".$tempFormat.")"]];
+            $tempChart["tooltip"] = ["crosshairs" => [["color" => "black", "dashStyle" => "shortdot"], ["color" => "black", "dashStyle" => "shortdot"]], "valueDecimals" => 2, "valueSuffix" => " ".$tempFormat];
 
             $i = 0; // Counter for how many devices there are total and how many series are needed on Overall Chart
             $z = 1; // Counter to track zones
 
             foreach ($tempDevices as $key => $value) { // For each zone ($key = zone id)
                   // Get zone names from zone_labels
-                  $zoneName = Zone::select(array('zonename'))->where('system_id', $sid)->where('zone', $key)->first();
+                  $zoneName = Zone::select(['zonename'])->where('system_id', $sid)->where('zone', $key)->first();
                 if ($zoneName['zonename'] == "") {
                     $zoneName = $key; // Use number if no name is set
                 } else {
                     $zoneName = $zoneName['zonename'];
                 }
                     // Zone Chart initialization
-                    $zoneTempCharts[$z]["chart"] = array("zoomType" => "x");
-                    $zoneTempCharts[$z]["title"] = array("text" => "Zone " . $zoneName . ": " . $tempCategories[0] . " - " . $tempCategories[(count($tempCategories)-1)]);
-                    $zoneTempCharts[$z]["yAxis"] = array("title"=> array("text" => "Temperature (".$tempFormat.")"));
+                    $zoneTempCharts[$z]["chart"] = ["zoomType" => "x"];
+                    $zoneTempCharts[$z]["title"] = ["text" => "Zone " . $zoneName . ": " . $tempCategories[0] . " - " . $tempCategories[(count($tempCategories)-1)]];
+                    $zoneTempCharts[$z]["yAxis"] = ["title"=> ["text" => "Temperature (".$tempFormat.")"]];
                     $zoneTempCharts[$z]["zone"] = $zoneName;
-                    $zoneTempCharts[$z]["tooltip"] = array("crosshairs" => array(array("color" => "black", "dashStyle" => "shortdot"), array("color" => "black", "dashStyle" => "shortdot")), "valueDecimals" => 2, "valueSuffix" => " ".$tempFormat);
+                    $zoneTempCharts[$z]["tooltip"] = ["crosshairs" => [["color" => "black", "dashStyle" => "shortdot"], ["color" => "black", "dashStyle" => "shortdot"]], "valueDecimals" => 2, "valueSuffix" => " ".$tempFormat];
 
                     $zoneSeries = 0; // Counter for how many devices are in this specific zone and how many corresponding series are needed on Zone Chart
 
@@ -2298,7 +2298,7 @@ class BuildingController extends BaseController
                     if ($data[0] === 0) {
                         $tempData[0] = 0;
                     } else { // Otherwise the format retrieved for $data should be date|data
-                        $tempData = array_pad(array(), count($tempCategories), null); // Pad an empty data array with null values, each index being a timestamp
+                        $tempData = array_pad([], count($tempCategories), null); // Pad an empty data array with null values, each index being a timestamp
 
                         foreach ($data as $item) { // For each data point in this device
                             $itemArr = explode("|", $item); // Separate timestamp and data values
@@ -2308,29 +2308,29 @@ class BuildingController extends BaseController
                     }
 
                     // Get devices names from $key2
-                    $deviceName = Device::select(array('name'))->where('system_id', $sid)->where('id', $key2)->first();
+                    $deviceName = Device::select(['name'])->where('system_id', $sid)->where('id', $key2)->first();
 
                     // Set Zone Chart series data for this device
                     if ($tempData[0] === 0) {
-                        $zoneTempCharts[$z]["series"][$zoneSeries] = array("name" => $deviceName['name'], "type" => "spline", "data" => $tempData, "visible" => false);
+                        $zoneTempCharts[$z]["series"][$zoneSeries] = ["name" => $deviceName['name'], "type" => "spline", "data" => $tempData, "visible" => false];
                         $zoneSeries++;
                     } else {
-                        $zoneTempCharts[$z]["series"][$zoneSeries] = array("name" => $deviceName['name'], "type" => "spline", "data" => $tempData);
+                        $zoneTempCharts[$z]["series"][$zoneSeries] = ["name" => $deviceName['name'], "type" => "spline", "data" => $tempData];
                         $zoneSeries++;
                     }
 
                     // Set Overall Chart series data for this device
                     if ($tempData[0] === 0) {
-                        $tempChart["series"][$i] = array("name" => $deviceName['name'], "type" => "spline", "data" => $tempData, "visible" => false);
+                        $tempChart["series"][$i] = ["name" => $deviceName['name'], "type" => "spline", "data" => $tempData, "visible" => false];
                     } else {
-                        $tempChart["series"][$i] = array("name" => $deviceName['name'], "type" => "spline", "data" => $tempData);
+                        $tempChart["series"][$i] = ["name" => $deviceName['name'], "type" => "spline", "data" => $tempData];
                     }
                         $i++;
                 }
 
                     // Concluding options for Zone Chart.
-                    $zoneTempCharts[$z]["plotOptions"] = array("series" => array("connectNulls" => "true", "turboThreshold" => 0)); // Connect lines past null data points
-                    $zoneTempCharts[$z]["xAxis"] = array("categories" => $tempCategories, "labels" => array("enabled" => false));
+                    $zoneTempCharts[$z]["plotOptions"] = ["series" => ["connectNulls" => "true", "turboThreshold" => 0]]; // Connect lines past null data points
+                    $zoneTempCharts[$z]["xAxis"] = ["categories" => $tempCategories, "labels" => ["enabled" => false]];
 
                     // Move to next zone
                     $z++;
@@ -2359,15 +2359,15 @@ class BuildingController extends BaseController
             }
 
           // Concluding options for OVerall Chart.
-            $tempChart["plotOptions"] = array("series" => array("connectNulls" => "true", "turboThreshold" => 0)); // Connect lines past null data points
-            $tempChart["xAxis"] = array("categories" => $tempCategories, "labels" => array("enabled" => false));
+            $tempChart["plotOptions"] = ["series" => ["connectNulls" => "true", "turboThreshold" => 0]]; // Connect lines past null data points
+            $tempChart["xAxis"] = ["categories" => $tempCategories, "labels" => ["enabled" => false]];
         }
         //-------------------------------------------//
         // Check if there is humidity data to report
         //-------------------------------------------//
         $check = DeviceData::where('system_id', $sid)
         ->where('command', 10)
-        ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+        ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
         ->first();
 
         if ($check) {
@@ -2378,12 +2378,12 @@ class BuildingController extends BaseController
             })
             ->where('device_data.system_id', $sid)
             ->where('command', 10)
-            ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+            ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
             ->orderBy('datetime', 'asc')
             ->get();
 
           // Create datetime array for chart x-axis timestamps
-            $humCategories = array();
+            $humCategories = [];
             foreach ($humObj as $item) {
                 array_push($humCategories, date('M d, Y, g:i:s A', strtotime($item->datetime)));
             }
@@ -2395,7 +2395,7 @@ class BuildingController extends BaseController
             })
             ->where('device_data.system_id', $sid)
             ->where('command', 10)
-            ->whereBetween('datetime', array(date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s"))) // data from last 2 hours
+            ->whereBetween('datetime', [date("Y-m-d H:i:s", time() - 60 * 60 * 2), date("Y-m-d H:i:s")]) // data from last 2 hours
             ->orderBy('zone', 'asc')
             ->get();
 
@@ -2409,7 +2409,7 @@ class BuildingController extends BaseController
             ->lists('id');
 
           // Create 3d array for data: top level is zone id, each zone with subarray of device ids for that zone, each device with subarrays containing date|value information for that device
-            $humDevices = array();
+            $humDevices = [];
             foreach ($humObj as $item) {
                 $humDevices[$item['zone']][$item['id']][] = date('M d, Y, g:i:s A', strtotime($item->datetime))."|".$item->current_value;
 
@@ -2427,28 +2427,28 @@ class BuildingController extends BaseController
             }
 
           // Overall Chart initialization
-            $humChart["chart"] = array("zoomType" => "x");
-            $humChart["title"] = array("text" => "Humidity Data: " . $humCategories[0] . " - " . $humCategories[(count($humCategories)-1)]);
-            $humChart["yAxis"] = array("title"=> array("text" => "Humidity (%)"));
-            $humChart["tooltip"] = array("crosshairs" => array(array("color" => "black", "dashStyle" => "shortdot"), array("color" => "black", "dashStyle" => "shortdot")), "valueDecimals" => 2, "valueSuffix" => "%");
+            $humChart["chart"] = ["zoomType" => "x"];
+            $humChart["title"] = ["text" => "Humidity Data: " . $humCategories[0] . " - " . $humCategories[(count($humCategories)-1)]];
+            $humChart["yAxis"] = ["title"=> ["text" => "Humidity (%)"]];
+            $humChart["tooltip"] = ["crosshairs" => [["color" => "black", "dashStyle" => "shortdot"], ["color" => "black", "dashStyle" => "shortdot"]], "valueDecimals" => 2, "valueSuffix" => "%"];
 
             $i = 0; // Counter for how many devices there are total and how many series are needed on Overall Chart
             $z = 1; // Counter to track zones
 
             foreach ($humDevices as $key => $value) { // For each zone ($key = zone id)
                   // Get zone names from zone_labels
-                  $zoneName = Zone::select(array('zonename'))->where('system_id', $sid)->where('zone', $key)->first();
+                  $zoneName = Zone::select(['zonename'])->where('system_id', $sid)->where('zone', $key)->first();
                 if ($zoneName['zonename'] == "") {
                     $zoneName = $key; // Use number if no name is set
                 } else {
                     $zoneName = $zoneName['zonename'];
                 }
                     // Zone Chart initialization
-                    $zoneHumCharts[$z]["chart"] = array("zoomType" => "x");
-                    $zoneHumCharts[$z]["title"] = array("text" => "Zone " . $zoneName . ": " . $humCategories[0] . " - " . $humCategories[(count($humCategories)-1)]);
-                    $zoneHumCharts[$z]["yAxis"] = array("title"=> array("text" => "Humidity (%)"));
+                    $zoneHumCharts[$z]["chart"] = ["zoomType" => "x"];
+                    $zoneHumCharts[$z]["title"] = ["text" => "Zone " . $zoneName . ": " . $humCategories[0] . " - " . $humCategories[(count($humCategories)-1)]];
+                    $zoneHumCharts[$z]["yAxis"] = ["title"=> ["text" => "Humidity (%)"]];
                     $zoneHumCharts[$z]["zone"] = $zoneName;
-                    $zoneHumCharts[$z]["tooltip"] = array("crosshairs" => array(array("color" => "black", "dashStyle" => "shortdot"), array("color" => "black", "dashStyle" => "shortdot")), "valueDecimals" => 2, "valueSuffix" => "%");
+                    $zoneHumCharts[$z]["tooltip"] = ["crosshairs" => [["color" => "black", "dashStyle" => "shortdot"], ["color" => "black", "dashStyle" => "shortdot"]], "valueDecimals" => 2, "valueSuffix" => "%"];
 
                     $zoneSeries = 0; // Counter for how many devices are in this specific zone and how many corresponding series are needed on Zone Chart
 
@@ -2457,7 +2457,7 @@ class BuildingController extends BaseController
                     if ($data[0] === 0) {
                         $humData[0] = 0;
                     } else { // Otherwise the format retrieved for $data should be date|data
-                        $humData = array_pad(array(), count($humCategories), null); // Pad an empty data array with null values, each index being a timestamp
+                        $humData = array_pad([], count($humCategories), null); // Pad an empty data array with null values, each index being a timestamp
 
                         // For each data point in this device
                         foreach ($data as $item) {
@@ -2471,71 +2471,71 @@ class BuildingController extends BaseController
                     }
 
                     // Get devices names from $key2
-                    $deviceName = Device::select(array('name'))->where('system_id', $sid)->where('id', $key2)->first();
+                    $deviceName = Device::select(['name'])->where('system_id', $sid)->where('id', $key2)->first();
 
                     // Set Zone Chart series data for this device
                     if ($humData[0] === 0) {
-                        $zoneHumCharts[$z]["series"][$zoneSeries] = array("name" => $deviceName['name'], "type" => "spline", "data" => $humData, "visible" => false);
+                        $zoneHumCharts[$z]["series"][$zoneSeries] = ["name" => $deviceName['name'], "type" => "spline", "data" => $humData, "visible" => false];
                         $zoneSeries++;
                     } else {
-                        $zoneHumCharts[$z]["series"][$zoneSeries] = array("name" => $deviceName['name'], "type" => "spline", "data" => $humData);
+                        $zoneHumCharts[$z]["series"][$zoneSeries] = ["name" => $deviceName['name'], "type" => "spline", "data" => $humData];
                         $zoneSeries++;
                     }
 
                     // Set Overall Chart series data for this device
                     if ($humData[0] === 0) {
-                        $humChart["series"][$i] = array("name" => $deviceName['name'], "type" => "spline", "data" => $humData, "visible" => false);
+                        $humChart["series"][$i] = ["name" => $deviceName['name'], "type" => "spline", "data" => $humData, "visible" => false];
                     } else {
-                        $humChart["series"][$i] = array("name" => $deviceName['name'], "type" => "spline", "data" => $humData);
+                        $humChart["series"][$i] = ["name" => $deviceName['name'], "type" => "spline", "data" => $humData];
                     }
                         $i++;
                 }
 
                     // Concluding options for Zone Chart.
-                    $zoneHumCharts[$z]["plotOptions"] = array("series" => array("connectNulls" => "true", "turboThreshold" => 0)); // Connect lines past null data points
-                    $zoneHumCharts[$z]["xAxis"] = array("categories" => $humCategories, "labels" => array("enabled" => false));
+                    $zoneHumCharts[$z]["plotOptions"] = ["series" => ["connectNulls" => "true", "turboThreshold" => 0]]; // Connect lines past null data points
+                    $zoneHumCharts[$z]["xAxis"] = ["categories" => $humCategories, "labels" => ["enabled" => false]];
 
                     // Move to next zone
                     $z++;
             }
 
           // Concluding options for OVerall Chart.
-            $humChart["plotOptions"] = array("series" => array("connectNulls" => "true", "turboThreshold" => 0)); // Connect lines past null data points
-            $humChart["xAxis"] = array("categories" => $humCategories, "labels" => array("enabled" => false));
+            $humChart["plotOptions"] = ["series" => ["connectNulls" => "true", "turboThreshold" => 0]]; // Connect lines past null data points
+            $humChart["xAxis"] = ["categories" => $humCategories, "labels" => ["enabled" => false]];
         }
 
         // Make the proper view depending on which charts are available
         if (isset($tempChart) & isset($humChart)) {
-            return View::make('buildings.status.detail', array('thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK), 'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
             'zoneTempCharts' => $zoneTempCharts,
             'numTempZones' => count($zoneTempCharts),
             'zoneHumCharts' => $zoneHumCharts,
-            'numHumZones' => count($zoneHumCharts)))
+            'numHumZones' => count($zoneHumCharts)])
             ->with('systemsData', $systems)
             ->with('parent', DashboardItem::find($dashboard_id))
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($tempChart)) {
-            return View::make('buildings.status.detail', array('thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK),
             'zoneTempCharts' => $zoneTempCharts,
-            'numTempZones' => count($zoneTempCharts)))
+            'numTempZones' => count($zoneTempCharts)])
             ->with('systemsData', $systems)
             ->with('parent', DashboardItem::find($dashboard_id))
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($humChart)) {
-            return View::make('buildings.status.detail', array('thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
             'zoneHumCharts' => $zoneHumCharts,
-            'numHumZones' => count($zoneHumCharts)))
+            'numHumZones' => count($zoneHumCharts)])
             ->with('systemsData', $systems)
             ->with('parent', DashboardItem::find($dashboard_id))
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else {
-            return View::make('buildings.status.detail', array('thisBldg' => $thisBldg, 'thisSystem' => $thisSystem))
+            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
             ->with('systemsData', $systems)
             ->with('parent', DashboardItem::find($dashboard_id))
             ->with('sysDetail', $sysDetail)
@@ -2837,7 +2837,7 @@ class BuildingController extends BaseController
         ->get();
 
         $alarmcodes = AlarmCodes::get();
-        $Alarm_Codes = array();
+        $Alarm_Codes = [];
         foreach ($alarmcodes as $acodes) {
             $Alarm_Codes[$acodes->id]['description'] = $acodes->description;
             $Alarm_Codes[$acodes->id]['severity'] = $acodes->severity;
@@ -2972,7 +2972,7 @@ class BuildingController extends BaseController
         $zonenames = Zone::where('system_id', $thisSystem->id)->get();
         $mappingout = MappingOutput::where('system_id', $thisSystem->id)
         ->orderby('device_id')->get();
-        $mappingOutputs = array();
+        $mappingOutputs = [];
         foreach ($mappingout as $output) {
             $mappingOutputs[$output->device_id] = $output->overridetime;
         }
@@ -3003,8 +3003,8 @@ class BuildingController extends BaseController
         ->orderby('datetime', 'DESC')
         ->groupby('id', 'command')
         ->get();
-        $timeStampsArray = array();
-        $devicesOutCurrent = array();
+        $timeStampsArray = [];
+        $devicesOutCurrent = [];
         foreach ($devicesCurrent as $currentOut) {
             $timeStampsArray[$currentOut->id][$currentOut->command] = $currentOut->datetime;
             $devicesOutCurrent[$currentOut->id][$currentOut->command] = $currentOut;
@@ -3145,7 +3145,7 @@ class BuildingController extends BaseController
             }
         }
 
-        $dashboard_map_items_array = array();
+        $dashboard_map_items_array = [];
 
         foreach ($deviceTypes as $deviceType) {
             foreach ($dashboard_map_items as $dashboard_map_item) {
@@ -3467,7 +3467,7 @@ class BuildingController extends BaseController
         $zonenames = Zone::where('system_id', $thisSystem->id)->get();
         $mappingout = MappingOutput::where('system_id', $thisSystem->id)
         ->orderby('device_id')->get();
-        $mappingOutputs = array();
+        $mappingOutputs = [];
         foreach ($mappingout as $output) {
             $mappingOutputs[$output->device_id] = $output->overridetime;
         }
@@ -3476,8 +3476,8 @@ class BuildingController extends BaseController
         ->orderby('datetime', 'DESC')
         ->groupby('id', 'command')
         ->get();
-        $timeStampsArray = array();
-        $devicesOutCurrent = array();
+        $timeStampsArray = [];
+        $devicesOutCurrent = [];
         foreach ($devicesCurrent as $currentOut) {
             $timeStampsArray[$currentOut->id][$currentOut->command] = $currentOut->datetime;
             $devicesOutCurrent[$currentOut->id][$currentOut->command] = $currentOut;
@@ -3554,7 +3554,7 @@ class BuildingController extends BaseController
         $newItem = new DashboardMapItem();
         $NewItemForMap = new DashboardMap();
         $dashboard_maps = DashboardMap::where('system_id', $sid)->get();
-        $dash_map_ids = array();
+        $dash_map_ids = [];
         foreach ($dashboard_maps as $dm) {
             $dash_map_ids[] = $dm->id;
         }

@@ -27,7 +27,7 @@ class CreateWaterUtilTable extends Migration
 
         // Insert row for water utility
         DB::table('device_types')->insert(
-            array(
+            [
                 'id' => '46',
                 'created_at' => '2018-01-23 03:42:00',
                 'updated_at' => '2018-01-23 03:42:10',
@@ -51,12 +51,12 @@ class CreateWaterUtilTable extends Migration
                 'reinstruct_on_restart' => '0',
                 'digital' => '0'
                 
-            )
+            ]
         );
 
         // Insert row for water utility
         DB::table('product_types')->insert(
-            array(
+            [
                 'product_id' => 'U1',
                 'created_at' => '2018-01-23 03:46:00',
                 'updated_at' => '2018-01-23 03:46:30',
@@ -74,7 +74,7 @@ class CreateWaterUtilTable extends Migration
                 'auxcontroller' => '-',
                 'price' => '0',
                 'comments' =>'Water monitoring'
-            )
+            ]
         );
     }
 

@@ -19,7 +19,7 @@ class EmailController extends BaseController
 
         $device_types = DeviceType::all();
 
-        $functions = array();
+        $functions = [];
 
         foreach ($device_types as $device_type) {
             $functions[$device_type->command] = str_replace(' ', '', $device_type->function);/*remove spaces from function field*/
@@ -248,7 +248,7 @@ class EmailController extends BaseController
 
         $device_types = DeviceType::all();
 
-        $functions = array();
+        $functions = [];
 
         foreach ($device_types as $device_type) {
             $functions[$device_type->command] = str_replace(' ', '', $device_type->function);/*remove spaces from function field*/

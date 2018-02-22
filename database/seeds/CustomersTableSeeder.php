@@ -7,7 +7,7 @@ class CustomersTableSeeder extends Seeder
     {
         DB::table('customers')->delete();
 
-        Customer::create(array(
+        Customer::create([
           'id' => 0,
           'name' => 'EAW Electronic Systems Inc.',
           'address1' => '16 Victory Ln',
@@ -15,9 +15,9 @@ class CustomersTableSeeder extends Seeder
           'state' => 'NY',
           'zip' => 12603,
           'email1' => 'ed.winiarski@oasincorp.com',
-        ));
+        ]);
 
-        Customer::create(array(
+        Customer::create([
           'name' => 'HVTDC',
           'address1' => '1450 Route 300',
           'address2' => 'Building 1, Suite 1',
@@ -25,6 +25,6 @@ class CustomersTableSeeder extends Seeder
           'state' => 'NY',
           'zip' => 12550,
           'email1' => 'bob.incerto@hvtdc.org',
-        ));
+        ]);
     }
 }

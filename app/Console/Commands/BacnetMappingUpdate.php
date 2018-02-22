@@ -71,9 +71,9 @@ class BacnetMappingUpdate extends Command
    */
     protected function getArguments()
     {
-        return array(
-        array('SysID', InputArgument::OPTIONAL, 'System ID to have its bacnet mapping updated.'),
-        );
+        return [
+        ['SysID', InputArgument::OPTIONAL, 'System ID to have its bacnet mapping updated.'],
+        ];
     }
 
   /**
@@ -83,8 +83,8 @@ class BacnetMappingUpdate extends Command
    */
     protected function getOptions()
     {
-        return array(
-        array('force', 'f', InputOption::VALUE_NONE, 'Send new bacnet mapping files to all systems.', null),
-        );
+        return [
+        ['force', 'f', InputOption::VALUE_NONE, 'Send new bacnet mapping files to all systems.', null],
+        ];
     }
 }

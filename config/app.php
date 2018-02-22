@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
-return array(
+return [
 
   /*
   |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
   |
   */
 
-  'providers' => array(
+  'providers' => [
 
     'Illuminate\Foundation\Providers\ArtisanServiceProvider',
     'Illuminate\Auth\AuthServiceProvider',
@@ -125,7 +125,7 @@ return array(
     'Sebklaus\Profiler\Providers\ProfilerServiceProvider',
 
 
-  ),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ return array(
   |
   */
 
-  'aliases' => array(
+  'aliases' => [
 
     'App'             => 'Illuminate\Support\Facades\App',
     'Artisan'         => 'Illuminate\Support\Facades\Artisan',
@@ -191,6 +191,6 @@ return array(
     'Validator'       => 'Illuminate\Support\Facades\Validator',
     'View'            => 'Illuminate\Support\Facades\View',
 
-  ),
+  ],
 
-);
+];

@@ -15,5 +15,5 @@ class DashboardItem extends Eloquent
    * [$fillable description]
    * @var array
    */
-    protected $fillable = array('label', 'order', 'parent_id', 'system_id', 'chart_type');
+    protected $fillable = ['label', 'order', 'parent_id', 'system_id', 'chart_type'];
 }
