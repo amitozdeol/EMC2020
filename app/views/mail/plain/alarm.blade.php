@@ -1,1 +1,0 @@
- There is an alarm in one of your EMC 20/20 buildings:[{{$alarm_code['description']}}] Device: [{{$device['name']}}] Building: [{{$building['name']}}] System: [{{$system['name']}}] View this alarm at {{URL::route('alarms', [$building['id'], $system['id']])}} https://emc.eawelectro.com 
