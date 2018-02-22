@@ -12,7 +12,22 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        'App\Console\Commands\AlgMappingUpdate',
+        'App\Console\Commands\InovonicsMappingUpdate',
+        'App\Console\Commands\SystemMacUpdate',
+        'App\Console\Commands\RemoteTask',
+        'App\Console\Commands\ExpansionMappingUpdate',
+        'App\Console\Commands\furnaceErrorCatch',
         'App\Console\Commands\Inspire',
+        'App\Console\Commands\ZigMappingUpdate',
+        'App\Console\Commands\AlarmNotification',
+        'App\Console\Commands\LocalParamUpdate',
+        'App\Console\Commands\ConfigUpdate',
+        'App\Console\Commands\SetpointMappingUpdate',
+        'App\Console\Commands\ConvFunc',
+        'App\Console\Commands\BacnetMappingUpdate',
+        'App\Console\Commands\RequestSystemReset',
+        'App\Console\Commands\LocalSoftwareUpdate',
     ];
 
     /**
