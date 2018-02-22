@@ -1,0 +1,276 @@
+.jumbotron{
+  padding: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  max-height: 50px;
+  box-shadow: black 0px 0.1em 0.15em;
+}
+.btn-sm{
+  font-size: 12px;
+}
+h2{
+  margin-top: 5px
+}
+.direction_left, .direction_right{
+  display: none;
+}
+.direction_left {
+    z-index:10;
+    position:fixed;
+    top:50%;
+    left:0;
+    height:100%;
+    width:5%;
+}
+.direction_right {
+    z-index:10;
+    position:fixed;
+    top:50%;
+    right:0;
+    height:100%;
+    width:5%;
+}
+
+/**************************scroll button styling***************************************/
+.right,  .left {
+ position: relative;
+ height: 30px;
+ width: 30px;
+ border: 2px solid rgba(0, 0, 0, 0.69);
+ display: inline-block;
+ -webkit-transform: rotate(45deg);
+ transform: rotate(45deg);
+ margin: 8px;
+ overflow: hidden;
+ cursor: pointer;
+ -webkit-transition: all .3s ease;
+ transition: all .3s ease;
+ -webkit-transform-origin: 50% 50%;
+         transform-origin: 50% 50%;
+ }
+  .right .arrow,  .left .arrow {
+ position: absolute;
+ height: 20px;
+ width: 20px;
+ -webkit-transform: rotate(-45deg);
+ transform: rotate(-45deg);
+ top: 3px;
+ left: 3px;
+ margin: auto;
+ -webkit-transition: all .3s ease;
+ transition: all .3s ease;
+ }
+  .right .arrow.second,  .left .arrow.second {
+ -webkit-transform: rotate(135deg);
+         transform: rotate(135deg);
+ }
+ .container .left:active {
+ background-color: #8e8d9f;
+ -webkit-transform: rotate(55deg) rotateY(20deg) rotateX(20deg);
+         transform: rotate(55deg) rotateY(20deg) rotateX(20deg);
+ }
+  .left:hover .first {
+ -webkit-animation: outins .4s ease;
+         animation: outins .4s ease;
+ }
+  .right:active {
+ background-color: #8e8d9f;
+ -webkit-transform: rotate(45deg) rotateY(20deg) rotateX(20deg);
+         transform: rotate(45deg) rotateY(20deg) rotateX(20deg);
+ }
+  .right:hover .second {
+ -webkit-animation: outin .4s ease;
+         animation: outin .4s ease;
+ }
+
+ @-webkit-keyframes outin {
+   30% {
+     -webkit-transform: rotate(135deg) translateX(-60px);
+             transform: rotate(135deg) translateX(-60px);
+     opacity: 0;
+   }
+   60% {
+     -webkit-transform: rotate(135deg) translateX(60px);
+             transform: rotate(135deg) translateX(60px);
+     opacity: 0;
+   }
+ }
+
+ @keyframes outin {
+   30% {
+     -webkit-transform: rotate(135deg) translateX(-60px);
+             transform: rotate(135deg) translateX(-60px);
+     opacity: 0;
+   }
+   60% {
+     -webkit-transform: rotate(135deg) translateX(60px);
+             transform: rotate(135deg) translateX(60px);
+     opacity: 0;
+   }
+ }
+ @-webkit-keyframes outins {
+   30% {
+     -webkit-transform: rotate(-45deg) translateX(-60px);
+             transform: rotate(-45deg) translateX(-60px);
+     opacity: 0;
+   }
+   60% {
+     -webkit-transform: rotate(-45deg) translateX(60px);
+             transform: rotate(-45deg) translateX(60px);
+     opacity: 0;
+   }
+ }
+ @keyframes outins {
+   30% {
+     -webkit-transform: rotate(-45deg) translateX(-60px);
+             transform: rotate(-45deg) translateX(-60px);
+     opacity: 0;
+   }
+   60% {
+     -webkit-transform: rotate(-45deg) translateX(60px);
+             transform: rotate(-45deg) translateX(60px);
+     opacity: 0;
+   }
+ }
+/**************************scroll button styling***************************************/
+/*============================table styling======================================*/
+.responsive-table {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+.responsive-table thead {
+  /* position: absolute; */
+  /* clip: rect(1px 1px 1px 1px); */
+  /* clip: rect(1px, 1px, 1px, 1px); */
+  padding: 0;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+}
+
+.responsive-table thead th {
+  background-color: #1d96b2;
+  font-weight: normal;
+  text-align: center;
+  color: white;
+}
+.responsive-table thead th:first-of-type {
+  text-align: left;
+}
+.responsive-table tbody, .responsive-table tr, .responsive-table th, .responsive-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+  white-space: normal;
+}
+.theadrow{
+  display: none!important;
+}
+.responsive-table th,
+.responsive-table td {
+  padding: .5em;
+  vertical-align: middle;
+}
+.responsive-table tbody tr{
+  margin-bottom: 1em;
+  border: 2px solid #1d96b2;
+}
+.responsive-table tbody tr th{
+  /* border: 2px solid #1d96b2; */
+}
+.responsive-table tbody tr:last-of-type {
+  margin-bottom: 0;
+}
+.responsive-table tbody th[scope="row"] {
+  background-color: #1d96b2;
+  color: white;
+}
+.responsive-table tbody td[data-type=currency] {
+  text-align: right;
+}
+.responsive-table tbody td[data-title]:before {
+  content: attr(data-title);
+  float: left;
+  font-size: .8em;
+  color: rgba(94, 93, 82, 0.75);
+}
+.responsive-table tbody td {
+  text-align: right;
+  border: none;
+  /* border-bottom: 1px solid #1d96b2; */
+  min-height: 40px;
+}
+
+@media (min-width: 75em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: .75em;
+  }
+}
+@media (min-width: 62em) {
+  .responsive-table {
+    font-size: 1em;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    padding: .75em .5em;
+  }
+}
+@media (min-width: 52em) {
+  .responsive-table {
+    font-size: .9em;
+  }
+  .theadrow{
+    display: table-row!important;
+  }
+  .responsive-table thead {
+    position: relative;
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+  .responsive-table tr {
+    display: table-row;
+  }
+  .responsive-table th,
+  .responsive-table td {
+    display: table-cell;
+    padding: .5em;
+  }
+
+  .responsive-table caption {
+    font-size: 1.5em;
+  }
+  .responsive-table tbody {
+    display: table-row-group;
+  }
+  .responsive-table tbody tr {
+    display: table-row;
+    border-width: 1px;
+  }
+  .responsive-table tbody tr:nth-of-type(even) {
+    background-color: rgba(94, 93, 82, 0.1);
+  }
+  .responsive-table tbody th[scope="row"], .responsive-table thead th[scope="row"] {
+    background-color: transparent;
+    color: #5e5d52;
+    text-align: left;
+  }
+  .responsive-table tbody td {
+    text-align: center;
+  }
+  .responsive-table tbody td[data-title]:before {
+    content: none;
+  }
+  .btn-sm{
+    font-size: 13px;
+  }
+  .direction_left, .direction_right{
+    display: block;
+  }
+}
+/*============================table styling======================================*/

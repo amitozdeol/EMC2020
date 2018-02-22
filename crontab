@@ -1,0 +1,1 @@
+* * * * * /usr/bin/php /var/www/2020_web/artisan email:alarm-notification

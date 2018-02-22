@@ -1,0 +1,132 @@
+html,
+body {
+	background-color: #B0B0B0!important;
+	color: black;
+}
+
+thead th {
+	background-color: black;
+	border: 1px solid black;
+	color: #B0B0B0;
+	text-align: center;
+	vertical-align: center;
+}
+
+td, tr {
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: center;
+}
+
+.page-title {
+	width: 90%;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	color: black;
+    font-style: italic;
+    font-size: 24px;
+    text-align: center;
+	vertical-align: center;
+}
+
+.page-nav {
+	width: 75%;
+	padding: 8px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #000000;
+	color: white;
+	text-align: center;
+	font-size: 14px;
+	border-bottom-right-radius: 50px 25px;
+	border-bottom-left-radius: 50px 25px;
+	border-top-left-radius: 50px 25px;
+	border-top-right-radius: 50px 25px;
+}
+
+.bldg-div { 
+	width: 33%; 
+	height: 120px;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: 2px;
+	float: left;
+	background-color: #000000;
+	color: #B0B0B0;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: center;
+	border-bottom-right-radius: 50px 25px;
+	border-bottom-left-radius: 50px 25px;
+	border-top-left-radius: 50px 25px;
+	border-top-right-radius: 50px 25px;
+}
+
+.row-detail {
+	padding: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2px;
+	width: 90%;
+	background-color: #000000;
+	color: #B0B0B0;
+	font-weight: bold;
+	font-size: 14px;
+	border-bottom-right-radius: 50px 25px;
+	border-bottom-left-radius: 50px 25px;
+	border-top-left-radius: 50px 25px;
+	border-top-right-radius: 50px 25px;
+}
+
+.red-alarm {
+	color: #D8311F;
+}
+
+.yellow-alarm {
+	color: #D89418;
+}
+
+.text-color {
+	color: black;
+}
+
+.security-table {
+	border: 1px solid black;
+	border-collapse:collapse;
+	width:100%;
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
+	color: black;
+}
+
+.ui-accordion .ui-accordion-header {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	margin-top: 2px;
+	padding: .5em .5em .5em .7em;
+	min-height: 0; /* support: IE7 */
+}
+.ui-accordion .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-noicons {
+	padding-left: .7em;
+}
+.ui-accordion .ui-accordion-icons .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+	position: absolute;
+	left: .5em;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-accordion .ui-accordion-content {
+	padding: 1em 2.2em;
+	border-top: 0;
+	overflow: auto;
+}
+

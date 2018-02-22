@@ -1,0 +1,16 @@
+{
+  "activitycontinuation": {
+    "apps": [
+      "DZL4BB6U4G.com.eawelectro.emc2020"
+    ]
+  },
+  "applinks": {
+      "apps": [],
+      "details": [
+          {
+              "appID": "DZL4BB6U4G.com.eawelectro.emc2020",
+              "paths": [ "/2020_web/public/" ]
+          }
+      ]
+  }
+}

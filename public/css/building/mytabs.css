@@ -1,0 +1,156 @@
+#myTab{
+  font-size: large;
+  margin-top: 20px;
+}
+
+.myTab > li.active > a, .myTab > li.active > a:focus{
+  background: #969696;
+  color: #ffffff;
+  border: 1px solid #000;
+  border-bottom-color: transparent;
+}
+.myTab > li > a{
+  color: #000000;
+  background: #ddd;
+  box-shadow: #000 0.1em -0.1em 0.15em;
+  border: none;
+}
+
+.myTab{
+  border-bottom: 1px solid #000;
+}
+
+.myTabContent{
+  background-color:#969696;
+  border: 1px solid #000;
+  border-width: 0 1px 1px; /* Removes the top border */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.myTabContent div.row, .panel-group div.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.panel-title > a{
+  display: block;
+}
+/* .btn{
+  font-size: 1rem;
+} */
+.panel-heading .js-tabcollapse-panel-heading:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* taken from bootstrap.css */
+    float: right;
+    color: grey;
+}
+.panel-heading .js-tabcollapse-panel-heading.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* taken from bootstrap.css */
+}
+.list-group{
+  font-size: 15px;
+}
+.zoneSelector{
+  font-size:20px;
+}
+
+/*===========================================*/
+/* ARROW to X STYLES                         */
+/*===========================================*/
+.arrow-menu-icon {
+  width: 54px;
+  height: 54px;
+
+  position: relative;
+  border-radius: 50%;
+}
+.arrow-menu-icon span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #fff;
+}
+.arrow-menu-icon span:before, .arrow-menu-icon span:after {
+  content: "";
+  background-color: #fff;
+  width: 22px;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-6px);
+  transition: transform 0.5s;
+}
+.arrow-menu-icon span:after {
+  transform: translateY(6px);
+}
+.arrow-menu-icon:hover span:before {
+  transform: translateY(-8px);
+}
+.arrow-menu-icon:hover span:after {
+  transform: translateY(8px);
+}
+
+
+.arrow-menu-icon-path span {
+  background-color: #fff;
+  transition: background-color 0.5s steps(1, end);
+}
+.arrow-menu-icon-path svg {
+  fill: #102432;
+  stroke-width: 2px;
+  stroke: transparent;
+  stroke-dashArray: 22 230;
+  transition: stroke-dashArray 0.5s, stroke-dashOffset 0.5s, transform 0.5s, stroke 0.5s steps(1, end);
+}
+.arrow-menu-icon-path.isOpen span {
+  background-color: transparent;
+  transition: background-color 0.5s steps(1, start);
+}
+.arrow-menu-icon-path.isOpen svg {
+  stroke: #fff;
+  stroke-dashOffset: -65;
+  stroke-dashArray: 160;
+  transition: stroke-dashArray 1s, stroke-dashOffset 0.5s, transform 0.5s, stroke 0.5s steps(1, start), fill 0.5s;
+}
+.arrow-menu-icon-path.isOpen span:before {
+  transform: translateY(0) rotate(45deg);
+}
+.arrow-menu-icon-path.isOpen span:after {
+  transform: translateY(0) rotate(-45deg);
+}
+.arrow-arrow-menu-icon-path.isOpen:hover svg {
+  fill: #102432;
+}
+
+@media screen and (max-width: 500px){
+  .list-group-item{
+    font-size: 12px;
+  }
+  .zoneSelector, .panel-title{
+    font-size: 14px;
+  }
+  .arrow-menu-icon span, .arrow-menu-icon span:before, .arrow-menu-icon span:after {
+    width: 15px;
+  }
+  .arrow-menu-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .arrow-menu-icon span:after {
+    transform: translateY(4px);
+  }
+  .arrow-menu-icon span:before {
+    transform: translateY(-4px);
+  }
+}
