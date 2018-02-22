@@ -1,4 +1,23 @@
 <?php
+
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\Cache;
+use App\Console\Commands\ConvFunc;
+use App\DashboardItem;
+use App\Device;
+use App\DeviceType;
+use App\Events;
+use App\ProductType;
+use App\System;
+use App\Zone;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+
 class ReportsController extends Controller
 {
   /**

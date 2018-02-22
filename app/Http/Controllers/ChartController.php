@@ -1,5 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\ChartAttribute;
+use App\DashboardItem;
+use App\DeviceSetpoints;
+use App\DeviceType;
+use App\MappingOutput;
+use App\System;
+use Illuminate\Support\Facades\Input;
+
+
 class ChartController extends Controller
 {
 

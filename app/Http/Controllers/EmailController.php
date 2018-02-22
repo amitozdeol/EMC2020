@@ -1,5 +1,22 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\AlarmCodes;
+use App\Alarms;
+use App\Alert;
+use App\Building;
+use App\Device;
+use App\DeviceType;
+use App\LogType;
+use App\System;
+use App\SystemLog;
+use App\Zone;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class EmailController extends Controller
 {
 

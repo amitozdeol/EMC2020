@@ -1,5 +1,23 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\AlarmCodes;
+use App\Alert;
+use App\Building;
+use App\Customer;
+use App\DeviceType;
+use App\LogType;
+use App\SystemLog;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class UserController extends Controller
 {
 

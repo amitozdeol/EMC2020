@@ -1,5 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\SystemLog;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class HomeController extends Controller
 {
 

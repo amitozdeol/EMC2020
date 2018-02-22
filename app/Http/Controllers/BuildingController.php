@@ -1,5 +1,40 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\AlarmCodes;
+use App\Alarms;
+use App\Building;
+use App\Cache;
+use App\Console\Commands\ConvFunc;
+use App\Console\Commands\RemoteTask;
+use App\Customer;
+use App\DashboardItem;
+use App\DashboardMap;
+use App\DashboardMapItem;
+use App\Device;
+use App\DeviceData;
+use App\DeviceDataCurrent;
+use App\DeviceSetpoints;
+use App\DeviceType;
+use App\Events;
+use App\Http\Requests\Request;
+use App\LogType;
+use App\MappingOutput;
+use App\ProductType;
+use App\System;
+use App\SystemLog;
+use App\WebMappingDefault;
+use App\WebMappingSystem;
+use App\Zone;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+
+
 class BuildingController extends Controller
 {
 

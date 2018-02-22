@@ -1,5 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\System;
+use App\Zone;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 class ZoneController extends Controller
 {
 

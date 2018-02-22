@@ -1,5 +1,17 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Alarms;
+use App\Building;
+use App\Device;
+use App\DeviceData;
+use App\ProductType;
+use App\System;
+use App\WebMappingDefault;
+use App\WebMappingSystem;
+
+
     // $system = System::find($sid);
     // $id = $system->building_id;
 class TouchScreenController extends Controller

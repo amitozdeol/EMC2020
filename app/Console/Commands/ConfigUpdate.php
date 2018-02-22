@@ -1,8 +1,14 @@
 <?php
 
+namespace App\Console\Commands;
+
+use App\Http\Controllers\SystemController;
+use App\System;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+
+
 
 class ConfigUpdate extends Command
 {

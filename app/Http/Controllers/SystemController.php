@@ -1,5 +1,25 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\Console\Commands\RemoteTask;
+use App\Device;
+use App\DeviceSetpoints;
+use App\DeviceType;
+use App\MappingOutput;
+use App\NetworkSettings;
+use App\ProductType;
+use App\System;
+use App\SystemLog;
+use App\Zone;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class SystemController extends Controller
 {
 /*

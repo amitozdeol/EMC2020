@@ -1,5 +1,23 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\Console\Commands\RemoteTask;
+use App\DashboardItem;
+use App\Device;
+use App\DeviceSetback;
+use App\DeviceSetpoints;
+use App\DeviceType;
+use App\ProductType;
+use App\System;
+use App\Zone;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class SetpointMappingController extends Controller
 {
 

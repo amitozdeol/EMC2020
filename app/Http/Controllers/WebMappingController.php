@@ -1,5 +1,15 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\Chart;
+use App\DashboardItem;
+use App\System;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 class WebMappingController extends Controller
 {
 

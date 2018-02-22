@@ -1,5 +1,21 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Alarms;
+use App\Algorithm;
+use App\Building;
+use App\Console\Commands\RemoteTask;
+use App\Device;
+use App\DeviceType;
+use App\MappingOutput;
+use App\ProductType;
+use App\Zone;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+
+
 class AlgorithmController extends Controller
 {
     /**

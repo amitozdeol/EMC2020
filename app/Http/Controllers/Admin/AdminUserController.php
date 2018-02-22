@@ -1,6 +1,22 @@
 <?php
 
+namespace App\Http\Controllers\Admin;
+
+use App\BuildingGroupManager;
+use App\BuildingManager;
+use App\Customer;
 use App\Http\Controllers\Controller;
+use App\SystemLog;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
+
 
 class AdminUserController extends Controller
 {

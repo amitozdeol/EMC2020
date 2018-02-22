@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Console\Commands;
+
+use Illuminate\Support\Facades\DB;
+
+
 class ConvFunc
 {
   /* function unitconv

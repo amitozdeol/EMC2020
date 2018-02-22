@@ -1,4 +1,14 @@
 <?php
+
+namespace App\Http\Controllers;
+
+use App\Console\Commands\RemoteTask;
+use App\System;
+use App\SystemLog;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+
 /*
 *	SettingsController
 *

@@ -1,5 +1,20 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use App\Building;
+use App\BuildingGroup;
+use App\BuildingGroupManager;
+use App\BuildingGroupMember;
+use App\BuildingManager;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 class AccessController extends Controller
 {
 

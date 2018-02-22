@@ -1,6 +1,22 @@
 <?php
 
+namespace App\Http\Controllers\Admin;
+
+use App\Alert;
+use App\Building;
+use App\BuildingGroupMember;
+use App\BuildingManager;
+use App\Customer;
+use App\Device;
 use App\Http\Controllers\Controller;
+use App\System;
+use App\SystemLog;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+
 
 class AdminBuildingController extends Controller
 {
