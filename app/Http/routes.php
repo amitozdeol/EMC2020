@@ -61,7 +61,7 @@ Route::get('YourIpPlusaBunchOfHTML.php', function () {
 | The 'auth' filter is defined in `/app/filters.php`
 |
 */
-Route::group(['before' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('dashboard', 'BuildingController@dashboard');
     Route::get('help', ['as' => 'help', 'uses' => 'HelpController@index']);
