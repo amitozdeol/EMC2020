@@ -13,7 +13,7 @@ class HelpController extends Controller
          /*Displays example on page for help section. Set false or remove entirely before releasing to production.*/
         $example = false;
 
-        return View::make('help.list')
+        return view('help.list')
         ->with('example', $example);
     }
 }

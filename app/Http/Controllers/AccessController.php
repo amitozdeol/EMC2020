@@ -64,7 +64,7 @@ class AccessController extends Controller
             $data['labels'][$label->id] = $label->label;
         }
 
-        return View::make('buildings.access.list', $data);
+        return view('buildings.access.list', $data);
     }
 
 
@@ -89,7 +89,7 @@ class AccessController extends Controller
         }
         array_unshift($data['customer_users'], "Choose a User");
 
-        return View::make('buildings.access.modal.new-manager', $data);
+        return view('buildings.access.modal.new-manager', $data);
     }
 
 

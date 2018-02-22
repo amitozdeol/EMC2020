@@ -15,7 +15,7 @@ class AdminBuildingController extends Controller
         $data['customers'] = Customer::orderBy('name')->get();
         $data['buildings'] = Building::all();
 
-        return View::make('admin.building.index', $data);
+        return view('admin.building.index', $data);
     }
 
 
@@ -34,7 +34,7 @@ class AdminBuildingController extends Controller
         }
         $data['customer_list'] = $customer_list;
 
-        return View::make('admin.building.create', $data);
+        return view('admin.building.create', $data);
     }
 
 
@@ -80,7 +80,7 @@ class AdminBuildingController extends Controller
         }
         $data['customer_list'] = $customer_list;
 
-        return View::make('admin.building.edit', $data);
+        return view('admin.building.edit', $data);
     }
 
 

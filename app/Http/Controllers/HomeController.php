@@ -20,12 +20,12 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::guest()) {
-            return View::make('home.index')->render();
+            return view('home.index')->render();
         } else {
             if (Auth::user()->customer_id == 0) {
                 return Redirect::route('admin.index');
             } else {
-                return Redirect::to('dashboard');
+                return redirect('dashboard');
             }
         }
     }
@@ -59,7 +59,7 @@ class HomeController extends Controller
             SystemLog::info(0, 'Password reset email sent for user #'.$user->id.'('.$email.')', 15);
             Session::flash('success', "<strong>Ok.</strong> I'm gonna send you an email.");
         }
-        return Redirect::to('/');
+        return redirect('/');
     }
 
 
@@ -69,9 +69,9 @@ class HomeController extends Controller
         $user = User::where('password_reset_token', $token)->where('password_reset_expires', '>', date('Y-m-d H:i:s'))->first();
         if (! $user) {
             Session::flash('error', 'It appears that link has already expired');
-            return Redirect::to('/');
+            return redirect('/');
         }
-        return View::make('home.reset-request');
+        return view('home.reset-request');
     }
 
 
@@ -80,14 +80,14 @@ class HomeController extends Controller
         /* Make sure we can find the user whose password is being reset */
         if (! $user = User::where('password_reset_token', $token)->where('password_reset_expires', '>', date('Y-m-d H:i:s'))->first()) {
             Session::flash('error', '<strong>Not So Fast!</strong> It looks like that link has already expired');
-            return Redirect::to('/');
+            return redirect('/');
         }
 
         /* Validate the new password */
         $password    = Input::get('password');
         $re_password = Input::get('re-password');
         if (! AdminUserController::validate_password($password, $re_password)) {
-            return Redirect::to('/');
+            return redirect('/');
         }
 
         /* If nothing has gone wrong then lets finally make the update */
@@ -98,7 +98,7 @@ class HomeController extends Controller
             Session::flash('success', '<strong>Awesome!</strong> Your password has been reset.');
         }
 
-        return Redirect::to('/');
+        return redirect('/');
     }
 
 
@@ -114,7 +114,7 @@ class HomeController extends Controller
             SystemLog::info(0, 'Successful login for user #'.Auth::user()->id.'('.Auth::user()->email.')', 28);
             $redirect = Session::get('redirect');   //redirect to the url the user requested
             Session::forget('redirect');            //if nothing requested, it will go to default URL
-            return Redirect::to($redirect);
+            return redirect($redirect);
         } else {
             SystemLog::warning(0, 'Failed login for email '.Input::get('email'), 28);
             Session::flash('error', 'Incorrect username and/or password.');
@@ -126,56 +126,56 @@ class HomeController extends Controller
     public function logout()
     {
         Auth::logout();
-        return Redirect::to('/login');
+        return redirect('/login');
     }
 
 
     public static function recoverPassword()
     {
-        return View::make('home.forgot-password')->render();
+        return view('home.forgot-password')->render();
     }
 
     public static function products()
     {
-        return View::make('home.products.index')->render();
+        return view('home.products.index')->render();
     }
 
     public static function emc2020()
     {
-        return View::make('home.products.emc2020')->render();
+        return view('home.products.emc2020')->render();
     }
 
     public static function emc_zigbee_wireless()
     {
-        return View::make('home.products.emc_zigbee_wireless')->render();
+        return view('home.products.emc_zigbee_wireless')->render();
     }
 
     public static function about_us()
     {
-        return View::make('home.about-us.index')->render();
+        return view('home.about-us.index')->render();
     }
 
     public static function services()
     {
-        return View::make('home.services.index')->render();
+        return view('home.services.index')->render();
     }
 
     public static function support()
     {
-        return View::make('home.support.index')->render();
+        return view('home.support.index')->render();
     }
 
     public static function privacy()
     {
-        return View::make('home.privacypolicy.index')->render();
+        return view('home.privacypolicy.index')->render();
     }
 
     public static function get_login()
     {
         if (Auth::check()) {
-            return Redirect::to('/');
+            return redirect('/');
         } else {
-            return View::make('home.login');
+            return view('home.login');
         }
     }
 
@@ -183,51 +183,51 @@ class HomeController extends Controller
   /***************Non-Routed Methods******************/
     public static function login_form()
     {
-        return View::make('home.login-form');
+        return view('home.login-form');
     }
 
     public static function single_center_image_right()
     {
-        return View::make('home.info.single-center-image-right');
+        return view('home.info.single-center-image-right');
     }
 
     public static function built_for_you()
     {
-        return View::make('home.info.built-for-you');
+        return view('home.info.built-for-you');
     }
 
     public static function easy_integration()
     {
-        return View::make('home.info.easy-integration');
+        return view('home.info.easy-integration');
     }
 
     public static function lead_ad()
     {
-        return View::make('home.info.summer-2016');
+        return view('home.info.summer-2016');
     }
 
     public static function second_ad()
     {
-        return View::make('home.info.services-ad');
+        return view('home.info.services-ad');
     }
 
     public static function third_ad()
     {
-        return View::make('home.info.zigbee-ad');
+        return view('home.info.zigbee-ad');
     }
 
     public static function emc_biography()
     {
-        return View::make('home.info.emc_biography');
+        return view('home.info.emc_biography');
     }
 
     public static function emc_quick_stats()
     {
-        return View::make('home.info.emc_quick_stats');
+        return view('home.info.emc_quick_stats');
     }
 
     public static function system_services()
     {
-        return View::make('home.info.system-services');
+        return view('home.info.system-services');
     }
 }

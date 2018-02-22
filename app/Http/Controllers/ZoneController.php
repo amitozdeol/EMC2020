@@ -18,7 +18,7 @@ class ZoneController extends Controller
 
 
 
-         return View::make('zonelabels.list')
+         return view('zonelabels.list')
             ->with('thisBldg', $thisBldg)
             ->with('sid', $sid)
             ->with('zones', $zones);

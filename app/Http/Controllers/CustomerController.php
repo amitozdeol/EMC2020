@@ -12,6 +12,6 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
 
-        return View::make('customers.list')->with('customers', $customers);
+        return view('customers.list')->with('customers', $customers);
     }
 }

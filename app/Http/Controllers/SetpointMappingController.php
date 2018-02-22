@@ -342,13 +342,13 @@ class SetpointMappingController extends Controller
                                     $weekday = "globalWeekdayForm-".$command."-".$setbackIndex."-0";
                                     if ($updateData[$startTime]==null) {
                                         Session::flash('error', $error_start.'Global Setback Start Time'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     } else if ($updateData[$stopTime]==null) {
                                         Session::flash('error', $error_start.'Global Setback Stop Time'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     } else if ($updateData[$value]==null) {
                                         Session::flash('error', $error_start.'Global Setback Setpoint'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     }
                                     $int_start = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                                     $setback->starttime = $updateData[$weekday].":".$int_start;
@@ -380,13 +380,13 @@ class SetpointMappingController extends Controller
                                 $weekday = "globalWeekdayForm-".$command."-".$remainingSetbacks."-0";
                                 if ($updateData[$startTime]==null) {
                                     Session::flash('error', $error_start.'Global Setback Start Time'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 } else if ($updateData[$stopTime]==null) {
                                     Session::flash('error', $error_start.'Global Setback Stop Time'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 } else if ($updateData[$value]==null) {
                                     Session::flash('error', $error_start.'Global Setback Setpoint'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 }
                                 $int_start = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                                 $currentSetback->starttime = $updateData[$weekday].":".$int_start;
@@ -448,13 +448,13 @@ class SetpointMappingController extends Controller
                                         $weekday      = "zonalWeekdayForm-".$command."-".$setbackIndex."-".$updateData['zone_id'];
                                         if ($updateData[$startTime]==null) {
                                             Session::flash('error', $error_start.'Zonal Setback Start Time'.$error_end);
-                                            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                            return redirect(route('setpointmapping.index', [$bid, $sid]));
                                         } else if ($updateData[$stopTime]==null) {
                                             Session::flash('error', $error_start.'Zonal Setback Stop Time'.$error_end);
-                                            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                            return redirect(route('setpointmapping.index', [$bid, $sid]));
                                         } else if ($updateData[$value]==null) {
                                             Session::flash('error', $error_start.'Zonal Setback Setpoint'.$error_end);
-                                            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                            return redirect(route('setpointmapping.index', [$bid, $sid]));
                                         }
                                         $int_start  = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                                         $int_stop   = setback_time_form_parse($updateData[$stopTime], $sid, $bid);
@@ -485,13 +485,13 @@ class SetpointMappingController extends Controller
                                     $weekday      = "zonalWeekdayForm-".$command."-".$remainingSetbacks."-".$updateData['zone_id'];
                                     if ($updateData[$startTime]==null) {
                                         Session::flash('error', $error_start.'Zonal Setback Start Time'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     } else if ($updateData[$stopTime]==null) {
                                         Session::flash('error', $error_start.'Zonal Setback Stop Time'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     } else if ($updateData[$value]==null) {
                                         Session::flash('error', $error_start.'Zonal Setback Setpoint'.$error_end);
-                                        return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                        return redirect(route('setpointmapping.index', [$bid, $sid]));
                                     }
                                     $int_start  = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                                     $int_stop   = setback_time_form_parse($updateData[$stopTime], $sid, $bid);
@@ -520,7 +520,7 @@ class SetpointMappingController extends Controller
             } catch (Exception $e) {
                 log::info($e);
             }
-            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+            return redirect(route('setpointmapping.index', [$bid, $sid]));
         } else {
             /*INDIVIDUAL SENSORS*/
             $deviceTypes = DeviceType::where('IO', 'Input')
@@ -551,13 +551,13 @@ class SetpointMappingController extends Controller
                                 $weekday = "sbWeekdayForm-".$id."-".$deviceCommand."-".$setbackIndex;
                                 if ($updateData[$startTime]==null) {
                                     Session::flash('error', $error_start.'Setback Start Time'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 } else if ($updateData[$stopTime]==null) {
                                     Session::flash('error', $error_start.'Setback Stop Time'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 } else if ($updateData[$value]==null) {
                                     Session::flash('error', $error_start.'Setback Setpoint'.$error_end);
-                                    return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                    return redirect(route('setpointmapping.index', [$bid, $sid]));
                                 }
                                 $int_start = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                                 $currentSetback->starttime = $updateData[$weekday].":".$int_start;
@@ -590,13 +590,13 @@ class SetpointMappingController extends Controller
                             $weekday = "sbWeekdayForm-".$id."-".$deviceCommand."-".$remainingSetbacks;
                             if ($updateData[$startTime]==null) {
                                 Session::flash('error', $error_start.'Setback Start Time'.$error_end);
-                                return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                return redirect(route('setpointmapping.index', [$bid, $sid]));
                             } else if ($updateData[$stopTime]==null) {
                                 Session::flash('error', $error_start.'Setback Stop Time'.$error_end);
-                                return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                return redirect(route('setpointmapping.index', [$bid, $sid]));
                             } else if ($updateData[$value]==null) {
                                 Session::flash('error', $error_start.'Setback Setpoint'.$error_end);
-                                return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+                                return redirect(route('setpointmapping.index', [$bid, $sid]));
                             }
                             $int_start = setback_time_form_parse($updateData[$startTime], $sid, $bid);
                             $currentSetback->starttime = $updateData[$weekday].":".$int_start;
@@ -650,7 +650,7 @@ class SetpointMappingController extends Controller
                 SetpointMappingController::DeploySetpoints($sid);
             } catch (Exception $e) {
             }
-            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+            return redirect(route('setpointmapping.index', [$bid, $sid]));
         }
     }
 
@@ -904,7 +904,7 @@ function setback_time_form_parse($time_string, $sid, $bid)
             break;
         default:
             Session::flash('error', 'Setback time format should be HH:MM:SS. Please check your setback and try again.');
-            return Redirect::to(route('setpointmapping.index', [$bid, $sid]));
+            return redirect(route('setpointmapping.index', [$bid, $sid]));
         break;
     }
     unset($boom);

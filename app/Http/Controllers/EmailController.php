@@ -235,7 +235,7 @@ class EmailController extends Controller
             'unsubscribe_key' => $unsubscribe_key,
             ];
         }
-        return View::make('mail.unsubscribe', $data);
+        return view('mail.unsubscribe', $data);
     }
 
     public static function TestalarmNotification($alarm_id)
@@ -300,6 +300,6 @@ class EmailController extends Controller
         //$alarm->notifications_sent = 1;
         $alarm->save();
 
-        return View::make('mail.html.alarm', $data);
+        return view('mail.html.alarm', $data);
     }
 }

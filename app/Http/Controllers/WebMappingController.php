@@ -121,7 +121,7 @@ class WebMappingController extends Controller
             $availableDashboardItems[0] = 'No Remaining Options';
         }
 
-        return View::make('webmapping.list')
+        return view('webmapping.list')
         ->with('thisBldg', $thisBldg)
         ->with('thisSystem', $thisSystem)
         ->with('bid', $bid)
@@ -196,7 +196,7 @@ class WebMappingController extends Controller
             $dashItem->save();
         }
 
-        return Redirect::to(route('webmapping.index', [$bid, $sid]));
+        return redirect(route('webmapping.index', [$bid, $sid]));
     }
 
 

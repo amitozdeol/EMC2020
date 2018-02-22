@@ -26,7 +26,7 @@ class TouchScreenController extends Controller
             $sysParams = WebMappingDefault::select(['group_number', 'group_name'])->distinct()->get();
         }
 
-        return View::make('touchscreen.index', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
+        return view('touchscreen.index', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
         ->with('systemsData', $systems)
         ->with('sysParams', $sysParams);
     }
@@ -65,7 +65,7 @@ class TouchScreenController extends Controller
         //$thisSystem = System::find($sid); // Lookup passed system from DB
         $systems = System::where('building_id', $thisBldg->id)->get();
         $products = ProductType::all(); // Lookup all products available to this system
-        return View::make('touchscreen.devicestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+        return view('touchscreen.devicestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
                 ->with('devicesout', $devicesout)
                 ->with('devicesin', $devicesin)
                 ->with('systemsData', $systems)
@@ -108,7 +108,7 @@ class TouchScreenController extends Controller
         $systems = System::where('building_id', $thisBldg->id)->get();
 
 
-        return View::make('touchscreen.zonestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+        return view('touchscreen.zonestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
                 ->with('devicesout', $devicesout)
                 ->with('devicesin', $devicesin)
                 ->with('systemsData', $systems);
@@ -134,7 +134,7 @@ class TouchScreenController extends Controller
             $sysParams = WebMappingDefault::select(['group_number', 'group_name'])->distinct()->where('active', 1)->get();
         }
 
-        return View::make('buildings.system', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
+        return view('buildings.system', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
         ->with('systemsData', $systems)
         ->with('sysParams', $sysParams)
         ->with('sysAlarms', $sysAlarms);
@@ -315,7 +315,7 @@ class TouchScreenController extends Controller
 
         // Make the proper view depending on which charts are available
         if (isset($tempChart) & isset($humChart)) {
-            return View::make('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
                         'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK), 'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
                         'zoneTempCharts' => $zoneTempCharts,
                         'numTempZones' => count($zoneTempCharts),
@@ -325,7 +325,7 @@ class TouchScreenController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($tempChart)) {
-            return View::make('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
                       'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK),
                       'zoneTempCharts' => $zoneTempCharts,
                       'numTempZones' => count($zoneTempCharts)])
@@ -333,7 +333,7 @@ class TouchScreenController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($humChart)) {
-            return View::make('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
                       'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
                       'zoneHumCharts' => $zoneHumCharts,
                       'numHumZones' => count($zoneHumCharts)])
@@ -341,7 +341,7 @@ class TouchScreenController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else {
-            return View::make('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
+            return view('touchscreen.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
             ->with('systemsData', $systems)
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);

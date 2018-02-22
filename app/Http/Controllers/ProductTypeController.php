@@ -50,7 +50,7 @@ class ProductTypeController extends Controller
         'BACNetEther' => 'BACNetEther'
         ];
 
-        return View::make('producttypes.list')
+        return view('producttypes.list')
         ->with('products', $products)
         ->with('modes', $modes)
         ->with('product_types', $product_types)

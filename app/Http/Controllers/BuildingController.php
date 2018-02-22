@@ -238,9 +238,9 @@ class BuildingController extends Controller
             $data['parent'] = $parent;
         }
         if (Request::is('EMC/*')) {
-            return View::make('buildings.dashboard-items-touch', $data);
+            return view('buildings.dashboard-items-touch', $data);
         } else {
-            return View::make('buildings.dashboard-items', $data);
+            return view('buildings.dashboard-items', $data);
         }
     }
 
@@ -967,7 +967,7 @@ class BuildingController extends Controller
         $systems = System::where('building_id', $thisBldg->id)->get();
         $products = ProductType::all();             // Lookup all products available to this system
         $zonenames = Zone::where('system_id', $sid)->get();
-        return View::make('buildings.status.devicestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+        return view('buildings.status.devicestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('devicesout', $devicesout)
         ->with('devicesin', $devicesin)
         ->with('systemsData', $systems)
@@ -1135,7 +1135,7 @@ class BuildingController extends Controller
             $mappingOutputs[$output->device_id] = $output;
         }
 
-        return View::make('buildings.status.zonestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+        return view('buildings.status.zonestatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('ActiveAlarms', $alarms)
         ->with('AlarmCodes', $alarm_codes)
         ->with('devicesout', $devicesout)
@@ -1444,7 +1444,7 @@ class BuildingController extends Controller
         }
 
         // update resolution field for active devices if clear button is clicked
-         return View::make('buildings.status.alarmstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+         return view('buildings.status.alarmstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
                 ->with('parent', $parent)
                 ->with('sysAlarmsActive', $sysAlarmsActive)
                 ->with('sysAlarmsHist', $sysAlarmsHist)
@@ -1956,7 +1956,7 @@ class BuildingController extends Controller
         // $queries = DB::getQueryLog();
     
         /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ end custom totalling ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**/
-        return View::make('buildings.status.eventsstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
+        return view('buildings.status.eventsstatus', ['thisBldg' => $thisBldg,'thisSystem' => $thisSystem])
         ->with('sysEventsActive', $sysEventsActive)
         ->with('sysEventsAlg', $sysEventsAlg)
         ->with('sysEventsHist', $sysEventsHist)
@@ -2064,7 +2064,7 @@ class BuildingController extends Controller
         $data1['customer'] = $customer;
 
         $data1['customer_buildings_for_navbar'] = $this->customer_buildings_for_navbar;
-        return View::make('buildings.dashboard', $data1);
+        return view('buildings.dashboard', $data1);
     }
 
 /*
@@ -2072,7 +2072,7 @@ class BuildingController extends Controller
   {
     $building = Building::find($id);
 
-    return View::make('buildings.detail')->with('building', $building);
+    return view('buildings.detail')->with('building', $building);
   }
 */
 
@@ -2136,9 +2136,9 @@ class BuildingController extends Controller
                             1 => 'images/yellowbutton.png',
                             2 => 'public/images/redbutton.png'];
         if (Auth::guest()) {
-            return View::make('home.index')->render();
+            return view('home.index')->render();
         } else {
-            return View::make('buildings.building', $data);
+            return view('buildings.building', $data);
         }
     }
 
@@ -2158,7 +2158,7 @@ class BuildingController extends Controller
             $sysParams = WebMappingDefault::select(['group_number', 'group_name'])->distinct()->where('active', 1)->get();
         }
 
-        return View::make('buildings.system', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
+        return view('buildings.system', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
         ->with('parent', DashboardItem::find($dashboard_id))
         ->with('sysParams', $sysParams)
         ->with('sysAlarms', $sysAlarms);
@@ -2506,7 +2506,7 @@ class BuildingController extends Controller
 
         // Make the proper view depending on which charts are available
         if (isset($tempChart) & isset($humChart)) {
-            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK), 'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
             'zoneTempCharts' => $zoneTempCharts,
             'numTempZones' => count($zoneTempCharts),
@@ -2517,7 +2517,7 @@ class BuildingController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($tempChart)) {
-            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'tempChart' => json_encode($tempChart, JSON_NUMERIC_CHECK),
             'zoneTempCharts' => $zoneTempCharts,
             'numTempZones' => count($zoneTempCharts)])
@@ -2526,7 +2526,7 @@ class BuildingController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else if (isset($humChart)) {
-            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
+            return view('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem,
             'humChart' => json_encode($humChart, JSON_NUMERIC_CHECK),
             'zoneHumCharts' => $zoneHumCharts,
             'numHumZones' => count($zoneHumCharts)])
@@ -2535,7 +2535,7 @@ class BuildingController extends Controller
             ->with('sysDetail', $sysDetail)
             ->with('categories', $categories);
         } else {
-            return View::make('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
+            return view('buildings.status.detail', ['thisBldg' => $thisBldg, 'thisSystem' => $thisSystem])
             ->with('systemsData', $systems)
             ->with('parent', DashboardItem::find($dashboard_id))
             ->with('sysDetail', $sysDetail)
@@ -3029,7 +3029,7 @@ class BuildingController extends Controller
         //   ->orderby('id')
         //   ->get();
 
-        return View::make('buildings.furnace', $data)
+        return view('buildings.furnace', $data)
         ->with('bid', $building_id)
         ->with('sid', $system_id)
         ->with('apartments', $apartments)
@@ -3516,7 +3516,7 @@ class BuildingController extends Controller
         ->get()
         ->first();
 
-        return View::make('dashboard-maps.edit', $data)
+        return view('dashboard-maps.edit', $data)
         ->with('building_id', $building_id)
         ->with('system_id', $system_id)
         ->with('pageid', $item)

@@ -155,7 +155,7 @@ class ReportsController extends Controller
          $data['InitData']        = $FuncData;
          $data['items']           = $items;
          $data['routePrefix']     = $routePrefix;
-        return View::make('reports.index', $data);
+        return view('reports.index', $data);
     }
 
   /**
@@ -515,7 +515,7 @@ class ReportsController extends Controller
         $data['events_devices'] = $event_devices;
         $data['functions']  = $reportingFunctions;
         $data['abc']        = $filteredCommand;
-        return View::make('reports.export', $data);
+        return view('reports.export', $data);
     }
   /**
    * Look up data types reported by a given device

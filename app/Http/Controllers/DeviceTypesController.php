@@ -23,7 +23,7 @@ class DeviceTypesController extends Controller
         ->orderby('mode', 'ASC')
         ->get();
 
-        return View::make('devicetypes.list')
+        return view('devicetypes.list')
         ->with('device_types', $device_types)
         ->with('type_ios', $type_ios)
         ->with('type_modes', $type_modes);

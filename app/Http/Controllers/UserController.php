@@ -52,7 +52,7 @@ class UserController extends Controller
         }
         $users = User::where('customer_id', Auth::user()->customer_id)->get();
 
-        return View::make('users.list')
+        return view('users.list')
         ->with('users', $users)
         ->with('mobile_carrier', $mobile_carrier);
     }
@@ -80,7 +80,7 @@ class UserController extends Controller
             $mobile_carrier[$key] = $value;
         }
 
-        return View::make('users.form')
+        return view('users.form')
         ->with('user', $user)
         ->with('customer', $customer)
         ->with('roles', $roles)
@@ -113,7 +113,7 @@ class UserController extends Controller
                 Session::flash('alert-class', 'alert-danger alert-dismissable');
             }
 
-            return Redirect::to('user#'.$user->id);
+            return redirect('user#'.$user->id);
         }
     }
 
@@ -130,7 +130,7 @@ class UserController extends Controller
         $customer = Customer::find(Auth::user()->customer_id);
         asort($this->mobile_carriers, SORT_STRING);
 
-        return View::make('users.form')
+        return view('users.form')
         ->with('user', $user)
         ->with('customer', $customer)
         ->with('mobile_carriers', $this->mobile_carriers);
@@ -160,7 +160,7 @@ class UserController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to('user#'.$user->id);
+        return redirect('user#'.$user->id);
     }
 
 
@@ -183,7 +183,7 @@ class UserController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to('user');
+        return redirect('user');
     }
 
 
@@ -210,7 +210,7 @@ class UserController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to('user');
+        return redirect('user');
     }
 
 
@@ -346,7 +346,7 @@ class UserController extends Controller
             $log_types = LogType::all();
 
 
-            return View::make('users.account', $data)
+            return view('users.account', $data)
             ->with('customers', $customers)
             ->with('buildings', $buildings)
             ->with('systems', $systems)
@@ -361,7 +361,7 @@ class UserController extends Controller
 
 
 
-        return View::make('users.account', $data)
+        return view('users.account', $data)
         ->with('customers', $customers)
         ->with('systems', $systems)
         ->with('alarm_codes', $alarm_codes)
@@ -510,7 +510,7 @@ class UserController extends Controller
    */
     public function accountPassword()
     {
-        return View::make('users.password');
+        return view('users.password');
     }
 
 

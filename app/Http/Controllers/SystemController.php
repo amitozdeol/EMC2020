@@ -177,7 +177,7 @@ class SystemController extends Controller
         $thisBldg = Building::find($id); // Lookup info for selected building
         $systems = System::where('building_id', $thisBldg->id)->get(); // Lookup all systems associated with selected building for nav dropdown
 
-        return View::make('buildings.config.newsystem', ['thisBldg' => $thisBldg])
+        return view('buildings.config.newsystem', ['thisBldg' => $thisBldg])
         ->with('systemsData', $systems);
     }
 
@@ -213,7 +213,7 @@ class SystemController extends Controller
 
         return Redirect::route('system.editSystem', [$thisBldg->id, $newSys->id]);
 
-        // return View::make('buildings.config.newsystem', array('thisBldg' => $thisBldg))
+        // return view('buildings.config.newsystem', array('thisBldg' => $thisBldg))
         // 	->with('systemsData', $systems)
         // 	->with('newSys', $newSys);
     }
@@ -526,7 +526,7 @@ class SystemController extends Controller
         /****************************************************/
 
 
-        return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
+        return view('buildings.config.editsystem', ['thisBldg' => $thisBldg])
             ->with('systemsData', $systems)
             ->with('relay_devices', $relay_devices)
             ->with('wired_input_devices', $wired_input_devices)
@@ -1443,7 +1443,7 @@ class SystemController extends Controller
             
             $confirm = Device::where('system_id', $thisSys->id)->orderBy('id', 'desc')->first();
 
-            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
+            return view('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('thisSystem', $thisSys)
@@ -1546,7 +1546,7 @@ class SystemController extends Controller
 
             $confirm = "updateMap";
 
-            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
+            return view('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('thisSystem', $thisSys)
@@ -1742,7 +1742,7 @@ class SystemController extends Controller
 
             $confirm = "updateInput";
 
-            return View::make('buildings.config.editsystem', ['thisBldg' => $thisBldg])
+            return view('buildings.config.editsystem', ['thisBldg' => $thisBldg])
                 ->with('systemsData', $systems)
                 ->with('devices', $devices)
                 ->with('devicetypes', $devicetypes)
@@ -1810,11 +1810,11 @@ class SystemController extends Controller
                 }
             }
             /* Add some settings that are the same for all systems */
-            $content .= 'web_domain'          .":".Config::get('remote.web_domain')          ."\n";
-            $content .= 'ip_request_address'  .":".Config::get('remote.ip_request_address')  ."\n";
-            $content .= 'server_receiving_dir'.":".Config::get('remote.server_receiving_dir')."\n";
-            $content .= 'server_username'     .":".Config::get('remote.server_username')     ."\n";
-            $content .= 'server_domain_name'  .":".Config::get('remote.server_domain_name')  ."\n";
+            $content .= 'web_domain'          .":".config('remote.web_domain')          ."\n";
+            $content .= 'ip_request_address'  .":".config('remote.ip_request_address')  ."\n";
+            $content .= 'server_receiving_dir'.":".config('remote.server_receiving_dir')."\n";
+            $content .= 'server_username'     .":".config('remote.server_username')     ."\n";
+            $content .= 'server_domain_name'  .":".config('remote.server_domain_name')  ."\n";
 
             SystemLog::info($id, 'Generated system configuration file for system #'.$id, 17);
             /*TODO: check for network config, to determine which command files need to be sent*/
@@ -1995,11 +1995,11 @@ class SystemController extends Controller
             }
         }
         /* Add some settings that are the same for all systems */
-        $content .= 'web_domain'          .":".Config::get('remote.web_domain')          ."\n";
-        $content .= 'ip_request_address'  .":".Config::get('remote.ip_request_address')  ."\n";
-        $content .= 'server_receiving_dir'.":".Config::get('remote.server_receiving_dir')."\n";
-        $content .= 'server_username'     .":".Config::get('remote.server_username')     ."\n";
-        $content .= 'server_domain_name'  .":".Config::get('remote.server_domain_name')  ."\n";
+        $content .= 'web_domain'          .":".config('remote.web_domain')          ."\n";
+        $content .= 'ip_request_address'  .":".config('remote.ip_request_address')  ."\n";
+        $content .= 'server_receiving_dir'.":".config('remote.server_receiving_dir')."\n";
+        $content .= 'server_username'     .":".config('remote.server_username')     ."\n";
+        $content .= 'server_domain_name'  .":".config('remote.server_domain_name')  ."\n";
 
         RemoteTask::deployFile($id, '/var/2020_command', 'config.txt', $content, $forceSend);
 

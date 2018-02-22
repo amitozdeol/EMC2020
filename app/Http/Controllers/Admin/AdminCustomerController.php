@@ -15,7 +15,7 @@ class AdminCustomerController extends Controller
 
         $data['customers'] = Customer::where('id', '>', 0)->get();
 
-        return View::make('admin.customer.index', $data);
+        return view('admin.customer.index', $data);
     }
 
 
@@ -27,7 +27,7 @@ class AdminCustomerController extends Controller
     public function create()
     {
 
-        return View::make('admin.customer.create');
+        return view('admin.customer.create');
     }
 
 
@@ -55,7 +55,7 @@ class AdminCustomerController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to(URL::route('admin.customer.index'));
+        return redirect(URL::route('admin.customer.index'));
     }
 
 
@@ -70,7 +70,7 @@ class AdminCustomerController extends Controller
 
         $data['customer'] = Customer::find($id);
 
-        return View::make('admin.customer.edit', $data);
+        return view('admin.customer.edit', $data);
     }
 
 
@@ -99,7 +99,7 @@ class AdminCustomerController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to(URL::route('admin.customer.index'));
+        return redirect(URL::route('admin.customer.index'));
     }
 
 

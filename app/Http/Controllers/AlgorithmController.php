@@ -83,7 +83,7 @@ class AlgorithmController extends Controller
 
 
 
-        return View::make('algorithms.list')
+        return view('algorithms.list')
             ->with('thisBldg', $thisBldg)
             ->with('id', $id)
             ->with('sid', $sid)
@@ -182,7 +182,7 @@ class AlgorithmController extends Controller
             }
         }
 
-        return View::make('algorithms.addform')
+        return view('algorithms.addform')
             ->with('id', $id)
             ->with('algorithm', $algorithms)
             ->with('algorithmTemps', $algorithmTemps)
@@ -417,7 +417,7 @@ class AlgorithmController extends Controller
             }
         }
 
-        return View::make('algorithms.editform')
+        return view('algorithms.editform')
             ->with('id', $id)
             ->with('algorithm', $algorithms)
             ->with('algorithmTemps', $algorithmTemps)

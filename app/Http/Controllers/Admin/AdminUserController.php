@@ -50,7 +50,7 @@ class AdminUserController extends Controller
         $data['users'] = User::all();
         $data['customers'] = Customer::where('id', '>', 0)->get();
 
-        return View::make('admin.user.index', $data);
+        return view('admin.user.index', $data);
     }
 
 
@@ -83,7 +83,7 @@ class AdminUserController extends Controller
         }
         asort($data['mobile_carriers'], SORT_STRING);
 
-        return View::make('admin.user.create', $data);
+        return view('admin.user.create', $data);
     }
 
 
@@ -124,7 +124,7 @@ class AdminUserController extends Controller
             Session::flash('message', "There was an error creating the $user->email account");
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
-        return Redirect::to(URL::route('admin.user.index') . '#' . $user->id);
+        return redirect(URL::route('admin.user.index') . '#' . $user->id);
     }
 
 
@@ -171,7 +171,7 @@ class AdminUserController extends Controller
         }
         asort($data['mobile_carriers'], SORT_STRING);
 
-        return View::make('admin.user.edit', $data);
+        return view('admin.user.edit', $data);
     }
 
 
@@ -208,7 +208,7 @@ class AdminUserController extends Controller
             Session::flash('message', 'There was an error creating the' .$user->email. 'account');
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
-        return Redirect::to(URL::route('admin.user.index'));
+        return redirect(URL::route('admin.user.index'));
     }
 
 
@@ -223,7 +223,7 @@ class AdminUserController extends Controller
 
         $data['user'] = User::find($id);
 
-        return View::make('admin.user.password', $data);
+        return view('admin.user.password', $data);
     }
 
 
@@ -246,7 +246,7 @@ class AdminUserController extends Controller
             Session::flash('alert-class', 'alert-danger alert-dismissable');
         }
 
-        return Redirect::to(URL::route('admin.user.index') . '#' . $user->id);
+        return redirect(URL::route('admin.user.index') . '#' . $user->id);
     }
 
 

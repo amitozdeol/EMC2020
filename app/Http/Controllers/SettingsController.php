@@ -41,7 +41,7 @@ class SettingsController extends Controller
 
 
         $data = ['customer_id' => $customer_id ];
-        return View::make('settings.customerbuildings', $data)
+        return view('settings.customerbuildings', $data)
             ->with('sysarray', $sysarray)
             ->with('confirmarray', $confirmarray);
     }
@@ -128,7 +128,7 @@ class SettingsController extends Controller
 
 
         $data = ['customer_id' => $customer_id ];
-        return View::make('settings.customerbuildings', $data)
+        return view('settings.customerbuildings', $data)
             ->with('sysarray', $sysarray)
             ->with('confirmarray', $confirmarray);
     }

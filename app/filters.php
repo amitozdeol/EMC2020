@@ -37,7 +37,7 @@ Route::filter('auth', function () {
    */
     if (Auth::guest()) {
         Session::put('redirect', URL::full());
-        return Redirect::to('/login');
+        return redirect('/login');
     }
 });
 
@@ -109,7 +109,7 @@ Route::filter('auth.basic', function () {
 
 Route::filter('guest', function () {
     if (Auth::check()) {
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 
@@ -148,7 +148,7 @@ Route::filter('auth_user', function () {
 Route::filter('auth_staff', function () {
     if ((int)Auth::user()->customer_id !== 0) {
         Session::flash("error", "You don't have permission to access that page");
-        return Redirect::to('/');
+        return redirect('/');
     }
 });
 

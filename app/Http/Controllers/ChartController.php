@@ -145,7 +145,7 @@ class ChartController extends Controller
             }
         }
 
-        return View::make('charts.edit')
+        return view('charts.edit')
         ->with('thisBldg', $thisBldg)
         ->with('thisSys', $thisSys)
         ->with('id', $id)
@@ -227,7 +227,7 @@ class ChartController extends Controller
         $dashboardItem->chart_type = 'Custom';
         $dashboardItem->save();
 
-        return Redirect::to(route('webmapping.index', [$bid, $sid]));
+        return redirect(route('webmapping.index', [$bid, $sid]));
     }
 
 
@@ -248,6 +248,6 @@ class ChartController extends Controller
         ->where('id', $id)
         ->delete();
 
-        return Redirect::to(route('webmapping.index', [$bid, $sid]));
+        return redirect(route('webmapping.index', [$bid, $sid]));
     }
 }

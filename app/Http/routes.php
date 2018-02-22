@@ -43,10 +43,10 @@ Route::get('aboutus/privacy', 'HomeController@privacy');
 |
 */
 Route::get('about', function () {
-    return View::make('about', ['buildings'=>Building::all()]);
+    return view('about', ['buildings'=>Building::all()]);
 });
 Route::get('contact', function () {
-    return View::make('contact', ['buildings'=>Building::all()]);
+    return view('contact', ['buildings'=>Building::all()]);
 });
 Route::get('YourIpPlusaBunchOfHTML.php', function () {
     return $_SERVER['REMOTE_ADDR'];

@@ -76,6 +76,6 @@ class AdminController extends Controller
         $data['systems'] = $systems_array;
         $data['buildings'] = $buildings_array;
 
-        return View::make('admin.index', $data);
+        return view('admin.index', $data);
     }
 }
